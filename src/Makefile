@@ -1,20 +1,19 @@
 main: programa
 
-lex.yy.cc: scanner.l
+lex.yy.c: scanner.l
 	flex $<
 
-lex.yy.o: lex.yy.cc
-	g++ -c $<
-
-y.tab.c: parser.y
-	bison -d $< -o $@
-
-y.tab.o: y.tab.c
+lex.yy.o: lex.yy.c
 	gcc -c $<
 
-programa: y.tab.o lex.yy.o
+parser.c: parser.y
+	bison -d $< -o $@
+
+parser.o: parser.c
+	gcc -c $<
+
+programa: parser.o lex.yy.o
 	gcc -o $@ $< -lfl
 
 clean:
-	rm -rf *.o y.tab.* lex.yy.*
-
+	rm -rf *.o parser.c parser.o lex.yy.*
