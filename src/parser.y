@@ -1,48 +1,52 @@
-/* 
-   GRAMATICA
-
-   D ::= N E
-   N ::= string N | lambda
-   T ::= integer
-   E ::= (N1,T1) (N2,T2) "string" E | lambda
-*/
-
-%{
-
-#include <stdio.h>
-
-%}
-
-%union {
-int num;
-char *cad;
-}
-
-%token NUM STRING LEFT_PARENTHESIS RIGHT_PARENTHESIS TIMES COMMA
-
-%type <num> NUM
-%type <cad> STRING
-
-%%
-
-d:n e
-;
-
-n:/*vacio*/
-|STRING n
-;
-
-e:/*vacio*/
-|LEFT_PARENTHESIS n COMMA t RIGHT_PARENTHESIS COMMA LEFT_PARENTHESIS n COMMA t RIGHT_PARENTHESIS TIMES STRING TIMES e
-;
-
-t:NUM
-;
-
-%%
-
-int main()
+//--------------------------------------------------------------
+//
+//  GRAMATICA
+//    
+//    input ::= LAMBDA | input line
+//    line  ::= '\n' | exp '\n'
+//    exp   ::= note flow
+//    note  ::= STRING | lambda
+//    flow  ::= (STRING,INTEGER) (STRING,INTEGER) STRING */
+//
+//--------------------------------------------------------------
+ 
+ 
+%union 
 {
-yyparse();
-exit(0);
+  int num;
+  char string;
 }
+ 
+%token <num> NUM
+%token <cad> TEXT
+ 
+%%
+
+input:
+        // empty
+|
+        input line
+;
+ 
+line:
+        '\n'
+|
+        exp '\n'
+|
+        error '\n'
+;
+        
+exp:
+        note flow
+;
+ 
+note:
+        // empty
+|
+        TEXT
+;
+ 
+flow:
+        '(' TEXT ',' NUM ')' '(' TEXT ',' NUM ')' TEXT
+
+;
