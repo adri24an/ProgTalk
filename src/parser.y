@@ -19,6 +19,11 @@
  
 %token <num> NUM
 %token <cad> TEXT
+%token LEFT_PAR
+%token RIGHT_PAR
+%token TIMES
+%token COMMA
+%token UNKNOWN
  
 %%
 
@@ -47,6 +52,6 @@ note:
 ;
  
 flow:
-        '(' TEXT ',' NUM ')' '(' TEXT ',' NUM ')' TEXT
+        LEFT_PAR TEXT COMMA NUM RIGHT_PAR LEFT_PAR TEXT COMMA NUM RIGHT_PAR TIMES TEXT TIMES
 
 ;
