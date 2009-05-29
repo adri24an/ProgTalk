@@ -10,11 +10,13 @@
 //
 //--------------------------------------------------------------
  
+%class-name Parser
+%lines
  
 %union 
 {
   int num;
-  char string;
+  char *cad;
 }
  
 %token <num> NUM
@@ -23,7 +25,8 @@
 %token RIGHT_PAR
 %token TIMES
 %token COMMA
-%token UNKNOWN
+
+%start input
  
 %%
 
@@ -34,11 +37,9 @@ input:
 ;
  
 line:
-        '\n'
+        exp
 |
-        exp '\n'
-|
-        error '\n'
+        error
 ;
         
 exp:
