@@ -1,19 +1,13 @@
-main: programa
- 
-Scanner.cc: Scanner.l
-  flex++ -o $<
- 
-parse.cc: Parser.y
-  bisonc++ $<
- 
-Scanner.o: Scanner.cc
-  g++ -c $<
- 
-parse.o: parse.cc
-  g++ -c $<
- 
-programa: parse.o Scanner.o
-  g++ -o $@ $< -lfl
- 
+main: Progtalk
+
+Scanner.cc: Scanner.l Scanner.h
+	flex++ -o $@ $<
+
+parse.cc Scanner.h: Parser.y
+	bisonc++ $<
+
+Progtalk: parse.o Scanner.o Progtalk.o
+	g++ -o $@ $? -lfl
+
 clean:
-  rm -rf *.o *.cc *.h *.ih
+	rm -rf *.o *.cc *.h *.ih

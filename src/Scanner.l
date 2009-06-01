@@ -1,3 +1,6 @@
+%option reentrant
+%option noyywrap
+
 %{
 #include "Parser.h"
 %}

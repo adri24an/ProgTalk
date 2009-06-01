@@ -4,6 +4,6 @@ int main()
 {
     Parser parser;
 
-    //parser.parse();
+    parser.parse();
     return 0;
 }

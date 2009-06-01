@@ -11,6 +11,7 @@
 //------------------------------------------------------------
  
 %class-name Parser
+%scanner Scanner.h
 %lines
  
 %union 
