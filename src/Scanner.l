@@ -1,4 +1,4 @@
-%option reentrant
+//%option reentrant
 %option noyywrap
 
 %{
