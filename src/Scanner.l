@@ -2,6 +2,7 @@
 
 %{
 #include "Parser.h"
+#nclude <iostream>
 %}
 
 DIGIT   [0-9]+
@@ -12,7 +13,10 @@ WHITE   [ \t\n]+
 
 {WHITE}   { /* Ignoramos espacios en blanco */ }
 
-{DIGIT}   {return(Parser::NUM);}
+{DIGIT}   {
+           cout << "He leido un digito" << endl;
+           return(Parser::NUM);
+          }
 
 {ID}      {return(Parser::TEXT);}
 
