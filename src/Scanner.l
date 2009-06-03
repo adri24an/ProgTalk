@@ -2,7 +2,7 @@
 
 %{
 #include "Parser.h"
-#nclude <iostream>
+#include <iostream>
 %}
 
 DIGIT   [0-9]+
