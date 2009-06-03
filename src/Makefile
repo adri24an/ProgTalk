@@ -10,4 +10,4 @@ Progtalk: parse.o Scanner.o Progtalk.o
 	g++ -o $@ $? -lfl
 
 clean:
-	rm -rf *.o *.cc *.h *.ih
+	rm -rf *.o *.cc *.ih
