@@ -14,18 +14,33 @@ WHITE   [ \t\n]+
 {WHITE}   { /* Ignoramos espacios en blanco */ }
 
 {DIGIT}   {
-           cout << "He leido un digito" << endl;
+           std::cout << "He leido un digito" << std::endl;
            return(Parser::NUM);
           }
 
-{ID}      {return(Parser::TEXT);}
+{ID}      {
+           std::cout << "He leido un identificador" << std::endl;
+           return(Parser::TEXT);
+          }
 
-"("       {return(Parser::LEFT_PAR);}
+"("       {
+           std::cout << "He leido un (" << std::endl;
+           return(Parser::LEFT_PAR);
+          }
 
-")"       {return(Parser::RIGHT_PAR);}
+")"       {
+           std::cout << "He leido un )" << std::endl;
+           return(Parser::RIGHT_PAR);
+          }
 
-"*"       {return(Parser::TIMES);}
+\"        {
+           std::cout << "He leido una \"" << std::endl;
+           return(Parser::TIMES);
+          }
 
-","       {return(Parser::COMMA);}
+","       {
+           std::cout << "He leido una ," << std::endl;
+           return(Parser::COMMA);
+          }
 
 %%
