@@ -1,4 +1,5 @@
 flex++ -o Scanner.cc Scanner.l
+-- eliminar linea 23 del fichero Scanner.cc
 bisonc++  Parser.y
 g++ -c -o parse.o parse.cc
 g++ -c -o Scanner.o Scanner.cc
