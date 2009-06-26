@@ -3,6 +3,7 @@
 %{
 #include "Parser.h"
 #include <iostream>
+
 %}
 
 DIGIT   [0-9]+
@@ -41,6 +42,11 @@ WHITE   [ \t\n]+
 ","       {
            std::cout << "He leido una ," << std::endl;
            return(Parser::COMMA);
+          }
+
+.         {
+           std::cout << "ERROR: CARACTER INCORRECTO" << std::endl;
+           yyterminate();
           }
 
 %%
