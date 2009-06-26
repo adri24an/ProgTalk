@@ -19,7 +19,7 @@ WHITE   [ \t\n]+
           }
 
 {ID}      {
-           std::cout << "He leido un identificador" << std::endl;
+           std::cout << "He leido el identificador: " << yytext << std::endl;
            return(Parser::TEXT);
           }
 
