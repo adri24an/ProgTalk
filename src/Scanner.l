@@ -8,7 +8,7 @@
 
 DIGIT   [0-9]+
 ID      [a-zA-Z][a-zA-Z0-9]*
-WHITE   [ \t\n]+
+WHITE   [ \t]+
 
 %%
 
@@ -42,6 +42,10 @@ WHITE   [ \t\n]+
 ","       {
            std::cout << "He leido una ," << std::endl;
            return(Parser::COMMA);
+          }
+
+\n        {
+           return(Parser::EOLN);
           }
 
 .         {
