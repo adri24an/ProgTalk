@@ -2,14 +2,14 @@
 
 #include <string.h>
 
-Evento :: Evento (tentidad ent1, tentidad ent2, char * texto)
+Evento :: Evento (char * n1, int t1, char * n2, int t2, char * texto)
 {
-  this -> entidad1.nombre = new char[strlen(ent1.nombre)+1];
-  strcpy (this -> entidad1.nombre, ent1.nombre);
-  this -> entidad1.tiempo = ent1.tiempo;
-  this -> entidad2.nombre = new char[strlen(ent2.nombre)+1];
-  strcpy (this -> entidad2.nombre, ent2.nombre);
-  this -> entidad2.tiempo = ent2.tiempo;
+  this -> entidad1.nombre = new char[strlen(n1)+1];
+  strcpy (this -> entidad1.nombre, n1);
+  this -> entidad1.tiempo = t1;
+  this -> entidad2.nombre = new char[strlen(n2)+1];
+  strcpy (this -> entidad2.nombre, n2);
+  this -> entidad2.tiempo = t2;
   this -> texto = new char[strlen(texto)+1];
   strcpy (this -> texto, texto);
 }

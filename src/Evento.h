@@ -12,7 +12,7 @@ class Evento
     
 public:
 
-  Evento(tentidad ent1, tentidad ent2, char * texto);
+  Evento(char * n1, int t1, char * n2, int t2, char * texto);
 
   char * GetEntidad1Nombre () const;
   int GetEntidad1Tiempo () const;
