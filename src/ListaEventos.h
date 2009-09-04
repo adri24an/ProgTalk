@@ -1,19 +1,5 @@
 #include "Evento.h"
 
-class Evento
-{
-  Evento * nodo;
-  Evento * sig;
-  
-public:
-
-  ListaEventos(Evento e);
-  
-  void AgregarEvento (Evento e);
-};
-
-----------------------------------
-
 class NodoListaEventos
 {
 public:
@@ -53,7 +39,7 @@ public:
 	~ListaEventos();
 
 	// Añade un evento
-	void AñadirEvento (char * n1, int t1, char * n2, int t2, char * texto);
+	void AnadirEvento (char * n1, int t1, char * n2, int t2, char * texto);
 
 private:
 
