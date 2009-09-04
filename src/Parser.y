@@ -39,6 +39,8 @@ input:
 ;
  
 line:
+        EOLN
+|
         exp
 |
         error
