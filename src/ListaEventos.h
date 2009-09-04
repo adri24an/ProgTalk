@@ -12,54 +12,51 @@ public:
   void AgregarEvento (Evento e);
 };
 
+----------------------------------
 
-
-class CNodoListaPaginas
+class NodoListaEventos
 {
 public:
 
-	Evento(Nodo nodo);
+	NodoListaEventos(Evento evento);
 	
-	~Evento();
+	~NodoListaEventos();
 	
 	//Funcion que devuelve un puntero al siguiente nodo
-	CNodoListaPaginas * GetSig() const;
+	NodoListaEventos * GetSig() const;
 	
 	//Funcion que coloca el puntero en el siguiente nodo
-	void SetSig (CNodoListaPaginas * pagina);
+	void SetSig (NodoListaEventos * evento);
 	
-	//Funcion que devuelve la informacion de la pagina
+	//Funcion que devuelve la informacion del evento
 	//correspondiente al nodo.
-	CPagina * GetPagina () const;
+	Evento * GetEvento () const;
 
 private:
 
-	CPagina * pagina;
-	CNodoListaPaginas * sig;
+	Evento * evento;
+        NodoListaEventos * sig;
 };
 
 //-----------------------------------------------------------------
 //Clase que representa la lista de paginas
 //-----------------------------------------------------------------
 
-class CListaPaginas
+class ListaEventos
 {
 public:
 
-	// Constructor de lista de paginas
-	CListaPaginas();
+	// Constructor de lista de eventos
+	ListaEventos();
 
-	// Destructor de lista de paginas
-	~CListaPaginas();
+	// Destructor de lista de eventos
+	~ListaEventos();
 
-	//Dado un idp, devuelve un puntero a la pagina correspondiente
-	CNodoListaPaginas * BuscarPagina (char * idp) const;
-
-	//Alta de una pagina web
-	void AltaPagina (ofstream &salida, char * ns, char * idp, char * url);
+	// Añade un evento
+	void AñadirEvento (char * n1, int t1, char * n2, int t2, char * texto);
 
 private:
 
-	CNodoListaPaginas * lista;
+	NodoListaEventos * lista;
 
 };
