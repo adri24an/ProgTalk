@@ -4,7 +4,7 @@ class NodoListaEventos
 {
 public:
 
-	NodoListaEventos(Evento evento);
+	NodoListaEventos(Evento * e);
 	
 	~NodoListaEventos();
 	
