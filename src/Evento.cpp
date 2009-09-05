@@ -16,9 +16,9 @@ Evento :: Evento (char * n1, int t1, char * n2, int t2, char * texto)
 
 Evento :: ~Evento()
 {
-  delete entidad1.nombre;
-  delete entidad2.nombre;
-  delete texto;
+  delete [] entidad1.nombre;
+  delete [] entidad2.nombre;
+  delete [] texto;
 }
 
 char * Evento :: GetEntidad1Nombre () const
