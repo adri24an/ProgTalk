@@ -17,8 +17,6 @@ class Parser: public ParserBase
 {
     // $insert scannerobject
     Scanner d_scanner;
-    // $insert ListaEventosObject
-    ListaEventos lista = new ListaEventos;
         
     public:
         int parse();
