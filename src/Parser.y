@@ -17,7 +17,7 @@
 %union 
 {
   int num;
-  char *cad;
+  char * cad;
 }
  
 %token <num> NUM
@@ -58,5 +58,5 @@ note:
  
 flow:
         LEFT_PAR TEXT COMMA NUM RIGHT_PAR LEFT_PAR TEXT COMMA NUM RIGHT_PAR TIMES TEXT TIMES EOLN
-
+	  
 ;
