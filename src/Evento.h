@@ -13,6 +13,7 @@ class Evento
 public:
 
   Evento(char * n1, int t1, char * n2, int t2, char * texto);
+  ~Evento();
 
   char * GetEntidad1Nombre () const;
   int GetEntidad1Tiempo () const;
