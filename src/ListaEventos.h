@@ -25,7 +25,7 @@ private:
 };
 
 //-----------------------------------------------------------------
-//Clase que representa la lista de paginas
+//Clase que representa la lista de eventos
 //-----------------------------------------------------------------
 
 class ListaEventos
