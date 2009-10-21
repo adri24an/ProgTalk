@@ -37,6 +37,11 @@ class Parser: public ParserBase
 	    return le;
 	}
 
+	void AnadirEvento (char * n1, int t1, char * n2, int t2, char * texto)
+	{
+	    le->AnadirEvento(n1,t1,n2,t2,texto);
+	}
+
     private:
         void error(char const *msg)
         {
