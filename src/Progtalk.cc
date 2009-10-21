@@ -2,7 +2,7 @@
 
 int main()
 {
-    Parser parser;
+    Parser parser = new Parser();
 
     parser.parse();
     return 0;
