@@ -17,22 +17,22 @@ class Parser: public ParserBase
 {
     // $insert scannerobject
     Scanner d_scanner;
-    ListaEventos le;
+    ListaEventos * le;
         
     public:
-        int Parser::parse();
+        int parse();
 
-        Parser::Parser()
+        Parser()
         {
 	    this -> le = new ListaEventos();
         }
 
-	Parser::~Parser()
+	~Parser()
 	{
-	    delete [] le;
+	    delete le;
         }
 
-	ListaEventos * Parser::GetLE()
+	ListaEventos * GetLE()
 	{
 	    return le;
 	}
