@@ -2,8 +2,8 @@
 
 int main()
 {
-    Parser parser = new Parser();
+    Parser * parser = new Parser();
 
-    parser.parse();
+    parser->parse();
     return 0;
 }
