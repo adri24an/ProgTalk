@@ -37,12 +37,13 @@ class Parser: public ParserBase
 	    return le;
 	}
 
+    private:
+
 	void AnadirEvento (char * n1, int t1, char * n2, int t2, char * texto)
 	{
 	    le->AnadirEvento(n1,t1,n2,t2,texto);
 	}
 
-    private:
         void error(char const *msg)
         {
             std::cerr << msg << std::endl;
@@ -56,12 +57,6 @@ class Parser: public ParserBase
 
         void print()    // d_token, d_loc
         {}
-
-	void AnadirEvento (ListaEventos * lista, char * n1, int t1, 
-			   char * n2, int t2, char * texto)
-	{
-	  lista -> AnadirEvento (n1, t1, n2, t2, texto);
-	}
 
     // support functions for parse():
         void executeAction(int ruleNr);
