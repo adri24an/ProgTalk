@@ -1,4 +1,4 @@
-#include "Evento.h"
+#include "Evento.cpp"
 
 class NodoListaEventos
 {

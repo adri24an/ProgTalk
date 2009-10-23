@@ -3,14 +3,10 @@
 
 // for error()'s inline implementation
 #include <iostream>
-
-// $insert baseclass
 #include "Parserbase.h"
-// $insert scanner.h
 #include "Scanner.h"
-// $insert ListaEventos.h
-#include "ListaEventos.h"
-
+//#include "ListaEventos.h"
+#include "ListaEventos.cpp"
 
 #undef Parser
 class Parser: public ParserBase
