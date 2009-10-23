@@ -2,7 +2,7 @@
 
 int main()
 {
-    Parser * parser = new Parser();
+    Parser * parser = new Parser;
 
     parser->parse();
     return 0;
