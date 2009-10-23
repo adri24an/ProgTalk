@@ -51,7 +51,7 @@ ListaEventos :: ListaEventos()
 // Destructor de lista de eventos
 ListaEventos :: ~ListaEventos()
 {
-	NodoListaEventos *ant, *act;
+    NodoListaEventos *ant, *act;
     act = lista;
     while (act)
     {
@@ -65,17 +65,17 @@ ListaEventos :: ~ListaEventos()
 void ListaEventos :: AnadirEvento (char * n1, int t1, char * n2, int t2, 
 				   char * texto)
 {
-  NodoListaEventos * indice = lista;
-  Evento * e;
-  NodoListaEventos * n;
+    NodoListaEventos * indice = lista;
+    Evento * e;
+    NodoListaEventos * n;
 
-  while (indice->GetSig() != NULL)
+    while (indice->GetSig() != NULL)
     {
-      indice->SetSig(indice->GetSig());
+        indice->SetSig(indice->GetSig());
     }
  
-  e = new Evento (n1, t1, n2, t2, texto);
-  n = new NodoListaEventos (e);
-  indice->SetSig(n);
+    e = new Evento (n1, t1, n2, t2, texto);
+    n = new NodoListaEventos (e);
+    indice->SetSig(n);
 }
 
