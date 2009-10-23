@@ -5,19 +5,17 @@
 #include <iostream>
 #include "Parserbase.h"
 #include "Scanner.h"
-//#include "ListaEventos.h"
-#include "ListaEventos.cpp"
+#include "ListaEventos.h"
 
 #undef Parser
 class Parser: public ParserBase
 {
-    // $insert scannerobject
     Scanner d_scanner;
-    ListaEventos * le;
+    ListaEventos le;
         
     public:
         Parser();
-	ListaEventos * GetLE();
+	ListaEventos GetLE();
         int parse();
 
     private:
@@ -35,11 +33,11 @@ class Parser: public ParserBase
 };
 
 inline Parser::Parser()
+	      :le()
 {
-    this -> le = new ListaEventos();
 }
 
-inline ListaEventos * Parser::GetLE()
+inline ListaEventos Parser::GetLE()
 {
     return le;
 }
@@ -47,7 +45,7 @@ inline ListaEventos * Parser::GetLE()
 inline void Parser::AnadirEvento (char * n1, int t1, char * n2, int t2, 
 				  char * texto)
 {
-    le->AnadirEvento(n1,t1,n2,t2,texto);
+    le.AnadirEvento(n1,t1,n2,t2,texto);
 }
 
 inline void Parser::error(char const *msg)
