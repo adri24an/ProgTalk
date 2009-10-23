@@ -15,32 +15,26 @@ WHITE   [ \t]+
 {WHITE}   { /* Ignoramos espacios en blanco */ }
 
 {DIGIT}   {
-           std::cout << "He leido un digito" << std::endl;
            return(Parser::NUM);
           }
 
 {ID}      {
-           std::cout << "He leido el identificador: " << yytext << std::endl;
            return(Parser::TEXT);
           }
 
 "("       {
-           std::cout << "He leido un (" << std::endl;
            return(Parser::LEFT_PAR);
           }
 
 ")"       {
-           std::cout << "He leido un )" << std::endl;
            return(Parser::RIGHT_PAR);
           }
 
 \"        {
-           std::cout << "He leido una \"" << std::endl;
            return(Parser::TIMES);
           }
 
 ","       {
-           std::cout << "He leido una ," << std::endl;
            return(Parser::COMMA);
           }
 
