@@ -59,7 +59,7 @@ note:
 flow:
 LEFT_PAR TEXT COMMA NUM RIGHT_PAR LEFT_PAR TEXT COMMA NUM RIGHT_PAR TIMES TEXT TIMES EOLN 
 {
-  //  std::cout << $2;
+  //std::cout << $2;
   //std::cout << $4;
   //std::cout << $7;
   //std::cout << $9;
