@@ -9,10 +9,7 @@
 
 #undef Parser
 class Parser: public ParserBase
-{
-    Scanner d_scanner;
-    ListaEventos le;
-        
+{       
     public:
         Parser();
 	ListaEventos GetLE();
@@ -30,6 +27,9 @@ class Parser: public ParserBase
         void errorRecovery();
         int lookup(bool recovery);
         void nextToken();
+
+	Scanner d_scanner;
+	ListaEventos le;
 };
 
 inline Parser::Parser()
