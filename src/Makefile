@@ -6,7 +6,7 @@ Scanner.cc: Scanner.l Scanner.h
 parse.cc: Parser.y
 	bisonc++ $<
 
-Progtalk: parse.o Scanner.o Progtalk.o
+Progtalk: parse.o Scanner.o Progtalk.o ListaEventos.o Evento.o
 	g++ -o $@ $? -lfl
 
 clean:
