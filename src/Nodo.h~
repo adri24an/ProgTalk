@@ -1,0 +1,22 @@
+struct tentidad
+{
+  char * nombre;
+  int tiempo;
+};
+
+class Nodo
+{
+  struct tentidad entidad1;
+  struct tentidad entidad2;
+  char * texto;
+    
+public:
+
+  Nodo(tentidad ent1, tentidad ent2, char *texto);
+
+  char * GetEntidad1Nombre ();
+  int GetEntidad1Tiempo ();
+  char * GetEntidad2Nombre ();
+  int GetEntidad2Tiempo ();
+  char * GetTexto ();
+};

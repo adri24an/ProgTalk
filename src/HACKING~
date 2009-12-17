@@ -1,0 +1,8 @@
+flex++ -o Scanner.cc Scanner.l
+/* Eliminar linea 23 del fichero Scanner.cc */
+bisonc++ Parser.y
+g++ -c Parser.h
+g++ -c -o parse.o parse.cc
+g++ -c -o Scanner.o Scanner.cc
+g++ -c -o Progtalk.o Progtalk.cc
+g++ -o Progtalk parse.o Scanner.o Progtalk.o

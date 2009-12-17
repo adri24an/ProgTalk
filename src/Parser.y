@@ -22,11 +22,14 @@
  
 %token <num> NUM
 %token <cad> TEXT
-%token LEFT_PAR
-%token RIGHT_PAR
-%token TIMES
-%token COMMA
-%token EOLN
+%token <cad> LEFT_PAR
+%token <cad> RIGHT_PAR
+%token <cad> TIMES
+%token <cad> COMMA
+%token <cad> EOLN
+
+%type <num> num
+%type <cad> text
 
 %start input
  
@@ -57,14 +60,38 @@ note:
 ;
  
 flow:
-LEFT_PAR TEXT COMMA NUM RIGHT_PAR LEFT_PAR TEXT COMMA NUM RIGHT_PAR TIMES TEXT TIMES EOLN 
+LEFT_PAR 
+text 
+COMMA 
+num
+RIGHT_PAR 
+LEFT_PAR 
+text
+COMMA 
+num
+RIGHT_PAR 
+TIMES 
+text
+TIMES 
+EOLN 
 {
-  //std::cout << $2;
-  //std::cout << $4;
-  //std::cout << $7;
-  //std::cout << $9;
-  //std::cout << $12 << std::endl;
-  //AnadirEvento($2,$4,$7,$9,$12);
+  AddEvent($2,$4,$7,$9,$12);
 }
-	  
 ;
+
+num:
+        NUM 
+	{
+	  $$ = atoi(d_scanner.YYText());
+	}
+;
+
+text:
+        TEXT
+        {
+	  $$ = new char[strlen(d_scanner.YYText())+1];
+          strcpy ($$, d_scanner.YYText());
+	}
+;
+ 
+

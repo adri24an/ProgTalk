@@ -1,35 +1,50 @@
 #ifndef Parser_h_included
 #define Parser_h_included
 
-// for error()'s inline implementation
 #include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "Parserbase.h"
 #include "Scanner.h"
-#include "ListaEventos.h"
+#include "EventsList.h"
 
 #undef Parser
 class Parser: public ParserBase
 {       
     public:
         Parser();
-	ListaEventos GetLE();
+
+	//Returns a pointer to EventsList object
+	EventsList * getLE(); 
+
         int parse();
+
+	//A custom print operation
+	void MyPrint();       
+	
 
     private:
 
-	void AnadirEvento (char * n1, int t1, char * n2, int t2, char * texto);
-        void error(char const *msg);
-        int lex();
-        void print();
+	//Adds a new event to EventsList object
+	void AddEvent (char * n1, int t1, char * n2, int t2, char * text);
 
-    // support functions for parse():
+        void error(char const *msg);
+
+        int lex();
+
+	//Default print operation (not implemented)
+	void print();
+
+	//Support functions for parse():
         void executeAction(int ruleNr);
         void errorRecovery();
         int lookup(bool recovery);
         void nextToken();
 
-	Scanner d_scanner;
-	ListaEventos le;
+	Scanner d_scanner; //Tokens reader
+	EventsList le;     //Object that storages the list of events
+	                   //(communications) that were parsed
 };
 
 inline Parser::Parser()
@@ -37,15 +52,17 @@ inline Parser::Parser()
 {
 }
 
-inline ListaEventos Parser::GetLE()
+//Returns a pointer to EventsList object
+inline EventsList * Parser::getLE()
 {
-    return le;
+    return &le;
 }
 
-inline void Parser::AnadirEvento (char * n1, int t1, char * n2, int t2, 
-				  char * texto)
+//Adds a new event to EventsList object
+inline void Parser::AddEvent (char * n1, int t1, char * n2, int t2, 
+			      char * text)
 {
-    le.AnadirEvento(n1,t1,n2,t2,texto);
+    le.AddEvent(n1,t1,n2,t2,text);
 }
 
 inline void Parser::error(char const *msg)
@@ -58,8 +75,13 @@ inline int Parser::lex()
     return d_scanner.yylex();
 }
 
-inline void Parser::print()// d_token, d_loc
+//A custom print operation
+inline void Parser::MyPrint ()
 {
+  le.Print();
 }
+
+//Default print operation (not implemented)
+inline void Parser::print(){}
 
 #endif

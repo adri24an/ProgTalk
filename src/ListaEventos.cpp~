@@ -1,0 +1,12 @@
+#include "Evento.h"
+
+Evento :: Evento (Nodo * nodo)
+{
+  this -> nodo = ;
+  this -> sig = NULL;
+}
+
+Evento :: AgregarNodo (Nodo nodo)
+{
+  ;
+}
