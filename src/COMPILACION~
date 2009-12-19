@@ -1,4 +1,0 @@
-flex++ -o Scanner.cc Scanner.l
-bisonc++  Parser.y
-g++ -c -o Progtalk.o Progtalk.cpp
-g++ -o Progtalk parse.o Scanner.o Progtalk.o
