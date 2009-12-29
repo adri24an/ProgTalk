@@ -2,6 +2,6 @@ instance u of User;
 instance a of Agent { "DHL" };
 instance f of Factory;
 
-message r { "request send to dhl" } from u @ 0 to a @ 1;
-message { "send" } from a @ 2 to f @ +2;
-message from a @ 2 to a @ r+3;
+message m1 { "request send to dhl" } from u to a;
+message m2 { "send" } from a @ m1? to f @ +2;
+message { "internal" } from a @ m2!+0 to a @ m1?+3;
