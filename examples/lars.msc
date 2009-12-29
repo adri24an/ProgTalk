@@ -1,0 +1,7 @@
+instance u of User;
+instance a of Agent { "DHL" };
+instance f of Factory;
+
+message r { "request send to dhl" } from u @ 0 to a @ 1;
+message { "send" } from a @ 2 to f @ +2;
+message from a @ 2 to a @ r+3;

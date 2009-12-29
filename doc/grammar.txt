@@ -1,0 +1,36 @@
+msc ::= inst_decl* message*
+
+Un MSC es una lista de declaración de instancias seguida de una lista
+de definición de mensajes.
+
+inst_delc ::= "instance" iid ("of" tid)? ("{" string "}")? ";"
+
+Tanto ("of" tid)? como string? son elementos decorativos, lo que importa es el identificador de instancia.
+
+message ::= "message" mid? ("{" string "}")? ("from" iid ("@" time_ref)?)? ("to" iid ("@" time_ref)?)? ";"
+
+Un mensaje puede tener cierta información (mid y "{" string "}") y
+viajar del emisor ("from" iid) al receptor ("to" iid).
+
+Los tiempos indican el instante de envio y el de recepción y pueden
+ser absolutos o relativos:
+
+time_ref ::= abs_time
+         |   rel_time
+abs_time ::= num
+rel_time ::= mid? diftime
+dif_time ::= "+" num
+         |   "-" num
+
+Los instantes relativos utilizan como referencia el instante de
+recepción de otro mensaje. Si no aparece el mensaje entonces la
+referencia es el mensaje anterior para para el instante de envío y el
+(instante de envío del) mensaje actual para el instante de recepción.
+
+En el caso de que no aparezca la referencia de tiempo se asume como
+valor @ +1.
+
+iid ::= identificador de instancia
+tid ::= identificador de tipo
+mid ::= identificador de mensaje
+num ::= número natural
