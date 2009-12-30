@@ -1,0 +1,19 @@
+* Tareas
+** Adaptación a la nueva gramática
+*** TODO Modificar el parser
+    El parser debe entender el lenguaje definido en doc/grammar.txt
+*** TODO Tablas de símbolos
+    Definir los tipos de datos necesarios para almacenar la
+    información en forma de tablas (usar las tablas map de la STL).
+*** TODO Serializar con tiempos absolutos
+    Modificar las tablas para que los mensajes se representen con
+    tiempos absolutos y así serializarlos utilizando la misma
+    sintaxis.
+** Traducción al lenguaje del paquete msc de LaTeX
+*** TODO Planificar
+** Visualización en Qt
+*** TODO Planificar
+** Exportación a PDF
+*** TODO Planificar
+** Manipulación visual en Qt
+*** TODO Planificar
