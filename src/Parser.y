@@ -2,11 +2,18 @@
 //
 //  GRAMATICA
 //    
-//    input ::= LAMBDA | input line
-//    line  ::= '\n' | exp '\n'
-//    exp   ::= note flow
-//    note  ::= STRING | lambda
-//    flow  ::= (STRING,INTEGER) (STRING,INTEGER) STRING */
+//    msc ::= inst_decl* message*
+//    inst_delc ::= "instance" iid ("of" tid)? ("{" STRING "}")? ";"
+//    message ::= "message" mid? ("{" STRING "}")? ("from" iid 
+//                 ("@" time_ref)?)? ("to" iid ("@" time_ref)?)? ";"
+//    time_ref ::= abs_time | rel_time
+//    abs_time ::= NUM
+//    rel_time ::= ref? diftime
+//    ref ::= iid "!" | iid "?"
+//    dif_time ::= "+" NUM | "-" NUM
+//    iid ::= NUM
+//    tid ::= NUM
+//    mid ::= NUM
 //
 //------------------------------------------------------------
  
@@ -35,14 +42,15 @@
  
 %%
 
-input:
+msc:
         // empty
 |
-        input line
+        msc inst_decl message
 ;
  
-line:
-        EOLN
+inst_decl:
+        STRING iid LEFT_PAR STRING tid RIGHT_PAR LEFT_PAR LEFT_BRACE
+	STRING RIGHT_BRACE RIGHT_PAR
 |
         exp
 |
