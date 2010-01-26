@@ -6,9 +6,15 @@
 
 %}
 
-DIGIT   [0-9]+
-ID      [a-zA-Z][a-zA-Z0-9]*
-WHITE   [ \t]+
+DIGIT    [0-9]+
+ID       [a-zA-Z][a-zA-Z0-9_]*
+WHITE    [ \t]+
+STRING   \"[^\"]*\"
+INSTANCE 'instance'
+OF       'of'
+MESSAGE  'message'
+FROM     'from'
+TO       'to'
 
 %%
 
@@ -20,6 +26,30 @@ WHITE   [ \t]+
 
 {ID}      {
            return(Parser::TEXT);
+          }
+
+{STRING}  {
+           return(Parser::STRING);
+          }
+
+{INSTANCE}{
+           return(Parser::INSTANCE);
+          }
+
+{OF}      {
+           return(Parser::OF);
+          }
+
+{MESSAGE} {
+           return(Parser::MESSAGE);
+          }
+
+{FROM}    {
+           return(Parser::FROM);
+          }
+
+{TO}      {
+           return(Parser::TO);
           }
 
 "("       {
