@@ -3,17 +3,17 @@
 //  GRAMATICA
 //    
 //    msc ::= inst_decl* message*
-//    inst_delc ::= "instance" iid ("of" tid)? ("{" STRING "}")? ";"
-//    message ::= "message" mid? ("{" STRING "}")? ("from" iid 
-//                 ("@" time_ref)?)? ("to" iid ("@" time_ref)?)? ";"
+//    inst_delc ::= INSTANCE iid (OF tid)? ({ STRING })?;
+//    message ::= MESSAGE mid? ({ STRING })? (FROM iid ("@" time_ref)?)? 
+//                             (TO iid (@ time_ref)?)?;
 //    time_ref ::= abs_time | rel_time
 //    abs_time ::= NUM
 //    rel_time ::= ref? diftime
-//    ref ::= iid "!" | iid "?"
-//    dif_time ::= "+" NUM | "-" NUM
-//    iid ::= NUM
-//    tid ::= NUM
-//    mid ::= NUM
+//    ref ::= iid ! | iid ?
+//    dif_time ::= + NUM | - NUM
+//    iid ::= STRING
+//    tid ::= STRING
+//    mid ::= STRING
 //
 //------------------------------------------------------------
  
