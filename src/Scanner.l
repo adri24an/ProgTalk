@@ -52,6 +52,30 @@ TO       'to'
            return(Parser::TO);
           }
 
+"@"       {
+           return(Parser::AT);
+          }
+
+"+"       {
+           return(Parser::PLUS);
+          }
+
+"-"       {
+           return(Parser::MINUS);
+          }
+
+"!"       {
+           return(Parser::EXCLAMATION);
+          }
+
+"?"       {
+           return(Parser::INTERROGATION);
+          }
+
+";"       {
+           return(Parser::SEMICOLON);
+          }
+
 "("       {
            return(Parser::LEFT_PAR);
           }
