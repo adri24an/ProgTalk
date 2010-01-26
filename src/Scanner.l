@@ -10,95 +10,95 @@ DIGIT    [0-9]+
 ID       [a-zA-Z][a-zA-Z0-9_]*
 WHITE    [ \t]+
 STRING   \"[^\"]*\"
-INSTANCE 'instance'
-OF       'of'
-MESSAGE  'message'
-FROM     'from'
-TO       'to'
+INSTANCE "instance"
+OF       "of"
+MESSAGE  "message"
+FROM     "from"
+TO       "to"
 
 %%
 
-{WHITE}   { /* Ignoramos espacios en blanco */ }
+{WHITE}    { /* Ignoramos espacios en blanco */ }
 
-{DIGIT}   {
-           return(Parser::NUM);
-          }
+{DIGIT}    {
+            return(Parser::NUM);
+           }
 
-{ID}      {
-           return(Parser::TEXT);
-          }
+{ID}       {
+            return(Parser::TEXT);
+           }
 
-{STRING}  {
-           return(Parser::STRING);
-          }
+{STRING}   {
+            return(Parser::STRING);
+           }
 
-{INSTANCE}{
-           return(Parser::INSTANCE);
-          }
+{INSTANCE} {
+            return(Parser::INSTANCE);
+           }
 
-{OF}      {
-           return(Parser::OF);
-          }
+{OF}       {
+            return(Parser::OF);
+           }
 
-{MESSAGE} {
-           return(Parser::MESSAGE);
-          }
+{MESSAGE}  {
+            return(Parser::MESSAGE);
+           }
 
-{FROM}    {
-           return(Parser::FROM);
-          }
+{FROM}     {
+            return(Parser::FROM);
+           }
 
-{TO}      {
-           return(Parser::TO);
-          }
+{TO}       {
+            return(Parser::TO);
+           }
 
-"@"       {
-           return(Parser::AT);
-          }
+"@"        {
+            return(Parser::AT);
+           }
 
-"+"       {
-           return(Parser::PLUS);
-          }
+"+"        {
+            return(Parser::PLUS);
+           }
 
-"-"       {
-           return(Parser::MINUS);
-          }
+"-"        {
+            return(Parser::MINUS);
+           }
 
-"!"       {
-           return(Parser::EXCLAMATION);
-          }
+"!"        {
+            return(Parser::EXCLAMATION);
+           }
 
-"?"       {
-           return(Parser::INTERROGATION);
-          }
+"?"        {
+            return(Parser::INTERROGATION);
+           }
 
-";"       {
-           return(Parser::SEMICOLON);
-          }
+";"        {
+            return(Parser::SEMICOLON);
+           }
 
-"("       {
-           return(Parser::LEFT_PAR);
-          }
+"("        {
+            return(Parser::LEFT_PAR);
+           }
 
-")"       {
-           return(Parser::RIGHT_PAR);
-          }
+")"        {
+            return(Parser::RIGHT_PAR);
+           }
 
-\"        {
-           return(Parser::TIMES);
-          }
+\"         {
+            return(Parser::TIMES);
+           }
 
-","       {
-           return(Parser::COMMA);
-          }
+","        {
+            return(Parser::COMMA);
+           }
 
-\n        {
-           return(Parser::EOLN);
-          }
+\n         {
+            return(Parser::EOLN);
+           }
 
-.         {
-           std::cout << "ERROR: CARACTER INCORRECTO" << std::endl;
-           yyterminate();
-          }
+.          {
+            std::cout << "ERROR: CARACTER INCORRECTO" << std::endl;
+            yyterminate();
+           }
 
 %%
