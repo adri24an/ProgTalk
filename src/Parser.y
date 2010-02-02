@@ -76,9 +76,7 @@
 %%
 
 msc:
-        // empty
-|
-        msc inst_decl message
+        inst_decl message
 ;
  
 inst_decl:
