@@ -80,10 +80,6 @@ TO       "to"
             return(Parser::TIMES);
            }
 
-","        {
-            return(Parser::COMMA);
-           }
-
 \n         {
             return(Parser::EOLN);
            }
