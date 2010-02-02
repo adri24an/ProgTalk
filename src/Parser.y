@@ -137,8 +137,8 @@ num:
 	}
 ;
 
-text:
-        TEXT
+id:
+        ID
         {
 	  $$ = new char[strlen(d_scanner.YYText())+1];
           strcpy ($$, d_scanner.YYText());
