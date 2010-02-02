@@ -6,7 +6,7 @@
 
 %}
 
-DIGIT    [0-9]+
+NUM      [0-9]+
 ID       [a-zA-Z][a-zA-Z0-9_]*
 WHITE    [ \t]+
 STRING   \"[^\"]*\"
@@ -20,7 +20,7 @@ TO       "to"
 
 {WHITE}    { /* Ignoramos espacios en blanco */ }
 
-{DIGIT}    {
+{NUM}    {
             return(Parser::NUM);
            }
 
