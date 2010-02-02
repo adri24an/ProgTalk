@@ -100,17 +100,58 @@ inst_decl:
         INSTANCE iid SEMICOLON EOLN
 ;
         
-exp:
-        note flow
+message:
+        // EMPTY
 ;
  
-note:
-        // empty
-|
-        TEXT
+time_ref:
+        // EMPTY 
 ;
- 
-flow:
+
+abs_time:
+        // EMPTY 
+;
+
+rel_time:
+        // EMPTY 
+;
+
+ref:
+        // EMPTY 
+;
+
+dif_time:
+        // EMPTY 
+;
+
+iid:
+        // EMPTY 
+;
+
+tid:
+        // EMPTY 
+;
+
+mid:
+        // EMPTY 
+;
+
+num:
+        NUM 
+	{
+	  $$ = atoi(d_scanner.YYText());
+	}
+;
+
+id:
+        ID
+        {
+	  $$ = new char[strlen(d_scanner.YYText())+1];
+          strcpy ($$, d_scanner.YYText());
+	}
+;
+
+/*flow:
 LEFT_PAR 
 text 
 COMMA 
@@ -128,21 +169,6 @@ EOLN
 {
   AddEvent($2,$4,$7,$9,$12);
 }
-;
-
-num:
-        NUM 
-	{
-	  $$ = atoi(d_scanner.YYText());
-	}
-;
-
-id:
-        ID
-        {
-	  $$ = new char[strlen(d_scanner.YYText())+1];
-          strcpy ($$, d_scanner.YYText());
-	}
-;
+;*/
  
 
