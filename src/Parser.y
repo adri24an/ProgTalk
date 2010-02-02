@@ -80,12 +80,15 @@ msc:
 ;
  
 inst_decl:
-        STRING iid LEFT_PAR STRING tid RIGHT_PAR LEFT_PAR LEFT_BRACE
-	STRING RIGHT_BRACE RIGHT_PAR
+        // EMPTY
 |
-        exp
+        INSTANCE iid OF tid LEFT_BRACE STRING RIGHT_BRACE SEMICOLON EOLN
 |
-        error
+        INSTANCE iid OF tid SEMICOLON EOLN
+|
+        INSTANCE iid LEFT_BRACE STRING RIGHT_BRACE SEMICOLON EOLN
+|
+        INSTANCE iid SEMICOLON EOLN
 ;
         
 exp:
