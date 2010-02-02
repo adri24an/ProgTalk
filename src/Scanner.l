@@ -76,14 +76,6 @@ TO       "to"
             return(Parser::SEMICOLON);
            }
 
-"("        {
-            return(Parser::LEFT_PAR);
-           }
-
-")"        {
-            return(Parser::RIGHT_PAR);
-           }
-
 \"         {
             return(Parser::TIMES);
            }
