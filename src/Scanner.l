@@ -24,10 +24,6 @@ TO       "to"
             return(Parser::NUM);
            }
 
-{ID}       {
-            return(Parser::TEXT);
-           }
-
 {STRING}   {
             return(Parser::STRING);
            }
@@ -50,6 +46,10 @@ TO       "to"
 
 {TO}       {
             return(Parser::TO);
+           }
+
+{ID}       {
+            return(Parser::TEXT);
            }
 
 "@"        {
