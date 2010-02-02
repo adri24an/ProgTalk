@@ -61,15 +61,24 @@
 }
  
 %token <num> NUM
-%token <cad> TEXT
-%token <cad> LEFT_PAR
-%token <cad> RIGHT_PAR
+%token <cad> STRING
+%token <cad> INSTANCE
+%token <cad> OF
+%token <cad> MESSAGE
+%token <cad> FROM
+%token <cad> TO
+%token <cad> ID
+%token <cad> AT
+%token <cad> PLUS
+%token <cad> MINUS
+%token <cad> EXCLAMATION
+%token <cad> INTERROGATION
+%token <cad> SEMICOLON
 %token <cad> TIMES
-%token <cad> COMMA
 %token <cad> EOLN
 
 %type <num> num
-%type <cad> text
+%type <cad> id
 
 %start input
  
