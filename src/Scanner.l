@@ -49,7 +49,7 @@ TO       "to"
            }
 
 {ID}       {
-            return(Parser::TEXT);
+            return(Parser::ID);
            }
 
 "@"        {
