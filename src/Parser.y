@@ -130,7 +130,9 @@ ref:
 ;
 
 dif_time:
-        // EMPTY 
+        PLUS NUM
+|
+        MINUS NUM
 ;
 
 iid:
