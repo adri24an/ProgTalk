@@ -136,29 +136,33 @@ dif_time:
 ;
 
 iid:
-        // EMPTY 
+        ID
+	{
+	  $$ = new char[strlen(d_scanner.YYText())+1];
+          strcpy ($$, d_scanner.YYText());
+	}
 ;
 
 tid:
-        // EMPTY 
+        ID
+	{
+	  $$ = new char[strlen(d_scanner.YYText())+1];
+          strcpy ($$, d_scanner.YYText());
+	}
 ;
 
 mid:
-        // EMPTY 
+        ID
+	{
+	  $$ = new char[strlen(d_scanner.YYText())+1];
+          strcpy ($$, d_scanner.YYText());
+	}
 ;
 
 num:
         NUM 
 	{
 	  $$ = atoi(d_scanner.YYText());
-	}
-;
-
-id:
-        ID
-        {
-	  $$ = new char[strlen(d_scanner.YYText())+1];
-          strcpy ($$, d_scanner.YYText());
 	}
 ;
 
