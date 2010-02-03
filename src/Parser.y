@@ -165,25 +165,3 @@ num:
 	  $$ = atoi(d_scanner.YYText());
 	}
 ;
-
-/*flow:
-LEFT_PAR 
-text 
-COMMA 
-num
-RIGHT_PAR 
-LEFT_PAR 
-text
-COMMA 
-num
-RIGHT_PAR 
-TIMES 
-text
-TIMES 
-EOLN 
-{
-  AddEvent($2,$4,$7,$9,$12);
-}
-;*/
- 
-
