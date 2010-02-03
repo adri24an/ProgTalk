@@ -105,11 +105,16 @@ message:
 ;
  
 time_ref:
-        // EMPTY 
+        abs_time
+|
+        rel_time
 ;
 
 abs_time:
-        // EMPTY 
+        NUM 
+	{
+	  $$ = atoi(d_scanner.YYText());
+	}
 ;
 
 rel_time:
