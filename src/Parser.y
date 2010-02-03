@@ -78,7 +78,10 @@
 %token <cad> EOLN
 
 %type <num> num
-%type <cad> id
+%type <num> abs_time
+%type <cad> iid
+%type <cad> tid
+%type <cad> mid
 
 %start input
  
