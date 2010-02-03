@@ -44,9 +44,9 @@
 //    rel_time ::= diftime | ref diftime
 //    ref ::= iid ! | iid ?
 //    dif_time ::= + NUM | - NUM
-//    iid ::= STRING
-//    tid ::= STRING
-//    mid ::= STRING
+//    iid ::= ID
+//    tid ::= ID
+//    mid ::= ID
 //
 //------------------------------------------------------------
  
