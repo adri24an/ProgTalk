@@ -118,11 +118,15 @@ abs_time:
 ;
 
 rel_time:
-        // EMPTY 
+        dif_time
+|
+        ref dif_time
 ;
 
 ref:
-        // EMPTY 
+        iid EXCLAMATION 
+|
+        iid INTERROGATION
 ;
 
 dif_time:
