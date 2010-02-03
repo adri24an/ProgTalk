@@ -41,7 +41,7 @@
 //
 //    time_ref ::= abs_time | rel_time
 //    abs_time ::= NUM
-//    rel_time ::= ref? diftime
+//    rel_time ::= diftime | ref diftime
 //    ref ::= iid ! | iid ?
 //    dif_time ::= + NUM | - NUM
 //    iid ::= STRING
