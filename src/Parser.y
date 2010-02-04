@@ -80,7 +80,37 @@ inst_decl:
 ;
         
 message:
+        MESSAGE mid_opt string_opt origin destiny SEMICOLON
+;
+
+mid_opt:
         // EMPTY
+|
+        mid
+;
+
+string_opt:
+        // EMPTY
+|
+        LEFT_BRACE STRING RIGHT_BRACE
+;
+
+origin:
+        // EMPTY
+|
+        FROM iid time_ref_opt
+;
+
+time_ref_opt:
+        // EMPTY
+|
+        AT time_ref_opt
+;
+
+destiny:
+        // EMPTY
+|
+        TO iid time_ref_opt
 ;
  
 time_ref:
