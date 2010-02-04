@@ -48,7 +48,6 @@
 %token <cad> EXCLAMATION
 %token <cad> INTERROGATION
 %token <cad> SEMICOLON
-%token <cad> TIMES
 %token <cad> LEFT_BRACE
 %token <cad> RIGHT_BRACE
 %token <cad> EOLN
