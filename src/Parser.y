@@ -138,9 +138,9 @@ ref:
 ;
 
 dif_time:
-        PLUS NUM
+        PLUS num
 |
-        MINUS NUM
+        MINUS num
 ;
 
 iid:
