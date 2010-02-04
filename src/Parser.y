@@ -104,7 +104,7 @@ origin:
 time_ref_opt:
         // EMPTY
 |
-        AT time_ref_opt
+        AT time_ref
 ;
 
 destiny:
