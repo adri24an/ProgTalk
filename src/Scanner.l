@@ -80,6 +80,14 @@ TO       "to"
             return(Parser::TIMES);
            }
 
+"{"        {
+            return(Parser::LEFT_BRACE);
+           }
+
+"}"        {
+            return(Parser::RIGHT_BRACE);
+           }
+
 \n         {
             return(Parser::EOLN);
            }
