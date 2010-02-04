@@ -57,7 +57,7 @@
 %type <cad> tid
 %type <cad> mid
 
-%start input
+%start msc
  
 %%
 
