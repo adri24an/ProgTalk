@@ -3,7 +3,7 @@
 //  GRAMATICA
 //    
 //    msc ::= inst_decl* message*
-//    inst_delc ::= INSTANCE iid |
+//    inst_decl ::= INSTANCE iid |
 //                  INSTANCE iid OF tid; |
 //                  INSTANCE iid {STRING}; |
 //                  INSTANCE iid OF tid {STRING};               
