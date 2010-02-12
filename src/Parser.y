@@ -79,7 +79,9 @@ inst_decl:
 ;
         
 message:
-        MESSAGE mid_opt string_opt origin destiny SEMICOLON
+        // EMPTY
+|
+        MESSAGE mid_opt string_opt origin destiny SEMICOLON message
 ;
 
 mid_opt:
