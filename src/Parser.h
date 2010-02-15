@@ -8,6 +8,8 @@
 #include "Parserbase.h"
 #include "Scanner.h"
 #include "EventsList.h"
+#include <map>
+
 
 #undef Parser
 class Parser: public ParserBase
@@ -42,9 +44,12 @@ class Parser: public ParserBase
         int lookup(bool recovery);
         void nextToken();
 
-	Scanner d_scanner; //Tokens reader
-	EventsList le;     //Object that storages the list of events
-	                   //(communications) that were parsed
+	Scanner d_scanner;   //Tokens reader
+	EventsList le;       //Object that storages the list of events
+	                     //(communications) that were parsed
+        
+	std::map<string,int> instances; //Object that storages the instances
+	std::map<string,int> messages;  //Object that storages the messages
 };
 
 inline Parser::Parser()
