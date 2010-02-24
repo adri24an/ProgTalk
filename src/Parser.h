@@ -54,7 +54,7 @@ class Parser: public ParserBase
 };
 
 inline Parser::Parser()
-	      :le()
+	      :instances(), messages()
 {
 }
 
