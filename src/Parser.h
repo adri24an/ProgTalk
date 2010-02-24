@@ -9,6 +9,7 @@
 #include "Scanner.h"
 #include "EventsList.h"
 #include <map>
+#include <string>
 
 
 #undef Parser
@@ -48,8 +49,8 @@ class Parser: public ParserBase
 	EventsList le;       //Object that storages the list of events
 	                     //(communications) that were parsed
         
-	std::map<string,int> instances; //Object that storages the instances
-	std::map<string,int> messages;  //Object that storages the messages
+	std::map<std::string,int> instances; //Object that storages instances
+	std::map<std::string,int> messages;  //Object that storages messages
 };
 
 inline Parser::Parser()
