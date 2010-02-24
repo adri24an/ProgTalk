@@ -11,6 +11,8 @@
 #include <map>
 #include <string>
 
+typedef std::map<std::string,int> MyMap;
+
 
 #undef Parser
 class Parser: public ParserBase
@@ -18,8 +20,11 @@ class Parser: public ParserBase
     public:
         Parser();
 
-	//Returns a pointer to EventsList object
-	EventsList * getLE(); 
+	//Returns a pointer to Instances object
+	MyMap * getInstances();
+
+	//Returns a pointer to Messages object
+	MyMap * getMessages();
 
         int parse();
 
@@ -49,8 +54,8 @@ class Parser: public ParserBase
 	EventsList le;       //Object that storages the list of events
 	                     //(communications) that were parsed
         
-	std::map<std::string,int> instances; //Object that storages instances
-	std::map<std::string,int> messages;  //Object that storages messages
+	MyMap instances; //Object that storages instances
+	MyMap messages;  //Object that storages messages
 };
 
 inline Parser::Parser()
@@ -58,10 +63,16 @@ inline Parser::Parser()
 {
 }
 
-//Returns a pointer to EventsList object
-inline EventsList * Parser::getLE()
+//Returns a pointer to instances object
+inline MyMap * Parser::getInstances()
 {
-    return &le;
+    return &instances;
+}
+
+//Returns a pointer to EventsList object
+inline MyMap * Parser::getMessages()
+{
+    return &messages;
 }
 
 //Adds a new event to EventsList object
