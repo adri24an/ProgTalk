@@ -7,7 +7,6 @@
 
 #include "Parserbase.h"
 #include "Scanner.h"
-#include "EventsList.h"
 #include <map>
 #include <string>
 
