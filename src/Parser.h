@@ -19,7 +19,6 @@ struct ASTintances
 
 struct ASTmessages
 {
-    int id;
     std::string mid;
     std::string sms;
     std::string origin;
