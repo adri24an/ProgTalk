@@ -51,8 +51,6 @@ class Parser: public ParserBase
         void nextToken();
 
 	Scanner d_scanner;   //Tokens reader
-	EventsList le;       //Object that storages the list of events
-	                     //(communications) that were parsed
         
 	MyMap instances; //Object that storages instances
 	MyMap messages;  //Object that storages messages
@@ -79,7 +77,7 @@ inline MyMap * Parser::getMessages()
 inline void Parser::AddEvent (char * n1, int t1, char * n2, int t2, 
 			      char * text)
 {
-    le.AddEvent(n1,t1,n2,t2,text);
+    ;
 }
 
 inline void Parser::error(char const *msg)
@@ -95,7 +93,7 @@ inline int Parser::lex()
 //A custom print operation
 inline void Parser::MyPrint ()
 {
-  le.Print();
+  ;
 }
 
 //Default print operation (not implemented)
