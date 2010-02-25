@@ -9,9 +9,27 @@
 #include "Scanner.h"
 #include <map>
 #include <string>
+#include <string.h>
 
-typedef std::map<std::string,int> MyMap;
+struct ASTintances
+{
+    std::string tid;
+    std::string name;
+};
 
+struct ASTmessages
+{
+    int id;
+    std::string mid;
+    std::string sms;
+    std::string origin;
+    std::string destiny;
+    int time_sent;
+    int time_rec;
+};
+
+typedef std::map<std::string,ASTintances> Instances;
+typedef std::map<std::string,ASTmessages> Messages;
 
 #undef Parser
 class Parser: public ParserBase
@@ -20,10 +38,10 @@ class Parser: public ParserBase
         Parser();
 
 	//Returns a pointer to Instances object
-	MyMap * getInstances();
+	Instances * getInstances();
 
 	//Returns a pointer to Messages object
-	MyMap * getMessages();
+	Messages * getMessages();
 
         int parse();
 
@@ -32,9 +50,6 @@ class Parser: public ParserBase
 	
 
     private:
-
-	//Adds a new event to EventsList object
-	void AddEvent (char * n1, int t1, char * n2, int t2, char * text);
 
         void error(char const *msg);
 
@@ -51,8 +66,8 @@ class Parser: public ParserBase
 
 	Scanner d_scanner;   //Tokens reader
         
-	MyMap instances; //Object that storages instances
-	MyMap messages;  //Object that storages messages
+	Instances instances; //Object that storages instances
+	Messages messages;  //Object that storages messages
 };
 
 inline Parser::Parser()
@@ -61,13 +76,13 @@ inline Parser::Parser()
 }
 
 //Returns a pointer to instances object
-inline MyMap * Parser::getInstances()
+inline Instances * Parser::getInstances()
 {
     return &instances;
 }
 
 //Returns a pointer to EventsList object
-inline MyMap * Parser::getMessages()
+inline Messages * Parser::getMessages()
 {
     return &messages;
 }
