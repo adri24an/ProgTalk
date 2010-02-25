@@ -73,13 +73,6 @@ inline MyMap * Parser::getMessages()
     return &messages;
 }
 
-//Adds a new event to EventsList object
-inline void Parser::AddEvent (char * n1, int t1, char * n2, int t2, 
-			      char * text)
-{
-    ;
-}
-
 inline void Parser::error(char const *msg)
 {
     std::cerr << msg << std::endl;
