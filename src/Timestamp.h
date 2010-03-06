@@ -3,20 +3,14 @@ class Timestamp
   
 public:
 
-  Timestamp(char * n1, int t1, char * n2, int t2, char * text);
+  Timestamp(char * iid, int time);
   ~Timestamp();
 
-  char * GetEntity1Name ();
-  int GetEntity1Time ();
-  char * GetEntity2Name ();
-  int GetEntity2Time ();
-  char * GetText ();
+  char * getIid ();
+  int getTime ();
 
 private:
 
-  char * name1; //Name of the sender
-  int time1;    //Time when the message was sended
-  char * name2; //Name of the receiver
-  int time2;    //Time when the message was received
-  char * text;  //Text of the message
+  char * iid;
+  int time;
 };
