@@ -8,25 +8,11 @@
 #include "Parserbase.h"
 #include "Scanner.h"
 #include "Timestamp.h"
+#include "Instances.h"
+#include "Messages.h"
 #include <map>
 #include <string>
 #include <string.h>
-
-struct ASTintances
-{
-    std::string tid;
-    std::string name;
-};
-
-struct ASTmessages
-{
-    std::string mid;
-    std::string sms;
-    std::string origin;
-    std::string destiny;
-    int time_sent;
-    int time_rec;
-};
 
 typedef std::map<std::string,ASTintances> Instances;
 typedef std::map<int,ASTmessages> Messages;
@@ -37,29 +23,7 @@ class Parser: public ParserBase
     public:
         Parser();
 
-	//Returns a pointer to Instances object
-	Instances * getInstances();
-
-	//Returns a pointer to Messages object
-	Messages * getMessages();
-
         int parse();
-
-	//Adds a new instance (because vesions 2 and 3 of AddInstance had 
-	//the same parameters, we introduce the parameter "aux" in the third
-	//version of AddInstance so the compiler can differentiate between
-	//them)
-	void AddInstance(std::string iid, std::string tid, std::string name);
-	void AddInstance(std::string iid, std::string tid);
-	void AddInstance(std::string iid, std::string name, int aux);
-	void AddInstance(std::string iid);
-
-	//Adds a new message
-	void AddMessage(std::string mid, std::string sms, std::string origin,
-			std::string destiny, int time_sent, int time_rec);
-	
-	//Adds a new message
-	void AddMessage();
 
 	//A custom print operation
 	void MyPrint();       
@@ -88,12 +52,6 @@ class Parser: public ParserBase
 inline Parser::Parser()
 	      :instances(), messages()
 {
-}
-
-//Returns a pointer to instances object
-inline Instances * Parser::getInstances()
-{
-    return &instances;
 }
 
 //Returns a pointer to EventsList object
