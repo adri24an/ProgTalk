@@ -3,17 +3,14 @@
 Instances :: Instances(char * iid, int time)
 {
     iid = NULL;
-    tid = NULL;
-    name = NULL;
 }
 
 Instances :: ~Instances()
 {
     delete iid;
-    delete tid;
-    delete name;
 }
 
+/*
 Instances * Instances::getInstances()
 {
     return &instances;
@@ -48,3 +45,4 @@ void * Instances :: setName(char * id)
 {
     strcpy(iid, id);
 }
+*/

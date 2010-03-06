@@ -1,14 +1,22 @@
 #include "string.h"
+#include <map>
+
+struct ASTintances
+{
+  char * tid;
+  char * name;
+};
+  
 
 class Instances
 {
   
 public:
 
-  Instances();
+  Instances(char * iid, int time);
   ~Instances();
 
-  Instances * getInstances();
+  /*  Instances * getInstances();
   char * getIid();
   char * getTid();
   char * getName();
@@ -21,14 +29,13 @@ public:
   //the same parameters, we introduce the parameter "aux" in the third
   //version of AddInstance so the compiler can differentiate between
   //them)
-  void AddInstance(std::string iid, std::string tid, std::string name);
-  void AddInstance(std::string iid, std::string tid);
-  void AddInstance(std::string iid, std::string name, int aux);
-  void AddInstance(std::string iid);
+  void AddInstance(char * iid, char * tid, char * name);
+  void AddInstance(char * iid, char * tid);
+  void AddInstance(char * iid, char * name, int aux);
+  void AddInstance(char * iid);*/
 
 private:
 
   char * iid;
-  char * tid;
-  char * name;
+  std::map<char *,ASTintances> instances;
 };
