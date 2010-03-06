@@ -2,13 +2,14 @@
 
 Instances :: Instances()
 {
-    iid = NULL;
 }
 
-Instances :: ~Instances()
+void Instances :: addInst(char * newiid, char * newtid, char * newname)
 {
-    delete iid;
+  astInst[newiid] = {newtid, newname};
 }
+
+
 
 /*
 char * Instances :: getIid()

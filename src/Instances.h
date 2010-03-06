@@ -7,7 +7,6 @@ struct ASTinstances
   char * name;
 };
   
-
 class Instances
 {
   
@@ -16,7 +15,17 @@ public:
   Instances();
   ~Instances();
 
-  /*  
+  //Adds a new instance
+  void addInst(char * newiid, char * newtid, char * newname);
+
+private:
+
+  std::map<char *,ASTinstances> astInst;
+};
+
+
+
+ /*  
   char * getIid();
   char * getTid();
   char * getName();
@@ -25,18 +34,3 @@ public:
   void setTid(char * id);
   void setName(char * id);
   */
-
-  //Adds a new instance (because vesions 2 and 3 of AddInstance had 
-  //the same parameters, we introduce the parameter "aux" in the third
-  //version of AddInstance so the compiler can differentiate between
-  //them)
-  void AddInstance(char * iid, char * tid, char * name);
-  void AddInstance(char * iid, char * tid);
-  void AddInstance(char * iid, char * name, int aux);
-  void AddInstance(char * iid);
-
-private:
-
-  char * iid;
-  std::map<char *,ASTinstances> ASTinst;
-};

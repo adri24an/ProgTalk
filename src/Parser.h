@@ -21,6 +21,7 @@ class Parser: public ParserBase
 
         int parse();
 	MSC * getMSC();
+	void addInst(char * newiid, char * newtid, char * newname);
 
 	//A custom print operation
 	void MyPrint();       
@@ -53,6 +54,11 @@ inline Parser::Parser()
 inline MSC * Parser::getMSC()
 {
   return msc;
+}
+
+inline void Parser::addInst(char * newiid, char * newtid, char * newname)
+{
+  msc->addInst(newiid, newtid, newname);
 }
 
 inline void Parser::error(char const *msg)
