@@ -14,9 +14,6 @@
 #include <string>
 #include <string.h>
 
-typedef std::map<std::string,ASTintances> Instances;
-typedef std::map<int,ASTmessages> Messages;
-
 #undef Parser
 class Parser: public ParserBase
 {       
@@ -52,12 +49,6 @@ class Parser: public ParserBase
 inline Parser::Parser()
 	      :instances(), messages()
 {
-}
-
-//Returns a pointer to EventsList object
-inline Messages * Parser::getMessages()
-{
-    return &messages;
 }
 
 inline void Parser::error(char const *msg)
