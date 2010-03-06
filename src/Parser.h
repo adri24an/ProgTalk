@@ -52,6 +52,10 @@ class Parser: public ParserBase
 	void AddInstance(std::string iid, std::string tid);
 	void AddInstance(std::string iid, std::string name, int aux);
 	void AddInstance(std::string iid);
+
+	//Adds a new message
+	void AddMessage(std::string mid, std::string sms, std::string origin,
+			std::string destiny, int time_sent, int time_rec);
 	
 	//Adds a new message
 	void AddMessage();
