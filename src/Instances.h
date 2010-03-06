@@ -13,7 +13,7 @@ class Instances
   
 public:
 
-  Instances(char * iid, int time);
+  Instances();
   ~Instances();
 
   /*  Instances * getInstances();

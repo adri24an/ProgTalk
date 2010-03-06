@@ -1,6 +1,6 @@
 #include "Instances.h"
 
-Instances :: Instances(char * iid, int time)
+Instances :: Instances()
 {
     iid = NULL;
 }

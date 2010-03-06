@@ -16,7 +16,7 @@ class Messages
   
 public:
 
-  Messages(char * iid, int time);
+  Messages();
   ~Messages();
 
   /*Messages * getMessages();

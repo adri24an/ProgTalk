@@ -1,6 +1,6 @@
 #include "Messages.h"
 
-Messages :: Messages(char * iid, int time)
+Messages :: Messages()
 {
     id = NULL;
 }
