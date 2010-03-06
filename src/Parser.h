@@ -7,6 +7,7 @@
 
 #include "Parserbase.h"
 #include "Scanner.h"
+#include "Timestamp.h"
 #include <map>
 #include <string>
 #include <string.h>
