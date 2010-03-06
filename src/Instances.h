@@ -37,5 +37,5 @@ public:
 private:
 
   char * iid;
-  std::map<char *,ASTintances> instances;
+  std::map<char *,ASTintances> ASTinst;
 };

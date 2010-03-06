@@ -8,8 +8,7 @@
 #include "Parserbase.h"
 #include "Scanner.h"
 #include "Timestamp.h"
-#include "Instances.h"
-#include "Messages.h"
+#include "MSC.h"
 #include <map>
 #include <string>
 #include <string.h>
@@ -42,12 +41,11 @@ class Parser: public ParserBase
 
 	Scanner d_scanner;   //Tokens reader
         
-	Instances instances; //Object that storages instances
-	Messages messages;  //Object that storages messages
+	MSC msc; //Object that storages instances and messages
 };
 
 inline Parser::Parser()
-	      :instances(), messages()
+	      :msc()
 {
 }
 

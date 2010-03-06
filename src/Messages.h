@@ -39,5 +39,5 @@ public:
 private:
 
   char * id;
-  std::map<char *,ASTmessages> messages;
+  std::map<char *,ASTmessages> ASTmsg;
 };

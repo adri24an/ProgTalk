@@ -1,6 +1,6 @@
-#include "Instances.h"
+#include "MSC.h"
 
 MSC :: MSC()
+  :instances(), messages()
 {
-;
 }
