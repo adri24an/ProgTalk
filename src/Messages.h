@@ -1,14 +1,25 @@
 #include "string.h"
+#include <map>
+
+struct ASTmessages
+{
+  char * mid;
+  char * sms;
+  char * origin;
+  char * destiny;
+  int time_sent;
+  int time_rec;
+};
 
 class Messages
 {
   
 public:
 
-  Messages();
+  Messages(char * iid, int time);
   ~Messages();
 
-  Messages * getMessages();
+  /*Messages * getMessages();
   char * getId();
   char * getMid();
   char * getSms();
@@ -23,15 +34,10 @@ public:
 
   //Adds a new message
   void addMsg(std::string mid, std::string sms, std::string origin,
-		  std::string destiny, int time_sent, int time_rec);
+  std::string destiny, int time_sent, int time_rec);*/
   
 private:
 
   char * id;
-  char * mid;
-  char * sms;
-  char * origin;
-  char * destiny;
-  int time_sent;
-  int time_rec;
+  std::map<char *,ASTmessages> messages;
 };

@@ -3,24 +3,14 @@
 Messages :: Messages(char * iid, int time)
 {
     id = NULL;
-    mid = NULL;
-    sms = NULL;
-    origin = NULL;
-    destiny = NULL;
-    time_sent = -1;
-    time_rec = -1;
 }
 
 Messages :: ~Messages()
 {
     delete id;
-    delete mid;
-    delete sms;
-    delete origin;
-    delete destiny;
 }
 
-Messages * Messages::getMessages()
+/*Messages * Messages::getMessages()
 {
     return &messages;
 }
@@ -83,4 +73,4 @@ void Messages :: setOrigin(char * identifier)
 void Messages :: setDestiny(char * identifier)
 {
     strcpy(destiny, identifier);
-}
+    }*/
