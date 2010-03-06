@@ -1,3 +1,6 @@
+#include "Instances.h"
+#include "Messages.h"
+
 class MSC
 {
   
