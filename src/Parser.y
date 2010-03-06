@@ -10,9 +10,9 @@
 //    message ::= MESSAGE mid_opt string_opt origin destiny;
 //    mid_opt ::= LAMBDA | mid
 //    string_opt ::= LAMBDA | {STRING}
-//    time_ref_opt ::= LAMBDA | @ time_ref
 //    origin ::= LAMBDA | FROM iid time_ref_opt
 //    destiny ::= LAMBDA | TO iid time_ref_opt
+//    time_ref_opt ::= LAMBDA | @ time_ref
 //    time_ref ::= abs_time | rel_time
 //    abs_time ::= NUM
 //    rel_time ::= diftime | ref diftime
@@ -32,6 +32,7 @@
 {
   int num;
   char * cad;
+  Timestamp tstamp;
 }
  
 %token <num> NUM

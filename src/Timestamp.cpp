@@ -1,6 +1,6 @@
 #include "Timestamp.h"
 
-Timestamp :: Timestamp()
+Timestamp :: Timestamp(char * iid, int time)
 {
     iid = NULL;
     time = -1;
@@ -11,14 +11,12 @@ Timestamp :: ~Timestamp()
     delete iid;
 }
 
-//Returns iid
-void Timestamp :: getIid()
+char * Timestamp :: getIid()
 {
     return iid;
 }
 
-//Returns time
-void Timestamp :: getTime()
+int Timestamp :: getTime()
 {
     return time;
 }
