@@ -41,12 +41,17 @@ class Parser: public ParserBase
 
 	Scanner d_scanner;   //Tokens reader
         
-	MSC msc; //Object that storages instances and messages
+	MSC * msc; //Object that storages instances and messages
 };
 
 inline Parser::Parser()
 	      :msc()
 {
+}
+
+inline Parser::getMSC()
+{
+  return msc;
 }
 
 inline void Parser::error(char const *msg)
