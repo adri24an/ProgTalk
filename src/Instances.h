@@ -17,7 +17,6 @@ public:
   ~Instances();
 
   /*  
-  Instances * getInstances();
   char * getIid();
   char * getTid();
   char * getName();

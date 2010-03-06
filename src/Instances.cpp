@@ -11,11 +11,6 @@ Instances :: ~Instances()
 }
 
 /*
-Instances * Instances::getInstances()
-{
-    return &instances;
-}
-
 char * Instances :: getIid()
 {
     return iid;

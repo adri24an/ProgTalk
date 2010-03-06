@@ -8,6 +8,7 @@ public:
 
   MSC();
   ~MSC();
+  MSC * getMSC;
 
 private:
 

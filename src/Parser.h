@@ -20,6 +20,7 @@ class Parser: public ParserBase
         Parser();
 
         int parse();
+	MSC * getMSC();
 
 	//A custom print operation
 	void MyPrint();       
@@ -49,7 +50,7 @@ inline Parser::Parser()
 {
 }
 
-inline Parser::getMSC()
+inline MSC * Parser::getMSC()
 {
   return msc;
 }

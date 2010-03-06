@@ -10,11 +10,7 @@ Messages :: ~Messages()
     delete id;
 }
 
-/*Messages * Messages::getMessages()
-{
-    return &messages;
-}
-
+/*
 char * Messages :: getId()
 {
     return id;
