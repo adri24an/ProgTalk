@@ -1,5 +1,4 @@
-#include "Instances.h"
-#include "Messages.h"
+#include "string.h"
 
 class MSC
 {
@@ -8,10 +7,9 @@ public:
 
   MSC();
   ~MSC();
-  MSC getMSC ();
 
 private:
 
-  Instances * instances;
-  Messages * messages;
+  Instances instances;
+  Messages messages;
 };
