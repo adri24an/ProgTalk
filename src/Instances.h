@@ -1,7 +1,7 @@
 #include "string.h"
 #include <map>
 
-struct ASTintances
+struct ASTinstances
 {
   char * tid;
   char * name;
@@ -16,7 +16,8 @@ public:
   Instances();
   ~Instances();
 
-  /*  Instances * getInstances();
+  /*  
+  Instances * getInstances();
   char * getIid();
   char * getTid();
   char * getName();
@@ -24,6 +25,7 @@ public:
   void setIid(char * id);
   void setTid(char * id);
   void setName(char * id);
+  */
 
   //Adds a new instance (because vesions 2 and 3 of AddInstance had 
   //the same parameters, we introduce the parameter "aux" in the third
@@ -32,10 +34,10 @@ public:
   void AddInstance(char * iid, char * tid, char * name);
   void AddInstance(char * iid, char * tid);
   void AddInstance(char * iid, char * name, int aux);
-  void AddInstance(char * iid);*/
+  void AddInstance(char * iid);
 
 private:
 
   char * iid;
-  std::map<char *,ASTintances> ASTinst;
+  std::map<char *,ASTinstances> ASTinst;
 };
