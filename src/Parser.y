@@ -32,7 +32,7 @@
 {
   int num;
   char * cad;
-  Timestamp tstamp;
+  //  Timestamp tstamp;
 }
  
 %token <num> NUM
