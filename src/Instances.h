@@ -14,7 +14,7 @@ public:
   ~Instances();
 
   //Adds a new instance
-  void addInst(char * newiid, char * newtid, char * newname);
+  void addInst(char * new_iid, char * new_tid, char * new_name);
 
 private:
 
