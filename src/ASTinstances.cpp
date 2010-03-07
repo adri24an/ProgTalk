@@ -1,27 +1,27 @@
 #include "ASTinstances.h"
 
-ASTinstances :: Instances()
+ASTinstances :: ASTinstances()
 {
     tid = NULL;
     name = NULL;
 }
 
-char * Instances :: getTid()
+char * ASTinstances :: getTid()
 {
     return tid;
 }
 
-char * Instances :: getName()
+char * ASTinstances :: getName()
 {
     return name;
 }
 
-void * Instances :: setTid(char * id)
+void * ASTinstances :: setTid(char * id)
 {
     strcpy(iid, id);
 }
 
-void * Instances :: setName(char * id)
+void * ASTinstances :: setName(char * id)
 {
     strcpy(iid, id);
 }
