@@ -22,28 +22,13 @@ public:
   Messages();
   ~Messages();
 
-  /*
-  char * getId();
-  char * getMid();
-  char * getSms();
-  char * getOrigin();
-  char * getDestiny();
-
-  void setId(char * identifier);
-  void setMid(char * identifier);
-  void setSms(char * identifier);
-  void setOrigin(char * identifier);
-  void setDestiny(char * identifier);
-  */
-
   //Adds a new message
-  void addMsg(char * mid, char * sms, char * origin,
-	      char * destiny, int time_sent, int time_rec);
+  void addMsg(char * newmid, char * newsms, char * neworigin,
+	      char * newdestiny, int newtime_sent, int newtime_rec);
   
 private:
 
-  char * id;
-  std::map<char *,ASTmessages> ASTmsg;
+  std::map<char *, ASTmessages> ASTmsg;
 };
 
 #endif
