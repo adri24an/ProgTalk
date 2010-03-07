@@ -9,7 +9,7 @@ class ASTinstances
 public:
   
   ASTinstances();
-  ASTinstances(char * newtid, char * newname);
+  ASTinstances(char * new_tid, char * new_name);
   ~ASTinstances();
 
   char * getTid();
