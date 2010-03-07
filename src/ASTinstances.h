@@ -1,12 +1,7 @@
 #ifndef ASTINSTANCES_H
 #define ASTINSTANCES_H
-
-struct ASTinstances
-{
   
-};
-  
-class Instances
+class ASTinstances
 {
   
 public:
