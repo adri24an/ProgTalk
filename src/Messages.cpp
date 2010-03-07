@@ -2,71 +2,13 @@
 
 Messages :: Messages()
 {
-    id = NULL;
 }
 
-Messages :: ~Messages()
+Messages :: addMsg(int id, char * new_mid, char * new_sms, char * new_origin,
+	      char * new_destiny, int new_time_sent, int new_time_rec)
 {
-    delete id;
+  ASTmessages * m = new ASTmessages(id, new_mid, new_sms, new_origin, 
+				    new_destiny, new_time_sent, new_time_rec);
+    astInst[id] = m;
 }
 
-/*
-char * Messages :: getId()
-{
-    return id;
-}
-
-char * Messages :: getMid()
-{
-    return mid;
-}
-
-char * Messages :: getSms()
-{
-    return sms;
-}
-
-char * Messages :: getOrigin()
-{
-    return origin;
-}
-
-char * Messages :: getDestiny()
-{
-    return destiny;
-}
-
-int Messages :: getTime_sent()
-{
-    return time_sent;
-}
-
-int Messages :: getTime_rec()
-{
-    return time_rec;
-}
-
-void Messages :: setId(char * identifier)
-{
-    strcpy(id, identifier);
-}
-
-void Messages :: setMid(char * identifier)
-{
-    strcpy(mid, identifier);
-}
-
-void Messages :: setSms(char * identifier)
-{
-    strcpy(sms, identifier);
-}
-
-void Messages :: setOrigin(char * identifier)
-{
-    strcpy(origin, identifier);
-}
-
-void Messages :: setDestiny(char * identifier)
-{
-    strcpy(destiny, identifier);
-    }*/
