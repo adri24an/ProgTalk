@@ -6,6 +6,12 @@ ASTinstances :: ASTinstances()
     name = NULL;
 }
 
+ASTinstances :: ASTinstances(char * newtid, char * newname)
+{
+  strcpy (tid, newtid);
+  strcpy (name, newname);
+}
+
 char * ASTinstances :: getTid()
 {
     return tid;
@@ -16,13 +22,13 @@ char * ASTinstances :: getName()
     return name;
 }
 
-void * ASTinstances :: setTid(char * id)
+void ASTinstances :: setTid(char * id)
 {
-    strcpy(iid, id);
+    strcpy(tid, id);
 }
 
-void * ASTinstances :: setName(char * id)
+void ASTinstances :: setName(char * id)
 {
-    strcpy(iid, id);
+    strcpy(name, id);
 }
 

@@ -2,13 +2,8 @@
 #define INSTANCES_H
 
 #include "string.h"
+#include "ASTinstances.h"
 #include <map>
-
-struct ASTinstances
-{
-  char * tid;
-  char * name;
-};
   
 class Instances
 {
@@ -23,7 +18,7 @@ public:
 
 private:
 
-  std::map<char *,struct ASTinstances> astInst;
+  std::map<char *, ASTinstances *> astInst;
 };
 
 #endif

@@ -1,12 +1,15 @@
 #ifndef ASTINSTANCES_H
 #define ASTINSTANCES_H
+
+#include <string.h>
   
 class ASTinstances
 {
   
 public:
-
+  
   ASTinstances();
+  ASTinstances(char * newtid, char * newname);
   ~ASTinstances();
 
   char * getTid();
