@@ -28,7 +28,7 @@ public:
   
 private:
 
-  std::map<int, ASTmessages> astMsg;
+  std::map<int, ASTmessages *> astMsg;
 };
 
 #endif
