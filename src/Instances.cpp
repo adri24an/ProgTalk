@@ -6,7 +6,8 @@ Instances :: Instances()
 
 void Instances :: addInst(char * newiid, char * newtid, char * newname)
 {
-  astInst[newiid] = {newtid, newname};
+  struct ASTinstances s = {newtid, newname};
+  astInst[newiid] = s;
 }
 
 
