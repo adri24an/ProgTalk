@@ -23,7 +23,7 @@ public:
 
 private:
 
-  std::map<char *,ASTinstances> astInst;
+  std::map<char *,struct ASTinstances> astInst;
 };
 
 
