@@ -1,3 +1,6 @@
+#ifndef TIMESTAMP_H
+#define TIMESTAMP_H
+
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
@@ -20,3 +23,6 @@ private:
   char * iid;
   int time;
 };
+
+#endif
+

@@ -1,3 +1,6 @@
+#ifndef MSC_H
+#define MSC_H
+
 #include "Instances.h"
 #include "Messages.h"
 
@@ -16,3 +19,5 @@ private:
   Instances * instances;
   Messages * messages;
 };
+
+#endif

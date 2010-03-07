@@ -1,3 +1,6 @@
+#ifndef MESSAGES_H
+#define MESSAGES_H
+
 #include "string.h"
 #include <map>
 
@@ -42,3 +45,5 @@ private:
   char * id;
   std::map<char *,ASTmessages> ASTmsg;
 };
+
+#endif

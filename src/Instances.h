@@ -1,3 +1,6 @@
+#ifndef INSTANCES_H
+#define INSTANCES_H
+
 #include "string.h"
 #include <map>
 
@@ -34,3 +37,5 @@ private:
   void setTid(char * id);
   void setName(char * id);
   */
+
+#endif
