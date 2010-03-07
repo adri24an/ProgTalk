@@ -5,10 +5,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "Parserbase.h"
-#include "Scanner.h"
 #include "Timestamp.h"
 #include "MSC.h"
+
+#include "Parserbase.h"
+#include "Scanner.h"
 #include <map>
 #include <string>
 #include <string.h>
