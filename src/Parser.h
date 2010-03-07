@@ -2,8 +2,6 @@
 #define Parser_h_included
 
 #include <iostream>
-#include <stdlib.h>
-#include <stdio.h>
 
 #include "Timestamp.h"
 #include "MSC.h"
