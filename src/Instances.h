@@ -3,6 +3,7 @@
 
 #include "string.h"
 #include "ASTinstances.h"
+#include <iostream>
 #include <map>
   
 class Instances
