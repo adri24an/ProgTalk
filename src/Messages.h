@@ -23,8 +23,8 @@ public:
   ~Messages();
 
   //Adds a new message
-  void addMsg(char * newmid, char * newsms, char * neworigin,
-	      char * newdestiny, int newtime_sent, int newtime_rec);
+  void addMsg(char * new_mid, char * new_sms, char * new_origin,
+	      char * new_destiny, int new_time_sent, int new_time_rec);
   
 private:
 
