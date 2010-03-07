@@ -10,4 +10,4 @@ Progtalk: parse.o Scanner.o Progtalk.o Timestamp.o MSC.o Instances.o Messages.o 
 	g++ -o $@ $? -lfl
 
 clean:
-	rm -rf *.o parse.cc *.ih Parserbase.h
+	rm -rf *.o parse.cc *.ih Parserbase.h Progtalk
