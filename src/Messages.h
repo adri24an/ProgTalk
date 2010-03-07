@@ -3,6 +3,7 @@
 
 #include "string.h"
 #include <map>
+#include <iostream>
 #include "ASTmessages.h"
 
 class Messages
