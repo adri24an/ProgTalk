@@ -6,10 +6,10 @@ ASTinstances :: ASTinstances()
     name = NULL;
 }
 
-ASTinstances :: ASTinstances(char * newtid, char * newname)
+ASTinstances :: ASTinstances(char * new_tid, char * new_name)
 {
-  strcpy (tid, newtid);
-  strcpy (name, newname);
+  strcpy (tid, new_tid);
+  strcpy (name, new_name);
 }
 
 char * ASTinstances :: getTid()
