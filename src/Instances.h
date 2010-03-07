@@ -26,16 +26,4 @@ private:
   std::map<char *,struct ASTinstances> astInst;
 };
 
-
-
- /*  
-  char * getIid();
-  char * getTid();
-  char * getName();
-  
-  void setIid(char * id);
-  void setTid(char * id);
-  void setName(char * id);
-  */
-
 #endif
