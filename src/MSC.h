@@ -13,7 +13,7 @@ public:
   ~MSC();
   MSC * getMSC;
   void addInst (char * newiid, char * newtid, char * name);
-  void addMsg (int id, char * new_mid, char * new_sms, char * new_origin, 
+  void addMsg (char * new_mid, char * new_sms, char * new_origin, 
 	      char * new_destiny, int new_time_sent, int new_time_rec);
 
 private:
