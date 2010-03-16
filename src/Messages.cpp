@@ -10,7 +10,7 @@ void Messages :: addMsg(char * new_mid, char * new_sms,
 {
   ASTmessages * m = new ASTmessages(new_mid, new_sms, new_origin, new_destiny, 
 				    new_time_sent, new_time_rec);
-  int id = astMsg(astMsg.end());
+  int id;
 
   if (astMsg.empty())
   {
@@ -21,5 +21,4 @@ void Messages :: addMsg(char * new_mid, char * new_sms,
     id = (int) astMsg.size();
     astMsg[id] = m;
   }
-  
 }
