@@ -16,6 +16,8 @@ ASTmessages :: ASTmessages(char * new_mid, char * new_sms, char * new_origin,
   strcpy (sms, new_sms);
   strcpy (origin, new_origin);
   strcpy (destiny, new_destiny);
+  time_sent = new_time_sent;
+  time_rec = new_time_rec;
 }
 
 char * ASTmessages :: getMid()
