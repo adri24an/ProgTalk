@@ -70,13 +70,27 @@ msc:
 inst_decl:
         // EMPTY
 |
-        INSTANCE iid OF tid LEFT_BRACE STRING RIGHT_BRACE SEMICOLON EOLN inst_decl
+        INSTANCE iid OF tid LEFT_BRACE STRING RIGHT_BRACE SEMICOLON EOLN 
+	inst_decl
+        {
+	  addInst ($2, $4, $6);
+	}
 |
         INSTANCE iid OF tid SEMICOLON EOLN inst_decl
+        {
+	  addInst ($2, $4, (char *) "No_Info_Available");
+	}
 |
         INSTANCE iid LEFT_BRACE STRING RIGHT_BRACE SEMICOLON EOLN inst_decl
+        {
+	  addInst ($2, (char *) "No_Info_Available", $4);
+	}
 |
         INSTANCE iid SEMICOLON EOLN inst_decl
+        {
+	  addInst ($2, (char *) "No_Info_Available", 
+		   (char *)"No_Info_Available");
+	}
 ;
         
 message:
