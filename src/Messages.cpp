@@ -4,20 +4,22 @@ Messages :: Messages()
 {
 }
 
-void Messages :: addMsg(int id, char * new_mid, char * new_sms, 
+void Messages :: addMsg(char * new_mid, char * new_sms, 
 			char * new_origin, char * new_destiny, 
 			int new_time_sent, int new_time_rec)
 {
-  ASTmessages * m;
+  ASTmessages * m = new ASTmessages(new_mid, new_sms, new_origin, new_destiny, 
+				    new_time_sent, new_time_rec);
+  int id = astMsg(astMsg.end());
 
-  if(astMsg.find(id) == astMsg.end())
-    {
-      m = new ASTmessages(new_mid, new_sms, new_origin, new_destiny, 
-			  new_time_sent, new_time_rec);
-      astMsg[id] = m;
-    }
+  if (astMsg.empty())
+  {
+    astMsg[0] = m;
+  }
   else
-    {
-	std::cout << "Error: The message already exists." << std::endl;
-    }
+  {
+    id = (int) astMsg.size();
+    astMsg[id] = m;
+  }
+  
 }
