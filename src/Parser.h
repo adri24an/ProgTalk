@@ -21,7 +21,8 @@ class Parser: public ParserBase
         int parse();
 	MSC * getMSC();
 	void addInst(char * newiid, char * newtid, char * newname);
-
+	void addMsg(char * new_mid, char * new_sms, char * new_origin, 
+		    char * new_destiny, int new_time_sent, int new_time_rec);
 	//A custom print operation
 	void MyPrint();       
 
@@ -58,6 +59,14 @@ inline MSC * Parser::getMSC()
 inline void Parser::addInst(char * newiid, char * newtid, char * newname)
 {
   msc->addInst(newiid, newtid, newname);
+}
+
+inline void Parser::addMsg(char * new_mid, char * new_sms, char * new_origin, 
+			   char * new_destiny, int new_time_sent, 
+			   int new_time_rec)
+{
+  msc->addMsg(new_mid, new_sms, new_origin, new_destiny, new_time_sent, 
+	       new_time_rec);
 }
 
 inline void Parser::error(char const *msg)
