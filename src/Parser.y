@@ -58,6 +58,8 @@
 %type <cad> iid
 %type <cad> tid
 %type <cad> mid
+%type <cad> mid_opt
+%type <cad> string_opt
 
 %start msc
  
@@ -97,18 +99,40 @@ message:
         // EMPTY
 |
         MESSAGE mid_opt string_opt origin destiny SEMICOLON message
+        {
+	  addInst ($2, (char *) "No_Info_Available", 
+		   (char *)"No_Info_Available");
+	}
 ;
 
 mid_opt:
         // EMPTY
+        {
+	  $$ = new char[18];
+          strcpy ($$, (char *)"No_Info_Available");
+	}
 |
         mid
+	{
+	  $$ = new char[strlen(d_scanner.YYText())+1];
+          strcpy ($$, d_scanner.YYText());
+	}
 ;
 
 string_opt:
         // EMPTY
+        {
+	  $$ = new char[18];
+          strcpy ($$, (char *)"No_Info_Available");
+	}
 |
-        LEFT_BRACE STRING RIGHT_BRACE
+        LEFT_BRACE STRING 	
+        {
+	  $$ = new char[strlen(d_scanner.YYText())+1];
+          strcpy ($$, d_scanner.YYText());
+	}
+
+	RIGHT_BRACE
 ;
 
 origin:
