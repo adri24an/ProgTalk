@@ -30,3 +30,11 @@ int Messages :: getTime_sent(int id)
 
   return time;
 }
+
+int Messages :: getTime_rec(int id)
+{
+  ASTmessages * m = astMsg.find(id)->second;
+  int time = m->getTime_rec();
+
+  return time;
+}
