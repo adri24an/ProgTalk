@@ -23,6 +23,7 @@ class Parser: public ParserBase
 	void addInst(char * newiid, char * newtid, char * newname);
 	void addMsg(char * new_mid, char * new_sms, char * new_origin, 
 		    char * new_destiny, int new_time_sent, int new_time_rec);
+	int getTime_sent(int id);
 	//A custom print operation
 	void MyPrint();       
 
@@ -67,6 +68,20 @@ inline void Parser::addMsg(char * new_mid, char * new_sms, char * new_origin,
 {
   msc->addMsg(new_mid, new_sms, new_origin, new_destiny, new_time_sent, 
 	       new_time_rec);
+}
+
+inline int Parser::getTime_sent(int id)
+{
+  int time = msc->getTime_sent(id);
+
+  return time;
+}
+
+inline int Parser::getTime_rec(int id)
+{
+  int time = msc->getTime_rec(id);
+
+  return time;
 }
 
 inline void Parser::error(char const *msg)
