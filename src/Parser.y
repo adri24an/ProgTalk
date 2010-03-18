@@ -215,13 +215,13 @@ rel_time:
 ref:
         id EXCLAMATION
 	{
-	  $$ = getTime_sent($1);//BUSCAR TIEMPO DE ENVIO DEL SMS IID;
+	  $$ = getTime_sent($1);
 	} 
 
 |
         id INTERROGATION
 	{
-	  $$ = 1;//BUSCAR TIEMPO DE RECEPCION DEL SMS IID;
+	  $$ = getTime_rec($1);
 	}
 ;
 
