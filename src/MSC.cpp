@@ -18,7 +18,7 @@ void MSC :: addMsg (char * new_mid, char * new_sms, char * new_origin,
 }
 int MSC :: getTime_sent(int id)
 {
-  int time;
+  int time = messages->getTime_sent(id);
 
-  time = messages->getTime_sent(id);
+  return time;
 }
