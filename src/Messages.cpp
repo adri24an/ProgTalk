@@ -22,3 +22,11 @@ void Messages :: addMsg(char * new_mid, char * new_sms,
     astMsg[id] = m;
   }
 }
+
+int Messages :: getTime_sent(int id)
+{
+  ASTmessages * m = astMsg.find(id)->second;
+  int time = m->getTime_sent();
+
+  return time;
+}
