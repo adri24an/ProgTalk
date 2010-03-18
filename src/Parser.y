@@ -14,13 +14,15 @@
 //    destiny ::= LAMBDA | TO iid time_ref_opt
 //    time_ref_opt ::= LAMBDA | @ time_ref
 //    time_ref ::= abs_time | rel_time
-//    abs_time ::= NUM
+//    abs_time ::= num
 //    rel_time ::= diftime | ref diftime
-//    ref ::= iid ! | iid ?
+//    ref ::= id ! | id ?
 //    dif_time ::= + NUM | - NUM
 //    iid ::= ID
 //    tid ::= ID
 //    mid ::= ID
+//    id ::= NUM
+//    num ::= NUM
 //
 //------------------------------------------------------------
  
@@ -60,6 +62,7 @@
 %type <num> dif_time
 %type <num> num
 %type <num> abs_time
+%type <num> id
 %type <cad> iid
 %type <cad> tid
 %type <cad> mid
@@ -210,13 +213,13 @@ rel_time:
 ;
 
 ref:
-        iid EXCLAMATION
+        id EXCLAMATION
 	{
-	  $$ = 1;//BUSCAR TIEMPO DE ENVIO DEL SMS IID;
+	  $$ = getTime_sent($1);//BUSCAR TIEMPO DE ENVIO DEL SMS IID;
 	} 
 
 |
-        iid INTERROGATION
+        id INTERROGATION
 	{
 	  $$ = 1;//BUSCAR TIEMPO DE RECEPCION DEL SMS IID;
 	}
@@ -255,6 +258,13 @@ mid:
 	{
 	  $$ = new char[strlen(d_scanner.YYText())+1];
           strcpy ($$, d_scanner.YYText());
+	}
+;
+
+id:
+        num
+	{
+	  $$ = $1;
 	}
 ;
 
