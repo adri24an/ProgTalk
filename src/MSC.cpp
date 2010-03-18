@@ -22,3 +22,10 @@ int MSC :: getTime_sent(int id)
 
   return time;
 }
+
+int MSC :: getTime_rec(int id)
+{
+  int time = messages->getTime_rec(id);
+
+  return time;
+}

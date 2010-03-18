@@ -16,6 +16,7 @@ public:
   void addMsg (char * new_mid, char * new_sms, char * new_origin, 
 	      char * new_destiny, int new_time_sent, int new_time_rec);
   int getTime_sent(int id);
+  int getTime_rec(int id);
 
 private:
 
