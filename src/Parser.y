@@ -53,6 +53,11 @@
 %token <cad> RIGHT_BRACE
 %token <cad> EOLN
 
+%type <num> rel_time
+%type <num> time_ref
+%type <num> time_ref_opt
+%type <num> ref
+%type <num> dif_time
 %type <num> num
 %type <num> abs_time
 %type <cad> iid
@@ -60,6 +65,8 @@
 %type <cad> mid
 %type <cad> mid_opt
 %type <cad> string_opt
+%type <tstamp> origin
+%type <tstamp> destiny
 
 %start msc
  
@@ -137,51 +144,94 @@ string_opt:
 
 origin:
         // EMPTY
+        {
+	  $$ = new Timestamp((char *) "No_Info_Available", -1000);
+	}
 |
         FROM iid time_ref_opt
+        {
+	  $$ = new Timestamp($2, $3);
+	}
 ;
 
 time_ref_opt:
         // EMPTY
+        {
+	  $$ = -1000;
+	}
 |
         AT time_ref
+        {
+	  $$ = $2;
+	}
 ;
 
 destiny:
         // EMPTY
+        {
+	  $$ = new Timestamp((char *) "No_Info_Available", -1000);
+	}
 |
         TO iid time_ref_opt
+        {
+	  $$ = new Timestamp($2, $3);
+	}
 ;
  
 time_ref:
         abs_time
+        {
+	  $$ = $1;
+	}
 |
         rel_time
+        {
+	  $$ = $1;
+	}
 ;
 
 abs_time:
-        NUM 
+        num
 	{
-	  $$ = atoi(d_scanner.YYText());
+	  $$ = $1;
 	}
 ;
 
 rel_time:
         dif_time
+	{
+	  $$ = $1;//BUSCA TIMEMPO DE ENVIO O RECEPCION CORRECTO
+	}
 |
         ref dif_time
+	{
+	  $$ = $1 + $2;
+	}
 ;
 
 ref:
-        iid EXCLAMATION 
+        iid EXCLAMATION
+	{
+	  $$ = 1;//BUSCAR TIEMPO DE ENVIO DEL SMS IID;
+	} 
+
 |
         iid INTERROGATION
+	{
+	  $$ = 1;//BUSCAR TIEMPO DE RECEPCION DEL SMS IID;
+	}
 ;
 
 dif_time:
         PLUS num
+	{
+	  $$ = $2;
+	}
 |
         MINUS num
+	{
+	  $$ = -$2;
+	}
 ;
 
 iid:
