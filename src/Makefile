@@ -6,7 +6,7 @@ Scanner.cc: Scanner.l Scanner.h
 parse.cc: Parser.y
 	bisonc++ $<
 
-Progtalk: parse.o Scanner.o Progtalk.o Timestamp.o MSC.o Instances.o Messages.o ASTinstances.o ASTmessages.o
+Progtalk: parse.o Scanner.o Progtalk.o Timestamp.o MSC.o Instances.o Messages.o ASTinstances.o ASTmessages.o Timeref.o
 	g++ -o $@ $? -lfl
 
 clean:

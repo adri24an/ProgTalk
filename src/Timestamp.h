@@ -5,23 +5,25 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "Timeref.h"
 
 class Timestamp
 {
   
 public:
 
-  Timestamp(char * iid, int time);
+  Timestamp(char * new_iid, Timeref * new_time);
   ~Timestamp();
   char * getIid ();
-  int getTime ();
+  int getValtype ();
+  int getValue ();
   void setIid (char * id);
-  void setTime (int reltime);
+  void setTime (int valtype, int value);
 
 private:
 
   char * iid;
-  int time;
+  Timeref * time;
 };
 
 #endif

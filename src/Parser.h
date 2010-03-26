@@ -5,6 +5,7 @@
 
 #include "Timestamp.h"
 #include "MSC.h"
+#include "Timeref.h"
 
 #include "Parserbase.h"
 #include "Scanner.h"
@@ -12,11 +13,6 @@
 #include <string>
 #include <string.h>
 
-typedef struct
-{
-  int valtype; // 0 = abs, 1 = rel, 2 = @+1
-  int value;
-} timeref;
 
 #undef Parser
 class Parser: public ParserBase
@@ -31,6 +27,7 @@ class Parser: public ParserBase
 		    char * new_destiny, int new_time_sent, int new_time_rec);
 	int getTime_sent(int id);
 	int getTime_rec(int id);
+	int msgSize();
 	//A custom print operation
 	void MyPrint();       
 
@@ -89,6 +86,11 @@ inline int Parser::getTime_rec(int id)
   int time = msc->getTime_rec(id);
 
   return time;
+}
+
+inline int Parser :: msgSize()
+{
+  return msc->msgSize();
 }
 
 inline void Parser::error(char const *msg)

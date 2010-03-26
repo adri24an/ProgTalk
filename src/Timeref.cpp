@@ -6,6 +6,10 @@ Timeref :: Timeref(int new_valtype, int new_value)
     value = new_value;
 }
 
+Timeref :: ~Timeref()
+{
+}
+
 int Timeref :: getValtype ()
 {
     return valtype;

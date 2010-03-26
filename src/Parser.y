@@ -34,7 +34,8 @@
 {
   int num;
   char * cad;
-  Timestamp *tstamp;
+  Timestamp * tstamp;
+  Timeref * timevalue;
 }
  
 %token <num> NUM
@@ -55,13 +56,14 @@
 %token <cad> RIGHT_BRACE
 %token <cad> EOLN
 
-%type <num> rel_time
-%type <num> time_ref
-%type <num> time_ref_opt
+%type <timevalue> rel_time
+%type <timevalue> time_ref
+%type <timevalue> abs_time
+%type <timevalue> time_ref_opt
+%type <num> message
 %type <num> ref
 %type <num> dif_time
 %type <num> num
-%type <num> abs_time
 %type <num> id
 %type <cad> iid
 %type <cad> tid
@@ -110,8 +112,63 @@ message:
 |
         MESSAGE mid_opt string_opt origin destiny SEMICOLON message
         {
-	  addInst ($2, (char *) "No_Info_Available", 
-		   (char *)"No_Info_Available");
+	  if (($4->getValtype() == 0) && ($5->getValtype() == 0))
+	    {
+	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+		     $4->getValue(), $5->getValue());
+	    }
+	  else if (($4->getValtype() == 0) && ($5->getValtype() == 1))
+	    {
+	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+		     $4->getValue(), ($4->getValue() + $5->getValue()));
+	    }
+	  else if  (($4->getValtype() == 0) && ($5->getValtype() == 2))
+	    {
+	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+		     $4->getValue(), ($5->getValue() + 1));
+	    }
+	  else if (($4->getValtype() == 1) && ($5->getValtype() == 0))
+	    {
+	      $$ = msgSize();
+	      $$ = getTime_rec($$) + $4->getValue();
+	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+		     $$, $5->getValue());
+	    }
+	  else if (($4->getValtype() == 1) && ($5->getValtype() == 1))
+	    {
+	      $$ = msgSize();
+	      $$ = getTime_rec($$) + $4->getValue();
+	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+		     $$, ($$ + $5->getValue()));
+	    }
+	  else if (($4->getValtype() == 1) && ($5->getValtype() == 2))
+	    {
+	      $$ = msgSize();
+	      $$ = getTime_rec($$) + $4->getValue();
+	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+		     $$, ($$ + 1));
+	    }
+	  else if (($4->getValtype() == 2) && ($5->getValtype() == 0))
+	    {
+	      $$ = msgSize();
+	      $$ = getTime_rec($$) + 1;
+	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+		     $$, $5->getValue());
+	    }
+	  else if (($4->getValtype() == 2) && ($5->getValtype() == 1))
+	    {
+	      $$ = msgSize();
+	      $$ = getTime_rec($$) + 1;
+	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+		     $$, ($$ + $5->getValue()));
+	    }
+	  else if (($4->getValtype() == 1) && ($5->getValtype() == 2))
+	    {
+	      $$ = msgSize();
+	      $$ = getTime_rec($$) + 1;
+	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+		     $$, ($$ + 1));
+	    }
 	}
 ;
 
@@ -148,7 +205,7 @@ string_opt:
 origin:
         // EMPTY
         {
-	  $$ = new Timestamp((char *) "No_Info_Available", -1000);
+	  $$ = new Timestamp((char *) "No_Info_Available", NULL);
 	}
 |
         FROM iid time_ref_opt
@@ -160,7 +217,7 @@ origin:
 time_ref_opt:
         // EMPTY
         {
-	  $$ = -1000;
+	  $$ = new Timeref(2, 1);
 	}
 |
         AT time_ref
@@ -172,7 +229,7 @@ time_ref_opt:
 destiny:
         // EMPTY
         {
-	  $$ = new Timestamp((char *) "No_Info_Available", -1000);
+	  $$ = new Timestamp((char *) "No_Info_Available", NULL);
 	}
 |
         TO iid time_ref_opt
@@ -196,19 +253,19 @@ time_ref:
 abs_time:
         num
 	{
-	  $$ = $1;
+	  $$ = new Timeref(0, $1);
 	}
 ;
 
 rel_time:
         dif_time
 	{
-	  $$ = $1;//BUSCA TIMEMPO DE ENVIO O RECEPCION CORRECTO
+	  $$ = new Timeref(1, $1);
 	}
 |
         ref dif_time
 	{
-	  $$ = $1 + $2;
+	  $$ = new Timeref(0, $1 + $2);
 	}
 ;
 

@@ -29,3 +29,8 @@ int MSC :: getTime_rec(int id)
 
   return time;
 }
+
+int MSC :: msgSize()
+{
+  return messages->msgSize();
+}

@@ -38,3 +38,8 @@ int Messages :: getTime_rec(int id)
 
   return time;
 }
+
+int Messages :: msgSize()
+{
+  return (int) astMsg.size();
+}
