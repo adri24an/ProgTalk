@@ -12,6 +12,12 @@
 #include <string>
 #include <string.h>
 
+typedef struct
+{
+  bool rel;
+  int value;
+} timeref;
+
 #undef Parser
 class Parser: public ParserBase
 {       
