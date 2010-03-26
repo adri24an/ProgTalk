@@ -14,7 +14,7 @@
 
 typedef struct
 {
-  int type; // 0 = abs, 1 = rel, 2 = @+1
+  int valtype; // 0 = abs, 1 = rel, 2 = @+1
   int value;
 } timeref;
 
