@@ -10,6 +10,7 @@ NUM      [0-9]+
 ID       [a-zA-Z][a-zA-Z0-9_]*
 WHITE    [ \t]+
 STRING   \"[^\"]*\"
+EOLN     [\n]+
 INSTANCE "instance"
 OF       "of"
 MESSAGE  "message"
@@ -20,11 +21,12 @@ TO       "to"
 
 {WHITE}    { /* Ignoramos espacios en blanco */ }
 
-{NUM}    {
+{NUM}      {
             return(Parser::NUM);
            }
 
 {STRING}   {
+            std::cout << yytext << std::endl;
             return(Parser::STRING);
            }
 
@@ -49,7 +51,12 @@ TO       "to"
            }
 
 {ID}       {
+            std::cout << yytext << std::endl;
             return(Parser::ID);
+           }
+
+{EOLN}     {
+            return(Parser::EOLN);
            }
 
 "@"        {
@@ -82,10 +89,6 @@ TO       "to"
 
 "}"        {
             return(Parser::RIGHT_BRACE);
-           }
-
-\n         {
-            return(Parser::EOLN);
            }
 
 .          {
