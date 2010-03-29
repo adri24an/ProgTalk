@@ -92,7 +92,7 @@ inst_decl:
 |
         INSTANCE iid OF tid SEMICOLON EOLN inst_decl
         {
-	  addInst ($2, $4, (char *) "No_Info_Available");
+	  addInst ((char* ) $2, (char *) $4, (char *) "No_Info_Available");
 	}
 |
         INSTANCE iid LEFT_BRACE STRING RIGHT_BRACE SEMICOLON EOLN inst_decl
@@ -109,8 +109,11 @@ inst_decl:
         
 message:
         // EMPTY
+        {
+	  $$ = 0;
+	}
 |
-        MESSAGE mid_opt string_opt origin destiny SEMICOLON message
+        MESSAGE mid_opt string_opt origin destiny SEMICOLON EOLN message
         {
 	  if (($4->getValtype() == 0) && ($5->getValtype() == 0))
 	    {
