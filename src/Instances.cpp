@@ -1,11 +1,12 @@
 #include "Instances.h"
 
 Instances :: Instances()
+  :astInst()
 {
 }
 
 void Instances :: addInst(char * new_iid, char * new_tid, char * new_name)
-{
+{ 
     ASTinstances * i;
 
     if(astInst.find(new_iid) == astInst.end())
