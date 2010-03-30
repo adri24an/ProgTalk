@@ -26,7 +26,6 @@ TO       "to"
            }
 
 {STRING}   {
-            std::cout << yytext << std::endl;
             return(Parser::STRING);
            }
 
@@ -51,7 +50,6 @@ TO       "to"
            }
 
 {ID}       {
-            std::cout << yytext << std::endl;
             return(Parser::ID);
            }
 

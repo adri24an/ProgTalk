@@ -57,8 +57,8 @@
 %token <cad> EOLN
 
 %type <timevalue> rel_time
-%type <timevalue> time_ref
 %type <timevalue> abs_time
+%type <timevalue> time_ref
 %type <timevalue> time_ref_opt
 %type <num> message
 %type <num> ref
@@ -113,9 +113,12 @@ message:
 	  $$ = 0;
 	}
 |
-        MESSAGE mid_opt string_opt origin destiny SEMICOLON EOLN message
         {
-	  if (($4->getValtype() == 0) && ($5->getValtype() == 0))
+	  std::cout << "entra en message" << std::endl;
+	}
+        MESSAGE mid_opt string_opt origin destiny SEMICOLON EOLN message
+        { 
+	  if ((($4->getValtype() == 0)) && ($5->getValtype() == 0))
 	    {
 	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
 		     $4->getValue(), $5->getValue());

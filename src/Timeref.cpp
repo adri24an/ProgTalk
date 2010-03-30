@@ -18,6 +18,7 @@ int Timeref :: getValue ()
 {
     return value;
 }
+
 void Timeref :: setValtype (int new_valtype)
 {
     valtype = new_valtype;
