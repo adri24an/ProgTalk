@@ -1,0 +1,17 @@
+Detalles a solucionar tras un primer desarrollo:
+
+ - ¿Por qué usas conversión de tipos en los parámetros de addInst o
+  addMsg? (ej. (char *) $2) Las conversiones de tipos son muy
+  peligrosas y mucho más cuando no son siquiera necesarias.
+
+ - Como programador que tiene que leerse tu código, es imposible saber
+  cuáles y qué significan los valores de getValtype. Hay muchas cosas
+  que hacerlas por primera parecen cansinas pero al final compensa, en
+  este caso haber creado un enumerado (supongo que ABS, UNDEF, REL)
+  habría sido un plus.
+
+ - La acción semántica de la segunda producción de message parece un
+  exceso, es muy posible que se pueda mejorar. Modificar un código para
+  que haga lo mismo que ya hacía pero mejorando cierto aspecto (como la
+  eficiencia o la elegancia) tiene un nombre: refactorizar. En algún
+  momento haremos algo de refactorización.
