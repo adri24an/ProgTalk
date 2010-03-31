@@ -113,66 +113,63 @@ message:
 	  $$ = 0;
 	}
 |
-        {
-	  std::cout << "entra en message" << std::endl;
-	}
         MESSAGE mid_opt string_opt origin destiny SEMICOLON EOLN message
         { 
 	  if ((($4->getValtype() == 0)) && ($5->getValtype() == 0))
 	    {
-	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+	      addMsg($2,$3,$4->getIid(),$5->getIid(),
 		     $4->getValue(), $5->getValue());
 	    }
 	  else if (($4->getValtype() == 0) && ($5->getValtype() == 1))
 	    {
-	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+	      addMsg($2,$3,$4->getIid(),$5->getIid(),
 		     $4->getValue(), ($4->getValue() + $5->getValue()));
 	    }
 	  else if  (($4->getValtype() == 0) && ($5->getValtype() == 2))
 	    {
-	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+	      addMsg($2,$3,$4->getIid(),$5->getIid(),
 		     $4->getValue(), ($5->getValue() + 1));
 	    }
 	  else if (($4->getValtype() == 1) && ($5->getValtype() == 0))
 	    {
 	      $$ = msgSize();
 	      $$ = getTime_rec($$) + $4->getValue();
-	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+	      addMsg($2,$3,$4->getIid(),$5->getIid(),
 		     $$, $5->getValue());
 	    }
 	  else if (($4->getValtype() == 1) && ($5->getValtype() == 1))
 	    {
 	      $$ = msgSize();
 	      $$ = getTime_rec($$) + $4->getValue();
-	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+	      addMsg($2,$3,$4->getIid(),$5->getIid(),
 		     $$, ($$ + $5->getValue()));
 	    }
 	  else if (($4->getValtype() == 1) && ($5->getValtype() == 2))
 	    {
 	      $$ = msgSize();
 	      $$ = getTime_rec($$) + $4->getValue();
-	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+	      addMsg($2,$3,$4->getIid(),$5->getIid(),
 		     $$, ($$ + 1));
 	    }
 	  else if (($4->getValtype() == 2) && ($5->getValtype() == 0))
 	    {
 	      $$ = msgSize();
 	      $$ = getTime_rec($$) + 1;
-	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+	      addMsg($2,$3,$4->getIid(),$5->getIid(),
 		     $$, $5->getValue());
 	    }
 	  else if (($4->getValtype() == 2) && ($5->getValtype() == 1))
 	    {
 	      $$ = msgSize();
 	      $$ = getTime_rec($$) + 1;
-	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+	      addMsg($2,$3,$4->getIid(),$5->getIid(),
 		     $$, ($$ + $5->getValue()));
 	    }
 	  else if (($4->getValtype() == 1) && ($5->getValtype() == 2))
 	    {
 	      $$ = msgSize();
 	      $$ = getTime_rec($$) + 1;
-	      addMsg($2,$3,(char *) $4->getIid(),(char *) $5->getIid(),
+	      addMsg($2,$3,$4->getIid(),$5->getIid(),
 		     $$, ($$ + 1));
 	    }
 	}
@@ -182,7 +179,7 @@ mid_opt:
         // EMPTY
         {
 	  $$ = new char[18];
-          strcpy ($$, (char *)"No_Info_Available");
+          strcpy ($$,"No_Info_Available");
 	}
 |
         mid
@@ -196,7 +193,7 @@ string_opt:
         // EMPTY
         {
 	  $$ = new char[18];
-          strcpy ($$, (char *)"No_Info_Available");
+          strcpy ($$,"No_Info_Available");
 	}
 |
         LEFT_BRACE STRING 	
