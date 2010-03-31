@@ -17,43 +17,45 @@
 #undef Parser
 class Parser: public ParserBase
 {       
-    public:
-        Parser();
+ public:
+  Parser();
+  
+  int parse();
+  MSC * getMSC();
+  void addInst(char * newiid, char * newtid, char * newname);
+  void addMsg(char * new_mid, char * new_sms, char * new_origin, 
+			  char * new_destiny, int new_time_sent, int new_time_rec);
+  int getTime_sent(int id);
+  int getTime_rec(int id);
+  int msgSize();
+  //A custom print operation
+  void MyPrint();       
 
-        int parse();
-	MSC * getMSC();
-	void addInst(char * newiid, char * newtid, char * newname);
-	void addMsg(char * new_mid, char * new_sms, char * new_origin, 
-		    char * new_destiny, int new_time_sent, int new_time_rec);
-	int getTime_sent(int id);
-	int getTime_rec(int id);
-	int msgSize();
-	//A custom print operation
-	void MyPrint();       
+ private:
+  
+  void error(char const *msg);
+  
+  int lex();
+  
+  //Default print operation (not implemented)
+  void print();
 
-    private:
-
-        void error(char const *msg);
-
-        int lex();
-
-	//Default print operation (not implemented)
-	void print();
-
-	//Support functions for parse():
-        void executeAction(int ruleNr);
-        void errorRecovery();
-        int lookup(bool recovery);
-        void nextToken();
-
-	Scanner d_scanner;   //Tokens reader
+  //Support functions for parse():
+  void executeAction(int ruleNr);
+  void errorRecovery();
+  int lookup(bool recovery);
+  void nextToken();
+  
+  //Tokens reader
+  Scanner d_scanner;   
         
-	MSC * msc; //Object that storages instances and messages
+  //Object that storages instances and messages
+  MSC * msc; 
 };
 
 inline Parser::Parser()
-	      :msc()
 {
+  msc = new MSC;
 }
 
 inline MSC * Parser::getMSC()
