@@ -5,10 +5,15 @@ Instances :: Instances()
 {
 }
 
+Instances :: ~Instances()
+{
+}
+
 void Instances :: addInst(char * new_iid, char * new_tid, char * new_name)
 { 
     ASTinstances * i;
 
+    std::cout << "entra en instances.addInst" << std::endl;
     if(astInst.find(new_iid) == astInst.end())
       {
 	i = new ASTinstances(new_tid, new_name);

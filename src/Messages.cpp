@@ -1,6 +1,11 @@
 #include "Messages.h"
 
 Messages :: Messages()
+  :astMsg()
+{
+}
+
+Messages :: ~Messages()
 {
 }
 
