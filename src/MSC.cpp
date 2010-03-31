@@ -8,9 +8,7 @@ MSC :: MSC()
 
 void MSC :: addInst (char * newiid, char * newtid, char * name)
 {
-  std::cout << "entra en msc.addInst" << std::endl;
   instances->addInst (newiid, newtid, name);
-  std::cout << "sale de msc.addInst" << std::endl;
 }
 
 void MSC :: addMsg (char * new_mid, char * new_sms, char * new_origin, 
