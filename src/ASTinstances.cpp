@@ -1,15 +1,15 @@
 #include "ASTinstances.h"
 
-ASTinstances :: ASTinstances()
-{
-    tid = NULL;
-    name = NULL;
-}
-
 ASTinstances :: ASTinstances(char * new_tid, char * new_name)
 {
-  strcpy (tid, new_tid);
-  strcpy (name, new_name);
+  tid = new_tid;
+  name = new_name;
+}
+
+ASTinstances :: ~ASTinstances()
+{
+  delete tid;
+  delete name;
 }
 
 char * ASTinstances :: getTid()

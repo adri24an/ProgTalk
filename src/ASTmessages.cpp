@@ -1,23 +1,23 @@
 #include "ASTmessages.h"
 
-ASTmessages :: ASTmessages()
-{
-  mid = NULL;
-  sms = NULL;
-  origin = NULL;
-  destiny = NULL;
-}
-
 ASTmessages :: ASTmessages(char * new_mid, char * new_sms, char * new_origin, 
-			   char * new_destiny, int new_time_sent, 
-			   int new_time_rec)
+						   char * new_destiny, int new_time_sent, 
+						   int new_time_rec)
 {
-  strcpy (mid, new_mid);
-  strcpy (sms, new_sms);
-  strcpy (origin, new_origin);
-  strcpy (destiny, new_destiny);
+  mid = new_mid;
+  sms = new_sms;
+  origin = new_origin;
+  destiny = new_destiny;
   time_sent = new_time_sent;
   time_rec = new_time_rec;
+}
+
+ASTmessages :: ~ASTmessages()
+{
+  delete mid;
+  delete sms;
+  delete origin;
+  delete destiny;
 }
 
 char * ASTmessages :: getMid()
