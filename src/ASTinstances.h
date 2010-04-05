@@ -8,14 +8,16 @@ class ASTinstances
   
 public:
   
-  ASTinstances();
   ASTinstances(char * new_tid, char * new_name);
   ~ASTinstances();
 
+  //Returns tid
   char * getTid();
+  //Returns name
   char * getName();
-  
+  //Sets tid value
   void setTid(char * id);
+  //Sets name value
   void setName(char * id);
 
 private:
