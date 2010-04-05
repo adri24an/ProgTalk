@@ -9,9 +9,15 @@ public:
 
   Timeref(int new_valtype, int new_value);
   ~Timeref ();
+
+  //Returns the type of time storaged (absolute, relative to a specific message,
+  //or relative without an specific message)
   int getValtype ();
+  //Returns event's time
   int getValue ();
+  //Sets Valtype value
   void setValtype (int new_valtype);
+  //Sets Value value
   void setValue (int new_value);
 
 private:
