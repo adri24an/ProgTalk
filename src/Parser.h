@@ -115,7 +115,7 @@ inline int Parser::lex()
 //A custom print operation
 inline void Parser::myPrint ()
 {
-    msc->myPrint();;
+    msc->myPrint();
 }
 
 //Default print operation (not implemented)
