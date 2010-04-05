@@ -18,18 +18,25 @@
 class Parser: public ParserBase
 {       
  public:
+  //Constructor of Parser
   Parser();
-  
+  //Parses the tokens sent by Scanner
   int parse();
+  //Returns the msc object
   MSC * getMSC();
+  //Adds a new instance to msc
   void addInst(char * newiid, char * newtid, char * newname);
+  //Adds a new message to msc
   void addMsg(char * new_mid, char * new_sms, char * new_origin, 
 			  char * new_destiny, int new_time_sent, int new_time_rec);
+  //Returns the time when the message marked with id was sent
   int getTime_sent(int id);
+  //Returns the time when the message marked with id was received
   int getTime_rec(int id);
+  //Returns the number of messages storaged in msc
   int msgSize();
   //A custom print operation
-  void MyPrint();       
+  void myPrint();       
 
  private:
   
@@ -106,9 +113,9 @@ inline int Parser::lex()
 }
 
 //A custom print operation
-inline void Parser::MyPrint ()
+inline void Parser::myPrint ()
 {
-  ;
+    msc->myPrint();;
 }
 
 //Default print operation (not implemented)
