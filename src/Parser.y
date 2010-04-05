@@ -302,6 +302,14 @@ iid:
 	    {
 		  $$ = new char[strlen(d_scanner.YYText())+1];
           strcpy ($$, d_scanner.YYText());
+		  if ((strcmp ($$, "instance")) || (strcmp ($$, "of")) || 
+			  (strcmp ($$, "message")) || (strcmp ($$, "from")) ||
+			  (strcmp ($$, "to")))
+			{
+			  std::cout << "Error: a reserved word (" << $$ << 
+				") was used as an identifier" << std::endl;
+			  exit(0);
+			}
 		}
 ;
 
@@ -310,6 +318,14 @@ tid:
 	    {
 		  $$ = new char[strlen(d_scanner.YYText())+1];
           strcpy ($$, d_scanner.YYText());
+		  if ((strcmp ($$, "instance")) || (strcmp ($$, "of")) || 
+			  (strcmp ($$, "message")) || (strcmp ($$, "from")) ||
+			  (strcmp ($$, "to")))
+			{
+			  std::cout << "Error: a reserved word (" << $$ << 
+				") was used as an identifier" << std::endl;
+			  exit(0);
+			}
 		}
 ;
 
@@ -318,6 +334,14 @@ mid:
 	    {
 		  $$ = new char[strlen(d_scanner.YYText())+1];
           strcpy ($$, d_scanner.YYText());
+		  if ((strcmp ($$, "instance")) || (strcmp ($$, "of")) || 
+			  (strcmp ($$, "message")) || (strcmp ($$, "from")) ||
+			  (strcmp ($$, "to")))
+			{
+			  std::cout << "Error: a reserved word (" << $$ << 
+				") was used as an identifier" << std::endl;
+			  exit(0);
+			}
 		}
 ;
 
