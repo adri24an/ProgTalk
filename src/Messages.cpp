@@ -17,7 +17,7 @@ void Messages :: addMsg(char * new_mid, char * new_sms,
     mit (astMsg.begin()),
     mend(astMsg.end());
   ASTmessages * m = NULL;
-  int id;
+  int id = 0;
 
   if (strcmp (new_mid, "No_Info_Available"))
 	{
@@ -81,7 +81,8 @@ int Messages :: getTime_sent(char * mid)
 		}
 	}
   std::cout << 
-	"Error: the mid used as a reference in the message doesn't exists" 
+	"Error: the mid (" << mid 
+			<< ") used as a reference in the message doesn't exists" 
 			<< std::endl;
   exit(0);
 }
@@ -103,8 +104,8 @@ int Messages :: getTime_rec(char * mid)
 		  return time;
 		}
 	}
-  std::cout << 
-	"Error: the mid used as a reference in the message doesn't exists" 
+  std::cout << "Error: the mid (" << mid 
+			<< ") used as a reference in the message doesn't exists" 
 			<< std::endl;
   exit(0);
 }
