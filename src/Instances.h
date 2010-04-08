@@ -3,6 +3,7 @@
 
 #include "string.h"
 #include "ASTinstances.h"
+#include <stdlib.h>
 #include <iostream>
 #include <map>
   
