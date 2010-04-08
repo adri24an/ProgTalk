@@ -19,14 +19,17 @@ void Messages :: addMsg(char * new_mid, char * new_sms,
   ASTmessages * m = NULL;
   int id;
 
-  for(;mit!=mend;++mit) 
+  if (strcmp (new_mid, "No_Info_Available"))
 	{
-	  m = mit->second;
-	  if (!(strcmp(m->getMid(), new_mid)))
+	  for(;mit!=mend;++mit) 
 		{
+		  m = mit->second;
+		  if (!(strcmp(m->getMid(), new_mid)))
+			{
 		  std::cout << "Error: the mid (" << new_mid << 
 			") used in the message already exists" << std::endl;
 		  exit(0);
+			}
 		}
 	}
 
