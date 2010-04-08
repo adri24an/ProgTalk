@@ -384,9 +384,9 @@ static yyconst flex_int32_t yy_ec[256] =
 
 static yyconst flex_int32_t yy_meta[28] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    2,    1,    1,
-        1,    2,    2,    2,    2,    2,    2,    2,    2,    2,
-        2,    2,    2,    2,    2,    1,    1
+        1,    1,    2,    1,    1,    1,    1,    3,    1,    1,
+        1,    3,    3,    3,    3,    3,    3,    3,    3,    3,
+        3,    3,    3,    3,    3,    1,    1
     } ;
 
 static yyconst flex_int16_t yy_base[50] =
@@ -395,7 +395,7 @@ static yyconst flex_int16_t yy_base[50] =
        45,   58,   58,   58,    0,   29,   30,   34,   32,   26,
        58,   58,   45,   43,   40,   58,   36,    0,   21,   18,
        17,    0,    0,   20,   14,   14,    0,   23,   22,   14,
-       16,   18,   16,   15,    0,    0,   58,   27,   28
+       16,   18,   16,   15,    0,    0,   58,   27,   26
     } ;
 
 static yyconst flex_int16_t yy_def[50] =
@@ -411,7 +411,7 @@ static yyconst flex_int16_t yy_nxt[86] =
     {   0,
         4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
        14,   15,    4,   15,   15,   15,   16,   15,   17,   18,
-       15,   19,   15,   15,   20,   21,   22,   25,   25,   28,
+       15,   19,   15,   15,   20,   21,   22,   25,   28,   25,
        46,   45,   44,   43,   42,   41,   40,   39,   38,   37,
        36,   35,   34,   27,   26,   24,   23,   33,   32,   31,
        30,   29,   27,   26,   24,   23,   47,    3,   47,   47,
@@ -424,7 +424,7 @@ static yyconst flex_int16_t yy_chk[86] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,   48,   48,   49,
+        1,    1,    1,    1,    1,    1,    1,   48,   49,   48,
        44,   43,   42,   41,   40,   39,   38,   36,   35,   34,
        31,   30,   29,   27,   25,   24,   23,   20,   19,   18,
        17,   16,   11,    8,    6,    5,    3,   47,   47,   47,
@@ -649,51 +649,51 @@ YY_RULE_SETUP
            }
 	YY_BREAK
 case 3:
-/* rule 3 can match eol */
 YY_RULE_SETUP
 #line 28 "Scanner.l"
 {
             return(Parser::STRING);
+
            }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 32 "Scanner.l"
+#line 33 "Scanner.l"
 {
             return(Parser::INSTANCE);
            }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 36 "Scanner.l"
+#line 37 "Scanner.l"
 {
             return(Parser::OF);
            }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 40 "Scanner.l"
+#line 41 "Scanner.l"
 {
             return(Parser::MESSAGE);
            }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 44 "Scanner.l"
+#line 45 "Scanner.l"
 {
             return(Parser::FROM);
            }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 48 "Scanner.l"
+#line 49 "Scanner.l"
 {
             return(Parser::TO);
            }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 52 "Scanner.l"
+#line 53 "Scanner.l"
 {
             return(Parser::ID);
            }
@@ -701,78 +701,78 @@ YY_RULE_SETUP
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
-#line 56 "Scanner.l"
+#line 57 "Scanner.l"
 {
             return(Parser::EOLN);
            }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 60 "Scanner.l"
+#line 61 "Scanner.l"
 {
             return(Parser::AT);
            }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 64 "Scanner.l"
+#line 65 "Scanner.l"
 {
             return(Parser::PLUS);
            }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 68 "Scanner.l"
+#line 69 "Scanner.l"
 {
             return(Parser::MINUS);
            }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 72 "Scanner.l"
+#line 73 "Scanner.l"
 {
             return(Parser::EXCLAMATION);
            }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 76 "Scanner.l"
+#line 77 "Scanner.l"
 {
             return(Parser::INTERROGATION);
            }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 80 "Scanner.l"
+#line 81 "Scanner.l"
 {
             return(Parser::SEMICOLON);
            }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 84 "Scanner.l"
+#line 85 "Scanner.l"
 {
             return(Parser::LEFT_BRACE);
            }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 88 "Scanner.l"
+#line 89 "Scanner.l"
 {
             return(Parser::RIGHT_BRACE);
            }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 92 "Scanner.l"
+#line 93 "Scanner.l"
 {
-            std::cout << "ERROR: CARACTER INCORRECTO" << std::endl;
+            std::cout << "Error: Scanner couldn't match data." << std::endl;
             yyterminate();
            }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 97 "Scanner.l"
+#line 98 "Scanner.l"
 ECHO;
 	YY_BREAK
 #line 780 "Scanner.cc"
@@ -1675,7 +1675,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 97 "Scanner.l"
+#line 98 "Scanner.l"
 
 
 
