@@ -16,6 +16,8 @@ public:
 
   //Adds a new instance
   void addInst(char * new_iid, char * new_tid, char * new_name);
+  //Shows Instances data on screen
+  void myPrint();
 
 private:
 

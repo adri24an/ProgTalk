@@ -23,3 +23,15 @@ void Instances :: addInst(char * new_iid, char * new_tid, char * new_name)
 		std::cout << "Error: The instance already exists." << std::endl;
       }
 }
+
+void Instances :: myPrint()
+{
+  std::map<char *, ASTinstances *>::const_iterator
+    mit (astInst.begin()),
+    mend(astInst.end());
+  for(;mit!=mend;++mit) 
+	{
+	  std::cout << mit->first << " -> ";
+	  mit->second->myPrint();
+	}
+}
