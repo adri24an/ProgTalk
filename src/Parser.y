@@ -16,12 +16,11 @@
 //    time_ref ::= abs_time | rel_time
 //    abs_time ::= num
 //    rel_time ::= diftime | ref diftime
-//    ref ::= id ! | id ?
+//    ref ::= mid ! | mid ?
 //    dif_time ::= + NUM | - NUM
 //    iid ::= ID
 //    tid ::= ID
 //    mid ::= ID
-//    id ::= NUM
 //    num ::= NUM
 //
 //------------------------------------------------------------
@@ -64,7 +63,6 @@
 %type <num> ref
 %type <num> dif_time
 %type <num> num
-%type <num> id
 %type <cad> iid
 %type <cad> tid
 %type <cad> mid
@@ -248,7 +246,7 @@ time_ref:
 		}
 |
         rel_time
-        {
+        { 
 		  $$ = $1;
 		}
 ;
@@ -273,13 +271,13 @@ rel_time:
 ;
 
 ref:
-        id EXCLAMATION
+        mid EXCLAMATION
 	    {
 		  $$ = getTime_sent($1);
 		} 
 
 |
-        id INTERROGATION
+        mid INTERROGATION
 	    {
 		  $$ = getTime_rec($1);
 		}
@@ -302,9 +300,9 @@ iid:
 	    {
 		  $$ = new char[strlen(d_scanner.YYText())+1];
           strcpy ($$, d_scanner.YYText());
-		  if ((strcmp ($$, "instance")) || (strcmp ($$, "of")) || 
-			  (strcmp ($$, "message")) || (strcmp ($$, "from")) ||
-			  (strcmp ($$, "to")))
+		  if (!(strcmp ($$, "instance")) || !(strcmp ($$, "of")) || 
+			  !(strcmp ($$, "message")) || !(strcmp ($$, "from")) ||
+			  !(strcmp ($$, "to")))
 			{
 			  std::cout << "Error: a reserved word (" << $$ << 
 				") was used as an identifier" << std::endl;
@@ -318,9 +316,9 @@ tid:
 	    {
 		  $$ = new char[strlen(d_scanner.YYText())+1];
           strcpy ($$, d_scanner.YYText());
-		  if ((strcmp ($$, "instance")) || (strcmp ($$, "of")) || 
-			  (strcmp ($$, "message")) || (strcmp ($$, "from")) ||
-			  (strcmp ($$, "to")))
+		  if (!(strcmp ($$, "instance")) || !(strcmp ($$, "of")) || 
+			  !(strcmp ($$, "message")) || !(strcmp ($$, "from")) ||
+			  !(strcmp ($$, "to")))
 			{
 			  std::cout << "Error: a reserved word (" << $$ << 
 				") was used as an identifier" << std::endl;
@@ -334,21 +332,14 @@ mid:
 	    {
 		  $$ = new char[strlen(d_scanner.YYText())+1];
           strcpy ($$, d_scanner.YYText());
-		  if ((strcmp ($$, "instance")) || (strcmp ($$, "of")) || 
-			  (strcmp ($$, "message")) || (strcmp ($$, "from")) ||
-			  (strcmp ($$, "to")))
-			{
-			  std::cout << "Error: a reserved word (" << $$ << 
-				") was used as an identifier" << std::endl;
-			  exit(0);
-			}
-		}
-;
-
-id:
-        num
-	    {
-		  $$ = $1;
+		  if (!(strcmp ($$, "instance")) || !(strcmp ($$, "of")) || 
+			  !(strcmp ($$, "message")) || !(strcmp ($$, "from")) ||
+			  !(strcmp ($$, "to")))
+			  {
+				std::cout << "Error: a reserved word (" << $$ << 
+				  ") was used as an identifier" << std::endl;
+				exit(0);
+			  }
 		}
 ;
 

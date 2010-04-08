@@ -25,10 +25,14 @@ class Parser: public ParserBase
   //Returns the msc object
   MSC * getMSC();
   //Adds a new instance to msc
-  void addInst(char * newiid, char * newtid, char * newname);
+  void addInst(char * new_iid, char * new_tid, char * new_name);
   //Adds a new message to msc
   void addMsg(char * new_mid, char * new_sms, char * new_origin, 
 			  char * new_destiny, int new_time_sent, int new_time_rec);
+  //Returns the time when the message marked with mid was sent
+  int getTime_sent(char * mid);
+  //Returns the time when the message marked with mid was received
+  int getTime_rec(char * mid);
   //Returns the time when the message marked with id was sent
   int getTime_sent(int id);
   //Returns the time when the message marked with id was received
@@ -70,9 +74,9 @@ inline MSC * Parser::getMSC()
   return msc;
 }
 
-inline void Parser::addInst(char * newiid, char * newtid, char * newname)
+inline void Parser::addInst(char * new_iid, char * new_tid, char * new_name)
 {
-  msc->addInst(newiid, newtid, newname);
+  msc->addInst(new_iid, new_tid, new_name);
 }
 
 inline void Parser::addMsg(char * new_mid, char * new_sms, char * new_origin, 
@@ -81,6 +85,20 @@ inline void Parser::addMsg(char * new_mid, char * new_sms, char * new_origin,
 {
   msc->addMsg(new_mid, new_sms, new_origin, new_destiny, new_time_sent, 
 	       new_time_rec);
+}
+
+inline int Parser::getTime_sent(char * mid)
+{
+  int time = msc->getTime_sent(mid);
+
+  return time;
+}
+
+inline int Parser::getTime_rec(char * mid)
+{
+  int time = msc->getTime_rec(mid);
+
+  return time;
 }
 
 inline int Parser::getTime_sent(int id)
