@@ -13,9 +13,25 @@ void Messages :: addMsg(char * new_mid, char * new_sms,
 			char * new_origin, char * new_destiny, 
 			int new_time_sent, int new_time_rec)
 {
-  ASTmessages * m = new ASTmessages(new_mid, new_sms, new_origin, new_destiny, 
-				    new_time_sent, new_time_rec);
+  std::map<int, ASTmessages *>::const_iterator
+    mit (astMsg.begin()),
+    mend(astMsg.end());
+  ASTmessages * m = NULL;
   int id;
+
+  for(;mit!=mend;++mit) 
+	{
+	  m = mit->second;
+	  if (!(strcmp(m->getMid(), new_mid)))
+		{
+		  std::cout << "Error: the mid (" << new_mid << 
+			") used in the message already exists" << std::endl;
+		  exit(0);
+		}
+	}
+
+  m = new ASTmessages(new_mid, new_sms, new_origin, new_destiny, 
+				    new_time_sent, new_time_rec);
 
   if (astMsg.empty())
   {
