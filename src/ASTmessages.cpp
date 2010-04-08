@@ -54,24 +54,35 @@ void ASTmessages :: setMid(char * id)
 {
     strcpy(mid, id);
 }
+
 void ASTmessages :: setSms(char * id)
 {
     strcpy(sms, id);
 }
+
 void ASTmessages :: setOrigin(char * id)
 {
     strcpy(origin, id);
 }
+
 void ASTmessages :: setDestiny(char * id)
 {
     strcpy(destiny, id);
 }
+
 void ASTmessages :: setTime_sent(int id)
 {
     time_sent = id;
 }
+
 void ASTmessages :: setTime_rec(int id)
 {
     time_rec = id;
+}
+
+void ASTmessages :: myPrint()
+{
+  std::cout << mid << " " << sms << " " << origin << " " << destiny << " " <<
+	time_sent << " " << time_rec << std::endl;
 }
 

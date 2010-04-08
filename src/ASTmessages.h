@@ -2,6 +2,7 @@
 #define ASTMESSAGES_H
 
 #include <string.h>
+#include <iostream>
   
 class ASTmessages
 {
@@ -36,6 +37,8 @@ public:
   void setTime_sent(int id);
   //Sets the value of time_rec
   void setTime_rec(int id);
+  //Shows messages data on screen
+  void myPrint();
 
 private:
 

@@ -32,3 +32,8 @@ void ASTinstances :: setName(char * id)
     strcpy(name, id);
 }
 
+void ASTinstances :: myPrint()
+{
+  std::cout << tid << " " << name << std::endl;
+}
+

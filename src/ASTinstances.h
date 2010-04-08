@@ -2,6 +2,7 @@
 #define ASTINSTANCES_H
 
 #include <string.h>
+#include <iostream>
   
 class ASTinstances
 {
@@ -19,6 +20,8 @@ public:
   void setTid(char * id);
   //Sets name value
   void setName(char * id);
+  //Shows instances data on screen
+  void myPrint();
 
 private:
 

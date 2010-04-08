@@ -6,9 +6,9 @@ MSC :: MSC()
   messages = new Messages;
 }
 
-void MSC :: addInst (char * newiid, char * newtid, char * name)
+void MSC :: addInst (char * new_iid, char * new_tid, char * new_name)
 {
-  instances->addInst (newiid, newtid, name);
+  instances->addInst (new_iid, new_tid, new_name);
 }
 
 void MSC :: addMsg (char * new_mid, char * new_sms, char * new_origin, 
@@ -17,6 +17,20 @@ void MSC :: addMsg (char * new_mid, char * new_sms, char * new_origin,
   messages->addMsg (new_mid, new_sms, new_origin, new_destiny, 
 		    new_time_sent, new_time_rec);
 }
+int MSC :: getTime_sent(char * mid)
+{
+  int time = messages->getTime_sent(mid);
+
+  return time;
+}
+
+int MSC :: getTime_rec(char * mid)
+{
+  int time = messages->getTime_rec(mid);
+
+  return time;
+}
+
 int MSC :: getTime_sent(int id)
 {
   int time = messages->getTime_sent(id);
@@ -34,4 +48,10 @@ int MSC :: getTime_rec(int id)
 int MSC :: msgSize()
 {
   return messages->msgSize();
+}
+
+void MSC :: myPrint()
+{
+  instances->myPrint();
+  messages->myPrint();
 }
