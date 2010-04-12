@@ -15,7 +15,7 @@
 //    time_ref_opt ::= LAMBDA | @ time_ref
 //    time_ref ::= abs_time | rel_time
 //    abs_time ::= num
-//    rel_time ::= diftime | ref diftime
+//    rel_time ::= ref | diftime | ref diftime
 //    ref ::= mid ! | mid ?
 //    dif_time ::= + NUM | - NUM
 //    iid ::= ID
@@ -259,6 +259,10 @@ abs_time:
 ;
 
 rel_time:
+        ref
+		{
+		  $$ = new Timeref(0, $1);
+		}
         dif_time
 		{
 		  $$ = new Timeref(1, $1);
