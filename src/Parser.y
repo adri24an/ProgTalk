@@ -15,9 +15,10 @@
 //    time_ref_opt ::= LAMBDA | @ time_ref
 //    time_ref ::= abs_time | rel_time
 //    abs_time ::= num
-//    rel_time ::= ref | diftime | ref diftime
+//    rel_time ::= ref dif_time_opt | dif_time
 //    ref ::= mid ! | mid ?
-//    dif_time ::= + NUM | - NUM
+//    dif_time_opt ::= LAMBDA | + NUM | - NUM 
+//    dif_time ::= + NUM | - NUM 
 //    iid ::= ID
 //    tid ::= ID
 //    mid ::= ID
@@ -62,6 +63,7 @@
 %type <num> message
 %type <num> ref
 %type <num> dif_time
+%type <num> dif_time_opt
 %type <num> num
 %type <cad> iid
 %type <cad> tid
@@ -102,7 +104,7 @@ inst_decl:
         {
 		  addInst ($2, (char *) "No_Info_Available", 
 				   (char *)"No_Info_Available");
-		}
+				   }
 ;
         
 message:
@@ -163,7 +165,7 @@ message:
 			  addMsg($2,$3,$4->getIid(),$5->getIid(),
 					 $$, ($$ + $5->getValue()));
 			}
-		  else if (($4->getValtype() == 1) && ($5->getValtype() == 2))
+		  else if (($4->getValtype() == 2) && ($5->getValtype() == 2))
 			{
 			  $$ = msgSize();
 			  $$ = getTime_rec($$) + 1;
@@ -259,18 +261,13 @@ abs_time:
 ;
 
 rel_time:
-        ref
+        ref dif_time_opt
 		{
-		  $$ = new Timeref(0, $1);
+		  $$ = new Timeref(0, $1 + $2); 
 		}
         dif_time
 		{
 		  $$ = new Timeref(1, $1);
-		}
-|
-        ref dif_time
-        {
-		  $$ = new Timeref(0, $1 + $2);
 		}
 ;
 
@@ -284,6 +281,23 @@ ref:
         mid INTERROGATION
 	    {
 		  $$ = getTime_rec($1);
+		}
+;
+
+dif_time_opt:
+        //LAMBDA
+        {
+		  $$ = 0;
+        }
+|
+        PLUS num
+	    {
+		  $$ = $2;
+		}
+|
+        MINUS num
+	    {
+		  $$ = -$2;
 		}
 ;
 
