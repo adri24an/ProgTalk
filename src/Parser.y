@@ -17,8 +17,8 @@
 //    abs_time ::= num
 //    rel_time ::= ref dif_time_opt | dif_time
 //    ref ::= mid ! | mid ?
-//    dif_time_opt ::= LAMBDA | + NUM | - NUM 
-//    dif_time ::= + NUM | - NUM 
+//    dif_time_opt ::= LAMBDA | + num | - num 
+//    dif_time ::= + num | - num
 //    iid ::= ID
 //    tid ::= ID
 //    mid ::= ID
@@ -199,7 +199,7 @@ message:
 				}
 			}
 		  else if (($4->getValtype() == 2) && ($5->getValtype() == 1))
-			{
+			{			  
 			  $$ = msgSize();
 
 			  if ($$ != 0)
@@ -244,8 +244,7 @@ mid_opt:
 |
         mid
         {
-		  $$ = new char[strlen(d_scanner.YYText())+1];
-          strcpy ($$, d_scanner.YYText());
+          strcpy ($$,$1);
 		}
 ;
 
@@ -340,7 +339,6 @@ ref:
 |
         mid INTERROGATION
 	    {
-		  std::cout << $1 << std::endl;
 		  $$ = getTime_rec($1);
 		}
 ;
@@ -348,7 +346,7 @@ ref:
 dif_time_opt:
         //LAMBDA
         {
-		  $$ = 0;
+		  $$ = 1;
         }
 |
         PLUS num
