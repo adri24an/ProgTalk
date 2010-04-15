@@ -19,20 +19,20 @@ void Messages :: addMsg(char * new_mid, char * new_sms,
   ASTmessages * m = NULL;
   int id = 0;
 
-  if (strcmp (new_mid, "No_Info_Available"))
+  if ((strcmp (new_mid, "No_Info_Available")) != 0)
 	{
 	  for(;mit!=mend;++mit) 
 		{
 		  m = mit->second;
-		  if (!(strcmp(m->getMid(), new_mid)))
+		  if ((strcmp(m->getMid(), new_mid)) == 0)
 			{
-		  std::cout << "Error: the mid (" << new_mid << 
-			") used in the message already exists" << std::endl;
-		  exit(0);
+			  std::cout << "Error: the mid (" << new_mid << 
+				") used in the message already exists" << std::endl;
+			  exit(0);
 			}
 		}
 	}
-
+  
   m = new ASTmessages(new_mid, new_sms, new_origin, new_destiny, 
 				    new_time_sent, new_time_rec);
 
@@ -74,14 +74,14 @@ int Messages :: getTime_sent(char * mid)
   for(;mit!=mend;++mit) 
 	{
 	  m = mit->second;
-	  if (!(strcmp(m->getMid(), mid)))
+	  if ((strcmp(m->getMid(), mid)) == 0)
 		{
 		  time = m->getTime_sent();
 		  return time;
 		}
 	}
-  std::cout << 
-	"Error: the mid (" << mid 
+
+  std::cout << "Error: the mid en send (" << mid 
 			<< ") used as a reference in the message doesn't exists" 
 			<< std::endl;
   exit(0);
@@ -94,21 +94,25 @@ int Messages :: getTime_rec(char * mid)
     mend(astMsg.end());
   ASTmessages * m = NULL;
   int time = 0;
-
+  
   for(;mit!=mend;++mit) 
 	{
 	  m = mit->second;
-	  if (!(strcmp(m->getMid(), mid)))
+	  
+	  if ((strcmp(m->getMid(), mid)) == 0)
 		{
 		  time = m->getTime_rec();
 		  return time;
 		}
 	}
-  std::cout << "Error: the mid (" << mid 
+
+  std::cout << "Error: the mid en rec (" << mid 
 			<< ") used as a reference in the message doesn't exists" 
 			<< std::endl;
   exit(0);
+  
 }
+
 
 int Messages :: msgSize()
 {
