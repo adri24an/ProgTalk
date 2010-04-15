@@ -138,13 +138,13 @@ message:
 				{
 				  $$ = $$ - 1;
 				  $$ = getTime_rec($$) + $4->getValue();
-				  addMsg($2,$3,$4->getIid(),$5->getIid(), $$, $5->getValue());
+				  addMsg($2,$3,$4->getIid(),$5->getIid(), 
+						 $$, $5->getValue());
 				}
 			  else
 				{
-				  std::cout << "You made a reference to a mid but " <<
-					"there is no messages storaged" << std::endl;
-				  exit(0);
+				  addMsg($2,$3,$4->getIid(),$5->getIid(), 
+						 $4->getValue(), $5->getValue());
 				}
 			}
 		  else if (($4->getValtype() == 1) && ($5->getValtype() == 1))
@@ -160,9 +160,8 @@ message:
 				}
 			  else
 				{
-				  std::cout << "You made a reference to a mid but " <<
-					"there is no messages storaged" << std::endl;
-				  exit(0);
+				  addMsg($2,$3,$4->getIid(),$5->getIid(),
+						 $4->getValue(), ($4->getValue() + $5->getValue()));
 				}
 			}
 		  else if (($4->getValtype() == 1) && ($5->getValtype() == 2))
@@ -178,9 +177,8 @@ message:
 				}
 			  else
 				{
-				  std::cout << "You made a reference to a mid but " <<
-					"there is no messages storaged" << std::endl;
-				  exit(0);
+				  addMsg($2,$3,$4->getIid(),$5->getIid(),
+						 $4->getValue(), ($4->getValue() + 1));
 				}
 			}
 		  else if (($4->getValtype() == 2) && ($5->getValtype() == 0))
@@ -196,9 +194,8 @@ message:
 				}
 			  else
 				{
-				  std::cout << "You made a reference to a mid but " <<
-					"there is no messages storaged" << std::endl;
-				  exit(0);
+				  addMsg($2,$3,$4->getIid(),$5->getIid(),
+						 0, $5->getValue());
 				}
 			}
 		  else if (($4->getValtype() == 2) && ($5->getValtype() == 1))
@@ -214,9 +211,8 @@ message:
 				}
 			  else
 				{
-				  std::cout << "You made a reference to a mid but " <<
-					"there is no messages storaged" << std::endl;
-				  exit(0);
+				  addMsg($2,$3,$4->getIid(),$5->getIid(),
+						 0, $5->getValue());
 				}
 			}
 		  else if (($4->getValtype() == 2) && ($5->getValtype() == 2))
@@ -232,9 +228,8 @@ message:
 				}
 			  else
 				{
-				  std::cout << "You made a reference to a mid but " <<
-					"there is no messages storaged" << std::endl;;
-				  exit(0);
+				  addMsg($2,$3,$4->getIid(),$5->getIid(),
+						 0, 1);
 				}
 			}
 		}
