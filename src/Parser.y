@@ -104,7 +104,7 @@ inst_decl:
         {
 		  addInst ($2, (char *) "No_Info_Available", 
 				   (char *)"No_Info_Available");
-				   }
+		}
 ;
         
 message:
@@ -133,44 +133,109 @@ message:
 		  else if (($4->getValtype() == 1) && ($5->getValtype() == 0))
 			{
 			  $$ = msgSize();
-			  $$ = getTime_rec($$) + $4->getValue();
-			  addMsg($2,$3,$4->getIid(),$5->getIid(),
-					 $$, $5->getValue());
+
+			  if ($$ != 0)
+				{
+				  $$ = $$ - 1;
+				  $$ = getTime_rec($$) + $4->getValue();
+				  addMsg($2,$3,$4->getIid(),$5->getIid(), $$, $5->getValue());
+				}
+			  else
+				{
+				  std::cout << "You made a reference to a mid but " <<
+					"there is no messages storaged" << std::endl;
+				  exit(0);
+				}
 			}
 		  else if (($4->getValtype() == 1) && ($5->getValtype() == 1))
 			{
 			  $$ = msgSize();
-			  $$ = getTime_rec($$) + $4->getValue();
-			  addMsg($2,$3,$4->getIid(),$5->getIid(),
-					 $$, ($$ + $5->getValue()));
+
+			  if ($$ != 0)
+				{
+				  $$ = $$ - 1;
+				  $$ = getTime_rec($$) + $4->getValue();
+				  addMsg($2,$3,$4->getIid(),$5->getIid(),
+						 $$, ($$ + $5->getValue()));
+				}
+			  else
+				{
+				  std::cout << "You made a reference to a mid but " <<
+					"there is no messages storaged" << std::endl;
+				  exit(0);
+				}
 			}
 		  else if (($4->getValtype() == 1) && ($5->getValtype() == 2))
 			{
 			  $$ = msgSize();
-			  $$ = getTime_rec($$) + $4->getValue();
-			  addMsg($2,$3,$4->getIid(),$5->getIid(),
-					 $$, ($$ + 1));
+
+			  if ($$ != 0)
+				{
+				  $$ = $$ - 1;
+				  $$ = getTime_rec($$) + $4->getValue();
+				  addMsg($2,$3,$4->getIid(),$5->getIid(),
+						 $$, ($$ + 1));
+				}
+			  else
+				{
+				  std::cout << "You made a reference to a mid but " <<
+					"there is no messages storaged" << std::endl;
+				  exit(0);
+				}
 			}
 		  else if (($4->getValtype() == 2) && ($5->getValtype() == 0))
 			{
 			  $$ = msgSize();
-			  $$ = getTime_rec($$) + 1;
-			  addMsg($2,$3,$4->getIid(),$5->getIid(),
-					 $$, $5->getValue());
+
+			  if ($$ != 0)
+				{
+				  $$ = $$ - 1;
+				  $$ = getTime_rec($$) + 1;
+				  addMsg($2,$3,$4->getIid(),$5->getIid(),
+						 $$, $5->getValue());
+				}
+			  else
+				{
+				  std::cout << "You made a reference to a mid but " <<
+					"there is no messages storaged" << std::endl;
+				  exit(0);
+				}
 			}
 		  else if (($4->getValtype() == 2) && ($5->getValtype() == 1))
 			{
 			  $$ = msgSize();
-			  $$ = getTime_rec($$) + 1;
-			  addMsg($2,$3,$4->getIid(),$5->getIid(),
-					 $$, ($$ + $5->getValue()));
+
+			  if ($$ != 0)
+				{
+				  $$ = $$ - 1;
+				  $$ = getTime_rec($$) + 1;
+				  addMsg($2,$3,$4->getIid(),$5->getIid(),
+						 $$, ($$ + $5->getValue()));
+				}
+			  else
+				{
+				  std::cout << "You made a reference to a mid but " <<
+					"there is no messages storaged" << std::endl;
+				  exit(0);
+				}
 			}
 		  else if (($4->getValtype() == 2) && ($5->getValtype() == 2))
 			{
 			  $$ = msgSize();
-			  $$ = getTime_rec($$) + 1;
-			  addMsg($2,$3,$4->getIid(),$5->getIid(),
-					 $$, ($$ + 1));
+
+			  if ($$ != 0)
+				{
+				  $$ = $$ - 1;
+				  $$ = getTime_rec($$) + 1;
+				  addMsg($2,$3,$4->getIid(),$5->getIid(),
+						 $$, ($$ + 1));
+				}
+			  else
+				{
+				  std::cout << "You made a reference to a mid but " <<
+					"there is no messages storaged" << std::endl;;
+				  exit(0);
+				}
 			}
 		}
 ;
@@ -225,6 +290,7 @@ time_ref_opt:
 |
         AT time_ref
         {
+		  
 		  $$ = $2;
 		}
 ;
@@ -276,10 +342,10 @@ ref:
 	    {
 		  $$ = getTime_sent($1);
 		} 
-
 |
         mid INTERROGATION
 	    {
+		  std::cout << $1 << std::endl;
 		  $$ = getTime_rec($1);
 		}
 ;
