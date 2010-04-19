@@ -17,7 +17,7 @@
 //    abs_time ::= num
 //    rel_time ::= ref dif_time_opt | dif_time
 //    ref ::= mid ! | mid ?
-//    dif_time_opt ::= LAMBDA | + num | - num 
+//    dif_time_opt ::= LAMBDA | dif_time
 //    dif_time ::= + num | - num
 //    iid ::= ID
 //    tid ::= ID
@@ -349,15 +349,10 @@ dif_time_opt:
 		  $$ = 1;
         }
 |
-        PLUS num
+        dif_time
 	    {
-		  $$ = $2;
-		}
-|
-        MINUS num
-	    {
-		  $$ = -$2;
-		}
+		  $$ = $1;
+            }
 ;
 
 dif_time:
