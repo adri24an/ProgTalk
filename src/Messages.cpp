@@ -36,15 +36,9 @@ void Messages :: addMsg(char * new_mid, char * new_sms,
   m = new ASTmessages(new_mid, new_sms, new_origin, new_destiny, 
 				    new_time_sent, new_time_rec);
 
-  if (astMsg.empty())
-  {
-    astMsg[0] = m;
-  }
-  else
-  {
-    id = (int) astMsg.size();
-    astMsg[id] = m;
-  }
+  std::cout << "Incluyendo " << new_mid << std::endl;
+  id = (int) astMsg.size();
+  astMsg[id] = m;
 }
 
 int Messages :: getTime_sent(int id)
@@ -95,6 +89,8 @@ int Messages :: getTime_rec(char * mid)
   ASTmessages * m = NULL;
   int time = 0;
   
+  std::cout << "leyendo get time de " << mid << std::endl;
+  // std::cout << "el primer elemento es " << mit->second->getMid() << std::endl;
   for(;mit!=mend;++mit) 
 	{
 	  m = mit->second;

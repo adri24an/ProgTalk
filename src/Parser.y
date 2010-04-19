@@ -78,7 +78,7 @@
 %%
 
 msc:
-        inst_decl message
+        inst_decl message_seq
 ;
  
 inst_decl:
@@ -107,14 +107,19 @@ inst_decl:
 		}
 ;
         
-message:
+message_seq:
         // EMPTY
-        {
-		  $$ = 0;
-		}
+{ }
 |
-        MESSAGE mid_opt string_opt origin destiny SEMICOLON EOLN message
+        message_seq message
+{ }
+;
+
+message:
+        MESSAGE mid_opt string_opt origin destiny SEMICOLON EOLN
         { 
+            std::cout << "Reduciendo message " << std::endl;
+
 		  if ((($4->getValtype() == 0)) && ($5->getValtype() == 0))
 			{
 			  addMsg($2,$3,$4->getIid(),$5->getIid(),
@@ -232,6 +237,7 @@ message:
 						 0, 1);
 				}
 			}
+                  else { std::cout << "HORROR" << std::endl; }
 		}
 ;
 
