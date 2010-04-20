@@ -78,29 +78,34 @@
 %%
 
 msc:
-        inst_decl message_seq
+        inst_decl_seq message_seq
+;
+    
+inst_decl_seq:
+        // EMPTY
+{ }
+|
+        inst_decl_seq inst_decl
+{ }
 ;
  
 inst_decl:
-        // EMPTY
-|
-        INSTANCE iid OF tid LEFT_BRACE STRING RIGHT_BRACE SEMICOLON EOLN 
-		inst_decl
+        INSTANCE iid OF tid LEFT_BRACE STRING RIGHT_BRACE SEMICOLON EOLN
         {
 		  addInst ($2, $4, $6);
 		}
 |
-        INSTANCE iid OF tid SEMICOLON EOLN inst_decl
+        INSTANCE iid OF tid SEMICOLON EOLN
         {
 		  addInst ($2, $4, (char *) "No_Info_Available");
 		}
 |
-        INSTANCE iid LEFT_BRACE STRING RIGHT_BRACE SEMICOLON EOLN inst_decl
+        INSTANCE iid LEFT_BRACE STRING RIGHT_BRACE SEMICOLON EOLN
         {
 		  addInst ($2, (char *) "No_Info_Available", $4);
 		}
 |
-        INSTANCE iid SEMICOLON EOLN inst_decl
+        INSTANCE iid SEMICOLON EOLN
         {
 		  addInst ($2, (char *) "No_Info_Available", 
 				   (char *)"No_Info_Available");
@@ -118,8 +123,6 @@ message_seq:
 message:
         MESSAGE mid_opt string_opt origin destiny SEMICOLON EOLN
         { 
-            std::cout << "Reduciendo message " << std::endl;
-
 		  if ((($4->getValtype() == 0)) && ($5->getValtype() == 0))
 			{
 			  addMsg($2,$3,$4->getIid(),$5->getIid(),
@@ -237,7 +240,13 @@ message:
 						 0, 1);
 				}
 			}
-                  else { std::cout << "HORROR" << std::endl; }
+		  else
+			{
+			  std::cout << "FATAL ERROR: the message couldn't be " 
+						<< "parsed due to relative time issues" << std::endl;
+			  exit(0);
+			}
+		  
 		}
 ;
 
@@ -358,7 +367,7 @@ dif_time_opt:
         dif_time
 	    {
 		  $$ = $1;
-            }
+		}
 ;
 
 dif_time:
