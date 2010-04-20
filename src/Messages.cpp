@@ -38,6 +38,7 @@ void Messages :: addMsg(char * new_mid, char * new_sms,
 
   id = (int) astMsg.size();
   astMsg[id] = m;
+  std::cout << "añade message" << std::endl;
 }
 
 int Messages :: getTime_sent(int id)

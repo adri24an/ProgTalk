@@ -27,7 +27,7 @@ TO       "to"
 
 {STRING}   {
             return(Parser::STRING);
-
+std::cout << "el string es: " << yytext << std::endl;
            }
 
 {INSTANCE} {

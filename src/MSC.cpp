@@ -52,6 +52,9 @@ int MSC :: msgSize()
 
 void MSC :: myPrint()
 {
+  std::cout << "Las instancias son:" << std::endl;
   instances->myPrint();
+  std::cout << "Los mensajes son:" << std::endl;
   messages->myPrint();
+  std::cout << "Fin de la impresion" << std::endl;
 }

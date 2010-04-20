@@ -103,6 +103,7 @@ inst_decl:
         INSTANCE iid LEFT_BRACE STRING RIGHT_BRACE SEMICOLON EOLN
         {
 		  addInst ($2, (char *) "No_Info_Available", $4);
+		  std::cout << "entra y sale de instance. su name es: " << $4  << std::endl;
 		}
 |
         INSTANCE iid SEMICOLON EOLN
@@ -123,6 +124,7 @@ message_seq:
 message:
         MESSAGE mid_opt string_opt origin destiny SEMICOLON EOLN
         { 
+		  std::cout << "entra en message" << std::endl;
 		  if ((($4->getValtype() == 0)) && ($5->getValtype() == 0))
 			{
 			  addMsg($2,$3,$4->getIid(),$5->getIid(),
@@ -246,6 +248,7 @@ message:
 						<< "parsed due to relative time issues" << std::endl;
 			  exit(0);
 			}
+		  std::cout << "y sale de  message" << std::endl;
 		  
 		}
 ;
