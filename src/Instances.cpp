@@ -23,7 +23,6 @@ void Instances :: addInst(char * new_iid, char * new_tid, char * new_name)
 		std::cout << "Error: The instance already exists." << std::endl;
 		exit(0);
       }
-	std::cout << "añade instancia" << std::endl;
 }
 
 void Instances :: myPrint()

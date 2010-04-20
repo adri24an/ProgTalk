@@ -105,8 +105,6 @@ inst_decl:
         INSTANCE iid LEFT_BRACE string RIGHT_BRACE SEMICOLON EOLN
         {
 		  addInst ($2, (char *) "No_Info_Available", $4);
-		  std::cout << "añadida instancia cuyo token string es: " << $4  
-					<< std::endl;
 		}
 |
         INSTANCE iid SEMICOLON EOLN
@@ -127,7 +125,6 @@ message_seq:
 message:
         MESSAGE mid_opt string_opt origin destiny SEMICOLON EOLN
         { 
-		  std::cout << "entra en message" << std::endl;
 		  if ((($4->getValtype() == 0)) && ($5->getValtype() == 0))
 			{
 			  addMsg($2,$3,$4->getIid(),$5->getIid(),
