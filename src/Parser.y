@@ -247,9 +247,7 @@ message:
 			  std::cout << "FATAL ERROR: the message couldn't be " 
 						<< "parsed due to relative time issues" << std::endl;
 			  exit(0);
-			}
-		  std::cout << "y sale de  message" << std::endl;
-		  
+			}		  
 		}
 ;
 
