@@ -68,6 +68,7 @@
 %type <cad> iid
 %type <cad> tid
 %type <cad> mid
+%type <cad> string
 %type <cad> mid_opt
 %type <cad> string_opt
 %type <tstamp> origin
@@ -103,7 +104,8 @@ inst_decl:
         INSTANCE iid LEFT_BRACE STRING RIGHT_BRACE SEMICOLON EOLN
         {
 		  addInst ($2, (char *) "No_Info_Available", $4);
-		  std::cout << "entra y sale de instance. su name es: " << $4  << std::endl;
+		  std::cout << "añadida instancia cuyo token string es: " << $4  
+					<< std::endl;
 		}
 |
         INSTANCE iid SEMICOLON EOLN
@@ -430,6 +432,14 @@ mid:
 				  ") was used as an identifier" << std::endl;
 				exit(0);
 			  }
+		}
+;
+
+string:
+        STRING
+	    {
+		  $$ = new char[strlen(d_scanner.YYText())+1];
+          strcpy ($$, d_scanner.YYText());
 		}
 ;
 
