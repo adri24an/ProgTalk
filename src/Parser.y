@@ -91,9 +91,10 @@ inst_decl_seq:
 ;
  
 inst_decl:
-        INSTANCE iid OF tid LEFT_BRACE STRING RIGHT_BRACE SEMICOLON EOLN
+        INSTANCE iid OF tid LEFT_BRACE TIMES STRING TIMES RIGHT_BRACE 
+		SEMICOLON EOLN
         {
-		  addInst ($2, $4, $6);
+		  addInst ($2, $4, $7);
 		}
 |
         INSTANCE iid OF tid SEMICOLON EOLN
@@ -101,9 +102,9 @@ inst_decl:
 		  addInst ($2, $4, (char *) "No_Info_Available");
 		}
 |
-        INSTANCE iid LEFT_BRACE STRING RIGHT_BRACE SEMICOLON EOLN
+        INSTANCE iid LEFT_BRACE TIMES STRING TIMES RIGHT_BRACE SEMICOLON EOLN
         {
-		  addInst ($2, (char *) "No_Info_Available", $4);
+		  addInst ($2, (char *) "No_Info_Available", $5);
 		  std::cout << "añadida instancia cuyo token string es: " << $4  
 					<< std::endl;
 		}
@@ -275,13 +276,13 @@ string_opt:
           strcpy ($$,"No_Info_Available");
 		}
 |
-        LEFT_BRACE STRING 	
+        LEFT_BRACE TIMES STRING 	
         {
 		  $$ = new char[strlen(d_scanner.YYText())+1];
           strcpy ($$, d_scanner.YYText());
 		}
 
-        RIGHT_BRACE
+        TIMES RIGHT_BRACE
 ;
 
 origin:
