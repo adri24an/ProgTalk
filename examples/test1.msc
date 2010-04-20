@@ -1,4 +1,3 @@
 instance a { "A" };
 instance b { "B" };
-
-message { "Hola" } from a @ 4 to b;
+instance c { "C" };
