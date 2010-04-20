@@ -9,7 +9,7 @@
 NUM      [0-9]+
 ID       [a-zA-Z][a-zA-Z0-9_]*
 WHITE    [ \t]+
-STRING   \"[^\"\n]*\"
+STRING   [^\"\n]*
 EOLN     [\n]+
 INSTANCE "instance"
 OF       "of"
@@ -25,9 +25,12 @@ TO       "to"
             return(Parser::NUM);
            }
 
+\"         {
+            return(Parser::TIMES);
+           }
+
 {STRING}   {
             return(Parser::STRING);
-std::cout << "el string es: " << yytext << std::endl;
            }
 
 {INSTANCE} {
