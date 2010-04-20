@@ -5,11 +5,11 @@
 //    msc ::= inst_decl* message*
 //    inst_decl ::= INSTANCE iid |
 //                  INSTANCE iid OF tid; |
-//                  INSTANCE iid {STRING}; |
-//                  INSTANCE iid OF tid {STRING};               
+//                  INSTANCE iid {string}; |
+//                  INSTANCE iid OF tid {string};               
 //    message ::= MESSAGE mid_opt string_opt origin destiny;
 //    mid_opt ::= LAMBDA | mid
-//    string_opt ::= LAMBDA | {STRING}
+//    string_opt ::= LAMBDA | {string}
 //    origin ::= LAMBDA | FROM iid time_ref_opt
 //    destiny ::= LAMBDA | TO iid time_ref_opt
 //    time_ref_opt ::= LAMBDA | @ time_ref
@@ -22,6 +22,7 @@
 //    iid ::= ID
 //    tid ::= ID
 //    mid ::= ID
+//    string ::= STRING
 //    num ::= NUM
 //
 //------------------------------------------------------------
@@ -91,10 +92,9 @@ inst_decl_seq:
 ;
  
 inst_decl:
-        INSTANCE iid OF tid LEFT_BRACE TIMES STRING TIMES RIGHT_BRACE 
-		SEMICOLON EOLN
+        INSTANCE iid OF tid LEFT_BRACE string RIGHT_BRACE SEMICOLON EOLN
         {
-		  addInst ($2, $4, $7);
+		  addInst ($2, $4, $6);
 		}
 |
         INSTANCE iid OF tid SEMICOLON EOLN
@@ -102,9 +102,9 @@ inst_decl:
 		  addInst ($2, $4, (char *) "No_Info_Available");
 		}
 |
-        INSTANCE iid LEFT_BRACE TIMES STRING TIMES RIGHT_BRACE SEMICOLON EOLN
+        INSTANCE iid LEFT_BRACE string RIGHT_BRACE SEMICOLON EOLN
         {
-		  addInst ($2, (char *) "No_Info_Available", $5);
+		  addInst ($2, (char *) "No_Info_Available", $4);
 		  std::cout << "añadida instancia cuyo token string es: " << $4  
 					<< std::endl;
 		}
@@ -276,13 +276,11 @@ string_opt:
           strcpy ($$,"No_Info_Available");
 		}
 |
-        LEFT_BRACE TIMES STRING 	
+        LEFT_BRACE string RIGHT_BRACE	
         {
-		  $$ = new char[strlen(d_scanner.YYText())+1];
-          strcpy ($$, d_scanner.YYText());
-		}
-
-        TIMES RIGHT_BRACE
+		  $$ = new char[strlen($2)+1];
+          strcpy ($$, $2);
+		}     
 ;
 
 origin:
