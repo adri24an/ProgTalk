@@ -14,8 +14,6 @@ void MSC :: addInst (char * new_iid, char * new_tid, char * new_name)
 void MSC :: addMsg (char * new_mid, char * new_sms, char * new_origin, 
 	      char * new_destiny, int new_time_sent, int new_time_rec)
 {
-    std::cout << "Incluyendo en MSC " << new_mid << std::endl;
-
   messages->addMsg (new_mid, new_sms, new_origin, new_destiny, 
 		    new_time_sent, new_time_rec);
 }
