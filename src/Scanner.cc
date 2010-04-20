@@ -653,47 +653,46 @@ YY_RULE_SETUP
 #line 28 "Scanner.l"
 {
             return(Parser::STRING);
-
            }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 33 "Scanner.l"
+#line 32 "Scanner.l"
 {
             return(Parser::INSTANCE);
            }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 37 "Scanner.l"
+#line 36 "Scanner.l"
 {
             return(Parser::OF);
            }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 41 "Scanner.l"
+#line 40 "Scanner.l"
 {
             return(Parser::MESSAGE);
            }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 45 "Scanner.l"
+#line 44 "Scanner.l"
 {
             return(Parser::FROM);
            }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 49 "Scanner.l"
+#line 48 "Scanner.l"
 {
             return(Parser::TO);
            }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 53 "Scanner.l"
+#line 52 "Scanner.l"
 {
             return(Parser::ID);
            }
@@ -701,70 +700,70 @@ YY_RULE_SETUP
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
-#line 57 "Scanner.l"
+#line 56 "Scanner.l"
 {
             return(Parser::EOLN);
            }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 61 "Scanner.l"
+#line 60 "Scanner.l"
 {
             return(Parser::AT);
            }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 65 "Scanner.l"
+#line 64 "Scanner.l"
 {
             return(Parser::PLUS);
            }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 69 "Scanner.l"
+#line 68 "Scanner.l"
 {
             return(Parser::MINUS);
            }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 73 "Scanner.l"
+#line 72 "Scanner.l"
 {
             return(Parser::EXCLAMATION);
            }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 77 "Scanner.l"
+#line 76 "Scanner.l"
 {
             return(Parser::INTERROGATION);
            }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 81 "Scanner.l"
+#line 80 "Scanner.l"
 {
             return(Parser::SEMICOLON);
            }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 85 "Scanner.l"
+#line 84 "Scanner.l"
 {
             return(Parser::LEFT_BRACE);
            }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 89 "Scanner.l"
+#line 88 "Scanner.l"
 {
             return(Parser::RIGHT_BRACE);
            }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 93 "Scanner.l"
+#line 92 "Scanner.l"
 {
             std::cout << "Error: Scanner couldn't match data." << std::endl;
             yyterminate();
@@ -772,10 +771,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 98 "Scanner.l"
+#line 97 "Scanner.l"
 ECHO;
 	YY_BREAK
-#line 780 "Scanner.cc"
+#line 779 "Scanner.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1675,7 +1674,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 98 "Scanner.l"
+#line 97 "Scanner.l"
 
 
 

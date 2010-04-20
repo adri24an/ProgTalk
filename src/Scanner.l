@@ -9,7 +9,7 @@
 NUM      [0-9]+
 ID       [a-zA-Z][a-zA-Z0-9_]*
 WHITE    [ \t]+
-STRING   [^\"\n]*
+STRING   \"[^\"\n]*\"
 EOLN     [\n]+
 INSTANCE "instance"
 OF       "of"
@@ -23,10 +23,6 @@ TO       "to"
 
 {NUM}      {
             return(Parser::NUM);
-           }
-
-\"         {
-            return(Parser::TIMES);
            }
 
 {STRING}   {
