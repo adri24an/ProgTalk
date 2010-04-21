@@ -15,3 +15,6 @@ Detalles a solucionar tras un primer desarrollo:
   que haga lo mismo que ya hacía pero mejorando cierto aspecto (como la
   eficiencia o la elegancia) tiene un nombre: refactorizar. En algún
   momento haremos algo de refactorización.
+
+ - Nunca daremos el error "has usado una palabra reservada como id",
+   porque en Scanner reconocemos antes las palabras reservadas que el id.
