@@ -334,13 +334,14 @@ abs_time:
 ;
 
 rel_time:
-        ref dif_time
-		{
-		  $$ = new Timeref(0, $1 + $2); 
-		}
         dif_time
 		{
 		  $$ = new Timeref(1, $1);
+		}
+|
+        ref dif_time
+		{
+		  $$ = new Timeref(0, $1 + $2); 
 		}
 ;
 
@@ -365,7 +366,7 @@ ref:
 dif_time:
         // EMPTY
         { 
-		  $$ = 0;
+		  $$ = 1;
 		}
 |
         PLUS num
