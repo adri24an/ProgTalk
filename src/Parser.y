@@ -64,7 +64,6 @@
 %type <num> message
 %type <num> ref
 %type <num> dif_time
-%type <num> dif_time_opt
 %type <num> num
 %type <cad> iid
 %type <cad> tid
@@ -335,7 +334,7 @@ abs_time:
 ;
 
 rel_time:
-        ref dif_time_opt
+        ref dif_time
 		{
 		  $$ = new Timeref(0, $1 + $2); 
 		}
@@ -346,6 +345,12 @@ rel_time:
 ;
 
 ref:
+        // EMPTY
+        { 
+		  $$ = 0;
+		}
+
+|
         mid EXCLAMATION
 	    {
 		  $$ = getTime_sent($1);
@@ -357,19 +362,12 @@ ref:
 		}
 ;
 
-dif_time_opt:
-        //LAMBDA
-        {
-		  $$ = 1;
-        }
-|
-        dif_time
-	    {
-		  $$ = $1;
-		}
-;
-
 dif_time:
+        // EMPTY
+        { 
+		  $$ = 0;
+		}
+|
         PLUS num
 	    {
 		  $$ = $2;
