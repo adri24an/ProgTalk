@@ -1,0 +1,17 @@
+instance u of User;
+instance a of Agent { "DHL" };
+instance f of Factory;
+
+message m1 { "request send to dhl" } from u to a;
+message m2 { "send" } from a @ m1?+4 to f @ m1!+2;
+message { "internal" } from a @ 12 to f @ 15;
+message m3 { "request tcp window" } from f @ 20 to f @ m1?+8;
+message from u @ 8 to u @ +3;
+message { "testing..." } from u @ 8 to u;
+message from f @ +8 to u @ 20;
+message m4 { "error" } from f @ +2 to u @ +2;
+message m5 { "checking... OK" } from a @ +2 to u;
+message m6 { "recalculating $23%!&" } from u to a @ 27;
+message { "shutting down system" } from a to u @ m5!+2;
+message { "waiting response" } from a to u @ +2;
+
