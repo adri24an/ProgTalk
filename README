@@ -18,3 +18,5 @@ Detalles a solucionar tras un primer desarrollo:
  - Hacer exit() tras error sintactico?
 
  - Chequear que tiempo de recepcion es siempre mayor que tiempo de envio.
+
+ - Que tipo de mensajes vamos a "purgar" (sin origin, sin destino,...?
