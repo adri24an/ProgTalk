@@ -137,7 +137,7 @@ message:
 		  else if  (($4->getValtype() == 0) && ($5->getValtype() == 2))
 			{
 			  addMsg($2,$3,$4->getIid(),$5->getIid(),
-					 $4->getValue(), ($5->getValue() + 1));
+					 $4->getValue(), ($4->getValue() + 1));
 			}
 		  else if (($4->getValtype() == 1) && ($5->getValtype() == 0))
 			{
