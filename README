@@ -18,3 +18,5 @@ Detalles a solucionar tras un primer desarrollo:
 
  - Nunca daremos el error "has usado una palabra reservada como id",
    porque en Scanner reconocemos antes las palabras reservadas que el id.
+
+ - Hacer exit() tras error sintactico?
