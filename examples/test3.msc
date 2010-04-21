@@ -1,5 +1,4 @@
 instance u of User;
-instance a of Agent { "DHL" };
 instance from of Factory;
 
 message m1 { "request send to dhl" } from u to a;
