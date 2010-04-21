@@ -1,3 +1,10 @@
 instance a { "A" };
 instance b { "B" };
 instance c { "C" };
+instance d of D { "D" };
+instance e of E { "E" };
+instance f of F { "F" };
+instance g;
+instance h;
+instance i of I;
+instance j of J;
