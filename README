@@ -1,9 +1,5 @@
 Detalles a solucionar tras un primer desarrollo:
 
- - ¿Por qué usas conversión de tipos en los parámetros de addInst o
-  addMsg? (ej. (char *) $2) Las conversiones de tipos son muy
-  peligrosas y mucho más cuando no son siquiera necesarias.
-
  - Como programador que tiene que leerse tu código, es imposible saber
   cuáles y qué significan los valores de getValtype. Hay muchas cosas
   que hacerlas por primera parecen cansinas pero al final compensa, en
@@ -20,3 +16,5 @@ Detalles a solucionar tras un primer desarrollo:
    porque en Scanner reconocemos antes las palabras reservadas que el id.
 
  - Hacer exit() tras error sintactico?
+
+ - Chequear que tiempo de recepcion es siempre mayor que tiempo de envio.
