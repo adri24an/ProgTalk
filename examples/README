@@ -1,0 +1,5 @@
+Resumen de las pruebas:
+
+- lars.msc : ejemplo de lars.
+- test1.msc : prueba todas las ramas correctas de instance.
+- test2.msc : prueba que ocurre si almacenamos 2 instancias con igual iid.
