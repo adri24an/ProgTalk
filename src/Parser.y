@@ -124,8 +124,8 @@ message_seq:
 message:
         MESSAGE mid_opt string_opt origin destiny SEMICOLON EOLN
         { 
-		  if ((strcmp($4, "No_Info_Available")) && 
-			  (strcmp($5, "No_Info_Available")))
+		  if ((strcmp($4->getIid(), "No_Info_Available")) && 
+			  (strcmp($5->getIid(), "No_Info_Available")))
 			{
 			  if ((($4->getValtype() == 0)) && ($5->getValtype() == 0))
 				{
