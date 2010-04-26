@@ -7,5 +7,7 @@ Resumen de las pruebas:
 - test4.msc: prueba todas las posibilidades de tiempos rel y abs.
 - test5.msc: prueba todas los posibles formatos de mensaje.
 - test6.msc: prueba el error de recibir 2 messages con igual mid.
-- test7.msc: prueba el error de recibir 1 message que referencia en uno
-             de sus tiempos relativos un mid no almacenado.
+- test7.msc: prueba el error de recibir 1 message que referencia en su
+             tiempo de envio un mid no almacenado.
+- test8.msc: prueba el error de recibir 1 message que referencia en su
+             tiempo de recepcion un mid no almacenado.
