@@ -6,3 +6,6 @@ Resumen de las pruebas:
 - test3.msc: prueba que ocurre si usamos una palabra reservada como id.
 - test4.msc: prueba todas las posibilidades de tiempos rel y abs.
 - test5.msc: prueba todas los posibles formatos de mensaje.
+- test6.msc: prueba el error de recibir 2 messages con igual mid.
+- test7.msc: prueba el error de recibir 1 message que referencia en uno
+             de sus tiempos relativos un mid no almacenado.
