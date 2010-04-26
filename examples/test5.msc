@@ -1,0 +1,11 @@
+instance u of User;
+instance a of Agent { "DHL" };
+instance f of Factory;
+
+message m1 { "request send to dhl" } from u to a;
+message m2 { "sending..." } from a;
+message m3 { "processing..." } to u;
+message m4 { "status is OK" };
+message { "confirmed" };
+message m5;
+message;
