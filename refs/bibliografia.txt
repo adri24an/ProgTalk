@@ -11,3 +11,4 @@
 - Web Sequence Diagrams (http://www.websequencediagrams.com/)
 - Introducción a GIT (http://geneura.ugr.es/~jmerelo/tutoriales/git/)
 - Latex MSC Package (http://satoss.uni.lu/mscpackage/)
+- Software Engineering 2: Specification of Systems and Languages. Dines Bjorner
