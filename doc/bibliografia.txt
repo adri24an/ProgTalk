@@ -1,0 +1,13 @@
+- UML Distiller 3rd Edition. Martin Fowler.
+- Guia Básica de Bison y Flex (http://www.monografias.com/trabajos58/guia-bison-flex/guia-bison-flex2.shtml)
+- Bisonc++ User Guide (http://bisoncpp.sourceforge.net/bisonc++.html)
+- Lexical Analysis with Flex (http://flex.sourceforge.net/manual)
+- Parser con Flex y Bison (http://openpipe.wordpress.com/2007/04/11/parser-con-flex-y-bison/)
+- Guía básica de bison y flex (http://www.monografias.com/trabajos58/guia-bison-flex/guia-bison-flex.shtml)
+- Introducción a la STL en c++ (http://es.kioskea.net/faq/3168-introduccion-a-la-stl-en-c-standard-template-library)
+- STL map description (http://www.sgi.com/tech/stl/Map.html)
+- La Standard Template Library (http://decsai.ugr.es/~jfv/ed1/c++/cdrom4/paginaWeb/stl.htm)
+- MSCGen User Guide (http://www.mcternan.me.uk/mscgen/)
+- Web Sequence Diagrams (http://www.websequencediagrams.com/)
+- Introducción a GIT (http://geneura.ugr.es/~jmerelo/tutoriales/git/)
+- Latex MSC Package (http://satoss.uni.lu/mscpackage/)
