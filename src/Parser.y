@@ -124,129 +124,139 @@ message_seq:
 message:
         MESSAGE mid_opt string_opt origin destiny SEMICOLON EOLN
         { 
-		  if ((($4->getValtype() == 0)) && ($5->getValtype() == 0))
+		  if ((strcmp($4->getIid(), "No_Info_Available")) && 
+			  (strcmp($5->getIid(), "No_Info_Available")))
 			{
-			  addMsg($2,$3,$4->getIid(),$5->getIid(),
-					 $4->getValue(), $5->getValue());
-			}
-		  else if (($4->getValtype() == 0) && ($5->getValtype() == 1))
-			{
-			  addMsg($2,$3,$4->getIid(),$5->getIid(),
-					 $4->getValue(), ($4->getValue() + $5->getValue()));
-			}
-		  else if  (($4->getValtype() == 0) && ($5->getValtype() == 2))
-			{
-			  addMsg($2,$3,$4->getIid(),$5->getIid(),
-					 $4->getValue(), ($4->getValue() + 1));
-			}
-		  else if (($4->getValtype() == 1) && ($5->getValtype() == 0))
-			{
-			  $$ = msgSize();
-
-			  if ($$ != 0)
+			  if ((($4->getValtype() == 0)) && ($5->getValtype() == 0))
 				{
-				  $$ = $$ - 1;
-				  $$ = getTime_rec($$) + $4->getValue();
-				  addMsg($2,$3,$4->getIid(),$5->getIid(), 
-						 $$, $5->getValue());
-				}
-			  else
-				{
-				  addMsg($2,$3,$4->getIid(),$5->getIid(), 
+				  addMsg($2,$3,$4->getIid(),$5->getIid(),
 						 $4->getValue(), $5->getValue());
 				}
-			}
-		  else if (($4->getValtype() == 1) && ($5->getValtype() == 1))
-			{
-			  $$ = msgSize();
-
-			  if ($$ != 0)
-				{
-				  $$ = $$ - 1;
-				  $$ = getTime_rec($$) + $4->getValue();
-				  addMsg($2,$3,$4->getIid(),$5->getIid(),
-						 $$, ($$ + $5->getValue()));
-				}
-			  else
+			  else if (($4->getValtype() == 0) && ($5->getValtype() == 1))
 				{
 				  addMsg($2,$3,$4->getIid(),$5->getIid(),
 						 $4->getValue(), ($4->getValue() + $5->getValue()));
 				}
-			}
-		  else if (($4->getValtype() == 1) && ($5->getValtype() == 2))
-			{
-			  $$ = msgSize();
-
-			  if ($$ != 0)
-				{
-				  $$ = $$ - 1;
-				  $$ = getTime_rec($$) + $4->getValue();
-				  addMsg($2,$3,$4->getIid(),$5->getIid(),
-						 $$, ($$ + 1));
-				}
-			  else
+			  else if  (($4->getValtype() == 0) && ($5->getValtype() == 2))
 				{
 				  addMsg($2,$3,$4->getIid(),$5->getIid(),
 						 $4->getValue(), ($4->getValue() + 1));
 				}
-			}
-		  else if (($4->getValtype() == 2) && ($5->getValtype() == 0))
-			{
-			  $$ = msgSize();
-
-			  if ($$ != 0)
+			  else if (($4->getValtype() == 1) && ($5->getValtype() == 0))
 				{
-				  $$ = $$ - 1;
-				  $$ = getTime_rec($$) + 1;
-				  addMsg($2,$3,$4->getIid(),$5->getIid(),
-						 $$, $5->getValue());
+				  $$ = msgSize();
+				  
+				  if ($$ != 0)
+					{
+					  $$ = $$ - 1;
+					  $$ = getTime_rec($$) + $4->getValue();
+					  addMsg($2,$3,$4->getIid(),$5->getIid(), 
+							 $$, $5->getValue());
+					}
+				  else
+					{
+					  addMsg($2,$3,$4->getIid(),$5->getIid(), 
+							 $4->getValue(), $5->getValue());
+					}
+				}
+			  else if (($4->getValtype() == 1) && ($5->getValtype() == 1))
+				{
+				  $$ = msgSize();
+				  
+				  if ($$ != 0)
+					{
+					  $$ = $$ - 1;
+					  $$ = getTime_rec($$) + $4->getValue();
+					  addMsg($2,$3,$4->getIid(),$5->getIid(),
+							 $$, ($$ + $5->getValue()));
+					}
+				  else
+					{
+					  addMsg($2,$3,$4->getIid(),$5->getIid(),
+							 $4->getValue(), ($4->getValue() + $5->getValue()));
+					}
+				}
+			  else if (($4->getValtype() == 1) && ($5->getValtype() == 2))
+				{
+				  $$ = msgSize();
+				  
+				  if ($$ != 0)
+					{
+					  $$ = $$ - 1;
+					  $$ = getTime_rec($$) + $4->getValue();
+					  addMsg($2,$3,$4->getIid(),$5->getIid(),
+							 $$, ($$ + 1));
+					}
+				  else
+					{
+					  addMsg($2,$3,$4->getIid(),$5->getIid(),
+							 $4->getValue(), ($4->getValue() + 1));
+					}
+				}
+			  else if (($4->getValtype() == 2) && ($5->getValtype() == 0))
+				{
+				  $$ = msgSize();
+				  
+				  if ($$ != 0)
+					{
+					  $$ = $$ - 1;
+					  $$ = getTime_rec($$) + 1;
+					  addMsg($2,$3,$4->getIid(),$5->getIid(),
+							 $$, $5->getValue());
+					}
+				  else
+					{
+					  addMsg($2,$3,$4->getIid(),$5->getIid(),
+							 0, $5->getValue());
+					}
+				}
+			  else if (($4->getValtype() == 2) && ($5->getValtype() == 1))
+				{			  
+				  $$ = msgSize();
+				  
+				  if ($$ != 0)
+					{
+					  $$ = $$ - 1;
+					  $$ = getTime_rec($$) + 1;
+					  addMsg($2,$3,$4->getIid(),$5->getIid(),
+							 $$, ($$ + $5->getValue()));
+					}
+				  else
+					{
+					  addMsg($2,$3,$4->getIid(),$5->getIid(),
+							 0, $5->getValue());
+					}
+				}
+			  else if (($4->getValtype() == 2) && ($5->getValtype() == 2))
+				{
+				  $$ = msgSize();
+				  
+				  if ($$ != 0)
+					{
+					  $$ = $$ - 1;
+					  $$ = getTime_rec($$) + 1;
+					  addMsg($2,$3,$4->getIid(),$5->getIid(),
+							 $$, ($$ + 1));
+					}
+				  else
+					{
+					  addMsg($2,$3,$4->getIid(),$5->getIid(),
+							 0, 1);
+					}
 				}
 			  else
 				{
-				  addMsg($2,$3,$4->getIid(),$5->getIid(),
-						 0, $5->getValue());
-				}
-			}
-		  else if (($4->getValtype() == 2) && ($5->getValtype() == 1))
-			{			  
-			  $$ = msgSize();
-
-			  if ($$ != 0)
-				{
-				  $$ = $$ - 1;
-				  $$ = getTime_rec($$) + 1;
-				  addMsg($2,$3,$4->getIid(),$5->getIid(),
-						 $$, ($$ + $5->getValue()));
-				}
-			  else
-				{
-				  addMsg($2,$3,$4->getIid(),$5->getIid(),
-						 0, $5->getValue());
-				}
-			}
-		  else if (($4->getValtype() == 2) && ($5->getValtype() == 2))
-			{
-			  $$ = msgSize();
-
-			  if ($$ != 0)
-				{
-				  $$ = $$ - 1;
-				  $$ = getTime_rec($$) + 1;
-				  addMsg($2,$3,$4->getIid(),$5->getIid(),
-						 $$, ($$ + 1));
-				}
-			  else
-				{
-				  addMsg($2,$3,$4->getIid(),$5->getIid(),
-						 0, 1);
-				}
+				  std::cout << "FATAL ERROR: the message couldn't be " 
+							<< "parsed due to relative time issues" << std::endl;
+				  exit(0);
+				}		  
 			}
 		  else
 			{
-			  std::cout << "FATAL ERROR: the message couldn't be " 
-						<< "parsed due to relative time issues" << std::endl;
+			  std::cout << "DE MOMENTO NO PERMITIMOS MENSAJES SIN " << 
+				"ORIGEN Y/O DESTINO" << std::endl;
 			  exit(0);
-			}		  
+			}
 		}
 ;
 
