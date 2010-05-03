@@ -1,6 +1,6 @@
 format 58
 "diagramas"
-  revision 1
+  revision 5
   modified_by 2 "adrian"
 
 
@@ -53,7 +53,7 @@ format 58
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default show_stereotype_properties default
     classdiagram 128002 "class_diagram"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
       size A4
     end
 
@@ -69,28 +69,35 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      classrelation 128002 // <association>
-	relation 128002 ----
-	  a role_name "" protected
+      comment "This class is used by the parser to access to all the instances and messages storaged."
+      classrelation 128002 // messages (<aggregation>)
+	relation 128002 o---
+	  stereotype "map"
+	  a role_name "messages" multiplicity "*" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128002 // <association>
-	  b role_name "" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    classrelation_ref 128002 // messages (<aggregation>)
+	  b role_name "" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
 "
-	    classrelation_ref 128130 // <association>
+	    classrelation_ref 128130 // <aggregation>
       end
 
-      classrelation 128258 // <association>
-	relation 128130 ----
-	  a role_name "" protected
+      classrelation 128258 // instances (<aggregation>)
+	relation 128130 o---
+	  stereotype "map"
+	  a role_name "instances" multiplicity "*" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128258 // <association>
-	  b role_name "" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    classrelation_ref 128258 // instances (<aggregation>)
+	  b role_name "" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
 "
-	    classrelation_ref 128386 // <association>
+	    classrelation_ref 128386 // <aggregation>
+      end
+
+      classrelation 131714 // <aggregation>
+	relation_ref 130946 // <aggregation>
       end
     end
 
@@ -106,8 +113,21 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      classrelation 128130 // <association>
-	relation_ref 128002 // <association>
+      comment "This class represents a message in a communication between instances."
+      classrelation 128130 // <aggregation>
+	relation_ref 128002 // <aggregation>
+      end
+
+      classrelation 129794 // data (<composition>)
+	relation 129410 *---
+	  a role_name "data" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    classrelation_ref 129794 // data (<composition>)
+	  b role_name "" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    classrelation_ref 129922 // <composition>
       end
     end
 
@@ -123,8 +143,277 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      classrelation 128386 // <association>
-	relation_ref 128130 // <association>
+      comment "This class represents an instance in a communication."
+      classrelation 128386 // <aggregation>
+	relation_ref 128130 // <aggregation>
+      end
+
+      classrelation 129538 // data (<composition>)
+	relation 129282 *---
+	  a role_name "data" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    classrelation_ref 129538 // data (<composition>)
+	  b role_name "" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    classrelation_ref 129666 // <composition>
+      end
+    end
+
+    class 129410 "Inst_data"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "This class is used to storage all the info about an instance."
+      classrelation 129666 // <composition>
+	relation_ref 129282 // <composition>
+      end
+    end
+
+    class 129538 "Msg_data"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "This class is used to storage all the info about a message."
+      classrelation 129922 // <composition>
+	relation_ref 129410 // <composition>
+      end
+
+      classrelation 130050 // <composition>
+	relation 129538 *---
+	  a role_name "" multiplicity "2" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${multiplicity}${value};
+"
+	    classrelation_ref 130050 // <composition>
+	  b role_name "" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 130178 // <composition>
+      end
+    end
+
+    class 129666 "Event"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "This class represents an event in the communication between instances. An event is represented by:
+- instance where the event occurred
+- time when the event occurred"
+      classrelation 130178 // <composition>
+	relation_ref 129538 // <composition>
+      end
+
+      classrelation 133506 // <association>
+	relation_ref 132354 // <association>
+      end
+
+      classrelation 133762 // <association>
+	relation_ref 132482 // <association>
+      end
+    end
+
+    class 130818 "Receipt"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "This class represents an event that occurs when a message is received."
+      classrelation 131330 // <generalisation>
+	relation 130690 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131330 // <generalisation>
+	  b parent class_ref 129666 // Event
+      end
+    end
+
+    class 130946 "Sending"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "This class represents an event that occurs when a message is sent."
+      classrelation 131458 // <generalisation>
+	relation 130818 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131458 // <generalisation>
+	  b parent class_ref 129666 // Event
+      end
+    end
+
+    class 131074 "Parser"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "This class parse an input file with the communication between 2 or more entities"
+      classrelation 131586 // msc (<aggregation>)
+	relation 130946 o---
+	  a role_name "msc" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 131586 // msc (<aggregation>)
+	  b role_name "" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 131714 // <aggregation>
+      end
+
+      classrelation 131970 // <composition>
+	relation_ref 131074 // <composition>
+      end
+    end
+
+    class 131202 "Timestamp"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "This class is used by the parser for storaging purposes during parsing."
+      classrelation 131842 // <composition>
+	relation 131074 *---
+	  a role_name "" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    classrelation_ref 131842 // <composition>
+	  b role_name "" multiplicity "*" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    classrelation_ref 131970 // <composition>
+      end
+
+      classrelation 132226 // <composition>
+	relation_ref 131202 // <composition>
+      end
+    end
+
+    class 131330 "Timeref"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "This class is used by the parser for storaging purposes during parsing."
+      classrelation 132098 // <composition>
+	relation 131202 *---
+	  a role_name "" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    classrelation_ref 132098 // <composition>
+	  b role_name "" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    classrelation_ref 132226 // <composition>
+      end
+    end
+
+    class 132482 "Abs_time"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 133634 // <association>
+	relation 132482 ----
+	  a role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 133634 // <association>
+	  b role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 133762 // <association>
+      end
+    end
+
+    class 132610 "Rel_time"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 133378 // <association>
+	relation 132354 ----
+	  a role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 133378 // <association>
+	  b role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 133506 // <association>
       end
     end
   end

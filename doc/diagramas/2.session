@@ -1,10 +1,11 @@
 window_sizes 1200 836 300 894 637 120
 diagrams
   active  classdiagram_ref 128002 // class_diagram
-    715 509 100 4 0 0
+    894 637 100 4 0 0
 end
 show_stereotypes
-selected classdiagram_ref 128002 // class_diagram
+selected 
+  package_ref 129 // diagramas
 open
   classview_ref 128002 // diagramas
 end
