@@ -1,6 +1,6 @@
 format 58
 "diagramas"
-  revision 5
+  revision 7
   modified_by 2 "adrian"
 
 
@@ -227,14 +227,6 @@ ${inlines}
       classrelation 130178 // <composition>
 	relation_ref 129538 // <composition>
       end
-
-      classrelation 133506 // <association>
-	relation_ref 132354 // <association>
-      end
-
-      classrelation 133762 // <association>
-	relation_ref 132482 // <association>
-      end
     end
 
     class 130818 "Receipt"
@@ -367,32 +359,28 @@ ${inlines}
       end
     end
 
-    class 132482 "Abs_time"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      classrelation 133634 // <association>
-	relation 132482 ----
-	  a role_name "" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 133634 // <association>
-	  b role_name "" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 133762 // <association>
-      end
+    objectdiagram 129154 "lars.msc"
+       write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+      size A4
     end
 
-    class 132610 "Rel_time"
+    classinstance 128002 "parser"
+      type class_ref 131074 // Parser
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 128130 "msc"
+      type class_ref 128002 // MSC
+      attributes
+        end
+      relations
+        end
+    end
+
+    class 132482 "u:Instance"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
@@ -404,17 +392,126 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      classrelation 133378 // <association>
-	relation 132354 ----
-	  a role_name "" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 133378 // <association>
-	  b role_name "" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 133506 // <association>
-      end
+    end
+
+    classinstance 128258 "u"
+      type class_ref 132482 // u:Instance
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 128386 "a"
+      type class_ref 128258 // Instance
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 128514 "u"
+      type class_ref 128258 // Instance
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 128642 "f"
+      type class_ref 128258 // Instance
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 128770 "data"
+      type class_ref 129410 // Inst_data
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 128898 "data"
+      type class_ref 129410 // Inst_data
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 129026 "data"
+      type class_ref 129410 // Inst_data
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 129154 "1"
+      type class_ref 128130 // Message
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 129282 "2"
+      type class_ref 128130 // Message
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 129410 "3"
+      type class_ref 128130 // Message
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 129538 "data"
+      type class_ref 129538 // Msg_data
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 129666 "data"
+      type class_ref 129538 // Msg_data
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 129794 "data"
+      type class_ref 129538 // Msg_data
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 129922 "time_rec"
+      type class_ref 130818 // Receipt
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 130050 "time_sent"
+      type class_ref 130946 // Sending
+      attributes
+        end
+      relations
+        end
     end
   end
 end
