@@ -1,0 +1,12 @@
+window_sizes 1274 724 300 968 525 120
+diagrams
+  active  classdiagram_ref 128002 // AST
+    967 493 130 4 0 145
+  classdiagram_ref 128003 // Parser
+    774 420 100 4 0 0
+end
+show_stereotypes
+selected 
+  package_ref 129 // diagramas
+end
+verbose
