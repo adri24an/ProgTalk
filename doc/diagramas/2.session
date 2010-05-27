@@ -4,7 +4,8 @@ diagrams
     807 557 100 4 0 0
 end
 show_stereotypes
-selected classrelation_ref 128771 // <association>
+selected 
+  package_ref 129 // diagramas
 open
   class_ref 129666 // Event
   deploymentview_ref 134531 // Despliegue
