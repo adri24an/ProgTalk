@@ -1,6 +1,6 @@
 format 73
 "diagramas"
-  revision 12
+  revision 13
   modified_by 2 "adrian"
   cpp_root_dir "/home/adrian/ProgTalk/src/"
 
@@ -37,7 +37,7 @@ format 73
 
   mark_for_import
   
-  cpp_h_dir "/home/adrian/ProgTalk/doc/"
+  cpp_h_dir "/home/adrian/ProgTalk/src/"
   cpp_src_dir "/home/adrian/ProgTalk/src/"
   ncouples 1
   key "check-in-cmd" value "specify the command containing %file and %dir or %dironly"
