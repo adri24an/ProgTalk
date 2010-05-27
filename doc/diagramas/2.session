@@ -1,13 +1,15 @@
-window_sizes 1083 756 270 807 557 120
+window_sizes 1152 787 270 876 629 79
 diagrams
   active  classdiagram_ref 128002 // AST
-    807 557 100 4 0 0
+    876 629 100 4 0 0
 end
 show_stereotypes
-selected 
-  package_ref 129 // diagramas
+selected attribute_ref 128258 // time_ref
 open
+  class_ref 128002 // MSC
+  class_ref 128130 // Message
   class_ref 129666 // Event
+  class_ref 128131 // Relative
   deploymentview_ref 134531 // Despliegue
 end
 end
