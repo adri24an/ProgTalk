@@ -354,7 +354,7 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      comment "This class is used by the parser for storaging purposes during parsing."
+      comment "This class represents the time when an event occurs"
       classrelation 132226 // <composition>
 	relation_ref 131202 // <composition>
       end
@@ -523,6 +523,7 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
+      comment "This class represents an absolute time."
       classrelation 129283 // <generalisation>
 	relation 128771 ---|>
 	  a public
@@ -554,6 +555,7 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
+      comment "This class represents a relative time"
       classrelation 129411 // <generalisation>
 	relation 128899 ---|>
 	  a public
@@ -612,6 +614,22 @@ ${namespace_end}"
 
     artifact 128002 "Message"
       stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
       associated_classes
 	class_ref 128130 // Message
       end
@@ -619,6 +637,22 @@ ${namespace_end}"
 
     artifact 128130 "Instance"
       stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
       associated_classes
 	class_ref 128258 // Instance
       end
@@ -626,6 +660,22 @@ ${namespace_end}"
 
     artifact 128258 "Event"
       stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
       associated_classes
 	class_ref 129666 // Event
       end
@@ -633,6 +683,22 @@ ${namespace_end}"
 
     artifact 128386 "Receipt"
       stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
       associated_classes
 	class_ref 130818 // Receipt
       end
@@ -640,6 +706,22 @@ ${namespace_end}"
 
     artifact 128514 "Sending"
       stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
       associated_classes
 	class_ref 130946 // Sending
       end
@@ -647,6 +729,22 @@ ${namespace_end}"
 
     artifact 128642 "Timestamp"
       stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
       associated_classes
 	class_ref 131202 // Timestamp
       end
@@ -654,6 +752,22 @@ ${namespace_end}"
 
     artifact 128770 "Relative"
       stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
       associated_classes
 	class_ref 128131 // Relative
       end
@@ -661,6 +775,22 @@ ${namespace_end}"
 
     artifact 128898 "Absolute"
       stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
       associated_classes
 	class_ref 128003 // Absolute
       end
