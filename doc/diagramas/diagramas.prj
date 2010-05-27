@@ -1,7 +1,7 @@
 format 73
 "diagramas"
-  revision 11
-  modified_by 3 "angel"
+  revision 12
+  modified_by 2 "adrian"
 
 
   
@@ -88,17 +88,17 @@ ${inlines}
 	  association_explicit_type "int"
       end
 
-      classrelation 128258 // instances (<aggregation>)
-	relation 128130 o---
+      classrelation 128258 // instances (contains)
+	relation 128130 o--- name "contains"
 	  stereotype "map"
 	  a role_name "instances" multiplicity "*" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128258 // instances (<aggregation>)
-	  b role_name "" multiplicity "1" protected
+	    classrelation_ref 128258 // instances (contains)
+	  b role_name "msc" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
 "
-	    classrelation_ref 128386 // <aggregation>
+	    classrelation_ref 128386 // msc (contains)
       end
 
       classrelation 131714 // <aggregation>
@@ -134,28 +134,28 @@ ${inlines}
 	idl_decl ""
       end
 
-      classrelation 130051 // <association>
+      classrelation 130051 // time_rec (<association>)
 	relation 129283 ----
-	  a role_name "" protected
+	  a role_name "time_rec" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 130051 // <association>
-	  b role_name "" protected
+	    classrelation_ref 130051 // time_rec (<association>)
+	  b role_name "message" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 130179 // <association>
+	    classrelation_ref 130179 // message (<association>)
       end
 
-      classrelation 130307 // <association>
+      classrelation 130307 // time_sent (<association>)
 	relation 129411 ----
-	  a role_name "" protected
+	  a role_name "time_sent" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 130307 // <association>
-	  b role_name "" protected
+	    classrelation_ref 130307 // time_sent (<association>)
+	  b role_name "message" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 130435 // <association>
+	    classrelation_ref 130435 // message (<association>)
       end
     end
 
@@ -172,8 +172,8 @@ ${inlines}
       explicit_switch_type ""
       
       comment "This class represents an instance in a communication."
-      classrelation 128386 // <aggregation>
-	relation_ref 128130 // <aggregation>
+      classrelation 128386 // msc (contains)
+	relation_ref 128130 // contains
       end
 
       attribute 128003 "id"
@@ -228,11 +228,11 @@ ${inlines}
 - time when the event occurred"
       classrelation 128515 // <association>
 	relation 128259 ----
-	  a role_name "" protected
+	  a role_name "" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128515 // <association>
-	  b role_name "" protected
+	  b role_name "" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128643 // <association>
@@ -240,18 +240,26 @@ ${inlines}
 
       classrelation 128771 // <association>
 	relation 128387 ----
-	  a role_name "" protected
+	  a role_name "" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128771 // <association>
-	  b role_name "" protected
+	  b role_name "" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128899 // <association>
       end
 
-      classrelation 129923 // <association>
-	relation_ref 129155 // <association>
+      classrelation 138754 // <association>
+	relation 137730 ----
+	  a role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 138754 // <association>
+	  b role_name "" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 138882 // <association>
       end
     end
 
@@ -276,7 +284,7 @@ ${inlines}
 	  b parent class_ref 129666 // Event
       end
 
-      classrelation 130179 // <association>
+      classrelation 130179 // message (<association>)
 	relation_ref 129283 // <association>
       end
     end
@@ -302,7 +310,7 @@ ${inlines}
 	  b parent class_ref 129666 // Event
       end
 
-      classrelation 130435 // <association>
+      classrelation 130435 // message (<association>)
 	relation_ref 129411 // <association>
       end
     end
@@ -553,18 +561,6 @@ ${inlines}
 	  b parent class_ref 131202 // Timestamp
       end
 
-      classrelation 129795 // <association>
-	relation 129155 ----
-	  a role_name "" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 129795 // <association>
-	  b role_name "" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 129923 // <association>
-      end
-
       attribute 128643 "diff"
 	protected explicit_type "int"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
@@ -573,6 +569,10 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+      end
+
+      classrelation 138882 // <association>
+	relation_ref 137730 // <association>
       end
     end
 
