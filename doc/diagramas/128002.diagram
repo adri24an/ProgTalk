@@ -30,11 +30,11 @@ classcanvas 129154 class_ref 129666 // Event
 end
 classcanvas 129410 class_ref 130818 // Receipt
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 113 382.1 2000
+  xyz 113 388.1 2000
 end
 classcanvas 129666 class_ref 130946 // Sending
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 297.5 388.4 2000
+  xyz 288.5 392.4 2000
 end
 relationcanvas 128386 relation_ref 128002 // contains
   from ref 128002 z 1999 label "contains" italic xyz 205 114 1999 stereotype "<<map>>" xyz 194 131 3000 to ref 128130
@@ -49,7 +49,7 @@ end
 relationcanvas 128771 relation_ref 128387 // <association>
   from ref 129154 z 2001 to ref 128643
   no_role_a no_role_b
-  multiplicity_a_pos 492 287 3000 multiplicity_b_pos 400 281 3000
+  multiplicity_a_pos 487 311 3000 multiplicity_b_pos 404 302 3000
 end
 relationcanvas 129411 relation_ref 128771 // <generalisation>
   from ref 128899 z 2001 to ref 128643
@@ -68,6 +68,7 @@ relationcanvas 129539 relation_ref 128899 // <generalisation>
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129794 relation_ref 130818 // <generalisation>
+  decenter_begin 847
   from ref 129666 z 1999 to ref 129154
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
@@ -78,18 +79,22 @@ relationcanvas 129922 relation_ref 137730 // <association>
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 130819 relation_ref 129283 // <association>
-  from ref 128130 z 2001 to ref 129410
-  role_a_pos 102 350 3000 role_b_pos 134 247 3000
-  multiplicity_a_pos 136 366 3000 multiplicity_b_pos 174 262 3000
+  decenter_begin 126
+  from ref 128130 z 2001 to point 118 386
+  line 130050 z 2001 to ref 129410
+  role_a_pos 67 370 3000 role_b_pos 117 243 3000
+  multiplicity_a_pos 99 388 3000 multiplicity_b_pos 161 257 3000
 end
 relationcanvas 130947 relation_ref 129411 // <association>
+  decenter_begin 873
+  decenter_end 151
   from ref 128130 z 2001 to ref 129666
-  role_a_pos 239 380 3000 role_b_pos 239 257 3000
-  multiplicity_a_pos 290 366 3000 multiplicity_b_pos 212 257 3000
+  role_a_pos 234 381 3000 role_b_pos 247 257 3000
+  multiplicity_a_pos 276 370 3000 multiplicity_b_pos 220 257 3000
 end
 relationcanvas 131075 relation_ref 128259 // <association>
   from ref 129154 z 2001 to ref 128258
   no_role_a no_role_b
-  multiplicity_a_pos 434 212 3000 multiplicity_b_pos 382 260 3000
+  multiplicity_a_pos 430 219 3000 multiplicity_b_pos 383 264 3000
 end
 end
