@@ -1,0 +1,84 @@
+format 73
+
+classinstancecanvas 128002 classinstance_ref 136834 // parser
+  xyz 460 22 2000
+end
+classinstancecanvas 128130 classinstance_ref 136962 // msc
+  xyz 121 132 2000
+end
+classinstancecanvas 128386 classinstance_ref 137090 // 
+  xyz 211 134 2000
+end
+classinstancecanvas 128514 classinstance_ref 137218 // 
+  xyz 333 134 2000
+end
+classinstancecanvas 128642 classinstance_ref 137346 // 
+  xyz 180 193 2000
+end
+classinstancecanvas 129026 classinstance_ref 137474 // 
+  xyz 307 193 2000
+end
+classinstancecanvas 129410 classinstance_ref 137602 // 
+  xyz 434 134 2000
+end
+classinstancecanvas 129538 classinstance_ref 137730 // 
+  xyz 532 135 2000
+end
+classinstancecanvas 129666 classinstance_ref 137858 // 
+  xyz 628 136 2000
+end
+classinstancecanvas 129794 classinstance_ref 137986 // 
+  xyz 699 136 2000
+end
+classinstancecanvas 129922 classinstance_ref 138114 // 
+  xyz 501 194 2000
+end
+classinstancecanvas 130050 classinstance_ref 138242 // 
+  xyz 433 194 2005
+end
+classinstancecanvas 130178 classinstance_ref 138370 // 
+  xyz 627 194 2005
+end
+classinstancecanvas 130306 classinstance_ref 138498 // 
+  xyz 694 194 2000
+end
+objectlinkcanvas 128258 norel
+  from ref 128002 z 2001 to ref 128130
+  no_role_a no_role_b
+objectlinkcanvas 128770 norel
+  from ref 128002 z 2001 to ref 128386
+  no_role_a no_role_b
+objectlinkcanvas 128898 norel
+  from ref 128386 z 2001 to ref 128642
+  no_role_a no_role_b
+objectlinkcanvas 129154 norel
+  from ref 128514 z 2001 to ref 129026
+  no_role_a no_role_b
+objectlinkcanvas 129282 norel
+  from ref 128002 z 2001 to ref 128514
+  no_role_a no_role_b
+objectlinkcanvas 130434 norel
+  from ref 129410 z 2006 to ref 130050
+  no_role_a no_role_b
+objectlinkcanvas 130562 norel
+  from ref 129538 z 2001 to ref 129922
+  no_role_a no_role_b
+objectlinkcanvas 130690 norel
+  from ref 129666 z 2006 to ref 130178
+  no_role_a no_role_b
+objectlinkcanvas 130818 norel
+  from ref 129794 z 2001 to ref 130306
+  no_role_a no_role_b
+objectlinkcanvas 130946 norel
+  from ref 128002 z 2001 to ref 129410
+  no_role_a no_role_b
+objectlinkcanvas 131074 norel
+  from ref 128002 z 2001 to ref 129538
+  no_role_a no_role_b
+objectlinkcanvas 131202 norel
+  from ref 128002 z 2001 to ref 129666
+  no_role_a no_role_b
+objectlinkcanvas 131330 norel
+  from ref 128002 z 2001 to ref 129794
+  no_role_a no_role_b
+end
