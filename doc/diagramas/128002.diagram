@@ -40,12 +40,12 @@ relationcanvas 128386 relation_ref 128002 // contains
   decenter_end 418
   from ref 128002 z 1999 label "contains" italic xyz 576 146 1999 stereotype "<<map>>" xyz 574 161 3000 to ref 128130
   role_a_pos 624 228 3000 role_b_pos 474 69 3000
-  multiplicity_a_pos 671 255 3000 multiplicity_b_pos 474 96 3000
+  multiplicity_a_pos 693 229 3000 multiplicity_b_pos 474 96 3000
 end
 relationcanvas 128514 relation_ref 128130 // contains
   from ref 128002 z 1999 label "contains" italic xyz 310 172 1999 stereotype "<<map>>" xyz 319 155 3000 to ref 128258
-  role_a_pos 229 199 3000 role_b_pos 349 53 3000
-  multiplicity_a_pos 229 226 3000 multiplicity_b_pos 364 80 3000
+  role_a_pos 229 199 3000 role_b_pos 332 79 3000
+  multiplicity_a_pos 213 215 3000 multiplicity_b_pos 372 94 3000
 end
 relationcanvas 128771 relation_ref 128387 // <association>
   decenter_begin 200
@@ -54,7 +54,7 @@ relationcanvas 128771 relation_ref 128387 // <association>
   multiplicity_a_pos 348 534 3000 multiplicity_b_pos 458 430 3000
 end
 relationcanvas 129538 relation_ref 130690 // <generalisation>
-  decenter_begin 167
+  decenter_begin 166
   decenter_end 800
   from ref 129410 z 1999 to ref 129154
   no_role_a no_role_b
