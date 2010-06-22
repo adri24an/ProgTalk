@@ -1,21 +1,18 @@
-window_sizes 1268 872 206 1056 716 79
+window_sizes 1268 868 206 1056 712 79
 diagrams
   classdiagram_ref 128002 // AST
     1053 693 100 18 0 0
-  objectdiagram_ref 129154 // lars.msc
-    1056 716 100 18 171 0
-  active  classdiagram_ref 128003 // Parser
+  active  objectdiagram_ref 129154 // lars.msc
+    1056 712 100 18 0 0
+  classdiagram_ref 128003 // Parser
     844 572 100 4 0 0
   objectdiagram_ref 135682 // lars.msc_parse
     1029 572 100 18 0 0
 end
 show_stereotypes
-selected operation_ref 128002 // addInst
+selected objectdiagram_ref 129154 // lars.msc
 open
-  class_ref 128002 // MSC
-  class_ref 131330 // Timeref
-  class_ref 131074 // Parser
-  class_ref 144514 // Timestg
+  classview_ref 128002 // diagramas
   deploymentview_ref 134531 // Despliegue
 end
 end

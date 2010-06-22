@@ -45,10 +45,10 @@ end
 classinstancecanvas 133250 classinstance_ref 129794 // 
   xyz 206 593 2000
 end
-classinstancecanvas 134018 classinstance_ref 129922 // 
+classinstancecanvas 134018 classinstance_ref 129922 // send
   xyz 496 692 2000
 end
-classinstancecanvas 134146 classinstance_ref 130050 // 
+classinstancecanvas 134146 classinstance_ref 130050 // rec
   xyz 871 783 2000
 end
 classinstancecanvas 134530 classinstance_ref 130178 // 
@@ -62,57 +62,58 @@ objectlinkcanvas 128137 rel relation_ref 128387 // <association>
   role_a_pos 503 300 3000 no_role_b
 objectlinkcanvas 128265 rel relation_ref 137986 // <association>
   from ref 130306 z 2001 to ref 128009
-  no_role_a role_b_pos 556 229 3000
+  no_role_a role_b_pos 552 229 3000
 objectlinkcanvas 128393 rel relation_ref 129411 // <association>
   from ref 129794 z 2001 to ref 134018
-  role_a_pos 441 686 3000 role_b_pos 137 702 3000
+  role_a_pos 447 684 3000 role_b_pos 123 701 3000
 objectlinkcanvas 128642 rel relation_ref 128002 // <aggregation>
   decenter_begin 245
-  from ref 128514 z 2001 stereotype "<<map>>" xyz 328 145.5 3000 to ref 128386
-  role_a_pos 360 177 3000 role_b_pos 377 103 3000
+  from ref 128514 z 2001 stereotype "<<map>>" xyz 328 145 3000 to ref 128386
+  role_a_pos 360 177 3000 role_b_pos 353 108 3000
 objectlinkcanvas 128649 rel relation_ref 129283 // <association>
   from ref 129794 z 2001 to ref 134146
-  role_a_pos 821 772 3000 role_b_pos 137 708 3000
+  role_a_pos 827 770 3000 role_b_pos 123 727 3000
 objectlinkcanvas 128770 rel relation_ref 128130 // <aggregation>
   decenter_begin 425
-  from ref 128514 z 2001 stereotype "<<map>>" xyz 465.5 133.5 3000 to point 610 169
+  from ref 128514 z 2001 stereotype "<<map>>" xyz 465 133 3000 to point 610 169
   line 128905 z 2001 to ref 128002
-  role_a_pos 673 225 3000 role_b_pos 389 81 3000
+  role_a_pos 673 225 3000 role_b_pos 397 100 3000
 objectlinkcanvas 128898 rel relation_ref 128130 // <aggregation>
-  from ref 128514 z 2001 stereotype "<<map>>" xyz 597.5 134.5 3000 to point 839 177
+  from ref 128514 z 2001 stereotype "<<map>>" xyz 597 134 3000 to point 839 177
   line 129161 z 2001 to ref 128130
-  role_a_pos 802 363 3000 role_b_pos 425 74 3000
+  role_a_pos 802 363 3000 role_b_pos 432 90 3000
 objectlinkcanvas 129026 rel relation_ref 128130 // <aggregation>
-  from ref 128514 z 2001 stereotype "<<map>>" xyz 648 96 3000 to point 940 105
+  from ref 128514 z 2001 stereotype "<<map>>" xyz 668.5 77.5 3000 to point 981 69
   line 129673 z 2001 to ref 128258
-  role_a_pos 1036 450 3000 role_b_pos 425 67 3000
+  role_a_pos 1035 448 3000 role_b_pos 423 64 3000
 objectlinkcanvas 129410 rel relation_ref 128002 // <aggregation>
-  from ref 128514 z 2001 stereotype "<<map>>" xyz 195 142 3000 to point 96 187
+  from ref 128514 z 2001 stereotype "<<map>>" xyz 209.5 150.5 3000 to point 121 203
   line 129666 z 2001 to ref 129282
-  role_a_pos 118 304 3000 role_b_pos 319 74 3000
+  role_a_pos 119 302 3000 role_b_pos 322 100 3000
 objectlinkcanvas 129922 rel relation_ref 128002 // <aggregation>
   decenter_end 282
-  from ref 128514 z 2001 stereotype "<<map>>" xyz 173 138 3000 to point 52 181
+  from ref 128514 z 2001 stereotype "<<map>>" xyz 152.5 124 3000 to point 11 156
   line 130050 z 2001 to ref 129794
-  role_a_pos 69 683 3000 role_b_pos 319 72 3000
+  role_a_pos 65 681 3000 role_b_pos 306 79 3000
 objectlinkcanvas 130434 rel relation_ref 129411 // <association>
-  from ref 128386 z 2001 to ref 130306
-  role_a_pos 436 195 3000 role_b_pos 436 200 3000
+  from ref 128386 z 2001 to point 441 226
+  line 135810 z 2001 to ref 130306
+  role_a_pos 447 201 3000 role_b_pos 399 209 3000
 objectlinkcanvas 130562 rel relation_ref 129283 // <association>
   from ref 128386 z 2001 to ref 130178
-  role_a_pos 351 335 3000 role_b_pos 354 261 3000
+  role_a_pos 298 336 3000 role_b_pos 278 259 3000
 objectlinkcanvas 130690 rel relation_ref 128259 // <association>
   from ref 130306 z 2001 to ref 128002
   no_role_a role_b_pos 589 204 3000
 objectlinkcanvas 130818 rel relation_ref 128259 // <association>
   from ref 130178 z 2001 to ref 128130
-  no_role_a role_b_pos 389 351 3000
+  no_role_a role_b_pos 369 338 3000
 objectlinkcanvas 131202 norel
   from ref 130306 z 2001 to ref 131074
   no_role_a no_role_b
 objectlinkcanvas 132098 rel relation_ref 129411 // <association>
   from ref 129282 z 2001 to ref 131842
-  role_a_pos 369 545 3000 role_b_pos 160 366 3000
+  role_a_pos 369 545 3000 role_b_pos 144 367 3000
 objectlinkcanvas 132354 norel
   from ref 131842 z 2001 to ref 131970
   no_role_a no_role_b
@@ -121,7 +122,7 @@ objectlinkcanvas 132482 rel relation_ref 128259 // <association>
   no_role_a role_b_pos 473 535 3000
 objectlinkcanvas 132738 rel relation_ref 129283 // <association>
   from ref 129282 z 2001 to ref 132610
-  role_a_pos 201 469 3000 role_b_pos 143 388 3000
+  role_a_pos 201 469 3000 role_b_pos 99 388 3000
 objectlinkcanvas 132866 norel
   decenter_end 476
   from ref 131970 z 2001 to ref 130178
@@ -134,25 +135,25 @@ objectlinkcanvas 133506 rel relation_ref 128259 // <association>
   no_role_a role_b_pos 251 480 3000
 objectlinkcanvas 133634 rel relation_ref 137986 // <association>
   from ref 131842 z 2001 to ref 133250
-  no_role_a role_b_pos 328 557 3000
+  no_role_a role_b_pos 339 555 3000
 objectlinkcanvas 134274 rel relation_ref 128259 // <association>
   decenter_begin 836
   from ref 134018 z 2001 to ref 128130
-  no_role_a role_b_pos 562 673 3000
+  no_role_a role_b_pos 577 671 3000
 objectlinkcanvas 134402 rel relation_ref 128259 // <association>
   decenter_begin 828
   from ref 134146 z 2001 to ref 128130
-  no_role_a role_b_pos 927 764 3000
+  no_role_a role_b_pos 935 762 3000
 objectlinkcanvas 134658 rel relation_ref 128387 // <association>
   from ref 134018 z 2001 to ref 134530
-  role_a_pos 482 654 3000 no_role_b
+  role_a_pos 474 647 3000 no_role_b
 objectlinkcanvas 134914 rel relation_ref 137986 // <association>
   from ref 131842 z 2001 to ref 134530
-  no_role_a role_b_pos 451 587 3000
+  no_role_a role_b_pos 446 587 3000
 objectlinkcanvas 135426 rel relation_ref 128387 // <association>
   from ref 134146 z 2001 to ref 135298
-  role_a_pos 835 716 3000 no_role_b
+  role_a_pos 828 700 3000 no_role_b
 objectlinkcanvas 135682 rel relation_ref 137986 // <association>
   from ref 130178 z 2001 to ref 135298
-  no_role_a role_b_pos 367 365 3000
+  no_role_a role_b_pos 378 365 3000
 end
