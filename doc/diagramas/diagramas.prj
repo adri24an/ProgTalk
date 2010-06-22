@@ -1,7 +1,7 @@
 format 73
 "diagramas"
-  revision 19
-  modified_by 2 "adrian"
+  revision 20
+  modified_by 9 "angel"
   cpp_root_dir "/home/adrian/ProgTalk/src/"
 
 
@@ -58,7 +58,7 @@ format 73
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default show_stereotype_properties default
     classdiagram 128002 "AST"
-      draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition yes show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
       size A4-Landscape
     end
 
@@ -75,31 +75,31 @@ ${inlines}
       explicit_switch_type ""
       
       comment "This class is used by the parser to access to all the instances and messages storaged."
-      classrelation 128002 // messages (contains)
-	relation 128002 o--- name "contains"
+      classrelation 128002 // messages (<aggregation>)
+	relation 128002 o---
 	  stereotype "map"
 	  a role_name "messages" multiplicity "*" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
 "
-	    classrelation_ref 128002 // messages (contains)
+	    classrelation_ref 128002 // messages (<aggregation>)
 	  b role_name "msc" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128130 // msc (contains)
+	    classrelation_ref 128130 // msc (<aggregation>)
 	  association_explicit_type "int"
       end
 
-      classrelation 128258 // instances (contains)
-	relation 128130 o--- name "contains"
+      classrelation 128258 // instances (<aggregation>)
+	relation 128130 o---
 	  stereotype "map"
 	  a role_name "instances" multiplicity "*" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128258 // instances (contains)
+	    classrelation_ref 128258 // instances (<aggregation>)
 	  b role_name "msc" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
 "
-	    classrelation_ref 128386 // msc (contains)
+	    classrelation_ref 128386 // msc (<aggregation>)
       end
 
       classrelation 131714 // <aggregation>
@@ -108,10 +108,8 @@ ${inlines}
 
       operation 128002 "addInst"
 	public explicit_return_type "void"
-	nparams 3
-	  param in name "new_iid" explicit_type "char *"
-	  param in name "new_tid" explicit_type "char *"
-	  param in name "new_name" explicit_type "char *"
+	nparams 1
+	  param in name "i" explicit_type "Instance *"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${staticnl}{
@@ -126,16 +124,11 @@ ${inlines}
 
       operation 128130 "addMsg"
 	public explicit_return_type "void"
-	nparams 6
-	  param in name "new_mid" explicit_type "char *"
-	  param in name "new_sms" explicit_type "char *"
-	  param in name "new_origin" explicit_type "char *"
-	  param in name "new_destiny" explicit_type "char *"
-	  param in name "new_time_sent" explicit_type "int"
-	  param in name "new_time_rec" explicit_type "int"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}, const ${t3} & ${p3}, ${t4} ${p4}, ${t5} ${p5}${)}${const}${volatile}${throw}${abstract};
+	nparams 1
+	  param in name "m" explicit_type "Message *"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}, const ${t3} & ${p3}, const ${t4} & ${p4}, const ${t5} & ${p5}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}, const ${t3} & ${p3}, ${t4} ${p4}, ${t5} ${p5}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}, const ${t3} & ${p3}, const ${t4} & ${p4}, const ${t5} & ${p5}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -183,8 +176,8 @@ ${inlines}
       explicit_switch_type ""
       
       comment "This class represents a message in a communication between instances."
-      classrelation 128130 // msc (contains)
-	relation_ref 128002 // contains
+      classrelation 128130 // msc (<aggregation>)
+	relation_ref 128002 // <aggregation>
       end
 
       attribute 128387 "mid"
@@ -198,48 +191,28 @@ ${inlines}
 	idl_decl ""
       end
 
-      classrelation 130051 // time_rec (contains)
-	relation 129283 ---- name "contains"
-	  a role_name "time_rec" multiplicity "1" protected
+      classrelation 130051 // receipt (<association>)
+	relation 129283 ----
+	  a role_name "receipt" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 130051 // time_rec (contains)
+	    classrelation_ref 130051 // receipt (<association>)
 	  b role_name "message" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 130179 // message (contains)
+	    classrelation_ref 130179 // message (<association>)
       end
 
-      classrelation 130307 // time_sent (contains)
-	relation 129411 ---- name "contains"
-	  a role_name "time_sent" multiplicity "1" protected
+      classrelation 130307 // sending (<association>)
+	relation 129411 ----
+	  a role_name "sending" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 130307 // time_sent (contains)
+	    classrelation_ref 130307 // sending (<association>)
 	  b role_name "message" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 130435 // message (contains)
-      end
-
-      operation 134658 "addMsg"
-	public explicit_return_type ""
-	nparams 6
-	  param in name "new_mid" explicit_type "char *"
-	  param in name "new_sms" explicit_type "char *"
-	  param in name "new_origin" explicit_type "char *"
-	  param in name "new_destiny" explicit_type "char *"
-	  param in name "new_time_sent" explicit_type "int"
-	  param in name "new_time_rec" explicit_type "int"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}, const ${t3} & ${p3}, ${t4} ${p4}, ${t5} ${p5}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}, const ${t3} & ${p3}, ${t4} ${p4}, ${t5} ${p5}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
+	    classrelation_ref 130435 // message (<association>)
       end
 
       attribute 128002 "sms"
@@ -266,8 +239,8 @@ ${inlines}
       explicit_switch_type ""
       
       comment "This class represents an instance in a communication."
-      classrelation 128386 // msc (contains)
-	relation_ref 128130 // contains
+      classrelation 128386 // msc (<aggregation>)
+	relation_ref 128130 // <aggregation>
       end
 
       attribute 128003 "id"
@@ -300,26 +273,10 @@ ${inlines}
 	idl_decl ""
       end
 
-      classrelation 128643 // <association>
+      classrelation 128643 // events (<association>)
 	relation_ref 128259 // <association>
       end
 
-      operation 141186 "addInst"
-	public explicit_return_type ""
-	nparams 3
-	  param in name "new_iid" explicit_type "char *"
-	  param in name "new_tid" explicit_type "char *"
-	  param in name "new_name" explicit_type "char *"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
     end
 
     class 129666 "Event"
@@ -339,38 +296,38 @@ ${inlines}
 - time when the event occurred"
       classrelation 128515 // <association>
 	relation 128259 ----
-	  a role_name "" multiplicity "1" protected
+	  a role_name "" multiplicity "*" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128515 // <association>
-	  b role_name "instance" multiplicity "1" protected
+	  b role_name "events" multiplicity "*" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128643 // <association>
+	    classrelation_ref 128643 // events (<association>)
       end
 
-      classrelation 128771 // <association>
+      classrelation 128771 // timestamp (<association>)
 	relation 128387 ----
-	  a role_name "" multiplicity "1" protected
+	  a role_name "timestamp" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128771 // <association>
-	  b role_name "time" multiplicity "1" protected
+	    classrelation_ref 128771 // timestamp (<association>)
+	  b role_name "" multiplicity "*" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128899 // time (<association>)
+	    classrelation_ref 128899 // <association>
       end
 
       classrelation 139010 // <association>
 	relation 137986 ----
-	  a role_name "" protected
+	  a role_name "" multiplicity "*" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 139010 // <association>
-	  b role_name "" protected
+	  b role_name "referencia" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 139138 // <association>
+	    classrelation_ref 139138 // referencia (<association>)
       end
     end
 
@@ -395,8 +352,8 @@ ${inlines}
 	  b parent class_ref 129666 // Event
       end
 
-      classrelation 130179 // message (contains)
-	relation_ref 129283 // contains
+      classrelation 130179 // message (<association>)
+	relation_ref 129283 // <association>
       end
     end
 
@@ -421,8 +378,8 @@ ${inlines}
 	  b parent class_ref 129666 // Event
       end
 
-      classrelation 130435 // message (contains)
-	relation_ref 129411 // contains
+      classrelation 130435 // message (<association>)
+	relation_ref 129411 // <association>
       end
     end
 
@@ -443,7 +400,7 @@ ${inlines}
 	relation_ref 131202 // <composition>
       end
 
-      classrelation 128899 // time (<association>)
+      classrelation 128899 // <association>
 	relation_ref 128387 // <association>
       end
 
@@ -513,7 +470,7 @@ ${inlines}
 	  b parent class_ref 131202 // Timestamp
       end
 
-      classrelation 139138 // <association>
+      classrelation 139138 // referencia (<association>)
 	relation_ref 137986 // <association>
       end
 
@@ -538,6 +495,18 @@ ${inlines}
       attributes
         end
       relations
+        relation_ref 128002 // <aggregation>
+          classinstance_ref 128770 // 3
+        relation_ref 128002 // <aggregation>
+          classinstance_ref 128642 // 2
+        relation_ref 128002 // <aggregation>
+          classinstance_ref 128386 // 1
+        relation_ref 128130 // <aggregation>
+          classinstance_ref 128002 // u
+        relation_ref 128130 // <aggregation>
+          classinstance_ref 128130 // a
+        relation_ref 128130 // <aggregation>
+          classinstance_ref 128258 // f
         end
     end
 
@@ -588,6 +557,10 @@ ${inlines}
           "request send to dhl"
         end
       relations
+        relation_ref 129411 // <association>
+          classinstance_ref 129026 // send
+        relation_ref 129283 // <association>
+          classinstance_ref 128898 // rec
         end
     end
 
@@ -600,6 +573,10 @@ ${inlines}
           "send"
         end
       relations
+        relation_ref 129283 // <association>
+          classinstance_ref 129666 // rec
+        relation_ref 129411 // <association>
+          classinstance_ref 129410 // send
         end
     end
 
@@ -610,6 +587,10 @@ ${inlines}
           "internal"
         end
       relations
+        relation_ref 129411 // <association>
+          classinstance_ref 129922 // 
+        relation_ref 129283 // <association>
+          classinstance_ref 130050 // 
         end
     end
 
@@ -618,6 +599,12 @@ ${inlines}
       attributes
         end
       relations
+        relation_ref 128387 // <association>
+          classinstance_ref 128009 // 
+        relation_ref 128259 // <association>
+          classinstance_ref 128130 // a
+        relation_ref 137986 // <association>
+          classinstance_ref 130306 // 
         end
     end
 
@@ -626,6 +613,10 @@ ${inlines}
       attributes
         end
       relations
+        relation_ref 137986 // <association>
+          classinstance_ref 128009 // 
+        relation_ref 128259 // <association>
+          classinstance_ref 128002 // u
         end
     end
 
@@ -639,21 +630,17 @@ ${inlines}
         end
     end
 
-    classinstance 129282 ""
-      type class_ref 137858 // Absolute
-      attributes
-        attribute_ref 134530 // time
-          "1"
-        end
-      relations
-        end
-    end
-
     classinstance 129410 "send"
       type class_ref 130946 // Sending
       attributes
         end
       relations
+        relation_ref 128259 // <association>
+          classinstance_ref 128130 // a
+        relation_ref 137986 // <association>
+          classinstance_ref 129794 // 
+        relation_ref 137986 // <association>
+          classinstance_ref 130178 // 
         end
     end
 
@@ -672,6 +659,10 @@ ${inlines}
       attributes
         end
       relations
+        relation_ref 128259 // <association>
+          classinstance_ref 128258 // f
+        relation_ref 128387 // <association>
+          classinstance_ref 129794 // 
         end
     end
 
@@ -690,6 +681,10 @@ ${inlines}
       attributes
         end
       relations
+        relation_ref 128259 // <association>
+          classinstance_ref 128130 // a
+        relation_ref 128387 // <association>
+          classinstance_ref 130178 // 
         end
     end
 
@@ -698,6 +693,10 @@ ${inlines}
       attributes
         end
       relations
+        relation_ref 128259 // <association>
+          classinstance_ref 128130 // a
+        relation_ref 128387 // <association>
+          classinstance_ref 130306 // 
         end
     end
 
@@ -1059,6 +1058,16 @@ ${inlines}
           "0"
         attribute_ref 141314 // value
           "3"
+        end
+      relations
+        end
+    end
+
+    classinstance 128009 ""
+      type class_ref 137986 // Relative
+      attributes
+        attribute_ref 134658 // diff
+          "1"
         end
       relations
         end
