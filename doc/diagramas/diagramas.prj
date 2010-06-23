@@ -1,6 +1,6 @@
 format 73
 "diagramas"
-  revision 21
+  revision 22
   modified_by 2 "adrian"
   cpp_root_dir "/home/adrian/ProgTalk/src/"
 
@@ -1249,6 +1249,20 @@ ${namespace_end}"
       stereotype "source"
       associated_classes
 	class_ref 137986 // Relative
+      end
+    end
+
+    artifact 141826 "Timeref"
+      stereotype "source"
+      associated_classes
+	class_ref 131330 // Timeref
+      end
+    end
+
+    artifact 141954 "Timestg"
+      stereotype "source"
+      associated_classes
+	class_ref 144514 // Timestg
       end
     end
   end
