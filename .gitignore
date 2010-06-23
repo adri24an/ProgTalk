@@ -1,2 +1,6 @@
 *~
 *.o
+*.aux
+*.log
+*.pdf
+*.backup
