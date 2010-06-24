@@ -1,18 +1,28 @@
-window_sizes 1268 868 215 1047 712 79
+window_sizes 1268 868 265 997 712 79
 diagrams
-  classdiagram_ref 128002 // AST
-    1052 693 100 18 0 0
+  active  classdiagram_ref 128002 // AST
+    1051 693 100 18 0 0
   objectdiagram_ref 129154 // lars.msc
-    1056 712 100 18 0 0
-  active  classdiagram_ref 128003 // Parser
-    844 572 100 4 0 0
+    1051 712 100 18 0 0
+  classdiagram_ref 128003 // Parser
+    791 572 100 4 0 0
   objectdiagram_ref 135682 // lars.msc_parse
     1029 572 100 18 0 0
 end
 show_stereotypes
-selected classrelation_ref 146562 // <association>
+selected classrelation_ref 131714 // <aggregation>
 open
+  class_ref 128002 // MSC
+  class_ref 128130 // Message
+  class_ref 128258 // Instance
+  class_ref 129666 // Event
+  class_ref 130818 // Receipt
+  class_ref 130946 // Sending
+  class_ref 131202 // Timestamp
+  class_ref 137858 // Absolute
+  class_ref 137986 // Relative
   class_ref 131330 // Timeref
+  class_ref 131074 // Parser
   class_ref 144514 // Timestg
   deploymentview_ref 134531 // Despliegue
 end

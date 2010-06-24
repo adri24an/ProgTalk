@@ -1,6 +1,6 @@
 format 73
 "diagramas"
-  revision 28
+  revision 29
   modified_by 2 "adrian"
   cpp_root_dir "/home/adrian/ProgTalk/src/"
 
@@ -542,10 +542,6 @@ ${inlines}
       explicit_switch_type ""
       
       comment "This class represents the time when an event occurs"
-      classrelation 132226 // <composition>
-	relation_ref 131202 // <composition>
-      end
-
       classrelation 128899 // <association>
 	relation_ref 128387 // <association>
       end
@@ -972,18 +968,6 @@ ${inlines}
       explicit_switch_type ""
       
       comment "This class is used by the parser for storaging purposes during parsing."
-      classrelation 132098 // <composition>
-	relation 131202 *---
-	  a role_name "" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	    classrelation_ref 132098 // <composition>
-	  b role_name "" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	    classrelation_ref 132226 // <composition>
-      end
-
       attribute 141186 "valtype"
 	protected explicit_type "int"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
