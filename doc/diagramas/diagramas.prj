@@ -215,6 +215,7 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	comment "Message id."
       end
 
       classrelation 130051 // receipt (<association>)
@@ -249,6 +250,7 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	comment "Text transmitted in the Message."
       end
 
       operation 134914 "Message"
@@ -297,7 +299,7 @@ ${inlines}
 	relation_ref 128130 // <aggregation>
       end
 
-      attribute 128003 "id"
+      attribute 128003 "iid"
 	unique protected explicit_type "char *"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -305,6 +307,7 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	comment "Instance id."
       end
 
       attribute 128131 "tid"
@@ -315,6 +318,7 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	comment "Type id."
       end
 
       attribute 128259 "name"
@@ -325,6 +329,7 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	comment "Instance alias."
       end
 
       classrelation 128643 // <association>
@@ -641,6 +646,7 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	comment "Absolute time of the Event."
       end
 
       operation 136450 "Absolute"
@@ -705,6 +711,7 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	comment "Difference with the relative time."
       end
 
       operation 136706 "Relative"
@@ -764,7 +771,7 @@ ${inlines}
     classinstance 128002 "u"
       type class_ref 128258 // Instance
       attributes
-        attribute_ref 128003 // id
+        attribute_ref 128003 // iid
           "u"
         attribute_ref 128131 // tid
           "User"
@@ -776,7 +783,7 @@ ${inlines}
     classinstance 128130 "a"
       type class_ref 128258 // Instance
       attributes
-        attribute_ref 128003 // id
+        attribute_ref 128003 // iid
           "a"
         attribute_ref 128259 // name
           "DHL"
@@ -790,7 +797,7 @@ ${inlines}
     classinstance 128258 "f"
       type class_ref 128258 // Instance
       attributes
-        attribute_ref 128003 // id
+        attribute_ref 128003 // iid
           "f"
         attribute_ref 128131 // tid
           "Factory"
@@ -1044,7 +1051,7 @@ receiving = 1 or sending = 2"
       end
 
       attribute 141698 "ref"
-	protected explicit_type ""
+	protected explicit_type "char *"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
