@@ -4,3 +4,9 @@
 #include "Timestamp.h"
 #include "Relative.h"
 
+Event::Event() {
+}
+
+Event::~Event() {
+}
+

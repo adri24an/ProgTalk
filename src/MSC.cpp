@@ -11,3 +11,9 @@ void MSC::addInst(const Instance * & i) {
 void MSC::addMsg(const Message * & m) {
 }
 
+MSC::MSC() {
+}
+
+MSC::~MSC() {
+}
+

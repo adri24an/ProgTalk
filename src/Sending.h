@@ -11,5 +11,11 @@ class Sending : public Event {
   protected:
     Message * message;
 
+
+  public:
+    Sending();
+
+    ~Sending();
+
 };
 #endif

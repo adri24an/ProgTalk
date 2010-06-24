@@ -6,11 +6,18 @@
 
 class Event;
 
+//This class represents relative times.
 class Relative : public Timestamp {
   protected:
+    Event * reference;
+
     int diff;
 
-    Event * ;
+
+  public:
+    Relative();
+
+    ~Relative();
 
 };
 #endif

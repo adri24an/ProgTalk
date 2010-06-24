@@ -19,5 +19,11 @@ class Message {
 
     char * sms;
 
+
+  public:
+    Message();
+
+    ~Message();
+
 };
 #endif

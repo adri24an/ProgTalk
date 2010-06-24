@@ -17,5 +17,11 @@ class Event {
 
     Relative * ;
 
+
+  public:
+    Event();
+
+    ~Event();
+
 };
 #endif

@@ -21,5 +21,11 @@ class Instance {
 
     Event * events;
 
+
+  public:
+    Instance();
+
+    ~Instance();
+
 };
 #endif

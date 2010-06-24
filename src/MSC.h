@@ -29,5 +29,9 @@ class MSC {
 
     void addMsg(const Message * & m);
 
+    MSC();
+
+    ~MSC();
+
 };
 #endif

@@ -17,5 +17,9 @@ class Timestamp {
   public:
     int getAbsoluteTime();
 
+    Timestamp();
+
+    ~Timestamp();
+
 };
 #endif

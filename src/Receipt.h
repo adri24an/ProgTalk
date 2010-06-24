@@ -11,5 +11,11 @@ class Receipt : public Event {
   protected:
     Message * message;
 
+
+  public:
+    Receipt();
+
+    ~Receipt();
+
 };
 #endif

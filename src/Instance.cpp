@@ -3,3 +3,9 @@
 #include "MSC.h"
 #include "Event.h"
 
+Instance::Instance() {
+}
+
+Instance::~Instance() {
+}
+
