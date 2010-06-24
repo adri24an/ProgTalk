@@ -1,6 +1,11 @@
 #ifndef Parser_h_included
 #define Parser_h_included
 
+#define ABSOLUTE 0
+#define RELATIVE 1
+#define RECEIVING 1
+#define SENDING 2
+
 #include <iostream>
 
 #include "MSC.h"
