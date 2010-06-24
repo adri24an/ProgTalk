@@ -2,9 +2,11 @@
 #define _TIMESTAMP_H
 
 
+#include "Timeref.h"
+
 class Event;
 
-//This class is used by the parser for storaging purposes during parsing.
+//This class represents the time when an event occurs
 class Timestamp {
   protected:
     Timeref ;

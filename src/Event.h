@@ -13,7 +13,7 @@ class Event {
   protected:
     Instance * ;
 
-    Timestamp * ;
+    Timestamp * timestamp;
 
     Relative * ;
 

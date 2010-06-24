@@ -2,9 +2,6 @@
 #define _MESSAGE_H
 
 
-#include <string>
-using namespace std;
-
 class MSC;
 class Receipt;
 class Sending;
@@ -14,11 +11,13 @@ class Message {
   protected:
     MSC * msc;
 
-    string mid;
+    char * mid;
 
-    Receipt * time_rec;
+    Receipt * receipt;
 
-    Sending * time_sent;
+    Sending * sending;
+
+    char * sms;
 
 };
 #endif

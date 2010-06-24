@@ -4,8 +4,6 @@
 
 #include <map>
 using namespace std;
-#include <string>
-using namespace std;
 
 class MSC;
 class Event;
@@ -15,13 +13,13 @@ class Instance {
   protected:
     map<MSC *> msc;
 
-    string id;
+    char * id;
 
-    string tid;
+    char * tid;
 
-    string name;
+    char * name;
 
-    Event * ;
+    Event * events;
 
 };
 #endif
