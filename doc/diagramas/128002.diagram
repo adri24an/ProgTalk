@@ -38,13 +38,13 @@ classcanvas 130313 class_ref 137986 // Relative
 end
 relationcanvas 128393 relation_ref 128002 // <aggregation>
   from ref 128137 z 2007 stereotype "<<map>>" xyz 166 187 2007 to ref 128265
-  role_a_pos 207 229 3000 role_b_pos 207 135 3000
-  multiplicity_a_pos 181 229 3000 multiplicity_b_pos 180 135 3000
+  role_a_pos 204 227 3000 role_b_pos 204 137 3000
+  multiplicity_a_pos 180 227 3000 multiplicity_b_pos 178 137 3000
 end
 relationcanvas 128649 relation_ref 128130 // <aggregation>
-  from ref 128137 z 2007 stereotype "<<map>>" xyz 341 92 2007 to ref 128521
-  role_a_pos 452 73 3000 role_b_pos 238 77 3000
-  multiplicity_a_pos 499 98 3000 multiplicity_b_pos 238 102 3000
+  from ref 128137 z 2007 stereotype "<<map>>" xyz 341 91.5 2007 to ref 128521
+  role_a_pos 458 73 3000 role_b_pos 234 76 3000
+  multiplicity_a_pos 501 100 3000 multiplicity_b_pos 234 103 3000
 end
 relationcanvas 128905 relation_ref 128259 // <association>
   from ref 128777 z 2013 to point 418 194

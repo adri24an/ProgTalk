@@ -19,7 +19,7 @@ end
 relationcanvas 128259 relation_ref 130946 // <aggregation>
   from ref 128003 z 3006 to ref 128131
   no_role_a no_role_b
-  multiplicity_a_pos 248 136 3000 multiplicity_b_pos 315 70 3000
+  multiplicity_a_pos 248 134 3000 multiplicity_b_pos 313 70 3000
 end
 relationcanvas 128770 relation_ref 144770 // <association>
   from ref 128514 z 2001 to ref 128002

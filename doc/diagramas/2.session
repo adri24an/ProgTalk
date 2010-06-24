@@ -1,8 +1,8 @@
-window_sizes 1268 868 206 1056 712 79
+window_sizes 1268 868 215 1047 712 79
 diagrams
-  classdiagram_ref 128002 // AST
-    1053 693 100 18 0 0
-  active  objectdiagram_ref 129154 // lars.msc
+  active  classdiagram_ref 128002 // AST
+    1052 693 100 18 0 0
+  objectdiagram_ref 129154 // lars.msc
     1056 712 100 18 0 0
   classdiagram_ref 128003 // Parser
     844 572 100 4 0 0
@@ -10,7 +10,7 @@ diagrams
     1029 572 100 18 0 0
 end
 show_stereotypes
-selected objectdiagram_ref 129154 // lars.msc
+selected class_ref 137858 // Absolute
 open
   classview_ref 128002 // diagramas
   deploymentview_ref 134531 // Despliegue
