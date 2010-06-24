@@ -1,6 +1,6 @@
 format 73
 "diagramas"
-  revision 27
+  revision 28
   modified_by 2 "adrian"
   cpp_root_dir "/home/adrian/ProgTalk/src/"
 
@@ -104,30 +104,6 @@ ${inlines}
 
       classrelation 131714 // <aggregation>
 	relation_ref 130946 // <aggregation>
-      end
-
-      classrelation 145666 // <association>
-	relation 144514 ----
-	  a role_name "" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 145666 // <association>
-	  b role_name "" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 145794 // <association>
-      end
-
-      classrelation 145922 // <association>
-	relation 144642 ----
-	  a role_name "" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 145922 // <association>
-	  b role_name "" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 146050 // <association>
       end
 
       operation 128002 "addInst"
@@ -1030,10 +1006,6 @@ ${inlines}
 	comment "this represents absolute time when the time is absolute or the diff when the time is relative"
       end
 
-      classrelation 145794 // <association>
-	relation_ref 144514 // <association>
-      end
-
       classrelation 146306 // <association>
 	relation_ref 144770 // <association>
       end
@@ -1141,10 +1113,6 @@ ${inlines}
       explicit_switch_type ""
       
       comment "This class is used by the parser for storaging purposes during parsing."
-      classrelation 146050 // <association>
-	relation_ref 144642 // <association>
-      end
-
       classrelation 146178 // <association>
 	relation 144770 ----
 	  a role_name "" multiplicity "1" protected
