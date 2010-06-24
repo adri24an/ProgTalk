@@ -1,6 +1,6 @@
 format 73
 "diagramas"
-  revision 26
+  revision 27
   modified_by 2 "adrian"
   cpp_root_dir "/home/adrian/ProgTalk/src/"
 
@@ -1555,6 +1555,22 @@ ${namespace_end}"
 
     artifact 141826 "Timeref"
       stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
       associated_classes
 	class_ref 131330 // Timeref
       end
@@ -1562,6 +1578,22 @@ ${namespace_end}"
 
     artifact 141954 "Timestg"
       stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
       associated_classes
 	class_ref 144514 // Timestg
       end
