@@ -10,7 +10,6 @@ diagrams
     1029 572 100 18 0 0
 end
 show_stereotypes
-selected class_ref 137858 // Absolute
 open
   classview_ref 128002 // diagramas
   deploymentview_ref 134531 // Despliegue
