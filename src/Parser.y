@@ -35,7 +35,7 @@
 {
   int num;
   char * cad;
-  Timestamp * tstamp;
+  Timestg * tstamp;
   Timeref * timevalue;
 }
  
@@ -93,362 +93,361 @@ inst_decl_seq:
 inst_decl:
         INSTANCE iid OF tid LEFT_BRACE string RIGHT_BRACE SEMICOLON EOLN
         {
-		  addInst ($2, $4, $6);
-		}
+	  addInst ($2, $4, $6);
+	}
 |
         INSTANCE iid OF tid SEMICOLON EOLN
         {
-		  addInst ($2, $4, (char *) "No_Info_Available");
-		}
+	  addInst ($2, $4, (char *) "No_Info_Available");
+	}
 |
         INSTANCE iid LEFT_BRACE string RIGHT_BRACE SEMICOLON EOLN
         {
-		  addInst ($2, (char *) "No_Info_Available", $4);
-		}
+	  addInst ($2, (char *) "No_Info_Available", $4);
+	}
 |
         INSTANCE iid SEMICOLON EOLN
         {
-		  addInst ($2, (char *) "No_Info_Available", 
-				   (char *)"No_Info_Available");
-		}
+	  addInst ($2, (char *) "No_Info_Available", 
+		   (char *)"No_Info_Available");
+	}
 ;
         
 message_seq:
         // EMPTY
-{ }
+        { }
 |
         message_seq message
-{ }
+        { }
 ;
 
 message:
         MESSAGE mid_opt string_opt origin destiny SEMICOLON EOLN
         { 
-		  if ((strcmp($4->getIid(), "No_Info_Available")) && 
-			  (strcmp($5->getIid(), "No_Info_Available")))
-			{
-			  if ((($4->getValtype() == 0)) && ($5->getValtype() == 0))
-				{
-				  addMsg($2,$3,$4->getIid(),$5->getIid(),
-						 $4->getValue(), $5->getValue());
-				}
-			  else if (($4->getValtype() == 0) && ($5->getValtype() == 1))
-				{
-				  addMsg($2,$3,$4->getIid(),$5->getIid(),
-						 $4->getValue(), ($4->getValue() + $5->getValue()));
-				}
-			  else if  (($4->getValtype() == 0) && ($5->getValtype() == 2))
-				{
-				  addMsg($2,$3,$4->getIid(),$5->getIid(),
-						 $4->getValue(), ($4->getValue() + 1));
-				}
-			  else if (($4->getValtype() == 1) && ($5->getValtype() == 0))
-				{
-				  $$ = msgSize();
-				  
-				  if ($$ != 0)
-					{
-					  $$ = $$ - 1;
-					  $$ = getTime_rec($$) + $4->getValue();
-					  addMsg($2,$3,$4->getIid(),$5->getIid(), 
-							 $$, $5->getValue());
-					}
-				  else
-					{
-					  addMsg($2,$3,$4->getIid(),$5->getIid(), 
-							 $4->getValue(), $5->getValue());
-					}
-				}
-			  else if (($4->getValtype() == 1) && ($5->getValtype() == 1))
-				{
-				  $$ = msgSize();
-				  
-				  if ($$ != 0)
-					{
-					  $$ = $$ - 1;
-					  $$ = getTime_rec($$) + $4->getValue();
-					  addMsg($2,$3,$4->getIid(),$5->getIid(),
-							 $$, ($$ + $5->getValue()));
-					}
-				  else
-					{
-					  addMsg($2,$3,$4->getIid(),$5->getIid(),
-							 $4->getValue(), ($4->getValue() + $5->getValue()));
-					}
-				}
-			  else if (($4->getValtype() == 1) && ($5->getValtype() == 2))
-				{
-				  $$ = msgSize();
-				  
-				  if ($$ != 0)
-					{
-					  $$ = $$ - 1;
-					  $$ = getTime_rec($$) + $4->getValue();
-					  addMsg($2,$3,$4->getIid(),$5->getIid(),
-							 $$, ($$ + 1));
-					}
-				  else
-					{
-					  addMsg($2,$3,$4->getIid(),$5->getIid(),
-							 $4->getValue(), ($4->getValue() + 1));
-					}
-				}
-			  else if (($4->getValtype() == 2) && ($5->getValtype() == 0))
-				{
-				  $$ = msgSize();
-				  
-				  if ($$ != 0)
-					{
-					  $$ = $$ - 1;
-					  $$ = getTime_rec($$) + 1;
-					  addMsg($2,$3,$4->getIid(),$5->getIid(),
-							 $$, $5->getValue());
-					}
-				  else
-					{
-					  addMsg($2,$3,$4->getIid(),$5->getIid(),
-							 0, $5->getValue());
-					}
-				}
-			  else if (($4->getValtype() == 2) && ($5->getValtype() == 1))
-				{			  
-				  $$ = msgSize();
-				  
-				  if ($$ != 0)
-					{
-					  $$ = $$ - 1;
-					  $$ = getTime_rec($$) + 1;
-					  addMsg($2,$3,$4->getIid(),$5->getIid(),
-							 $$, ($$ + $5->getValue()));
-					}
-				  else
-					{
-					  addMsg($2,$3,$4->getIid(),$5->getIid(),
-							 0, $5->getValue());
-					}
-				}
-			  else if (($4->getValtype() == 2) && ($5->getValtype() == 2))
-				{
-				  $$ = msgSize();
-				  
-				  if ($$ != 0)
-					{
-					  $$ = $$ - 1;
-					  $$ = getTime_rec($$) + 1;
-					  addMsg($2,$3,$4->getIid(),$5->getIid(),
-							 $$, ($$ + 1));
-					}
-				  else
-					{
-					  addMsg($2,$3,$4->getIid(),$5->getIid(),
-							 0, 1);
-					}
-				}
-			  else
-				{
-				  std::cout << "FATAL ERROR: the message couldn't be " 
-							<< "parsed due to relative time issues" << std::endl;
-				  exit(0);
-				}		  
-			}
-		  else
-			{
-			  std::cout << "DE MOMENTO NO PERMITIMOS MENSAJES SIN " << 
-				"ORIGEN Y/O DESTINO" << std::endl;
-			  exit(0);
-			}
+	  if ((strcmp($4->getIid(), "No_Info_Available")) && 
+	      (strcmp($5->getIid(), "No_Info_Available")))
+	    {
+	      if ((($4->getValtype() == 0)) && ($5->getValtype() == 0))
+		{
+		  addMsg($2,$3,$4->getIid(),$5->getIid(),
+			 $4->getValue(), $5->getValue());
 		}
+	      else if (($4->getValtype() == 0) && ($5->getValtype() == 1))
+		{
+		  addMsg($2,$3,$4->getIid(),$5->getIid(),
+			 $4->getValue(), ($4->getValue() + $5->getValue()));
+		}
+	      else if  (($4->getValtype() == 0) && ($5->getValtype() == 2))
+		{
+		  addMsg($2,$3,$4->getIid(),$5->getIid(),
+			 $4->getValue(), ($4->getValue() + 1));
+		}
+	      else if (($4->getValtype() == 1) && ($5->getValtype() == 0))
+		{
+		  $$ = msgSize();
+		  
+		  if ($$ != 0)
+		    {
+		      $$ = $$ - 1;
+		      $$ = getTime_rec($$) + $4->getValue();
+		      addMsg($2,$3,$4->getIid(),$5->getIid(), 
+			     $$, $5->getValue());
+		    }
+		  else
+		    {
+		      addMsg($2,$3,$4->getIid(),$5->getIid(), 
+			     $4->getValue(), $5->getValue());
+		    }
+		}
+	      else if (($4->getValtype() == 1) && ($5->getValtype() == 1))
+		{
+		  $$ = msgSize();
+		  
+		  if ($$ != 0)
+		    {
+		      $$ = $$ - 1;
+		      $$ = getTime_rec($$) + $4->getValue();
+		      addMsg($2,$3,$4->getIid(),$5->getIid(),
+			     $$, ($$ + $5->getValue()));
+		    }
+		  else
+		    {
+		      addMsg($2,$3,$4->getIid(),$5->getIid(),
+			     $4->getValue(), ($4->getValue() + $5->getValue()));
+		    }
+		}
+	      else if (($4->getValtype() == 1) && ($5->getValtype() == 2))
+		{
+		  $$ = msgSize();
+		  
+		  if ($$ != 0)
+		    {
+		      $$ = $$ - 1;
+		      $$ = getTime_rec($$) + $4->getValue();
+		      addMsg($2,$3,$4->getIid(),$5->getIid(),
+			     $$, ($$ + 1));
+		    }
+		  else
+		    {
+		      addMsg($2,$3,$4->getIid(),$5->getIid(),
+			     $4->getValue(), ($4->getValue() + 1));
+		    }
+		}
+	      else if (($4->getValtype() == 2) && ($5->getValtype() == 0))
+		{
+		  $$ = msgSize();
+		  
+		  if ($$ != 0)
+		    {
+		      $$ = $$ - 1;
+		      $$ = getTime_rec($$) + 1;
+		      addMsg($2,$3,$4->getIid(),$5->getIid(),
+			     $$, $5->getValue());
+		    }
+		  else
+		    {
+		      addMsg($2,$3,$4->getIid(),$5->getIid(),
+			     0, $5->getValue());
+		    }
+		}
+	      else if (($4->getValtype() == 2) && ($5->getValtype() == 1))
+		{			  
+		  $$ = msgSize();
+		  
+		  if ($$ != 0)
+		    {
+		      $$ = $$ - 1;
+		      $$ = getTime_rec($$) + 1;
+		      addMsg($2,$3,$4->getIid(),$5->getIid(),
+			     $$, ($$ + $5->getValue()));
+		    }
+		  else
+		    {
+		      addMsg($2,$3,$4->getIid(),$5->getIid(),
+			     0, $5->getValue());
+		    }
+		}
+	      else if (($4->getValtype() == 2) && ($5->getValtype() == 2))
+		{
+		  $$ = msgSize();
+		  
+		  if ($$ != 0)
+		    {
+		      $$ = $$ - 1;
+		      $$ = getTime_rec($$) + 1;
+		      addMsg($2,$3,$4->getIid(),$5->getIid(),
+			     $$, ($$ + 1));
+		    }
+		  else
+		    {
+		      addMsg($2,$3,$4->getIid(),$5->getIid(),
+			     0, 1);
+		    }
+		}
+	      else
+		{
+		  std::cout << "FATAL ERROR: the message couldn't be " 
+			    << "parsed due to relative time issues" << std::endl;
+		  exit(0);
+		}		  
+	    }
+	  else
+	    {
+	      std::cout << "DE MOMENTO NO PERMITIMOS MENSAJES SIN " << 
+		"ORIGEN Y/O DESTINO" << std::endl;
+	      exit(0);
+	    }
+	}
 ;
 
 mid_opt:
         // EMPTY
         {
-		  $$ = new char[18];
+	  $$ = new char[18];
           strcpy ($$,"No_Info_Available");
-		}
+	}
 |
         mid
         {
           strcpy ($$,$1);
-		}
+	}
 ;
 
 string_opt:
         // EMPTY
         {
-		  $$ = new char[18];
+	  $$ = new char[18];
           strcpy ($$,"No_Info_Available");
-		}
+	}
 |
         LEFT_BRACE string RIGHT_BRACE	
         {
-		  $$ = new char[strlen($2)+1];
+	  $$ = new char[strlen($2)+1];
           strcpy ($$, $2);
-		}     
+	}     
 ;
 
 origin:
         // EMPTY
         {
-		  $$ = new Timestamp((char *) "No_Info_Available", NULL);
-		}
+	  $$ = new Timestg((char *) "No_Info_Available", NULL);
+	}
 |
         FROM iid time_ref_opt
         {
-		  $$ = new Timestamp($2, $3);
-		}
+	  $$ = new Timestg($2, $3);
+	}
 ;
 
 time_ref_opt:
         // EMPTY
         {
-		  $$ = new Timeref(2, 1);
-		}
+	  $$ = new Timeref(2, 1);
+	}
 |
         AT time_ref
         {
-		  
-		  $$ = $2;
-		}
+	  $$ = $2;
+	}
 ;
 
 destiny:
         // EMPTY
         {
-		  $$ = new Timestamp((char *) "No_Info_Available", NULL);
-		}
+	  $$ = new Timestg((char *) "No_Info_Available", NULL);
+	}
 |
         TO iid time_ref_opt
         {
-		  $$ = new Timestamp($2, $3);
-		}
+	  $$ = new Timestg($2, $3);
+	}
 ;
  
 time_ref:
         abs_time
         {
-		  $$ = $1;
-		}
+	  $$ = $1;
+	}
 |
         rel_time
         { 
-		  $$ = $1;
-		}
+	  $$ = $1;
+	}
 ;
 
 abs_time:
         num
-		{
-		  $$ = new Timeref(0, $1);
-		}
+	{
+	  $$ = new Timeref(ABSOLUTE, $1, 0, NULL);
+	}
 ;
 
 rel_time:
         dif_time
-		{
-		  $$ = new Timeref(1, $1);
-		}
+	{
+	  $$ = new Timeref(RELATIVE, $1);
+	}
 |
         ref dif_time
-		{
-		  $$ = new Timeref(0, $1 + $2); 
-		}
+        {
+	  $$ = new Timeref(RELATIVE, $1 + $2); 
+	}
 ;
 
 ref:
         // EMPTY
         { 
-		  $$ = 0;
-		}
+	  $$ = 0;
+	}
 
 |
         mid EXCLAMATION
-	    {
-		  $$ = getTime_sent($1);
-		} 
+        {
+	  $$ = getTime_sent($1);
+	} 
 |
         mid INTERROGATION
-	    {
-		  $$ = getTime_rec($1);
-		}
+	{
+	  $$ = getTime_rec($1);
+	}
 ;
 
 dif_time:
         // EMPTY
         { 
-		  $$ = 1;
-		}
+	  $$ = 1;
+	}
 |
         PLUS num
-	    {
-		  $$ = $2;
-		}
+        {
+	  $$ = $2;
+	}
 |
         MINUS num
-	    {
-		  $$ = -$2;
-		}
+	{
+	  $$ = -$2;
+	}
 ;
 
 iid:
         ID
-	    {
-		  $$ = new char[strlen(d_scanner.YYText())+1];
+	{
+	  $$ = new char[strlen(d_scanner.YYText())+1];
           strcpy ($$, d_scanner.YYText());
-		  if (!(strcmp ($$, "instance")) || !(strcmp ($$, "of")) || 
-			  !(strcmp ($$, "message")) || !(strcmp ($$, "from")) ||
-			  !(strcmp ($$, "to")))
-			{
-			  std::cout << "Error: a reserved word (" << $$ << 
-				") was used as an identifier" << std::endl;
-			  exit(0);
-			}
-		}
+	  if (!(strcmp ($$, "instance")) || !(strcmp ($$, "of")) || 
+	      !(strcmp ($$, "message")) || !(strcmp ($$, "from")) ||
+	      !(strcmp ($$, "to")))
+	    {
+	      std::cout << "Error: a reserved word (" << $$ << 
+		") was used as an identifier" << std::endl;
+	      exit(0);
+	    }
+	}
 ;
 
 tid:
         ID
-	    {
-		  $$ = new char[strlen(d_scanner.YYText())+1];
+        {
+	  $$ = new char[strlen(d_scanner.YYText())+1];
           strcpy ($$, d_scanner.YYText());
-		  if (!(strcmp ($$, "instance")) || !(strcmp ($$, "of")) || 
-			  !(strcmp ($$, "message")) || !(strcmp ($$, "from")) ||
-			  !(strcmp ($$, "to")))
-			{
-			  std::cout << "Error: a reserved word (" << $$ << 
-				") was used as an identifier" << std::endl;
-			  exit(0);
-			}
-		}
+	  if (!(strcmp ($$, "instance")) || !(strcmp ($$, "of")) || 
+	      !(strcmp ($$, "message")) || !(strcmp ($$, "from")) ||
+	      !(strcmp ($$, "to")))
+	    {
+	      std::cout << "Error: a reserved word (" << $$ << 
+		") was used as an identifier" << std::endl;
+	      exit(0);
+	    }
+	}
 ;
 
 mid:
         ID
-	    {
-		  $$ = new char[strlen(d_scanner.YYText())+1];
+	{
+	  $$ = new char[strlen(d_scanner.YYText())+1];
           strcpy ($$, d_scanner.YYText());
-		  if (!(strcmp ($$, "instance")) || !(strcmp ($$, "of")) || 
-			  !(strcmp ($$, "message")) || !(strcmp ($$, "from")) ||
-			  !(strcmp ($$, "to")))
-			  {
-				std::cout << "Error: a reserved word (" << $$ << 
-				  ") was used as an identifier" << std::endl;
-				exit(0);
-			  }
-		}
+	  if (!(strcmp ($$, "instance")) || !(strcmp ($$, "of")) || 
+	      !(strcmp ($$, "message")) || !(strcmp ($$, "from")) ||
+	      !(strcmp ($$, "to")))
+	    {
+	      std::cout << "Error: a reserved word (" << $$ << 
+		") was used as an identifier" << std::endl;
+	      exit(0);
+	    }
+	}
 ;
 
 string:
         STRING
-	    {
-		  $$ = new char[strlen(d_scanner.YYText())+1];
+        {
+	  $$ = new char[strlen(d_scanner.YYText())+1];
           strcpy ($$, d_scanner.YYText());
-		}
+	}
 ;
 
 num:
         NUM 
-	    {
-		  $$ = atoi(d_scanner.YYText());
-		}
+        {
+	  $$ = atoi(d_scanner.YYText());
+	}
 ;
