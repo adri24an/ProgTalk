@@ -4,3 +4,7 @@
 *.log
 *.pdf
 *.backup
+*.output
+*.ih
+Parserbase.h
+parse.cc
