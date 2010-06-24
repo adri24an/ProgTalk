@@ -10,8 +10,16 @@ diagrams
     1029 572 100 18 0 0
 end
 show_stereotypes
+selected operation_ref 136706 // Relative
 open
-  classview_ref 128002 // diagramas
+  class_ref 128130 // Message
+  class_ref 128258 // Instance
+  class_ref 130818 // Receipt
+  class_ref 131202 // Timestamp
+  class_ref 137858 // Absolute
+  class_ref 137986 // Relative
+  class_ref 131330 // Timeref
+  class_ref 144514 // Timestg
   deploymentview_ref 134531 // Despliegue
 end
 end
