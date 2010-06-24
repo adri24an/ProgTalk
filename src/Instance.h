@@ -13,10 +13,13 @@ class Instance {
   protected:
     map<MSC *> msc;
 
-    char * id;
+    //Instance id.
+    char * iid;
 
+    //Type id.
     char * tid;
 
+    //Instance alias.
     char * name;
 
     Event * events;

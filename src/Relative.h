@@ -11,6 +11,7 @@ class Relative : public Timestamp {
   protected:
     Event * reference;
 
+    //Difference with the relative time.
     int diff;
 
 

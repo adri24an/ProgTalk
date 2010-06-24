@@ -11,12 +11,14 @@ class Message {
   protected:
     MSC * msc;
 
+    //Message id.
     char * mid;
 
     Receipt * receipt;
 
     Sending * sending;
 
+    //Text transmitted in the Message.
     char * sms;
 
 

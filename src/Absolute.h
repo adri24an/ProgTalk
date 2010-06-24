@@ -7,6 +7,7 @@
 //This class represents absolute times.
 class Absolute : public Timestamp {
   protected:
+    //Absolute time of the Event.
     int time;
 
 
