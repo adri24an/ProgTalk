@@ -4,14 +4,8 @@
 
 #include "Event.h"
 
-class Message;
-
 //This class represents an event that occurs when a message is received.
 class Receipt : public Event {
-  protected:
-    Message * message;
-
-
   public:
     Receipt();
 

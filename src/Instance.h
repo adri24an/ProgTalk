@@ -2,17 +2,9 @@
 #define _INSTANCE_H
 
 
-#include <map>
-using namespace std;
-
-class MSC;
-class Event;
-
 //This class represents an instance in a communication.
 class Instance {
   protected:
-    map<MSC *> msc;
-
     //Instance id.
     char * iid;
 
@@ -21,8 +13,6 @@ class Instance {
 
     //Instance alias.
     char * name;
-
-    Event * events;
 
 
   public:

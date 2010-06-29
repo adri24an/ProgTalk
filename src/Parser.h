@@ -9,7 +9,7 @@
 #include <iostream>
 
 #include "MSC.h"
-#include "Timestamp.h"
+#include "Timestg.h"
 #include "Timeref.h"
 #include "Parserbase.h"
 #include "Scanner.h"
@@ -33,19 +33,8 @@ class Parser: public ParserBase
   void addInst(char * new_iid, char * new_tid, char * new_name);
   //Adds a new message to msc
   void addMsg(char * new_mid, char * new_sms, char * new_origin, 
-			  char * new_destiny, int new_time_sent, int new_time_rec);
-  //Returns the time when the message marked with mid was sent
-  int getTime_sent(char * mid);
-  //Returns the time when the message marked with mid was received
-  int getTime_rec(char * mid);
-  //Returns the time when the message marked with id was sent
-  int getTime_sent(int id);
-  //Returns the time when the message marked with id was received
-  int getTime_rec(int id);
-  //Returns the number of messages storaged in msc
-  int msgSize();
-  //A custom print operation
-  void myPrint();       
+	      char * new_destiny, int new_time_sent, int new_time_rec);
+   
 
  private:
   
@@ -92,38 +81,7 @@ inline void Parser::addMsg(char * new_mid, char * new_sms, char * new_origin,
 	       new_time_rec);
 }
 
-inline int Parser::getTime_sent(char * mid)
-{
-  int time = msc->getTime_sent(mid);
 
-  return time;
-}
-
-inline int Parser::getTime_rec(char * mid)
-{
-  int time = msc->getTime_rec(mid);
-
-  return time;
-}
-
-inline int Parser::getTime_sent(int id)
-{
-  int time = msc->getTime_sent(id);
-
-  return time;
-}
-
-inline int Parser::getTime_rec(int id)
-{
-  int time = msc->getTime_rec(id);
-
-  return time;
-}
-
-inline int Parser :: msgSize()
-{
-  return msc->msgSize();
-}
 
 inline void Parser::error(char const *msg)
 {
@@ -133,12 +91,6 @@ inline void Parser::error(char const *msg)
 inline int Parser::lex()
 {
     return d_scanner.yylex();
-}
-
-//A custom print operation
-inline void Parser::myPrint ()
-{
-    msc->myPrint();
 }
 
 //Default print operation (not implemented)

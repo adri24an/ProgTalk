@@ -9,7 +9,8 @@ class Event;
 //This class represents relative times.
 class Relative : public Timestamp {
   protected:
-    Event * reference;
+    //Reference to the Event that the time is relative
+    Event * ref;
 
     //Difference with the relative time.
     int diff;

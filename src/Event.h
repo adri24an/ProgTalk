@@ -4,18 +4,16 @@
 
 class Instance;
 class Timestamp;
-class Relative;
 
-//This class represents an event in the communication between instances. An event is represented by:
+//This class represents an event in the communication between instances. 
+//An event is represented by:
 //- instance where the event occurred
 //- time when the event occurred
 class Event {
   protected:
-    Instance * ;
+    Instance * inst;
 
-    Timestamp * timestamp;
-
-    Relative * ;
+    Timestamp * time;
 
 
   public:
