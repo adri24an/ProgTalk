@@ -2,12 +2,12 @@
 #include "MSC.h"
 #include "Message.h"
 #include "Instance.h"
-#include "Timeref.h"
-#include "Timestg.h"
 
+//This operation adds new instances to msc.
 void MSC::addInst(const Instance * & i) {
 }
 
+//This operation adds new messages to msc.
 void MSC::addMsg(const Message * & m) {
 }
 
