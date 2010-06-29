@@ -1,6 +1,6 @@
 format 73
 "diagramas"
-  revision 29
+  revision 31
   modified_by 2 "adrian"
   cpp_root_dir "/home/adrian/ProgTalk/src/"
 
@@ -58,7 +58,7 @@ format 73
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default show_stereotype_properties default
     classdiagram 128002 "AST"
-      draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations no hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
       size A4-Landscape
     end
 
@@ -74,36 +74,27 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      comment "This class is used by the parser to access to all the instances and messages storaged."
-      classrelation 128002 // messages (<aggregation>)
-	relation 128002 o---
+      comment "This class is used by the parser to access to all the 
+instances and messages storaged."
+      classrelation 128002 // messages ()
+	relation 128002 o--> name ""
 	  stereotype "map"
 	  a role_name "messages" multiplicity "*" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
 "
-	    classrelation_ref 128002 // messages (<aggregation>)
-	  b role_name "msc" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 128130 // msc (<aggregation>)
+	    classrelation_ref 128002 // messages ()
+	  b multiplicity "1" parent class_ref 128130 // Message
 	  association_explicit_type "int"
       end
 
-      classrelation 128258 // instances (<aggregation>)
-	relation 128130 o---
+      classrelation 128258 // instances ()
+	relation 128130 o--> name ""
 	  stereotype "map"
 	  a role_name "instances" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 128258 // instances (<aggregation>)
-	  b role_name "msc" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
 "
-	    classrelation_ref 128386 // msc (<aggregation>)
-      end
-
-      classrelation 131714 // <aggregation>
-	relation_ref 130946 // <aggregation>
+	    classrelation_ref 128258 // instances ()
+	  b multiplicity "1" parent class_ref 128258 // Instance
       end
 
       operation 128002 "addInst"
@@ -119,6 +110,7 @@ ${inlines}
 	
 	
 	
+	comment "This operation adds new instances to msc."
       end
 
       operation 128130 "addMsg"
@@ -134,6 +126,7 @@ ${inlines}
 	
 	
 	
+	comment "This operation adds new messages to msc."
       end
 
       operation 134658 "MSC"
@@ -178,10 +171,6 @@ ${inlines}
       explicit_switch_type ""
       
       comment "This class represents a message in a communication between instances."
-      classrelation 128130 // msc (<aggregation>)
-	relation_ref 128002 // <aggregation>
-      end
-
       attribute 128387 "mid"
 	protected explicit_type "char *"
 	multiplicity "1"
@@ -194,30 +183,6 @@ ${inlines}
 	comment "Message id."
       end
 
-      classrelation 130051 // receipt (<association>)
-	relation 129283 ----
-	  a role_name "receipt" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 130051 // receipt (<association>)
-	  b role_name "message" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 130179 // message (<association>)
-      end
-
-      classrelation 130307 // sending (<association>)
-	relation 129411 ----
-	  a role_name "sending" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 130307 // sending (<association>)
-	  b role_name "message" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 130435 // message (<association>)
-      end
-
       attribute 128002 "sms"
 	protected explicit_type "char *"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
@@ -227,6 +192,26 @@ ${inlines}
 	python_decl ""
 	idl_decl ""
 	comment "Text transmitted in the Message."
+      end
+
+      classrelation 130051 // receipt ()
+	relation 129283 ---> name ""
+	  a role_name "receipt" multiplicity "1" protected
+	    comment "Author and time of receipt."
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 130051 // receipt ()
+	  b multiplicity "1" parent class_ref 130818 // Receipt
+      end
+
+      classrelation 130307 // sending ()
+	relation 129411 ---> name ""
+	  a role_name "sending" multiplicity "1" protected
+	    comment "Author and time of sending."
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 130307 // sending ()
+	  b multiplicity "1" parent class_ref 130946 // Sending
       end
 
       operation 134914 "Message"
@@ -271,10 +256,6 @@ ${inlines}
       explicit_switch_type ""
       
       comment "This class represents an instance in a communication."
-      classrelation 128386 // msc (<aggregation>)
-	relation_ref 128130 // <aggregation>
-      end
-
       attribute 128003 "iid"
 	unique protected explicit_type "char *"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
@@ -306,10 +287,6 @@ ${inlines}
 	python_decl ""
 	idl_decl ""
 	comment "Instance alias."
-      end
-
-      classrelation 128643 // <association>
-	relation_ref 128259 // <association>
       end
 
       operation 135170 "Instance"
@@ -353,43 +330,26 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      comment "This class represents an event in the communication between instances. An event is represented by:
+      comment "This class represents an event in the communication between instances. 
+An event is represented by:
 - instance where the event occurred
 - time when the event occurred"
-      classrelation 128515 // <association>
-	relation 128259 ----
-	  a role_name "" multiplicity "*" protected
+      classrelation 153346 // inst ()
+	relation 151554 ---> name ""
+	  a role_name "inst" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128515 // <association>
-	  b role_name "events" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 128643 // <association>
+	    classrelation_ref 153346 // inst ()
+	  b parent class_ref 128258 // Instance
       end
 
-      classrelation 128771 // timestamp (<association>)
-	relation 128387 ----
-	  a role_name "timestamp" multiplicity "1" protected
+      classrelation 128771 // time ()
+	relation 128387 ---> name ""
+	  a role_name "time" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128771 // timestamp (<association>)
-	  b role_name "" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 128899 // <association>
-      end
-
-      classrelation 139010 // <association>
-	relation 137986 ----
-	  a role_name "" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 139010 // <association>
-	  b role_name "reference" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 139138 // reference (<association>)
+	    classrelation_ref 128771 // time ()
+	  b multiplicity "*" parent class_ref 131202 // Timestamp
       end
 
       operation 135426 "Event"
@@ -442,10 +402,6 @@ ${inlines}
 	  b parent class_ref 129666 // Event
       end
 
-      classrelation 130179 // message (<association>)
-	relation_ref 129283 // <association>
-      end
-
       operation 135682 "Receipt"
 	public explicit_return_type ""
 	nparams 0
@@ -496,10 +452,6 @@ ${inlines}
 	  b parent class_ref 129666 // Event
       end
 
-      classrelation 130435 // message (<association>)
-	relation_ref 129411 // <association>
-      end
-
       operation 135938 "Sending"
 	public explicit_return_type ""
 	nparams 0
@@ -542,10 +494,6 @@ ${inlines}
       explicit_switch_type ""
       
       comment "This class represents the time when an event occurs"
-      classrelation 128899 // <association>
-	relation_ref 128387 // <association>
-      end
-
       operation 128003 "getAbsoluteTime"
 	public explicit_return_type "int"
 	nparams 0
@@ -671,8 +619,14 @@ ${inlines}
 	  b parent class_ref 131202 // Timestamp
       end
 
-      classrelation 139138 // reference (<association>)
-	relation_ref 137986 // <association>
+      classrelation 153090 // ref ()
+	relation 151426 ---> name ""
+	  a role_name "ref" multiplicity "1" protected
+	    comment "Reference to the Event that the time is relative"
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 153090 // ref ()
+	  b parent class_ref 129666 // Event
       end
 
       attribute 134658 "diff"
@@ -725,17 +679,17 @@ ${inlines}
       attributes
         end
       relations
-        relation_ref 128002 // <aggregation>
+        relation_ref 128002 // 
           classinstance_ref 128770 // 3
-        relation_ref 128002 // <aggregation>
+        relation_ref 128002 // 
           classinstance_ref 128642 // 2
-        relation_ref 128002 // <aggregation>
+        relation_ref 128002 // 
           classinstance_ref 128386 // 1
-        relation_ref 128130 // <aggregation>
+        relation_ref 128130 // 
           classinstance_ref 128002 // u
-        relation_ref 128130 // <aggregation>
+        relation_ref 128130 // 
           classinstance_ref 128130 // a
-        relation_ref 128130 // <aggregation>
+        relation_ref 128130 // 
           classinstance_ref 128258 // f
         end
     end
@@ -787,9 +741,9 @@ ${inlines}
           "request send to dhl"
         end
       relations
-        relation_ref 129411 // <association>
+        relation_ref 129411 // 
           classinstance_ref 129026 // send
-        relation_ref 129283 // <association>
+        relation_ref 129283 // 
           classinstance_ref 128898 // rec
         end
     end
@@ -803,9 +757,9 @@ ${inlines}
           "send"
         end
       relations
-        relation_ref 129283 // <association>
+        relation_ref 129283 // 
           classinstance_ref 129666 // rec
-        relation_ref 129411 // <association>
+        relation_ref 129411 // 
           classinstance_ref 129410 // send
         end
     end
@@ -817,9 +771,9 @@ ${inlines}
           "internal"
         end
       relations
-        relation_ref 129411 // <association>
+        relation_ref 129411 // 
           classinstance_ref 129922 // send
-        relation_ref 129283 // <association>
+        relation_ref 129283 // 
           classinstance_ref 130050 // rec
         end
     end
@@ -829,12 +783,8 @@ ${inlines}
       attributes
         end
       relations
-        relation_ref 128387 // <association>
+        relation_ref 128387 // 
           classinstance_ref 128009 // 
-        relation_ref 128259 // <association>
-          classinstance_ref 128130 // a
-        relation_ref 137986 // <association>
-          classinstance_ref 130306 // 
         end
     end
 
@@ -843,10 +793,6 @@ ${inlines}
       attributes
         end
       relations
-        relation_ref 137986 // <association>
-          classinstance_ref 128009 // 
-        relation_ref 128259 // <association>
-          classinstance_ref 128002 // u
         end
     end
 
@@ -865,12 +811,6 @@ ${inlines}
       attributes
         end
       relations
-        relation_ref 128259 // <association>
-          classinstance_ref 128130 // a
-        relation_ref 137986 // <association>
-          classinstance_ref 129794 // 
-        relation_ref 137986 // <association>
-          classinstance_ref 130178 // 
         end
     end
 
@@ -889,9 +829,7 @@ ${inlines}
       attributes
         end
       relations
-        relation_ref 128259 // <association>
-          classinstance_ref 128258 // f
-        relation_ref 128387 // <association>
+        relation_ref 128387 // 
           classinstance_ref 129794 // 
         end
     end
@@ -911,9 +849,7 @@ ${inlines}
       attributes
         end
       relations
-        relation_ref 128259 // <association>
-          classinstance_ref 128130 // a
-        relation_ref 128387 // <association>
+        relation_ref 128387 // 
           classinstance_ref 130178 // 
         end
     end
@@ -923,9 +859,7 @@ ${inlines}
       attributes
         end
       relations
-        relation_ref 128259 // <association>
-          classinstance_ref 128130 // a
-        relation_ref 128387 // <association>
+        relation_ref 128387 // 
           classinstance_ref 130306 // 
         end
     end
@@ -976,7 +910,7 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
-	comment "this represents if the time is absolute or relative"
+	comment "This represents if the time is absolute or relative"
       end
 
       attribute 141314 "value"
@@ -987,11 +921,8 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
-	comment "this represents absolute time when the time is absolute or the diff when the time is relative"
-      end
-
-      classrelation 146306 // <association>
-	relation_ref 144770 // <association>
+	comment "This represents absolute time when the time is absolute or the diff 
+when the time is relative"
       end
 
       attribute 141570 "mode"
@@ -1002,8 +933,10 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
-	comment "this represents if the relative time depends on sending or receipt.
-receiving = 1 or sending = 2"
+	comment "This represents if the relative time depends on sending or receipt.
+receiving = 1 or sending = 2
+
+when the time is absolute, this value is 0."
       end
 
       attribute 141698 "ref"
@@ -1014,7 +947,7 @@ receiving = 1 or sending = 2"
 	php_decl ""
 	python_decl ""
 	idl_decl ""
-	comment "this represents the mid of the message that references the relative time."
+	comment "This represents the mid of the message that references the relative time."
       end
 
       operation 136962 "Timeref"
@@ -1059,28 +992,22 @@ ${inlines}
       explicit_switch_type ""
       
       comment "This class parse an input file with the communication between 2 or more entities"
-      classrelation 131586 // <aggregation>
-	relation 130946 o---
-	  a role_name "" multiplicity "1" protected
+      classrelation 131586 // msc ()
+	relation 130946 ---> name ""
+	  a role_name "msc" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 131586 // <aggregation>
-	  b role_name "" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 131714 // <aggregation>
+	    classrelation_ref 131586 // msc ()
+	  b multiplicity "1" parent class_ref 128002 // MSC
       end
 
-      classrelation 146434 // <association>
-	relation 144898 ----
-	  a role_name "" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+      classrelation 146434 // timestg ()
+	relation 144898 ---> name ""
+	  a role_name "timestg" multiplicity "*" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
 "
-	    classrelation_ref 146434 // <association>
-	  b role_name "" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 146562 // <association>
+	    classrelation_ref 146434 // timestg ()
+	  b multiplicity "1" parent class_ref 144514 // Timestg
       end
     end
 
@@ -1097,20 +1024,13 @@ ${inlines}
       explicit_switch_type ""
       
       comment "This class is used by the parser for storaging purposes during parsing."
-      classrelation 146178 // <association>
-	relation 144770 ----
-	  a role_name "" multiplicity "1" protected
+      classrelation 146178 // timeref ()
+	relation 144770 ---> name ""
+	  a role_name "timeref" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 146178 // <association>
-	  b role_name "" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 146306 // <association>
-      end
-
-      classrelation 146562 // <association>
-	relation_ref 144898 // <association>
+	    classrelation_ref 146178 // timeref ()
+	  b multiplicity "1" parent class_ref 131330 // Timeref
       end
 
       attribute 141442 "iid"
