@@ -1,7 +1,7 @@
 format 73
 "diagramas"
-  revision 31
-  modified_by 2 "adrian"
+  revision 32
+  modified_by 9 "angel"
   cpp_root_dir "/home/adrian/ProgTalk/src/"
 
 
@@ -100,7 +100,7 @@ instances and messages storaged."
       operation 128002 "addInst"
 	public explicit_return_type "void"
 	nparams 1
-	  param in name "i" explicit_type "Instance *"
+	  param in name "i" type class_ref 128258 // Instance
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -116,7 +116,7 @@ instances and messages storaged."
       operation 128130 "addMsg"
 	public explicit_return_type "void"
 	nparams 1
-	  param in name "m" explicit_type "Message *"
+	  param in name "m" type class_ref 128130 // Message
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
