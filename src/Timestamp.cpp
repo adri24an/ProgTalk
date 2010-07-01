@@ -1,12 +1,12 @@
 
 #include "Timestamp.h"
 
-int Timestamp::getAbsoluteTime() {
-}
-
 Timestamp::Timestamp() {
 }
 
 Timestamp::~Timestamp() {
+}
+
+int Timestamp::getAbsoluteTime() {
 }
 

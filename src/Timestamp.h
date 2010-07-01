@@ -5,11 +5,11 @@
 //This class represents the time when an event occurs
 class Timestamp {
   public:
-    int getAbsoluteTime();
-
     Timestamp();
 
     ~Timestamp();
+
+    int getAbsoluteTime();
 
 };
 #endif
