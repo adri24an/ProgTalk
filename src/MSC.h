@@ -19,10 +19,10 @@ class MSC {
 
   public:
     //This operation adds new instances to msc.
-    void addInst(const Instance * & i);
+    void addInst(const Instance & i);
 
     //This operation adds new messages to msc.
-    void addMsg(const Message * & m);
+    void addMsg(const Message & m);
 
     MSC();
 
