@@ -1,6 +1,6 @@
 format 73
 "diagramas"
-  revision 34
+  revision 35
   modified_by 9 "angel"
   cpp_root_dir "../../src/"
 
@@ -521,12 +521,9 @@ ${inlines}
       end
 
       operation 128003 "getAbsoluteTime"
-	cpp_virtual public explicit_return_type "int"
+	abstract cpp_virtual public explicit_return_type "int"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
 "
 	
 	
