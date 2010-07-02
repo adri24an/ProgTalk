@@ -80,8 +80,8 @@ relationcanvas 129673 relation_ref 129411 //
 end
 relationcanvas 129929 relation_ref 128387 // 
   from ref 128777 z 3006 to ref 129801
-  role_a_pos 600 193 3000 no_role_b
-  multiplicity_a_pos 614 220 3000 multiplicity_b_pos 453 277 3000
+  role_a_pos 595 195 3000 no_role_b
+  multiplicity_a_pos 613 220 3000 multiplicity_b_pos 459 275 3000
 end
 relationcanvas 130185 relation_ref 137730 // <generalisation>
   from ref 130057 z 3012 to ref 129801

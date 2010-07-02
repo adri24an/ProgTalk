@@ -1,8 +1,9 @@
 format 73
 "diagramas"
-  revision 33
-  modified_by 2 "adrian"
+  revision 34
+  modified_by 9 "angel"
   cpp_root_dir "../../src/"
+
 
   
   // class settings
@@ -36,8 +37,6 @@ format 73
 
   mark_for_import
   
-  cpp_h_dir "../../src/"
-  cpp_src_dir "../../src/"
   ncouples 1
   key "check-in-cmd" value "specify the command containing %file and %dir or %dironly"
   classview 128002 "diagramas"
@@ -522,7 +521,7 @@ ${inlines}
       end
 
       operation 128003 "getAbsoluteTime"
-	public explicit_return_type "int"
+	cpp_virtual public explicit_return_type "int"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
