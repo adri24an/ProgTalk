@@ -2,7 +2,7 @@ format 73
 "diagramas"
   revision 32
   modified_by 9 "angel"
-  cpp_root_dir "/home/adrian/ProgTalk/src/"
+  cpp_root_dir "../../src/"
 
 
   
@@ -37,8 +37,8 @@ format 73
 
   mark_for_import
   
-  cpp_h_dir "/home/adrian/ProgTalk/src/"
-  cpp_src_dir "/home/adrian/ProgTalk/src/"
+  cpp_h_dir "../../src/"
+  cpp_src_dir "../../src/"
   ncouples 1
   key "check-in-cmd" value "specify the command containing %file and %dir or %dironly"
   classview 128002 "diagramas"
