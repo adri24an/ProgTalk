@@ -10,7 +10,7 @@ classcanvas 128265 class_ref 128130 // Message
 end
 classcanvas 128521 class_ref 128258 // Instance
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 516 51 2006
+  xyz 515 58 2006
 end
 classcanvas 128777 class_ref 129666 // Event
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
@@ -43,18 +43,19 @@ relationcanvas 128002 relation_ref 151426 //
 end
 relationcanvas 128130 relation_ref 151554 // 
   from ref 128777 z 2013 to ref 128521
-  role_a_pos 520 158 3000 no_role_b
-  multiplicity_a_pos 494 158 3000 no_multiplicity_b
+  role_a_pos 519 163 3000 no_role_b
+  multiplicity_a_pos 493 163 3000 no_multiplicity_b
 end
 relationcanvas 128393 relation_ref 128002 // 
-  from ref 128137 z 2007 stereotype "<<map>>" xyz 169 204 2007 to ref 128265
-  role_a_pos 211 229 3000 no_role_b
-  multiplicity_a_pos 185 229 3000 multiplicity_b_pos 181 167 3000
+  decenter_end 449
+  from ref 128137 z 2007 stereotype "<<map>>" xyz 168 204 2007 to ref 128265
+  role_a_pos 206 227 3000 no_role_b
+  multiplicity_a_pos 182 227 3000 multiplicity_b_pos 180 171 3000
 end
 relationcanvas 128649 relation_ref 128130 // 
-  from ref 128137 z 2007 stereotype "<<map>>" xyz 341 106 2007 to ref 128521
-  role_a_pos 458 87 3000 no_role_b
-  multiplicity_a_pos 501 114 3000 multiplicity_b_pos 234 120 3000
+  from ref 128137 z 2007 stereotype "<<map>>" xyz 340.5 110 2007 to ref 128521
+  role_a_pos 457 94 3000 no_role_b
+  multiplicity_a_pos 500 121 3000 multiplicity_b_pos 234 121 3000
 end
 relationcanvas 129161 relation_ref 130690 // <generalisation>
   from ref 129033 z 3006 to ref 128777
