@@ -18,11 +18,11 @@ classcanvas 128777 class_ref 129666 // Event
 end
 classcanvas 129033 class_ref 130818 // Receipt
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 410 428 3005
+  xyz 410 444 3005
 end
 classcanvas 129417 class_ref 130946 // Sending
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 306 376 3005
+  xyz 279 376 3005
 end
 classcanvas 129801 class_ref 131202 // Timestamp
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
@@ -62,10 +62,10 @@ relationcanvas 129161 relation_ref 130690 // <generalisation>
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129289 relation_ref 129283 // 
-  from ref 128265 z 3006 to point 197 445
+  from ref 128265 z 3006 to point 198 484
   line 130825 z 3006 to ref 129033
-  role_a_pos 366 438 3000 no_role_b
-  multiplicity_a_pos 393 465 3000 multiplicity_b_pos 183 349 3000
+  role_a_pos 366 466 3000 no_role_b
+  multiplicity_a_pos 393 493 3000 multiplicity_b_pos 184 349 3000
 end
 relationcanvas 129545 relation_ref 130818 // <generalisation>
   from ref 129417 z 3006 to ref 128777
@@ -73,10 +73,10 @@ relationcanvas 129545 relation_ref 130818 // <generalisation>
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129673 relation_ref 129411 // 
-  from ref 128265 z 3006 to point 335 283
+  from ref 128265 z 3006 to point 308 293
   line 130953 z 3006 to ref 129417
-  role_a_pos 347 355 3000 no_role_b
-  multiplicity_a_pos 321 355 3000 multiplicity_b_pos 245 298 3000
+  role_a_pos 320 355 3000 no_role_b
+  multiplicity_a_pos 294 355 3000 multiplicity_b_pos 245 302 3000
 end
 relationcanvas 129929 relation_ref 128387 // 
   from ref 128777 z 3006 to ref 129801
