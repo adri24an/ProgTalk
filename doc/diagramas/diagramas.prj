@@ -1,6 +1,6 @@
 format 73
 "diagramas"
-  revision 36
+  revision 37
   modified_by 2 "adrian"
   cpp_root_dir "../../src/"
 
@@ -74,6 +74,17 @@ ${inlines}
       
       comment "This class is used by the parser to access to all the 
 instances and messages storaged."
+      classrelation 128258 // instances ()
+	relation 128130 o--> name ""
+	  stereotype "map"
+	  a role_name "instances" multiplicity "*" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
+"
+	    classrelation_ref 128258 // instances ()
+	  b multiplicity "1" parent class_ref 128258 // Instance
+	  association_explicit_type "char *"
+      end
+
       classrelation 128002 // messages ()
 	relation 128002 o--> name ""
 	  stereotype "map"
@@ -83,16 +94,6 @@ instances and messages storaged."
 	    classrelation_ref 128002 // messages ()
 	  b multiplicity "1" parent class_ref 128130 // Message
 	  association_explicit_type "int"
-      end
-
-      classrelation 128258 // instances ()
-	relation 128130 o--> name ""
-	  stereotype "map"
-	  a role_name "instances" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
-"
-	    classrelation_ref 128258 // instances ()
-	  b multiplicity "1" parent class_ref 128258 // Instance
       end
 
       operation 134658 "MSC"
@@ -153,6 +154,81 @@ instances and messages storaged."
 	
 	
 	comment "This operation adds new messages to msc."
+      end
+    end
+
+    class 128258 "Instance"
+      visibility protected 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "This class represents an instance in a communication."
+      attribute 128003 "iid"
+	unique protected explicit_type "char *"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment "Instance id."
+      end
+
+      attribute 128131 "tid"
+	protected explicit_type "char *"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment "Type id."
+      end
+
+      attribute 128259 "name"
+	protected explicit_type "char *"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment "Instance alias."
+      end
+
+      operation 135170 "Instance"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135298 "~Instance"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
       end
     end
 
@@ -227,81 +303,6 @@ ${inlines}
       end
 
       operation 135042 "~Message"
-	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-    end
-
-    class 128258 "Instance"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      comment "This class represents an instance in a communication."
-      attribute 128003 "iid"
-	unique protected explicit_type "char *"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	comment "Instance id."
-      end
-
-      attribute 128131 "tid"
-	protected explicit_type "char *"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	comment "Type id."
-      end
-
-      attribute 128259 "name"
-	protected explicit_type "char *"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	comment "Instance alias."
-      end
-
-      operation 135170 "Instance"
-	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 135298 "~Instance"
 	public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
@@ -1349,29 +1350,6 @@ ${namespace_end}"
       end
     end
 
-    artifact 128002 "Message"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 128130 // Message
-      end
-    end
-
     artifact 128130 "Instance"
       stereotype "source"
       cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
@@ -1392,6 +1370,29 @@ ${members}
 ${namespace_end}"
       associated_classes
 	class_ref 128258 // Instance
+      end
+    end
+
+    artifact 128002 "Message"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 128130 // Message
       end
     end
 
