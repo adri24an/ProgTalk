@@ -53,8 +53,8 @@ relationcanvas 128393 relation_ref 128002 //
 end
 relationcanvas 128649 relation_ref 128130 // 
   from ref 128137 z 2007 stereotype "<<map>>" xyz 341 106 2007 to ref 128521
-  role_a_pos 452 86 3000 no_role_b
-  multiplicity_a_pos 499 111 3000 multiplicity_b_pos 238 118 3000
+  role_a_pos 458 87 3000 no_role_b
+  multiplicity_a_pos 501 114 3000 multiplicity_b_pos 234 120 3000
 end
 relationcanvas 129161 relation_ref 130690 // <generalisation>
   from ref 129033 z 3006 to ref 128777
