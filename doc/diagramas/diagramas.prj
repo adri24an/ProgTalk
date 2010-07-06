@@ -1,6 +1,6 @@
 format 73
 "diagramas"
-  revision 37
+  revision 38
   modified_by 2 "adrian"
   cpp_root_dir "../../src/"
 
@@ -78,20 +78,22 @@ instances and messages storaged."
 	relation 128130 o--> name ""
 	  stereotype "map"
 	  a role_name "instances" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${association},${type} *> ${name}${value};
 "
 	    classrelation_ref 128258 // instances ()
 	  b multiplicity "1" parent class_ref 128258 // Instance
+	  association_explicit_type "char *"
       end
 
       classrelation 128002 // messages ()
 	relation 128002 o--> name ""
 	  stereotype "map"
 	  a role_name "messages" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${association},${type} *> ${name}${value};
 "
 	    classrelation_ref 128002 // messages ()
 	  b multiplicity "1" parent class_ref 128130 // Message
+	  association_explicit_type "int"
       end
 
       operation 134658 "MSC"
