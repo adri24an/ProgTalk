@@ -23,7 +23,7 @@
 class Parser: public ParserBase
 {       
  public:
-  //Constructor of Parser
+  //Constructor
   Parser();
   //Parses the tokens sent by Scanner
   int parse();
@@ -70,7 +70,8 @@ inline MSC * Parser::getMSC()
 
 inline void Parser::addInst(char * new_iid, char * new_tid, char * new_name)
 {
-  msc->addInst(new_iid, new_tid, new_name);
+  i * Instance = new Instance (new_iid, new_tid, new_name)
+    msc->addInst(i);
 }
 
 inline void Parser::addMsg(char * new_mid, char * new_sms, char * new_origin, 
