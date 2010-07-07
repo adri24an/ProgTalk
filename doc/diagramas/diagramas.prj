@@ -101,7 +101,9 @@ instances and messages storaged."
 	nparams 0
 	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} 
+:instances(),messages()
+{
   ${body}}
 "
 	
@@ -206,10 +208,13 @@ ${inlines}
 
       operation 135170 "Instance"
 	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+	nparams 3
+	  param in name "new_iid" explicit_type "char *"
+	  param in name "new_tid" explicit_type "char *"
+	  param in name "new_name" explicit_type "char *"
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -313,10 +318,14 @@ ${inlines}
 
       operation 134914 "Message"
 	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+	nparams 4
+	  param in name "new_mid" explicit_type "char *"
+	  param in name "new_sms" explicit_type "char *"
+	  param in name "new_sending" type class_ref 130946 // Sending
+	  param in name "new_receipt" type class_ref 130818 // Receipt
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${v2}, const ${t3} & ${p3}${v3}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}, const ${t3} & ${p3}${)}${volatile}${throw} {
   ${body}}
 "
 	
