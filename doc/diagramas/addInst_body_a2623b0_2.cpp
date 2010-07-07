@@ -4,7 +4,7 @@ std::map<char *, Instance *>::const_iterator
 
 for(;mit!=mend;++mit) 
   {
-    if (!(strcmp(mit->first, i->iid)))
+    if (!(strcmp(mit->first, i->get_iid)))
       {	
 	std::cout << "Error: The instance already exists." << std::endl;
 	exit(0); 
