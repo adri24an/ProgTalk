@@ -178,6 +178,7 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	get_oper operation_ref 150914 // get_iid
 	comment "Instance id."
       end
 
@@ -230,6 +231,27 @@ ${inlines}
 	
 	
       end
+
+      operation 150914 "get_iid"
+	force_body_gen const cpp_inline public explicit_return_type "char *"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return iid;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 128003 // iid
+      end
     end
 
     class 128130 "Message"
@@ -254,6 +276,7 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	get_oper operation_ref 151042 // get_mid
 	comment "Message id."
       end
 
@@ -314,6 +337,27 @@ ${inlines}
 	
 	
 	
+      end
+
+      operation 151042 "get_mid"
+	force_body_gen const cpp_inline public explicit_return_type "char *"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return mid;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 128387 // mid
       end
     end
 
