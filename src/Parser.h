@@ -33,7 +33,7 @@ class Parser: public ParserBase
   void addInst(string new_iid, string new_tid, string new_name);
   //Adds a new message to msc
   void addMsg(string new_mid, string new_sms, string new_origin, 
-	      string new_destiny, int new_time_sent, int new_time_rec);
+	      string new_destiny, int new_time_rec, int new_time_sent);
    
 
  private:
@@ -75,31 +75,30 @@ inline void Parser::addInst(string new_iid, string new_tid, string new_name)
 }
 
 inline void Parser::addMsg(string new_mid, string new_sms, string new_origin, 
-			   string new_destiny, string new_time_sent, 
-			   int new_time_rec)
+			   string new_destiny, Timeref * new_time_rec, 
+			   Timeref * new_time_sent)
 {
   //BUSCAR INSTANCES
- Instance * or = msc->searchIid(new_origin);
- Instance * de = msc->searchIid(new_destiny);
-
- if (or == NULL)
-   {
-     std::cout << "The origen of the message (" << new_origin 
-	       << ") doesn't exist." << std::endl;
-     exit(0);
-   }
- else if (de == NULL)
-   {
+  Instance * or = msc->searchIid(new_origin);
+  Instance * de = msc->searchIid(new_destiny);
+  
+  if (or == NULL)
+    {
+      std::cout << "The origen of the message (" << new_origin 
+		<< ") doesn't exist." << std::endl;
+      exit(0);
+    }
+  else if (de == NULL)
+    {
      std::cout << "The destiny of the message (" << new_destiny 
 	       << ") doesn't exist." << std::endl;
      exit(0);
-   }
-
-  //CALCULAR TIEMPOS!!!!!!!!!!!!!!!!!!!!!1
-  r * Receipt = Receipt();
-  s * Sending = Sending();
+    }
+  
+  r * Receipt = Receipt(or, time);
+  s * Sending = Sending(de, time);
   Message * m = new Message(string new_mid, string new_sms, r, s);
-
+  
   msc->addMsg(m);
 }
 
