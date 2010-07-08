@@ -4,7 +4,7 @@ std::map<string, Instance *>::const_iterator
 
 for(;mit!=mend;++mit) 
   {
-    if ((mit->first.compare(i->get_iid)) == 0)
+    if ((mit->first.compare(iid)) == 0)
       {	
 	return mit->second;
       }

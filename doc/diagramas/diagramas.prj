@@ -173,6 +173,21 @@ instances and messages storaged."
 	
 	comment "This operation returns the Instance with the given iid or NULL in other csae."
       end
+
+      operation 157954 "searchMid"
+	public return_type class_ref 128130 // Message
+	nparams 1
+	  param in name "mid" explicit_type "string"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
     end
 
     class 128258 "Instance"
@@ -1044,7 +1059,8 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
-	comment "This represents if the time is absolute or relative"
+	get_oper operation_ref 157698 // get_valtype
+	comment "This represents if the time is absolute (0) or relative (1)"
       end
 
       attribute 141314 "value"
@@ -1055,6 +1071,7 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	get_oper operation_ref 157826 // get_value
 	comment "This represents absolute time when the time is absolute or the diff 
 when the time is relative"
       end
@@ -1074,7 +1091,7 @@ when the time is absolute, this value is 0."
       end
 
       attribute 141698 "ref"
-	protected explicit_type "char *"
+	protected explicit_type "string"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
@@ -1090,7 +1107,7 @@ when the time is absolute, this value is 0."
 	  param in name "new_valtype" explicit_type "int"
 	  param in name "new_value" explicit_type "int"
 	  param in name "new_mode" explicit_type "int"
-	  param in name "new_ref" explicit_type "int"
+	  param in name "new_ref" explicit_type "string"
 	cpp_decl "    ${comment}${inline}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${volatile}${throw} {
@@ -1114,6 +1131,48 @@ when the time is absolute, this value is 0."
 	
 	
 	
+      end
+
+      operation 157698 "get_valtype"
+	force_body_gen const cpp_inline public explicit_return_type "int"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return valtype;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 141186 // valtype
+      end
+
+      operation 157826 "get_value"
+	force_body_gen const cpp_inline public explicit_return_type "int"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return value;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 141314 // value
       end
     end
 
