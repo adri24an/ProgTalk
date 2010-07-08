@@ -34,7 +34,7 @@
 %union 
 {
   int num;
-  char * cad;
+  string cad;
   Timestg * tstamp;
   Timeref * timevalue;
 }
@@ -98,18 +98,18 @@ inst_decl:
 |
         INSTANCE iid OF tid SEMICOLON EOLN
         {
-	  addInst ($2, $4, (char *) "No_Info_Available");
+	  addInst ($2, $4, "No_Info_Available");
 	}
 |
         INSTANCE iid LEFT_BRACE string RIGHT_BRACE SEMICOLON EOLN
         {
-	  addInst ($2, (char *) "No_Info_Available", $4);
+	  addInst ($2, "No_Info_Available", $4);
 	}
 |
         INSTANCE iid SEMICOLON EOLN
         {
-	  addInst ($2, (char *) "No_Info_Available", 
-		   (char *)"No_Info_Available");
+	  addInst ($2, "No_Info_Available", 
+		   "No_Info_Available");
 	}
 ;
         
