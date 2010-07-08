@@ -82,7 +82,7 @@ instances and messages storaged."
 "
 	    classrelation_ref 128258 // instances ()
 	  b multiplicity "1" parent class_ref 128258 // Instance
-	  association_explicit_type "char *"
+	  association_explicit_type "string"
       end
 
       classrelation 128002 // messages ()
@@ -93,7 +93,7 @@ instances and messages storaged."
 "
 	    classrelation_ref 128002 // messages ()
 	  b multiplicity "1" parent class_ref 128130 // Message
-	  association_explicit_type "int"
+	  association_explicit_type "string"
       end
 
       operation 134658 "MSC"
