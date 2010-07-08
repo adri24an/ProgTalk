@@ -9,7 +9,7 @@ std::map<char *, Instance *>::const_iterator
 
 for(;mit!=mend;++mit) 
   {
-    if (!(strcmp(mit->first, i->get_iid)))
+    if ((mit->first.compare(i->get_iid)) == 0)
       {	
 	std::cout << "Error: The instance already exists." << std::endl;
 	exit(0); 
@@ -25,7 +25,7 @@ int id = 0;
 
 for(;mit!=mend;++mit) 
   {
-    if ((strcmp(mit->first, m->get_mid)) == 0)
+    if ((mit->first.compare(m->get_mid)) == 0)
       {
 	std::cout << "Error: the mid (" << m->mid << 
 	  ") used in the message already exists" << std::endl;
