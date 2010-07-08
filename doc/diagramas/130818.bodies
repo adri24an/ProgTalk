@@ -1,0 +1,3 @@
+class Receipt
+!!!144386.cpp!!!	getTime() : int
+return time->getAbsoluteTime();

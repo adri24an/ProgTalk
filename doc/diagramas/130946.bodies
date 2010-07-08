@@ -1,0 +1,3 @@
+class Sending
+!!!144258.cpp!!!	getTime() : int
+return time->getAbsoluteTime();

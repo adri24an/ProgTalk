@@ -1,0 +1,11 @@
+class Relative
+!!!136706.cpp!!!	Relative()
+diff = 0;
+ref = NULL;
+!!!144002.cpp!!!	getAbsoluteTime() : int
+int value = 0;
+
+value = ref->getTime();
+value = value + diff;
+
+return value;

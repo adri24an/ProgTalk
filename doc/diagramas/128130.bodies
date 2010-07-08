@@ -1,0 +1,6 @@
+class Message
+!!!134914.cpp!!!	Message()
+mid = NULL;
+sms = NULL;
+receipt = NULL;
+sending = NULL;

@@ -1,0 +1,5 @@
+class Absolute
+!!!136450.cpp!!!	Absolute()
+time = 0;
+!!!143874.cpp!!!	getAbsoluteTime() : int
+return time;

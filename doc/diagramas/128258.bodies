@@ -1,0 +1,5 @@
+class Instance
+!!!135170.cpp!!!	Instance(in new_iid : char *, in new_tid : char *, in new_name : char *)
+strcpy (iid, new_iid);
+strcpy (tid, new_tid);
+strcpy (name, new_name);

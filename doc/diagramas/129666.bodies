@@ -1,0 +1,4 @@
+class Event
+!!!135426.cpp!!!	Event()
+inst = NULL;
+time = NULL;
