@@ -78,12 +78,28 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 			   string new_destiny, string new_time_sent, 
 			   int new_time_rec)
 {
-  //BUSCAR INSTANCE CON IID NEW_ORIGIN
-  //ENLAZAR CON ESA INSTANCE
-  //CREAR TIMESTAMP CON LOS DATOS DADOS
+  //BUSCAR INSTANCES
+ Instance * or = msc->searchIid(new_origin);
+ Instance * de = msc->searchIid(new_destiny);
+
+ if (or == NULL)
+   {
+     std::cout << "The origen of the message (" << new_origin 
+	       << ") doesn't exist." << std::endl;
+     exit(0);
+   }
+ else if (de == NULL)
+   {
+     std::cout << "The destiny of the message (" << new_destiny 
+	       << ") doesn't exist." << std::endl;
+     exit(0);
+   }
+
+  //CALCULAR TIEMPOS!!!!!!!!!!!!!!!!!!!!!1
   r * Receipt = Receipt();
   s * Sending = Sending();
   Message * m = new Message(string new_mid, string new_sms, r, s);
+
   msc->addMsg(m);
 }
 
