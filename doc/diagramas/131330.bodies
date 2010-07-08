@@ -1,0 +1,6 @@
+class Timeref
+!!!136962.cpp!!!	Timeref(in new_valtype : int, in new_value : int, in new_mode : int, in new_ref : int)
+valtype = new_valtype;
+value = new_value;
+mode = new_mode;
+ref = new_ref;
