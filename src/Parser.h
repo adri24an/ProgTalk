@@ -78,7 +78,7 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 			   string new_destiny, Timeref * new_time_rec, 
 			   Timeref * new_time_sent)
 {
-  //BUSCAR INSTANCES
+  Timestamp * t = NULL;
   Instance * or = msc->searchIid(new_origin);
   Instance * de = msc->searchIid(new_destiny);
   
@@ -94,8 +94,18 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 	       << ") doesn't exist." << std::endl;
      exit(0);
     }
+
+  if (new_time_rec->get_valtype() == ABSOLUTE)
+    {
+      t = new Absolute (new_time_rec->get_value());
+    }
+  else if (new_time_rec->get_valtype() == RELATIVE)
+    {
+      //BUSCA EL MID Y SEGUN SI ES ENVIO Y RECEPCION
+      t = new Relative (ref, new_time_rec->get_value());
+    }
   
-  r * Receipt = Receipt(or, time);
+  r * Receipt = Receipt(or, t);
   s * Sending = Sending(de, time);
   Message * m = new Message(string new_mid, string new_sms, r, s);
   
