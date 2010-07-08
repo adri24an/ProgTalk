@@ -1068,10 +1068,14 @@ when the time is absolute, this value is 0."
 
       operation 136962 "Timeref"
 	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+	nparams 4
+	  param in name "valtype" explicit_type "int"
+	  param in name "value" explicit_type "int"
+	  param in name "mode" explicit_type "int"
+	  param in name "ref" explicit_type "int"
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${volatile}${throw} {
   ${body}}
 "
 	
