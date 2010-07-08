@@ -30,10 +30,10 @@ class Parser: public ParserBase
   //Returns the msc object
   MSC * getMSC();
   //Adds a new instance to msc
-  void addInst(char * new_iid, char * new_tid, char * new_name);
+  void addInst(string new_iid, string new_tid, string new_name);
   //Adds a new message to msc
-  void addMsg(char * new_mid, char * new_sms, char * new_origin, 
-	      char * new_destiny, int new_time_sent, int new_time_rec);
+  void addMsg(string new_mid, string new_sms, string new_origin, 
+	      string new_destiny, int new_time_sent, int new_time_rec);
    
 
  private:
@@ -68,19 +68,22 @@ inline MSC * Parser::getMSC()
   return msc;
 }
 
-inline void Parser::addInst(char * new_iid, char * new_tid, char * new_name)
+inline void Parser::addInst(string new_iid, string new_tid, string new_name)
 {
   Instance * i = new Instance (new_iid, new_tid, new_name);
   msc->addInst(i);
 }
 
-inline void Parser::addMsg(char * new_mid, char * new_sms, char * new_origin, 
-			   char * new_destiny, int new_time_sent, 
+inline void Parser::addMsg(string new_mid, string new_sms, string new_origin, 
+			   string new_destiny, string new_time_sent, 
 			   int new_time_rec)
 {
-  Message * m = new Message(char * new_mid, char * new_sms, char * new_origin, 
-			    char * new_destiny, int new_time_sent, 
-			    int new_time_rec);
+  //BUSCAR INSTANCE CON IID NEW_ORIGIN
+  //ENLAZAR CON ESA INSTANCE
+  //CREAR TIMESTAMP CON LOS DATOS DADOS
+  r * Receipt = Receipt();
+  s * Sending = Sending();
+  Message * m = new Message(string new_mid, string new_sms, r, s);
   msc->addMsg(m);
 }
 
