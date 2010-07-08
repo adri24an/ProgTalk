@@ -15,7 +15,7 @@ for(;mit!=mend;++mit)
 
 instances[i->iid] = i;
 !!!128130.cpp!!!	addMsg(in m : Message) : void
-std::map<int, Message *>::const_iterator
+std::map<string, Message *>::const_iterator
   mit (messages.begin()),
   mend(messages.end());
 int id = 0;
