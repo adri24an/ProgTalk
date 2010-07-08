@@ -43,7 +43,7 @@ relationcanvas 128002 relation_ref 151426 //
 end
 relationcanvas 128130 relation_ref 151554 // 
   from ref 128777 z 2013 to ref 128521
-  role_a_pos 516 195 3000 no_role_b
+  role_a_pos 518 174 3000 no_role_b
   multiplicity_a_pos 492 174 3000 no_multiplicity_b
 end
 relationcanvas 128393 relation_ref 128002 // 

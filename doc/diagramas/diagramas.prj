@@ -422,10 +422,12 @@ An event is represented by:
 
       operation 135426 "Event"
 	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+	nparams 2
+	  param in name "new_inst" type class_ref 128258 // Instance
+	  param in name "new_time" type class_ref 131202 // Timestamp
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -1085,10 +1087,10 @@ when the time is absolute, this value is 0."
       operation 136962 "Timeref"
 	public explicit_return_type ""
 	nparams 4
-	  param in name "valtype" explicit_type "int"
-	  param in name "value" explicit_type "int"
-	  param in name "mode" explicit_type "int"
-	  param in name "ref" explicit_type "int"
+	  param in name "new_valtype" explicit_type "int"
+	  param in name "new_value" explicit_type "int"
+	  param in name "new_mode" explicit_type "int"
+	  param in name "new_ref" explicit_type "int"
 	cpp_decl "    ${comment}${inline}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${volatile}${throw} {
