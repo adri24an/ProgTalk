@@ -171,7 +171,8 @@ instances and messages storaged."
 	
 	
 	
-	comment "This operation returns the Instance with the given iid or NULL in other csae."
+	comment "This operation returns the Instance with the given iid 
+or NULL in other case."
       end
 
       operation 157954 "searchMid"
@@ -187,6 +188,8 @@ instances and messages storaged."
 	
 	
 	
+	comment "This operation returns the Message with the given mid 
+or NULL in other case."
       end
     end
 
