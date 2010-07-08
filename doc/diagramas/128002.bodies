@@ -1,7 +1,4 @@
 class MSC
-!!!134658.cpp!!!	MSC()
-instances = NULL;
-messages = NULL;
 !!!128002.cpp!!!	addInst(in i : Instance) : void
 std::map<char *, Instance *>::const_iterator
   mit (instances.begin()),
@@ -34,3 +31,17 @@ for(;mit!=mend;++mit)
   }
 
 messages[m->mid] = m;
+!!!157570.cpp!!!	searchIid(in iid : string) : Instance *
+std::map<string, Instance *>::const_iterator
+  mit (instances.begin()),
+  mend(instances.end());
+
+for(;mit!=mend;++mit) 
+  {
+    if ((mit->first.compare(i->get_iid)) == 0)
+      {	
+	return mit->second;
+      }
+  }
+
+return NULL;
