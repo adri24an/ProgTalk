@@ -1154,7 +1154,7 @@ ${inlines}
       end
 
       attribute 141442 "iid"
-	protected explicit_type "char *"
+	protected explicit_type "string"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
