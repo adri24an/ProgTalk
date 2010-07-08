@@ -173,7 +173,7 @@ ${inlines}
       
       comment "This class represents an instance in a communication."
       attribute 128003 "iid"
-	unique protected explicit_type "char *"
+	unique protected explicit_type "string"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
@@ -185,7 +185,7 @@ ${inlines}
       end
 
       attribute 128131 "tid"
-	protected explicit_type "char *"
+	protected explicit_type "string"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
@@ -196,7 +196,7 @@ ${inlines}
       end
 
       attribute 128259 "name"
-	protected explicit_type "char *"
+	protected explicit_type "string"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
@@ -238,7 +238,7 @@ ${inlines}
       end
 
       operation 150914 "get_iid"
-	force_body_gen const cpp_inline public explicit_return_type "char *"
+	force_body_gen const cpp_inline public explicit_return_type "string"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
 "
@@ -273,7 +273,7 @@ ${inlines}
       
       comment "This class represents a message in a communication between instances."
       attribute 128387 "mid"
-	protected explicit_type "char *"
+	protected explicit_type "string"
 	multiplicity "1"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -286,7 +286,7 @@ ${inlines}
       end
 
       attribute 128002 "sms"
-	protected explicit_type "char *"
+	protected explicit_type "string"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
@@ -349,7 +349,7 @@ ${inlines}
       end
 
       operation 151042 "get_mid"
-	force_body_gen const cpp_inline public explicit_return_type "char *"
+	force_body_gen const cpp_inline public explicit_return_type "string"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
 "
