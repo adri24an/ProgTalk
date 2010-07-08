@@ -157,6 +157,22 @@ instances and messages storaged."
 	
 	comment "This operation adds a new message to msc."
       end
+
+      operation 157570 "searchIid"
+	public explicit_return_type "Instance *"
+	nparams 1
+	  param in name "Iid" explicit_type "string"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "This operation returns the Instance with the given iid or NULL in other csae."
+      end
     end
 
     class 128258 "Instance"
