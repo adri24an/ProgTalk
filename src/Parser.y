@@ -34,7 +34,7 @@
 %union 
 {
   int num;
-  string cad;
+  string * cad;
   Timestg * tstamp;
   Timeref * timevalue;
 }
