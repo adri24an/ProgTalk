@@ -39,7 +39,7 @@
   string * cad;
   Timestg * tstamp;
   Timeref * timevalue;
-  pair * par;
+  pair <int, int> * par;
 }
  
 %token <num> NUM
