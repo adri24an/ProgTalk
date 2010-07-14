@@ -112,8 +112,7 @@ inst_decl:
 |
         INSTANCE iid SEMICOLON EOLN
         {
-	  addInst ($2, "", 
-		   "");
+	  addInst ($2, "", "");
 	}
 ;
         
@@ -261,14 +260,12 @@ message:
 		"ORIGEN Y/O DESTINO" << std::endl;
 	      exit(0);
 	      }*/
-	}
-;
+	};
 
 mid_opt:
         // EMPTY
         {
-	  $$ = new char[18];
-          strcpy ($$,"No_Info_Available");
+	  $$ = NULL;
 	}
 |
         mid
@@ -280,8 +277,7 @@ mid_opt:
 string_opt:
         // EMPTY
         {
-	  $$ = new char[18];
-          strcpy ($$,"No_Info_Available");
+	  $$ = NULL;
 	}
 |
         LEFT_BRACE string RIGHT_BRACE	
