@@ -1,6 +1,6 @@
 format 73
 "diagramas"
-  revision 40
+  revision 41
   modified_by 2 "adrian"
   cpp_root_dir "../../src/"
 
@@ -1383,11 +1383,11 @@ ${inlines}
       type class_ref 131330 // Timeref
       attributes
         attribute_ref 141570 // mode
-          "0"
+          "1"
         attribute_ref 141698 // ref
           "No_Info_Available"
         attribute_ref 141186 // valtype
-          "2"
+          "1"
         attribute_ref 141314 // value
           "1"
         end
@@ -1399,11 +1399,11 @@ ${inlines}
       type class_ref 131330 // Timeref
       attributes
         attribute_ref 141570 // mode
-          "0"
+          "2"
         attribute_ref 141698 // ref
           "No_Info_Available"
         attribute_ref 141186 // valtype
-          "2"
+          "1"
         attribute_ref 141314 // value
           "1"
         end
@@ -1455,7 +1455,7 @@ ${inlines}
       type class_ref 131330 // Timeref
       attributes
         attribute_ref 141570 // mode
-          "0"
+          "2"
         attribute_ref 141698 // ref
           "No_Info_Available"
         attribute_ref 141186 // valtype
@@ -1471,13 +1471,13 @@ ${inlines}
       type class_ref 131330 // Timeref
       attributes
         attribute_ref 141570 // mode
-          "2"
+          "1"
         attribute_ref 141698 // ref
           "m1"
         attribute_ref 141186 // valtype
-          "0"
+          "1"
         attribute_ref 141314 // value
-          "0"
+          "1"
         end
       relations
         end
@@ -1491,7 +1491,7 @@ ${inlines}
         attribute_ref 141698 // ref
           "m2"
         attribute_ref 141186 // valtype
-          "0"
+          "1"
         attribute_ref 141314 // value
           "0"
         end
@@ -1507,7 +1507,7 @@ ${inlines}
         attribute_ref 141698 // ref
           "m1"
         attribute_ref 141186 // valtype
-          "0"
+          "1"
         attribute_ref 141314 // value
           "3"
         end
