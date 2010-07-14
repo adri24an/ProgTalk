@@ -1383,7 +1383,7 @@ ${inlines}
       type class_ref 131330 // Timeref
       attributes
         attribute_ref 141570 // mode
-          "1"
+          "0"
         attribute_ref 141698 // ref
           "No_Info_Available"
         attribute_ref 141186 // valtype
@@ -1399,7 +1399,7 @@ ${inlines}
       type class_ref 131330 // Timeref
       attributes
         attribute_ref 141570 // mode
-          "2"
+          "0"
         attribute_ref 141698 // ref
           "No_Info_Available"
         attribute_ref 141186 // valtype
@@ -1455,7 +1455,7 @@ ${inlines}
       type class_ref 131330 // Timeref
       attributes
         attribute_ref 141570 // mode
-          "2"
+          "0"
         attribute_ref 141698 // ref
           "No_Info_Available"
         attribute_ref 141186 // valtype
@@ -1471,7 +1471,7 @@ ${inlines}
       type class_ref 131330 // Timeref
       attributes
         attribute_ref 141570 // mode
-          "1"
+          "2"
         attribute_ref 141698 // ref
           "m1"
         attribute_ref 141186 // valtype
