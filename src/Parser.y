@@ -39,6 +39,7 @@
   string * cad;
   Timestg * tstamp;
   Timeref * timevalue;
+  pair * par;
 }
  
 %token <num> NUM
@@ -64,7 +65,7 @@
 %type <timevalue> time_ref
 %type <timevalue> time_ref_opt
 %type <num> message
-%type <num> ref
+%type <par> ref
 %type <num> dif_time
 %type <num> num
 %type <cad> iid
@@ -127,139 +128,14 @@ message_seq:
 message:
         MESSAGE mid_opt string_opt origin destiny SEMICOLON EOLN
         { 
-	  /*if ((strcmp($4->getIid(), "No_Info_Available")) && 
-	      (strcmp($5->getIid(), "No_Info_Available")))
-	    {
-	      if ((($4->getValtype() == 0)) && ($5->getValtype() == 0))
-		{
-		  addMsg($2,$3,$4->getIid(),$5->getIid(),
-			 $4->getValue(), $5->getValue());
-		}
-	      else if (($4->getValtype() == 0) && ($5->getValtype() == 1))
-		{
-		  addMsg($2,$3,$4->getIid(),$5->getIid(),
-			 $4->getValue(), ($4->getValue() + $5->getValue()));
-		}
-	      else if  (($4->getValtype() == 0) && ($5->getValtype() == 2))
-		{
-		  addMsg($2,$3,$4->getIid(),$5->getIid(),
-			 $4->getValue(), ($4->getValue() + 1));
-		}
-	      else if (($4->getValtype() == 1) && ($5->getValtype() == 0))
-		{
-		  $$ = msgSize();
-		  
-		  if ($$ != 0)
-		    {
-		      $$ = $$ - 1;
-		      $$ = getTime_rec($$) + $4->getValue();
-		      addMsg($2,$3,$4->getIid(),$5->getIid(), 
-			     $$, $5->getValue());
-		    }
-		  else
-		    {
-		      addMsg($2,$3,$4->getIid(),$5->getIid(), 
-			     $4->getValue(), $5->getValue());
-		    }
-		}
-	      else if (($4->getValtype() == 1) && ($5->getValtype() == 1))
-		{
-		  $$ = msgSize();
-		  
-		  if ($$ != 0)
-		    {
-		      $$ = $$ - 1;
-		      $$ = getTime_rec($$) + $4->getValue();
-		      addMsg($2,$3,$4->getIid(),$5->getIid(),
-			     $$, ($$ + $5->getValue()));
-		    }
-		  else
-		    {
-		      addMsg($2,$3,$4->getIid(),$5->getIid(),
-			     $4->getValue(), ($4->getValue() + $5->getValue()));
-		    }
-		}
-	      else if (($4->getValtype() == 1) && ($5->getValtype() == 2))
-		{
-		  $$ = msgSize();
-		  
-		  if ($$ != 0)
-		    {
-		      $$ = $$ - 1;
-		      $$ = getTime_rec($$) + $4->getValue();
-		      addMsg($2,$3,$4->getIid(),$5->getIid(),
-			     $$, ($$ + 1));
-		    }
-		  else
-		    {
-		      addMsg($2,$3,$4->getIid(),$5->getIid(),
-			     $4->getValue(), ($4->getValue() + 1));
-		    }
-		}
-	      else if (($4->getValtype() == 2) && ($5->getValtype() == 0))
-		{
-		  $$ = msgSize();
-		  
-		  if ($$ != 0)
-		    {
-		      $$ = $$ - 1;
-		      $$ = getTime_rec($$) + 1;
-		      addMsg($2,$3,$4->getIid(),$5->getIid(),
-			     $$, $5->getValue());
-		    }
-		  else
-		    {
-		      addMsg($2,$3,$4->getIid(),$5->getIid(),
-			     0, $5->getValue());
-		    }
-		}
-	      else if (($4->getValtype() == 2) && ($5->getValtype() == 1))
-		{			  
-		  $$ = msgSize();
-		  
-		  if ($$ != 0)
-		    {
-		      $$ = $$ - 1;
-		      $$ = getTime_rec($$) + 1;
-		      addMsg($2,$3,$4->getIid(),$5->getIid(),
-			     $$, ($$ + $5->getValue()));
-		    }
-		  else
-		    {
-		      addMsg($2,$3,$4->getIid(),$5->getIid(),
-			     0, $5->getValue());
-		    }
-		}
-	      else if (($4->getValtype() == 2) && ($5->getValtype() == 2))
-		{
-		  $$ = msgSize();
-		  
-		  if ($$ != 0)
-		    {
-		      $$ = $$ - 1;
-		      $$ = getTime_rec($$) + 1;
-		      addMsg($2,$3,$4->getIid(),$5->getIid(),
-			     $$, ($$ + 1));
-		    }
-		  else
-		    {
-		      addMsg($2,$3,$4->getIid(),$5->getIid(),
-			     0, 1);
-		    }
-		}
-	      else
-		{
-		  std::cout << "FATAL ERROR: the message couldn't be " 
-			    << "parsed due to relative time issues" << std::endl;
-		  exit(0);
-		}		  
-	    }
-	  else
-	    {
-	      std::cout << "DE MOMENTO NO PERMITIMOS MENSAJES SIN " << 
-		"ORIGEN Y/O DESTINO" << std::endl;
-	      exit(0);
-	      }*/
+	  string mid = $2 == NULL ? autogenerarIID() : $2;
+          string desc = $3 == NULL ? "" : $3;
+          pair<string,pair<Time....>> ot = $4;
+          Timestg dt = $5;
+
+          Message m = Message();
+
+          $$ = m;
 	};
 
 mid_opt:
