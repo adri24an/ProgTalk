@@ -199,7 +199,7 @@ destiny_opt:
 |
         destiny
         {
-	  $$ = $1
+	  $$ = $1;
 	}
 destiny:
         TO iid time_ref_opt
