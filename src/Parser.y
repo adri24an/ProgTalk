@@ -173,6 +173,7 @@ origin:
 	  $$ = $1
 	}
 ;
+
 origin_opt:
         FROM iid time_ref_opt
         {
@@ -191,6 +192,7 @@ time_ref_opt:
 	  $$ = $2;
 	}
 ;
+
 destiny_opt:
         // EMPTY
         {
@@ -201,6 +203,7 @@ destiny_opt:
         {
 	  $$ = $1;
 	}
+;
 destiny:
         TO iid time_ref_opt
         {
