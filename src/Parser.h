@@ -3,8 +3,9 @@
 
 #define ABSOLUTE 0
 #define RELATIVE 1
-#define RECEIVING 1
-#define SENDING 2
+#define SENDING 1
+#define RECEIVING 2
+
 
 #include <iostream>
 
