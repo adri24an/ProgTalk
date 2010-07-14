@@ -10,8 +10,10 @@
 //    message ::= MESSAGE mid_opt string_opt origin destiny;
 //    mid_opt ::= LAMBDA | mid
 //    string_opt ::= LAMBDA | {string}
-//    origin ::= LAMBDA | FROM iid time_ref_opt
-//    destiny ::= LAMBDA | TO iid time_ref_opt
+//    origin ::= LAMBDA | origin_opt
+//    origin_opt ::= FROM iid time_ref_opt
+//    destiny ::= LAMBDA | destiny_opt
+//    destiny_opt ::= TO iid time_ref_opt
 //    time_ref_opt ::= LAMBDA | @ time_ref
 //    time_ref ::= abs_time | rel_time
 //    abs_time ::= num
@@ -72,7 +74,9 @@
 %type <cad> mid_opt
 %type <cad> string_opt
 %type <tstamp> origin
+%type <tstamp> origin_opt
 %type <tstamp> destiny
+%type <tstamp> destiny_opt
 
 %start msc
  
