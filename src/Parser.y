@@ -401,56 +401,28 @@ dif_time:
 iid:
         ID
 	{
-	  $$ = new char[strlen(d_scanner.YYText())+1];
-          strcpy ($$, d_scanner.YYText());
-	  if (!(strcmp ($$, "instance")) || !(strcmp ($$, "of")) || 
-	      !(strcmp ($$, "message")) || !(strcmp ($$, "from")) ||
-	      !(strcmp ($$, "to")))
-	    {
-	      std::cout << "Error: a reserved word (" << $$ << 
-		") was used as an identifier" << std::endl;
-	      exit(0);
-	    }
+	  $$ = new string(d_scanner.YYText());
 	}
 ;
 
 tid:
         ID
         {
-	  $$ = new char[strlen(d_scanner.YYText())+1];
-          strcpy ($$, d_scanner.YYText());
-	  if (!(strcmp ($$, "instance")) || !(strcmp ($$, "of")) || 
-	      !(strcmp ($$, "message")) || !(strcmp ($$, "from")) ||
-	      !(strcmp ($$, "to")))
-	    {
-	      std::cout << "Error: a reserved word (" << $$ << 
-		") was used as an identifier" << std::endl;
-	      exit(0);
-	    }
+	  $$ = new string(d_scanner.YYText());
 	}
 ;
 
 mid:
         ID
 	{
-	  $$ = new char[strlen(d_scanner.YYText())+1];
-          strcpy ($$, d_scanner.YYText());
-	  if (!(strcmp ($$, "instance")) || !(strcmp ($$, "of")) || 
-	      !(strcmp ($$, "message")) || !(strcmp ($$, "from")) ||
-	      !(strcmp ($$, "to")))
-	    {
-	      std::cout << "Error: a reserved word (" << $$ << 
-		") was used as an identifier" << std::endl;
-	      exit(0);
-	    }
+	  $$ = new string(d_scanner.YYText());
 	}
 ;
 
 string:
         STRING
         {
-	  $$ = new char[strlen(d_scanner.YYText())+1];
-          strcpy ($$, d_scanner.YYText());
+	  $$ = new string(d_scanner.YYText());
 	}
 ;
 
