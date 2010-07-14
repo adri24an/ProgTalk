@@ -270,7 +270,7 @@ mid_opt:
 |
         mid
         {
-          strcpy ($$,$1);
+          $$ = new string($1);
 	}
 ;
 
@@ -282,8 +282,7 @@ string_opt:
 |
         LEFT_BRACE string RIGHT_BRACE	
         {
-	  $$ = new char[strlen($2)+1];
-          strcpy ($$, $2);
+	  $$ = new string($2);
 	}     
 ;
 
