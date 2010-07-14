@@ -307,7 +307,7 @@ origin_opt:
 time_ref_opt:
         // EMPTY
         {
-	  $$ = new Timeref(2, 1);
+	  $$ = new Timeref(RELATIVE, 1, 0, "");
 	}
 |
         AT time_ref
@@ -347,37 +347,37 @@ time_ref:
 abs_time:
         num
 	{
-	  $$ = new Timeref(ABSOLUTE, $1, 0, NULL);
+	  $$ = new Timeref(ABSOLUTE, $1, 0, "");
 	}
 ;
 
 rel_time:
         dif_time
 	{
-	  $$ = new Timeref(RELATIVE, $1);
+	  $$ = new Timeref(RELATIVE, $1, 0, "");
 	}
 |
         ref dif_time
         {
-	  $$ = new Timeref(RELATIVE, $1 + $2); 
+	  $$ = new Timeref(RELATIVE, $2, , $1); 
 	}
 ;
 
 ref:
         // EMPTY
         { 
-	  $$ = 0;
+	  $$ = NULL;
 	}
 
 |
         mid EXCLAMATION
         {
-	  $$ = getTime_sent($1);
+	  $$ = new pair(SENDING,$1);
 	} 
 |
         mid INTERROGATION
 	{
-	  $$ = getTime_rec($1);
+	  $$ = new pair(RECEIVING,$1);
 	}
 ;
 
