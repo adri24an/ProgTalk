@@ -102,18 +102,18 @@ inst_decl:
 |
         INSTANCE iid OF tid SEMICOLON EOLN
         {
-	  addInst ($2, $4, "No_Info_Available");
+	  addInst ($2, $4, "");
 	}
 |
         INSTANCE iid LEFT_BRACE string RIGHT_BRACE SEMICOLON EOLN
         {
-	  addInst ($2, "No_Info_Available", $4);
+	  addInst ($2, "", $4);
 	}
 |
         INSTANCE iid SEMICOLON EOLN
         {
-	  addInst ($2, "No_Info_Available", 
-		   "No_Info_Available");
+	  addInst ($2, "", 
+		   "");
 	}
 ;
         
