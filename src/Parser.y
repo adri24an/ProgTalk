@@ -289,9 +289,15 @@ string_opt:
 origin:
         // EMPTY
         {
-	  $$ = new Timestg((char *) "No_Info_Available", NULL);
+	  $$ = NULL;
 	}
 |
+        origin_opt
+        {
+	  $$ = $1
+	}
+;
+origin_opt:
         FROM iid time_ref_opt
         {
 	  $$ = new Timestg($2, $3);
@@ -309,13 +315,17 @@ time_ref_opt:
 	  $$ = $2;
 	}
 ;
-
-destiny:
+destiny_opt:
         // EMPTY
         {
-	  $$ = new Timestg((char *) "No_Info_Available", NULL);
+	  $$ = NULL;
 	}
 |
+        destiny
+        {
+	  $$ = $1
+	}
+destiny:
         TO iid time_ref_opt
         {
 	  $$ = new Timestg($2, $3);
