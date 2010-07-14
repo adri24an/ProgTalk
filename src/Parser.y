@@ -359,7 +359,7 @@ rel_time:
 |
         ref dif_time
         {
-	  $$ = new Timeref(RELATIVE, $2, , $1); 
+	  $$ = new Timeref(RELATIVE, $2, $1.first, $1.second); 
 	}
 ;
 
