@@ -126,7 +126,7 @@ message_seq:
 ;
 
 message:
-        MESSAGE mid_opt string_opt origin destiny SEMICOLON EOLN
+        MESSAGE mid_opt string_opt origin_opt destiny_opt SEMICOLON EOLN
         { 
 	  string mid = $2 == NULL ? autogenerarIID() : $2;
           string desc = $3 == NULL ? "" : $3;
