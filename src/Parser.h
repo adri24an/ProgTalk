@@ -72,8 +72,8 @@ inline MSC * Parser::getMSC()
 
 inline void Parser::addInst(string new_iid, string new_tid, string new_name)
 {
-  Instance * i = new Instance (new_iid, new_tid, new_name);
-  msc->addInst(i);
+  Instance i = new Instance (new_iid, new_tid, new_name);
+  msc->addInst(&i);
 }
 
 inline void Parser::addMsg(string new_mid, string new_sms, string new_origin, 
