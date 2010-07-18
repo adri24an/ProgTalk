@@ -128,12 +128,19 @@ message_seq:
 message:
         MESSAGE mid_opt string_opt origin_opt destiny_opt SEMICOLON EOLN
         { 
-	  string mid = $2 == NULL ? autogenerarIID() : $2;
-          string desc = $3 == NULL ? "" : $3;
-          pair<string,pair<Time....>> ot = $4;
+	  string mid = $2;
+          string desc = $3;
+          Timestg or = $4;
           Timestg dt = $5;
 
-          Message m = Message();
+	  if (mid == NULL)
+	    mid.assign(autogenIid());
+	  
+	  if (desc == NULL)
+	    desc.assign("");
+
+          Message m = new Message(mid, desc, or.get_iid(), dt.get_iid(),
+			      or.get_timeref(), dt.get_timeref());
 
           $$ = m;
 	};
