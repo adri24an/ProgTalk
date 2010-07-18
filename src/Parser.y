@@ -169,19 +169,19 @@ string_opt:
 	}     
 ;
 
-origin:
+origin_opt:
         // EMPTY
         {
 	  $$ = NULL;
 	}
 |
-        origin_opt
+        origin
         {
 	  $$ = $1
 	}
 ;
 
-origin_opt:
+origin:
         FROM iid time_ref_opt
         {
 	  $$ = new Timestg($2, $3);
