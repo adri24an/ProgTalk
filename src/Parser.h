@@ -34,7 +34,8 @@ class Parser: public ParserBase
   void addInst(string new_iid, string new_tid, string new_name);
   //Adds a new message to msc
   void addMsg(string new_mid, string new_sms, string new_origin, 
-	      string new_destiny, int new_time_rec, int new_time_sent);
+	      string new_destiny, Timeref * new_time_rec, 
+	      Timeref * new_time_sent);
    
 
  private:
