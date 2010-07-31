@@ -78,7 +78,7 @@ instances and messages storaged."
 	relation 128130 o--> name ""
 	  stereotype "map"
 	  a role_name "instances" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${association},${type} *> ${name}${value};
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${association},${type}> ${name}${value};
 "
 	    classrelation_ref 128258 // instances ()
 	  b multiplicity "1" parent class_ref 128258 // Instance
@@ -89,7 +89,7 @@ instances and messages storaged."
 	relation 128002 o--> name ""
 	  stereotype "map"
 	  a role_name "messages" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${association},${type} *> ${name}${value};
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${association},${type}> ${name}${value};
 "
 	    classrelation_ref 128002 // messages ()
 	  b multiplicity "1" parent class_ref 128130 // Message
