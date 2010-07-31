@@ -1,3 +1,6 @@
 class Sending
+!!!135938.cpp!!!	Sending(in new_inst : Instance, in new_time : Timestamp)
+inst = &new_inst;
+time = &new_time;
 !!!144258.cpp!!!	getTime() : int
 return time->getAbsoluteTime();

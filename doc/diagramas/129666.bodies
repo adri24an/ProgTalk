@@ -1,4 +1,3 @@
 class Event
 !!!135426.cpp!!!	Event(in new_inst : Instance, in new_time : Timestamp)
-inst = new_inst;
-time = new_time;
+

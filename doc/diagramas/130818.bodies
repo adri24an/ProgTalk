@@ -1,3 +1,6 @@
 class Receipt
+!!!135682.cpp!!!	Receipt(in new_inst : Instance, in new_time : Timestamp)
+inst = &new_inst;
+time = &new_time;
 !!!144386.cpp!!!	getTime() : int
 return time->getAbsoluteTime();
