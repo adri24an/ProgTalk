@@ -1,7 +1,7 @@
 class Relative
 !!!136706.cpp!!!	Relative(in new_diff : int, in new_ref : Event)
 diff = new_diff;
-ref = new_ref;
+ref = &new_ref;
 !!!144002.cpp!!!	getAbsoluteTime() : int
 int value = 0;
 

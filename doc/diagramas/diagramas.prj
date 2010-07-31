@@ -1,6 +1,6 @@
 format 75
 "diagramas"
-  revision 45
+  revision 46
   modified_by 2 "adrian"
   cpp_root_dir "../../src/"
 
@@ -808,9 +808,9 @@ ${inlines}
 	nparams 2
 	  param in name "new_diff" explicit_type "int"
 	  param in name "new_ref" type class_ref 129666 // Event
-	cpp_decl "    ${comment}${inline}${name}${(}${t0} ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} ${p0}${v0}, ${t1} & ${p1}${v1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${t0} ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} ${p0}, ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
 "
 	
