@@ -1,6 +1,6 @@
 class Timeref
-!!!136962.cpp!!!	Timeref(in new_valtype : int, in new_value : int, in new_mode : int, in new_ref : int)
+!!!136962.cpp!!!	Timeref(in new_valtype : int, in new_value : int, in new_mode : int, in new_ref : string)
 valtype = new_valtype;
 value = new_value;
 mode = new_mode;
-ref = new_ref;
+ref.assign(new_ref);

@@ -1,6 +1,6 @@
 format 73
 "diagramas"
-  revision 43
+  revision 44
   modified_by 2 "adrian"
   cpp_root_dir "../../src/"
 
@@ -191,6 +191,7 @@ or NULL in other case."
 	comment "This operation returns the Message with the given mid 
 or NULL in other case."
       end
+
     end
 
     class 128258 "Instance"
@@ -1313,10 +1314,12 @@ ${inlines}
 
       operation 137218 "Timestg"
 	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+	nparams 2
+	  param in name "new_iid" explicit_type "string"
+	  param in name "new_timeref" type class_ref 131330 // Timeref
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
 "
 	

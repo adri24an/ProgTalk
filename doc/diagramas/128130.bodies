@@ -1,6 +1,6 @@
 class Message
-!!!134914.cpp!!!	Message()
-mid = NULL;
-sms = NULL;
-receipt = NULL;
-sending = NULL;
+!!!134914.cpp!!!	Message(in new_mid : string, in new_sms : string, in new_sending : Sending, in new_receipt : Receipt)
+mid.assign(new_mid);
+sms.assign(new_sms);
+receipt = new_receipt;
+sending = new_sending;
