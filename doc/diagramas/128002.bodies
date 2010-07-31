@@ -1,6 +1,6 @@
 class MSC
 !!!128002.cpp!!!	addInst(in i : Instance) : void
-std::map<string, Instance *>::const_iterator
+std::map<string, Instance>::const_iterator
   mit (instances.begin()),
   mend(instances.end());
 
@@ -15,7 +15,7 @@ for(;mit!=mend;++mit)
 
 instances[i->iid] = i;
 !!!128130.cpp!!!	addMsg(in m : Message) : void
-std::map<string, Message *>::const_iterator
+std::map<string, Message>::const_iterator
   mit (messages.begin()),
   mend(messages.end());
 int id = 0;
@@ -38,7 +38,7 @@ if (m->get_mid.compare("No_Info_Available") == 0)
      messages[m->mid] = m;  
    }
 !!!157570.cpp!!!	searchIid(in iid : string) : Instance *
-std::map<string, Instance *>::const_iterator
+std::map<string, Instance>::const_iterator
   mit (instances.begin()),
   mend(instances.end());
 
