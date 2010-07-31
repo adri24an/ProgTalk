@@ -13,6 +13,7 @@
 #include "Scanner.h"
 #include "Instance.h"
 #include "Message.h"
+#include "Absolute.h"
 
 #include <map>
 #include <string>
@@ -73,7 +74,7 @@ inline MSC * Parser::getMSC()
 
 inline void Parser::addInst(string new_iid, string new_tid, string new_name)
 {
-  Instance i = new Instance (new_iid, new_tid, new_name);
+  Instance i(new_iid, new_tid, new_name);
   msc->addInst(i);
 }
 
@@ -81,10 +82,9 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 			   string new_destiny, Timeref * new_time_rec, 
 			   Timeref * new_time_sent)
 {
-  Absolute * t = NULL;
+  Instance or = msc->searchIid(new_origin);
+  Instance de = msc->searchIid(new_destiny);
   Message * m = NULL;
-  Instance * or = msc->searchIid(new_origin);
-  Instance * de = msc->searchIid(new_destiny);
   
   if (or == NULL)
     {
@@ -101,7 +101,8 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 
   if (new_time_rec->get_valtype() == ABSOLUTE)
     {
-      t = new Absolute (new_time_rec->get_value());
+      Absolute a(new_time_rec->get_value());
+      Receipt * rec(or, a);
     }
   else if (new_time_rec->get_valtype() == RELATIVE)
     {
@@ -116,15 +117,15 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 	}
       else
 	{
-	  t = new Relative (m->get_receipt(), new_time_rec->get_value());
+	  Relative r(m->get_receipt(), new_time_rec->get_value());
 	} 
+      Receipt * rec(or, r);
     }
-  
-  r * Receipt = Receipt(or, t);
 
   if (new_time_sent->get_valtype() == ABSOLUTE)
     {
-      t = new Absolute (new_time_sent->get_value());
+      Absolute a(new_time_sent->get_value());
+      Sending * sen = Sending(de, a);
     }
   else if (new_time_sent->get_valtype() == RELATIVE)
     {
@@ -139,13 +140,12 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 	}
       else
 	{
-	  t = new Relative (m->get_receipt(), new_time_sent->get_value());
+	  Relative r(m->get_receipt(), new_time_sent->get_value());
 	} 
+      Sending * sen = Sending(de, r);
     }
 
-  s * Sending = Sending(de, t);
-
-  m = new Message(new_mid, new_sms, r, s);
+  m = new Message(new_mid, new_sms, rec, sen);
   
   msc->addMsg(m);
 }
