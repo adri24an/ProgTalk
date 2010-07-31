@@ -6,19 +6,17 @@
 #define SENDING 1
 #define RECEIVING 2
 
-
-#include <iostream>
-
 #include "MSC.h"
 #include "Timestg.h"
 #include "Timeref.h"
 #include "Parserbase.h"
 #include "Scanner.h"
+
 #include <map>
 #include <string>
 #include <string.h>
-
-
+#include <stdlib.h>
+#include <iostream>
 
 #undef Parser
 class Parser: public ParserBase
