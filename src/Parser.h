@@ -11,6 +11,8 @@
 #include "Timeref.h"
 #include "Parserbase.h"
 #include "Scanner.h"
+#include "Instance.h"
+#include "Message.h"
 
 #include <map>
 #include <string>
@@ -56,6 +58,7 @@ class Parser: public ParserBase
         
   //Object that storages instances and messages
   MSC * msc; 
+
 };
 
 inline Parser::Parser()
@@ -70,15 +73,15 @@ inline MSC * Parser::getMSC()
 
 inline void Parser::addInst(string new_iid, string new_tid, string new_name)
 {
-  Instance i = new Instance (new_iid, new_tid, new_name);
-  msc->addInst(&i);
+  Instance * i = new Instance (new_iid, new_tid, new_name);
+  msc->addInst(i);
 }
 
 inline void Parser::addMsg(string new_mid, string new_sms, string new_origin, 
 			   string new_destiny, Timeref * new_time_rec, 
 			   Timeref * new_time_sent)
 {
-  Timestamp * t = NULL;
+  Absolute * t = NULL;
   Message * m = NULL;
   Instance * or = msc->searchIid(new_origin);
   Instance * de = msc->searchIid(new_destiny);

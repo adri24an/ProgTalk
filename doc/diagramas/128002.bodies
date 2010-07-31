@@ -1,6 +1,6 @@
 class MSC
 !!!128002.cpp!!!	addInst(in i : Instance) : void
-std::map<char *, Instance *>::const_iterator
+std::map<string, Instance *>::const_iterator
   mit (instances.begin()),
   mend(instances.end());
 
