@@ -98,22 +98,22 @@ inst_decl_seq:
 inst_decl:
         INSTANCE iid OF tid LEFT_BRACE string RIGHT_BRACE SEMICOLON EOLN
         {
-	  addInst ($2, $4, $6);
+	  addInst (*$2, *$4, *$6);
 	}
 |
         INSTANCE iid OF tid SEMICOLON EOLN
         {
-	  addInst ($2, $4, "");
+	  addInst (*$2, *$4, "");
 	}
 |
         INSTANCE iid LEFT_BRACE string RIGHT_BRACE SEMICOLON EOLN
         {
-	  addInst ($2, "", $4);
+	  addInst (*$2, "", *$4);
 	}
 |
         INSTANCE iid SEMICOLON EOLN
         {
-	  addInst ($2, "", "");
+	  addInst (*$2, "", "");
 	}
 ;
         
@@ -128,19 +128,19 @@ message_seq:
 message:
         MESSAGE mid_opt string_opt origin_opt destiny_opt SEMICOLON EOLN
         { 
-	  string mid = $2;
-          string desc = $3;
-          Timestg or = $4;
-          Timestg dt = $5;
+	  string * mid = $2;
+          string * desc = $3;
+          Timestg * or = $4;
+          Timestg * dt = $5;
 
 	  if (mid == NULL)
-	    mid.assign(autogenIid());
+	    mid->assign(autogenIid());
 	  
 	  if (desc == NULL)
-	    desc.assign("");
+	    desc->assign("");
 
-          Message m = new Message(mid, desc, or.get_iid(), dt.get_iid(),
-			      or.get_timeref(), dt.get_timeref());
+          Message * m = new Message(mid, desc, or->get_iid(), dt->get_iid(),
+				    or->get_timeref(), dt->get_timeref());
 
           $$ = m;
 	};
@@ -153,7 +153,7 @@ mid_opt:
 |
         mid
         {
-          $$ = new string($1);
+          $$ = new string(*$1);
 	}
 ;
 
@@ -165,7 +165,7 @@ string_opt:
 |
         LEFT_BRACE string RIGHT_BRACE	
         {
-	  $$ = new string($2);
+	  $$ = new string(*$2);
 	}     
 ;
 
@@ -184,7 +184,7 @@ origin_opt:
 origin:
         FROM iid time_ref_opt
         {
-	  $$ = new Timestg($2, $3);
+	  $$ = new Timestg(*$2, *$3);
 	}
 ;
 
@@ -214,7 +214,7 @@ destiny_opt:
 destiny:
         TO iid time_ref_opt
         {
-	  $$ = new Timestg($2, $3);
+	  $$ = new Timestg(*$2, *$3);
 	}
 ;
  
@@ -245,7 +245,7 @@ rel_time:
 |
         ref dif_time
         {
-	  $$ = new Timeref(RELATIVE, $2, $1.first, $1.second); 
+	  $$ = new Timeref(RELATIVE, $2, $1->first, $1->second); 
 	}
 ;
 

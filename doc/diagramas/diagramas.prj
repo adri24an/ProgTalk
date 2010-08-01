@@ -1,6 +1,6 @@
 format 75
 "diagramas"
-  revision 47
+  revision 48
   modified_by 2 "adrian"
   cpp_root_dir "../../src/"
 
@@ -80,7 +80,7 @@ instances and messages storaged."
 	relation 128130 o--> name ""
 	  stereotype "map"
 	  a role_name "instances" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${association},${type}> ${name}${value};
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${association},${type}*> ${name}${value};
 "
 	    classrelation_ref 128258 // instances ()
 	  b multiplicity "1" parent class_ref 128258 // Instance
@@ -91,7 +91,7 @@ instances and messages storaged."
 	relation 128002 o--> name ""
 	  stereotype "map"
 	  a role_name "messages" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${association},${type}> ${name}${value};
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${association},${type}*> ${name}${value};
 "
 	    classrelation_ref 128002 // messages ()
 	  b multiplicity "1" parent class_ref 128130 // Message
@@ -132,9 +132,9 @@ instances and messages storaged."
 	public explicit_return_type "void"
 	nparams 1
 	  param in name "i" type class_ref 128258 // Instance
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(} ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(} ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -178,7 +178,7 @@ or NULL in other case."
       end
 
       operation 157954 "searchMid"
-	public return_type class_ref 128130 // Message
+	public explicit_return_type "Message *"
 	nparams 1
 	  param in name "mid" explicit_type "string"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
@@ -409,9 +409,9 @@ ${inlines}
       operation 158338 "get_receipt"
 	force_body_gen const cpp_inline public return_type class_ref 130818 // Receipt
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} * ${name}${(}${)}${const}${volatile}${throw};
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual} ${type} * ${name}${(}${)}${const}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}const ${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   return receipt;
 }
 "
@@ -784,16 +784,6 @@ ${inlines}
 	  b parent class_ref 131202 // Timestamp
       end
 
-      classrelation 153090 // ref ()
-	relation 151426 ---> name ""
-	  a role_name "ref" multiplicity "1" protected
-	    comment "Reference to the Event that the time is relative"
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 153090 // ref ()
-	  b parent class_ref 129666 // Event
-      end
-
       attribute 134658 "diff"
 	protected explicit_type "int"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
@@ -803,6 +793,16 @@ ${inlines}
 	python_decl ""
 	idl_decl ""
 	comment "Difference with the relative time."
+      end
+
+      classrelation 153090 // ref ()
+	relation 151426 ---> name ""
+	  a role_name "ref" multiplicity "1" protected
+	    comment "Reference to the Event that the time is relative"
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 153090 // ref ()
+	  b parent class_ref 129666 // Event
       end
 
       operation 136706 "Relative"
@@ -1191,9 +1191,9 @@ when the time is absolute, this value is 0."
       operation 157826 "get_value"
 	force_body_gen const cpp_inline public explicit_return_type "int"
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   return value;
 }
 "
