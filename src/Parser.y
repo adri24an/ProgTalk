@@ -85,14 +85,18 @@
 
 msc:
         inst_decl_seq message_seq
+	{
+	}
 ;
     
 inst_decl_seq:
         // EMPTY
-{ }
+       { 
+       }
 |
         inst_decl_seq inst_decl
-{ }
+        { 
+	}
 ;
  
 inst_decl:
@@ -119,10 +123,12 @@ inst_decl:
         
 message_seq:
         // EMPTY
-        { }
+        { 
+	}
 |
         message_seq message
-        { }
+        { 
+	}
 ;
 
 message:
@@ -143,7 +149,8 @@ message:
 				    or->get_timeref(), dt->get_timeref());
 
           $$ = m;
-	};
+	}
+;
 
 mid_opt:
         // EMPTY
@@ -211,6 +218,7 @@ destiny_opt:
 	  $$ = $1;
 	}
 ;
+
 destiny:
         TO iid time_ref_opt
         {
