@@ -71,7 +71,7 @@
 %type <cad> iid
 %type <cad> tid
 %type <cad> mid
-%type <cad> string
+%type <cad> str
 %type <cad> mid_opt
 %type <cad> string_opt
 %type <tstamp> origin
@@ -100,7 +100,7 @@ inst_decl_seq:
 ;
  
 inst_decl:
-        INSTANCE iid OF tid LEFT_BRACE string RIGHT_BRACE SEMICOLON EOLN
+        INSTANCE iid OF tid LEFT_BRACE str RIGHT_BRACE SEMICOLON EOLN
         {
 	  addInst (*$2, *$4, *$6);
 	}
@@ -110,7 +110,7 @@ inst_decl:
 	  addInst (*$2, *$4, "");
 	}
 |
-        INSTANCE iid LEFT_BRACE string RIGHT_BRACE SEMICOLON EOLN
+        INSTANCE iid LEFT_BRACE str RIGHT_BRACE SEMICOLON EOLN
         {
 	  addInst (*$2, "", *$4);
 	}
@@ -136,8 +136,8 @@ message:
         { 
 	  string * mid = $2;
           string * desc = $3;
-          Timestg * or = $4;
-          Timestg * dt = $5;
+          Timestg * orig = $4;
+          Timestg * dest = $5;
 
 	  if (mid == NULL)
 	    mid->assign(autogenIid());
@@ -145,10 +145,9 @@ message:
 	  if (desc == NULL)
 	    desc->assign("");
 
-          Message * m = new Message(mid, desc, or->get_iid(), dt->get_iid(),
-				    or->get_timeref(), dt->get_timeref());
+          addMsg(mid, desc, orig->get_iid(), dest->get_iid(), 
+		 orig->get_timeref(), dest->get_timeref());
 
-          $$ = m;
 	}
 ;
 
@@ -160,7 +159,7 @@ mid_opt:
 |
         mid
         {
-          $$ = new string(*$1);
+          $$ = $1;
 	}
 ;
 
@@ -170,9 +169,9 @@ string_opt:
 	  $$ = NULL;
 	}
 |
-        LEFT_BRACE string RIGHT_BRACE	
+        LEFT_BRACE str RIGHT_BRACE	
         {
-	  $$ = new string(*$2);
+	  $$ = $2;
 	}     
 ;
 
@@ -184,7 +183,7 @@ origin_opt:
 |
         origin
         {
-	  $$ = $1
+	  $$ = $1;
 	}
 ;
 
@@ -313,7 +312,7 @@ mid:
 	}
 ;
 
-string:
+str:
         STRING
         {
 	  $$ = new string(d_scanner.YYText());

@@ -37,6 +37,7 @@ class Parser: public ParserBase
   void addMsg(string new_mid, string new_sms, string new_origin, 
 	      string new_destiny, Timeref * new_time_rec, 
 	      Timeref * new_time_sent);
+  string autogenIid();
    
 
  private:
