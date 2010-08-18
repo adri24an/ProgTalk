@@ -16,6 +16,7 @@
 #include "Parserbase.h"
 #include "Scanner.h"
 
+#include <utility>
 #include <map>
 #include <string>
 #include <stdlib.h>
@@ -35,8 +36,8 @@ class Parser: public ParserBase
   void addInst(string new_iid, string new_tid, string new_name);
   //Adds a new message to msc
   void addMsg(string new_mid, string new_sms, string new_origin, 
-	      string new_destiny, Timeref * new_time_rec, 
-	      Timeref * new_time_sent);
+	      string new_destiny, const Timeref * new_time_rec, 
+	      const Timeref * new_time_sent);
   string autogenIid();
    
 
@@ -80,8 +81,8 @@ inline void Parser::addInst(string new_iid, string new_tid, string new_name)
 }
 
 inline void Parser::addMsg(string new_mid, string new_sms, string new_origin, 
-			   string new_destiny, Timeref * new_time_rec, 
-			   Timeref * new_time_sent)
+			   string new_destiny, const Timeref * new_time_rec, 
+			   const Timeref * new_time_sent)
 {
   /*Instance * or = msc->searchIid(new_origin);
   Instance * de = msc->searchIid(new_destiny);

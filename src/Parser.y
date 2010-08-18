@@ -39,7 +39,7 @@
   string * cad;
   Timestg * tstamp;
   Timeref * timevalue;
-  pair <int, int> * par;
+  pair<int, string> * par;
 }
  
 %token <num> NUM
@@ -145,9 +145,8 @@ message:
 	  if (desc == NULL)
 	    desc->assign("");
 
-          addMsg(mid, desc, orig->get_iid(), dest->get_iid(), 
+          addMsg(*mid, *desc, orig->get_iid(), dest->get_iid(), 
 		 orig->get_timeref(), dest->get_timeref());
-
 	}
 ;
 
@@ -261,16 +260,15 @@ ref:
         { 
 	  $$ = NULL;
 	}
-
 |
         mid EXCLAMATION
         {
-	  $$ = new pair(SENDING,$1);
+	  $$ = new pair<int, string>(SENDING,$1);
 	} 
 |
         mid INTERROGATION
 	{
-	  $$ = new pair(RECEIVING,$1);
+	  $$ = new pair<int, string>(RECEIVING,$1);
 	}
 ;
 
