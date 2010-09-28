@@ -64,7 +64,6 @@
 %type <timevalue> abs_time
 %type <timevalue> time_ref
 %type <timevalue> time_ref_opt
-%type <num> message
 %type <par> ref
 %type <num> dif_time
 %type <num> num
