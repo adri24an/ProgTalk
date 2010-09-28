@@ -262,12 +262,12 @@ ref:
 |
         mid EXCLAMATION
         {
-	  $$ = new pair<int, string>(SENDING,$1);
+	  $$ = new pair<int, string>(SENDING,*$1);
 	} 
 |
         mid INTERROGATION
 	{
-	  $$ = new pair<int, string>(RECEIVING,$1);
+	  $$ = new pair<int, string>(RECEIVING,*$1);
 	}
 ;
 
