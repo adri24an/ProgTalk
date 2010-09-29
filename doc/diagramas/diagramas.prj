@@ -1,6 +1,6 @@
 format 75
 "diagramas"
-  revision 49
+  revision 50
   modified_by 2 "adrian"
   cpp_root_dir "../../src/"
 
@@ -1590,6 +1590,8 @@ ${inlines}
 
 ${comment}
 ${includes}
+#include <iostream>
+#include <stdlib.h>
 ${declarations}
 ${namespace_start}
 ${definition}
