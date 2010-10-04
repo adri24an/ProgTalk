@@ -38,8 +38,6 @@ class Parser: public ParserBase
   void addMsg(string new_mid, string new_sms, string new_origin, 
 	      string new_destiny, const Timeref * new_time_rec, 
 	      const Timeref * new_time_sent);
-  string autogenIid();
-   
 
  private:
   
@@ -84,17 +82,17 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 			   string new_destiny, const Timeref * new_time_rec, 
 			   const Timeref * new_time_sent)
 {
-  /*Instance * or = msc->searchIid(new_origin);
-  Instance * de = msc->searchIid(new_destiny);
+  Instance * orig = msc->searchIid(new_origin);
+  Instance * dest = msc->searchIid(new_destiny);
   Message * m = NULL;
   
-  if (or == NULL)
+  if (orig == NULL)
     {
       std::cout << "The origen of the message (" << new_origin 
 		<< ") doesn't exist." << std::endl;
       exit(0);
     }
-  else if (de == NULL)
+  else if (dest == NULL)
     {
      std::cout << "The destiny of the message (" << new_destiny 
 	       << ") doesn't exist." << std::endl;
@@ -104,7 +102,7 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
   if (new_time_rec->get_valtype() == ABSOLUTE)
     {
       Absolute a(new_time_rec->get_value());
-      Receipt * rec = new Receipt(or, a);
+      Receipt * rec = new Receipt(orig, a);
     }
   else if (new_time_rec->get_valtype() == RELATIVE)
     {
@@ -121,13 +119,13 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 	{
 	  Relative r(new_time_rec->get_value(), *(m->get_receipt()));
 	} 
-      Receipt * rec = new Receipt(or, r);
+      Receipt * rec = new Receipt(orig, r);
     }
 
   if (new_time_sent->get_valtype() == ABSOLUTE)
     {
       Absolute a(new_time_sent->get_value());
-      Sending * sen = Sending(de, a);
+      Sending * sen = Sending(dest, a);
     }
   else if (new_time_sent->get_valtype() == RELATIVE)
     {
@@ -144,12 +142,12 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 	{
 	  Relative r(new_time_sent->get_value(), *(m->get_receipt()));
 	} 
-      Sending * sen = Sending(de, r);
+      Sending * sen = Sending(dest, r);
     }
 
   m = new Message(new_mid, new_sms, rec, sen);
   
-  msc->addMsg(m);*/
+  msc->addMsg(m);
 }
 
 
