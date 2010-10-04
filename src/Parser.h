@@ -114,11 +114,9 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 		    << new_time_rec->get_ref() 
 		    << ") doesn't exist." << std::endl;
 	  exit(0);
-	}
-      else
-	{
-	  Relative r(new_time_rec->get_value(), *(m->get_receipt()));
 	} 
+  
+      Relative r(new_time_rec->get_value(), *(m->get_receipt()));
       Receipt * rec = new Receipt(orig, r);
     }
 
@@ -138,16 +136,14 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 		    << ") doesn't exist." << std::endl;
 	  exit(0);
 	}
-      else
-	{
-	  Relative r(new_time_sent->get_value(), *(m->get_receipt()));
-	} 
+	
+      Relative r(new_time_sent->get_value(), *(m->get_receipt()));
       Sending * sen = Sending(dest, r);
     }
 
   m = new Message(new_mid, new_sms, rec, sen);
   
-  msc->addMsg(m);
+  msc->addMsg(*m);
 }
 
 
