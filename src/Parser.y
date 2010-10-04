@@ -139,7 +139,7 @@ message:
           Timestg * dest = $5;
 
 	  if (mid == NULL)
-	    mid->assign(autogenIid());
+	    mid->assign("No_Info_Available");
 	  
 	  if (desc == NULL)
 	    desc->assign("");
