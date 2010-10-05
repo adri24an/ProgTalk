@@ -1,6 +1,6 @@
 format 75
 "diagramas"
-  revision 51
+  revision 52
   modified_by 2 "adrian"
   cpp_root_dir "../../src/"
 
@@ -528,9 +528,9 @@ ${inlines}
 	nparams 2
 	  param in name "new_inst" type class_ref 128258 // Instance
 	  param in name "new_time" type class_ref 131202 // Timestamp
-	cpp_decl "    ${comment}${inline}${name}${(} ${t0} & ${p0}, ${t1} & ${p1}${)}${volatile}${throw};
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} & ${p0}, ${t1} & ${p1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(} ${t0} & ${p0}, ${t1} & ${p1}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} & ${p0}, ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
 "
 	
