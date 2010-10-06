@@ -10,6 +10,7 @@
 #include "Relative.h"
 #include "Timeref.h"
 #include "Timestg.h"
+#include "Sending.h"
 #include "Instance.h"
 #include "Message.h"
 #include "MSC.h"
@@ -85,6 +86,8 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
   Instance * orig = msc->searchIid(new_origin);
   Instance * dest = msc->searchIid(new_destiny);
   Message * m = NULL;
+  Sending * sen = NULL;
+  Receipt * rec = NULL;
   
   if (orig == NULL)
     {
@@ -102,7 +105,7 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
   if (new_time_rec->get_valtype() == ABSOLUTE)
     {
       Absolute a(new_time_rec->get_value());
-      Receipt * rec = new Receipt(*orig, a);
+      rec = new Receipt(*orig, a);
     }
   else if (new_time_rec->get_valtype() == RELATIVE)
     {
@@ -117,13 +120,13 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 	} 
   
       Relative r(new_time_rec->get_value(), *(m->get_receipt()));
-      Receipt * rec = new Receipt(*orig, r);
+      rec = new Receipt(*orig, r);
     }
 
   if (new_time_sent->get_valtype() == ABSOLUTE)
     {
       Absolute a(new_time_sent->get_value());
-      Sending * sen = new Sending(*dest, a);
+      sen = new Sending(*dest, a);
     }
   else if (new_time_sent->get_valtype() == RELATIVE)
     {
@@ -138,10 +141,10 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 	}
 	
       Relative r(new_time_sent->get_value(), *(m->get_receipt()));
-      Sending * sen = new Sending(*dest, r);
+      sen = new Sending(*dest, r);
     }
 
-  m = new Message(new_mid, new_sms, rec, sen);
+  m = new Message(new_mid, new_sms, *sen, *rec);
   
   msc->addMsg(*m);
 }
