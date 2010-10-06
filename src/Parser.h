@@ -102,7 +102,7 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
   if (new_time_rec->get_valtype() == ABSOLUTE)
     {
       Absolute a(new_time_rec->get_value());
-      Receipt * rec = new Receipt(orig, a);
+      Receipt * rec = new Receipt(*orig, a);
     }
   else if (new_time_rec->get_valtype() == RELATIVE)
     {
@@ -117,13 +117,13 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 	} 
   
       Relative r(new_time_rec->get_value(), *(m->get_receipt()));
-      Receipt * rec = new Receipt(orig, r);
+      Receipt * rec = new Receipt(*orig, r);
     }
 
   if (new_time_sent->get_valtype() == ABSOLUTE)
     {
       Absolute a(new_time_sent->get_value());
-      Sending * sen = Sending(dest, a);
+      Sending * sen = new Sending(*dest, a);
     }
   else if (new_time_sent->get_valtype() == RELATIVE)
     {
@@ -138,7 +138,7 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 	}
 	
       Relative r(new_time_sent->get_value(), *(m->get_receipt()));
-      Sending * sen = Sending(dest, r);
+      Sending * sen = new Sending(*dest, r);
     }
 
   m = new Message(new_mid, new_sms, rec, sen);
