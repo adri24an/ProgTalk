@@ -43,19 +43,19 @@ relationcanvas 128002 relation_ref 151426 //
 end
 relationcanvas 128130 relation_ref 151554 // 
   from ref 128777 z 2013 to ref 128521
-  role_a_pos 522 153 3000 no_role_b
-  multiplicity_a_pos 500 143 3000 no_multiplicity_b
+  role_a_pos 526 150 3000 no_role_b
+  multiplicity_a_pos 500 150 3000 no_multiplicity_b
 end
 relationcanvas 128393 relation_ref 128002 // 
   decenter_end 449
-  from ref 128137 z 2007 stereotype "<<map>>" xyz 170 192 2007 to ref 128265
+  from ref 128137 z 2007 stereotype "<<map>>" xyz 170 201 2007 to ref 128265
   role_a_pos 208 211 3000 no_role_b
-  multiplicity_a_pos 184 211 3000 multiplicity_b_pos 182 165 3000
+  multiplicity_a_pos 184 211 3000 multiplicity_b_pos 182 183 3000
 end
 relationcanvas 128649 relation_ref 128130 // 
-  from ref 128137 z 2007 stereotype "<<map>>" xyz 347 86 2007 to ref 128521
-  role_a_pos 464 71 3000 no_role_b
-  multiplicity_a_pos 507 98 3000 multiplicity_b_pos 242 98 3000
+  from ref 128137 z 2007 stereotype "<<map>>" xyz 347 95 2007 to ref 128521
+  role_a_pos 464 80 3000 no_role_b
+  multiplicity_a_pos 507 107 3000 multiplicity_b_pos 242 107 3000
 end
 relationcanvas 129161 relation_ref 130690 // <generalisation>
   from ref 129033 z 3006 to ref 128777
@@ -66,7 +66,7 @@ relationcanvas 129289 relation_ref 129283 //
   from ref 128265 z 3006 to point 200 484
   line 130825 z 3006 to ref 129033
   role_a_pos 366 466 3000 no_role_b
-  multiplicity_a_pos 393 493 3000 multiplicity_b_pos 186 367 3000
+  multiplicity_a_pos 393 493 3000 multiplicity_b_pos 186 385 3000
 end
 relationcanvas 129545 relation_ref 130818 // <generalisation>
   from ref 129417 z 3006 to ref 128777
@@ -77,7 +77,7 @@ relationcanvas 129673 relation_ref 129411 //
   from ref 128265 z 3006 to point 308 293
   line 130953 z 3006 to ref 129417
   role_a_pos 320 355 3000 no_role_b
-  multiplicity_a_pos 294 355 3000 multiplicity_b_pos 249 302 3000
+  multiplicity_a_pos 294 355 3000 multiplicity_b_pos 249 308 3000
 end
 relationcanvas 129929 relation_ref 128387 // 
   from ref 128777 z 3006 to ref 129801
