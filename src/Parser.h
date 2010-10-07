@@ -39,6 +39,8 @@ class Parser: public ParserBase
   void addMsg(string new_mid, string new_sms, string new_origin, 
 	      string new_destiny, const Timeref * new_time_rec, 
 	      const Timeref * new_time_sent);
+  //My print operation
+  void myprint();
 
  private:
   
@@ -153,15 +155,23 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 
 inline void Parser::error(char const *msg)
 {
-    std::cerr << msg << std::endl;
+  std::cerr << msg << std::endl;
 }
 
 inline int Parser::lex()
 {
-    return d_scanner.yylex();
+  return d_scanner.yylex();
 }
 
 //Default print operation (not implemented)
-inline void Parser::print(){}
+inline void Parser::print()
+{
+}
+
+//My print operation
+inline void Parser::myprint()
+{
+  msc->print();
+}
 
 #endif
