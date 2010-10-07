@@ -1,7 +1,7 @@
 format 75
 "diagramas"
-  revision 52
-  modified_by 2 "adrian"
+  revision 53
+  modified_by 69 "adrian"
   cpp_root_dir "../../src/"
 
 
@@ -193,6 +193,21 @@ or NULL in other case."
 	comment "This operation returns the Message with the given mid 
 or NULL in other case."
       end
+
+      operation 128325 "print"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Testing method that shows on screen what's storaged on the object."
+      end
     end
 
     class 128258 "Instance"
@@ -292,6 +307,21 @@ ${inlines}
 	
 	idl_name_spec "get_${name}"
 	get_of_attribute attribute_ref 128003 // iid
+      end
+
+      operation 128197 "print"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Testing method that shows on screen what's storaged on the object."
       end
     end
 
@@ -425,6 +455,21 @@ ${inlines}
 	
 	idl_name_spec "get_${name}"
 	get_of_relation classrelation_ref 130051 // receipt ()
+      end
+
+      operation 128069 "print"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Testing method that shows on screen what's storaged on the object."
       end
     end
 
