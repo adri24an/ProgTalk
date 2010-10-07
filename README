@@ -1,22 +1,4 @@
-Detalles a solucionar tras un primer desarrollo:
+Notas de desarrollo a consultar en reunion:
 
- - Como programador que tiene que leerse tu código, es imposible saber
-  cuáles y qué significan los valores de getValtype. Hay muchas cosas
-  que hacerlas por primera parecen cansinas pero al final compensa, en
-  este caso haber creado un enumerado (supongo que ABS, UNDEF, REL)
-  habría sido un plus.
-
- - La acción semántica de la segunda producción de message parece un
-  exceso, es muy posible que se pueda mejorar. Modificar un código para
-  que haga lo mismo que ya hacía pero mejorando cierto aspecto (como la
-  eficiencia o la elegancia) tiene un nombre: refactorizar. En algún
-  momento haremos algo de refactorización.
-
- - Nunca daremos el error "has usado una palabra reservada como id",
-   porque en Scanner reconocemos antes las palabras reservadas que el id.
-
- - Hacer exit() tras error sintactico?
-
- - Chequear que tiempo de recepcion es siempre mayor que tiempo de envio.
-
- - Que tipo de mensajes vamos a "purgar" (sin origin, sin destino,...?
+- En caso de que no nos den alguna info no obligatoria (tid, name, etc) debemos almacenar "" o algo como "No_Info_Available"?
+- Como tratamos "Syntax Error"?
