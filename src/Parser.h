@@ -91,6 +91,8 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
   Sending * sen = NULL;
   Receipt * rec = NULL;
   
+  std::cout << "mensaje con origen: " << new_origin << std::endl;
+
   if (orig == NULL)
     {
       std::cout << "The origen of the message (" << new_origin 
