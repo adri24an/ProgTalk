@@ -1,3 +1,8 @@
 class Event
-!!!135426.cpp!!!	Event(in new_inst : Instance, in new_time : Timestamp)
+!!!135426.cpp!!!	Event()
 
+!!!128709.cpp!!!	print() : void
+std::cout << "instancia:" << std::endl;
+inst->print();
+std::cout << "timestamp:" << std::endl;
+time->print();
