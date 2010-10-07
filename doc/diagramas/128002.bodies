@@ -54,7 +54,7 @@ for(;mit!=mend;++mit)
   }
 
 return NULL;
-!!!128325.cpp!!!	print()
+!!!128325.cpp!!!	print() : void
 std::map<string, Instance *>::const_iterator
   mit (instances.begin()),
   mend(instances.end());
@@ -65,10 +65,10 @@ for(;mit!=mend;++mit)
   }
 
 std::map<string, Message *>::const_iterator
-  mit (messages.begin()),
-  mend(messages.end());
+  mit2 (messages.begin()),
+  mend2(messages.end());
 
-for(;mit!=mend;++mit) 
+for(;mit2!=mend2;++mit2) 
   {
-    mit->second->print();
+    mit2->second->print();
   }
