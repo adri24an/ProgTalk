@@ -1,6 +1,6 @@
 format 75
 "diagramas"
-  revision 53
+  revision 54
   modified_by 69 "adrian"
   cpp_root_dir "../../src/"
 
@@ -195,7 +195,7 @@ or NULL in other case."
       end
 
       operation 128325 "print"
-	public explicit_return_type ""
+	public explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -310,7 +310,7 @@ ${inlines}
       end
 
       operation 128197 "print"
-	public explicit_return_type ""
+	public explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -458,7 +458,7 @@ ${inlines}
       end
 
       operation 128069 "print"
-	public explicit_return_type ""
+	public explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -544,6 +544,21 @@ An event is represented by:
 	
 	
 	
+      end
+
+      operation 128709 "print"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Testing method that shows on screen what's storaged on the object."
       end
     end
 
@@ -730,6 +745,21 @@ ${inlines}
 	
 	
       end
+
+      operation 135237 "print"
+	cpp_virtual public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Testing method that shows on screen what's storaged on the object."
+      end
     end
 
     class 137858 "Absolute"
@@ -806,6 +836,7 @@ ${inlines}
 	
 	
       end
+
     end
 
     class 137986 "Relative"
@@ -893,6 +924,7 @@ ${inlines}
 	
 	
       end
+
     end
 
     objectdiagram 129154 "lars.msc"
@@ -1661,6 +1693,7 @@ ${namespace_end}"
 
 ${comment}
 ${includes}
+#include <iostream>
 ${declarations}
 ${namespace_start}
 ${definition}
@@ -1684,6 +1717,7 @@ ${namespace_end}"
 
 ${comment}
 ${includes}
+#include <iostream>
 ${declarations}
 ${namespace_start}
 ${definition}
@@ -1776,6 +1810,7 @@ ${namespace_end}"
 
 ${comment}
 ${includes}
+#include <iostream>
 ${declarations}
 ${namespace_start}
 ${definition}
