@@ -5,7 +5,7 @@ int main()
   Parser * parser = new Parser;
 
   parser->parse();
-  parser->print();
+  parser->myprint();
   
   return 0;
 }
