@@ -3,3 +3,6 @@ class Instance
 iid.assign(new_iid);
 tid.assign(new_tid);
 name.assign(new_name);
+!!!128197.cpp!!!	print()
+std::cout << "iid: " << iid << " | " << "tid: " << tid << " | " << "name: " 
+<< name << std::endl;
