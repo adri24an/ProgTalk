@@ -144,6 +144,23 @@ message:
 	  if (desc == NULL)
 	    desc->assign("");
 
+	  if (orig == NULL)
+	    {
+	      std::cout << "ERROR: User didn't provide message's origin";
+	      exit(-1);
+	    }
+
+	  if (dest == NULL)
+	    {
+	      std::cout << "ERROR: User didn't provide message's destiny";
+	      exit(-1);
+	    }
+
+	  string prueba;
+	  prueba.assign(orig->get_iid());
+	  std::cout << "hola" << std::endl;
+	  std::cout << prueba << std::endl;
+
           addMsg(*mid, *desc, orig->get_iid(), dest->get_iid(), 
 		 orig->get_timeref(), dest->get_timeref());
 	}
