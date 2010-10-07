@@ -54,3 +54,21 @@ for(;mit!=mend;++mit)
   }
 
 return NULL;
+!!!128325.cpp!!!	print()
+std::map<string, Instance *>::const_iterator
+  mit (instances.begin()),
+  mend(instances.end());
+
+for(;mit!=mend;++mit) 
+  {
+    mit->second->print();
+  }
+
+std::map<string, Message *>::const_iterator
+  mit (messages.begin()),
+  mend(messages.end());
+
+for(;mit!=mend;++mit) 
+  {
+    mit->second->print();
+  }
