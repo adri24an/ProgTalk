@@ -1,6 +1,6 @@
 format 75
 "diagramas"
-  revision 54
+  revision 55
   modified_by 69 "adrian"
   cpp_root_dir "../../src/"
 
@@ -836,7 +836,6 @@ ${inlines}
 	
 	
       end
-
     end
 
     class 137986 "Relative"
@@ -924,7 +923,6 @@ ${inlines}
 	
 	
       end
-
     end
 
     objectdiagram 129154 "lars.msc"
