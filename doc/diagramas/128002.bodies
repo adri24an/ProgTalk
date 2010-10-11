@@ -18,6 +18,7 @@ instances[i.get_iid()] = &i;
 std::map<string, Message *>::const_iterator
   mit (messages.begin()),
   mend(messages.end());
+
 int id = 0;
 
 if (m.get_mid().compare("No_Info_Available") == 0)
@@ -54,6 +55,18 @@ for(;mit!=mend;++mit)
   }
 
 return NULL;
+!!!157954.cpp!!!	searchMid(in mid : string) : Message *
+  std::map<string, Message *>::const_iterator
+    mit (messages.begin()),
+    mend(messages.end());
+  
+  for(;mit!=mend;++mit) 
+    {
+      if ((mit->first.compare(mid)) == 0)
+        {	
+  	return mit->second;
+        }
+    }
 !!!128325.cpp!!!	print() : void
 std::map<string, Instance *>::const_iterator
   mit (instances.begin()),
