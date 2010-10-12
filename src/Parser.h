@@ -39,6 +39,10 @@ class Parser: public ParserBase
   void addMsg(string new_mid, string new_sms, string new_origin, 
 	      string new_destiny, const Timeref * new_time_rec, 
 	      const Timeref * new_time_sent);
+  //Check if msc has any message storaged
+  int firstMsg();
+  //Returns the message storaged just before the one we are processing
+  Message * getPrevMsg();
   //My print operation
   void myprint();
 
@@ -82,8 +86,8 @@ inline void Parser::addInst(string new_iid, string new_tid, string new_name)
 }
 
 inline void Parser::addMsg(string new_mid, string new_sms, string new_origin, 
-			   string new_destiny, const Timeref * new_time_rec, 
-			   const Timeref * new_time_sent)
+			   string new_destiny, const Timeref * new_time_sent, 
+			   const Timeref * new_time_rec)
 {
   Instance * orig = msc->searchIid(new_origin);
   Instance * dest = msc->searchIid(new_destiny);
@@ -104,51 +108,79 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
      exit(0);
     }
 
+  if ((new_time_sent->get_valtype()) == ABSOLUTE)
+    {
+      Absolute a(new_time_sent->get_value());
+      sen = new Sending(*orig, a);
+    }
+  else if ((new_time_sent->get_valtype()) == RELATIVE)
+    {
+      if (new_time_sent->get_mode() != 0)
+	{
+	  m = msc->searchMid(new_time_sent->get_ref());
+	  
+	  if (m == NULL)
+	    {
+	      std::cout << "The Message referenced (" 
+			<< new_time_sent->get_ref() 
+			<< ") doesn't exist." << std::endl;
+	      exit(-1);
+	    }
+
+	  if (new_time_sent->get_mode() == 1)
+	    {  
+	      Relative r(new_time_sent->get_value(), *(m->get_sending()));
+	      sen = new Sending(*orig, r);
+	    }
+	  else if (new_time_sent->get_mode() == 2)
+	    {
+	      Relative r(new_time_sent->get_value(), *(m->get_receipt()));
+	      sen = new Sending(*orig, r);
+	    }
+	}
+      else if (new_time_sent->get_mode() == 0)
+	{
+	  Message * aux = getPrevMsg();
+	  Relative r(new_time_sent->get_value(), *(aux->get_receipt()));
+	  sen = new Sending(*orig, r);
+	}
+    }
+
   if (new_time_rec->get_valtype() == ABSOLUTE)
     {
       Absolute a(new_time_rec->get_value());
-      rec = new Receipt(*orig, a);
+      rec = new Receipt(*dest, a);
     }
   else if (new_time_rec->get_valtype() == RELATIVE)
     {
-      string aux = new_time_rec->get_ref();
-      std::cout << aux << std::endl;
-      m = msc->searchMid(new_time_rec->get_ref());
-
-      std::cout << "la ref del mensaje relativo es: " << new_time_rec->get_ref()
-		<< std::endl;
-
-      if (m == NULL)
+      if (new_time_rec->get_mode() != 0)
 	{
-	  std::cout << "The Message referenced (" 
-		    << new_time_rec->get_ref() 
-		    << ") doesn't exist." << std::endl;
-	  exit(0);
-	} 
-  
-      Relative r(new_time_rec->get_value(), *(m->get_receipt()));
-      rec = new Receipt(*orig, r);
-    }
+	  m = msc->searchMid(new_time_rec->get_ref());
+	  
+	  if (m == NULL)
+	    {
+	      std::cout << "The Message referenced (" 
+			<< new_time_sent->get_ref() 
+			<< ") doesn't exist." << std::endl;
+	      exit(-1);
+	    }
 
-  if (new_time_sent->get_valtype() == ABSOLUTE)
-    {
-      Absolute a(new_time_sent->get_value());
-      sen = new Sending(*dest, a);
-    }
-  else if (new_time_sent->get_valtype() == RELATIVE)
-    {
-      m = msc->searchMid(new_time_sent->get_ref());
-
-      if (m == NULL)
-	{
-	  std::cout << "The Message referenced (" 
-		    << new_time_sent->get_ref() 
-		    << ") doesn't exist." << std::endl;
-	  exit(0);
+	  if (new_time_rec->get_mode() == 1)
+	    {
+	      Relative r(new_time_rec->get_value(), *(m->get_sending()));
+	      rec = new Receipt(*dest, r);
+	    }
+	  else if (new_time_rec->get_mode() == 2)
+	    {
+	      Relative r(new_time_rec->get_value(), *(m->get_receipt()));
+	      rec = new Receipt(*dest, r);
+	    }
 	}
-	
-      Relative r(new_time_sent->get_value(), *(m->get_receipt()));
-      sen = new Sending(*dest, r);
+      else if (new_time_rec->get_mode() == 0)
+	{
+	  Relative r(new_time_rec->get_value(), *(m->get_sending()));
+	  rec = new Receipt(*dest, r);
+	}
     }
 
   m = new Message(new_mid, new_sms, *sen, *rec);
@@ -171,6 +203,18 @@ inline int Parser::lex()
 //Default print operation (not implemented)
 inline void Parser::print()
 {
+}
+
+//Check if msc has any message storaged
+inline int Parser::firstMsg()
+{
+  return msc->firstMsg();
+}
+
+//Returns the message storaged just before the one we are processing
+inline Message * Parser::getPrevMsg()
+{
+  return msc->getPrevMsg();
 }
 
 //My print operation
