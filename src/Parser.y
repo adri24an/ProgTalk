@@ -138,6 +138,10 @@ message:
           Timestg * orig = $4;
           Timestg * dest = $5;
 
+	  string aux = orig->get_timeref()->get_ref();
+	  std::cout << "en parser.y: " << aux << std::endl;
+	  
+	  
 	  if (mid == NULL)
 	    mid->assign("No_Info_Available");
 	  
@@ -155,11 +159,6 @@ message:
 	      std::cout << "ERROR: User didn't provide message's destiny";
 	      exit(-1);
 	    }
-
-	  string prueba;
-	  prueba.assign(orig->get_iid());
-	  std::cout << "hola" << std::endl;
-	  std::cout << prueba << std::endl;
 
           addMsg(*mid, *desc, orig->get_iid(), dest->get_iid(), 
 		 orig->get_timeref(), dest->get_timeref());
