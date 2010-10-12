@@ -1398,9 +1398,9 @@ ${inlines}
 	nparams 2
 	  param in name "new_iid" explicit_type "string"
 	  param in name "new_timeref" type class_ref 131330 // Timeref
-	cpp_decl "    ${comment}${inline}${name}${(}${t0} ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} ${p0}, ${t1} & ${p1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${t0} ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} ${p0}, ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
 "
 	
