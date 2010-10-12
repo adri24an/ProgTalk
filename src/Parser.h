@@ -90,8 +90,6 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
   Message * m = NULL;
   Sending * sen = NULL;
   Receipt * rec = NULL;
-  
-  std::cout << "mensaje con origen: " << new_origin << std::endl;
 
   if (orig == NULL)
     {
@@ -113,7 +111,12 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
     }
   else if (new_time_rec->get_valtype() == RELATIVE)
     {
+      string aux = new_time_rec->get_ref();
+      std::cout << aux << std::endl;
       m = msc->searchMid(new_time_rec->get_ref());
+
+      std::cout << "la ref del mensaje relativo es: " << new_time_rec->get_ref()
+		<< std::endl;
 
       if (m == NULL)
 	{
