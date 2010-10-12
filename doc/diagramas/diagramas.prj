@@ -1,6 +1,6 @@
 format 75
 "diagramas"
-  revision 55
+  revision 56
   modified_by 69 "adrian"
   cpp_root_dir "../../src/"
 
@@ -194,6 +194,36 @@ or NULL in other case."
 or NULL in other case."
       end
 
+      operation 141765 "firstMsg"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "This method returns 1 if the there isn't any message storaged in MSC or 0 otherwise."
+      end
+
+      operation 142021 "getPrevMsg"
+	public explicit_return_type "Message *"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Returns the message storaged just before the one we are processing."
+      end
+
       operation 128325 "print"
 	public explicit_return_type "void"
 	nparams 0
@@ -362,6 +392,17 @@ ${inlines}
 	comment "Text transmitted in the Message."
       end
 
+      classrelation 130307 // sending ()
+	relation 129411 ---> name ""
+	  a role_name "sending" multiplicity "1" protected
+	    comment "Author and time of sending."
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 130307 // sending ()
+	  b multiplicity "1" parent class_ref 130946 // Sending
+	get_oper operation_ref 141893 // get_sending
+      end
+
       classrelation 130051 // receipt ()
 	relation 129283 ---> name ""
 	  a role_name "receipt" multiplicity "1" protected
@@ -371,16 +412,6 @@ ${inlines}
 	    classrelation_ref 130051 // receipt ()
 	  b multiplicity "1" parent class_ref 130818 // Receipt
 	get_oper operation_ref 158338 // get_receipt
-      end
-
-      classrelation 130307 // sending ()
-	relation 129411 ---> name ""
-	  a role_name "sending" multiplicity "1" protected
-	    comment "Author and time of sending."
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 130307 // sending ()
-	  b multiplicity "1" parent class_ref 130946 // Sending
       end
 
       operation 134914 "Message"
@@ -434,6 +465,27 @@ ${inlines}
 	
 	idl_name_spec "get_${name}"
 	get_of_attribute attribute_ref 128387 // mid
+      end
+
+      operation 141893 "get_sending"
+	force_body_gen const cpp_inline public return_type class_ref 130946 // Sending
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return sending;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	
+	idl_name_spec "get_${name}"
+	get_of_relation classrelation_ref 130307 // sending ()
       end
 
       operation 158338 "get_receipt"
@@ -562,72 +614,6 @@ An event is represented by:
       end
     end
 
-    class 130818 "Receipt"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      comment "This class represents an event that occurs when a message is received."
-      classrelation 131330 // <generalisation>
-	relation 130690 ---|>
-	  a public
-	    cpp default "${type}"
-	    classrelation_ref 131330 // <generalisation>
-	  b parent class_ref 129666 // Event
-      end
-
-      operation 135682 "Receipt"
-	public explicit_return_type ""
-	nparams 2
-	  param in name "new_inst" type class_ref 128258 // Instance
-	  param in name "new_time" type class_ref 131202 // Timestamp
-	cpp_decl "    ${comment}${inline}${name}${(}${t0} & ${p0}, ${t1} & ${p1}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${t0} & ${p0}, ${t1} & ${p1}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 135810 "~Receipt"
-	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 144386 "getTime"
-	public explicit_return_type "int"
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-    end
-
     class 130946 "Sending"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
@@ -680,6 +666,72 @@ ${inlines}
       end
 
       operation 144258 "getTime"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 130818 "Receipt"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "This class represents an event that occurs when a message is received."
+      classrelation 131330 // <generalisation>
+	relation 130690 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131330 // <generalisation>
+	  b parent class_ref 129666 // Event
+      end
+
+      operation 135682 "Receipt"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "new_inst" type class_ref 128258 // Instance
+	  param in name "new_time" type class_ref 131202 // Timestamp
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} & ${p0}, ${t1} & ${p1}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} & ${p0}, ${t1} & ${p1}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135810 "~Receipt"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 144386 "getTime"
 	public explicit_return_type "int"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
@@ -1193,9 +1245,9 @@ when the time is relative"
 	idl_decl ""
 	get_oper operation_ref 158082 // get_mode
 	comment "This represents if the relative time depends on sending or receipt.
-receiving = 1 or sending = 2
+sending = 1 or receiving = 2
 
-when the time is absolute, this value is 0."
+when the time is absolute or it isn't explicitly relative (the user didn't provide specifically a relative mid), this value is 0."
       end
 
       attribute 141698 "ref"
@@ -1266,9 +1318,9 @@ when the time is absolute, this value is 0."
       operation 157826 "get_value"
 	force_body_gen const cpp_inline public explicit_return_type "int"
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw};
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   return value;
 }
 "
@@ -1513,11 +1565,11 @@ ${inlines}
         attribute_ref 141570 // mode
           "0"
         attribute_ref 141698 // ref
-          "No_Info_Available"
+          "\"\""
         attribute_ref 141186 // valtype
-          "1"
+          "0"
         attribute_ref 141314 // value
-          "1"
+          "0"
         end
       relations
         end
@@ -1529,9 +1581,9 @@ ${inlines}
         attribute_ref 141570 // mode
           "0"
         attribute_ref 141698 // ref
-          "No_Info_Available"
+          "\"\""
         attribute_ref 141186 // valtype
-          "1"
+          "0"
         attribute_ref 141314 // value
           "1"
         end
@@ -1585,7 +1637,7 @@ ${inlines}
         attribute_ref 141570 // mode
           "0"
         attribute_ref 141698 // ref
-          "No_Info_Available"
+          "\"\""
         attribute_ref 141186 // valtype
           "1"
         attribute_ref 141314 // value
