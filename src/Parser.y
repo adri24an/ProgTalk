@@ -137,16 +137,12 @@ message:
           string * desc = $3;
           Timestg * orig = $4;
           Timestg * dest = $5;
-
-	  string aux = orig->get_timeref()->get_ref();
-	  std::cout << "en parser.y: " << aux << std::endl;
-	  
 	  
 	  if (mid == NULL)
-	    mid->assign("No_Info_Available");
+	    mid = new string("No_Info_Available");
 	  
 	  if (desc == NULL)
-	    desc->assign("");
+	    desc = new string("");
 
 	  if (orig == NULL)
 	    {
@@ -211,7 +207,14 @@ origin:
 time_ref_opt:
         // EMPTY
         {
-	  $$ = new Timeref(RELATIVE, 1, 0, "");
+          if (firstMsg() == 1)
+	  {
+	    $$ = new Timeref(ABSOLUTE, 0, 0, "");
+	  }
+          else
+          {
+	    $$ = new Timeref(RELATIVE, 1, 0, "");
+	  }
 	}
 |
         AT time_ref
