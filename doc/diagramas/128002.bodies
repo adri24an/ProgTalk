@@ -68,6 +68,20 @@ return NULL;
         }
     }
 return NULL;
+!!!141765.cpp!!!	firstMsg() : int
+if (messages.empty())
+  {
+    return 1;
+  }
+else
+  {
+    return 0;
+  }
+!!!142021.cpp!!!	getPrevMsg() : Message *
+std::map<string, Message *>::const_iterator
+  mend(messages.end());
+
+return (mend->second);
 !!!128325.cpp!!!	print() : void
 std::map<string, Instance *>::const_iterator
   mit (instances.begin()),
