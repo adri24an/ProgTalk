@@ -67,6 +67,7 @@ return NULL;
   	return mit->second;
         }
     }
+return NULL;
 !!!128325.cpp!!!	print() : void
 std::map<string, Instance *>::const_iterator
   mit (instances.begin()),
