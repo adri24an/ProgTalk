@@ -113,12 +113,12 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
       Absolute a(new_time_sent->get_value());
       sen = new Sending(*orig, a);
     }
-  else if ((new_time_sent->get_valtype()) == RELATIVE)
+  else if (new_time_sent->get_valtype() == RELATIVE)
     {
       if (new_time_sent->get_mode() != 0)
 	{
 	  m = msc->searchMid(new_time_sent->get_ref());
-	  
+
 	  if (m == NULL)
 	    {
 	      std::cout << "The Message referenced (" 
@@ -178,13 +178,12 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 	}
       else if (new_time_rec->get_mode() == 0)
 	{
-	  Relative r(new_time_rec->get_value(), *(m->get_sending()));
+	  Relative r(new_time_rec->get_value(), *(sen));
 	  rec = new Receipt(*dest, r);
 	}
     }
 
   m = new Message(new_mid, new_sms, *sen, *rec);
-  
   msc->addMsg(*m);
 }
 
