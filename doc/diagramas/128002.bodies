@@ -80,6 +80,7 @@ else
 !!!142021.cpp!!!	getPrevMsg() : Message *
 std::map<string, Message *>::const_iterator
   mend(messages.end());
+mend--;
 
 return (mend->second);
 !!!128325.cpp!!!	print() : void
