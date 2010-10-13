@@ -1,6 +1,6 @@
 format 75
 "diagramas"
-  revision 58
+  revision 59
   modified_by 69 "adrian"
   cpp_root_dir "../../src/"
 
@@ -95,7 +95,7 @@ instances and messages storaged."
 "
 	    classrelation_ref 128002 // messages ()
 	  b multiplicity "1" parent class_ref 128130 // Message
-	  association_explicit_type "string"
+	  association_explicit_type "int"
       end
 
       operation 134658 "MSC"
