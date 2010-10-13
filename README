@@ -2,3 +2,4 @@ Notas de desarrollo a consultar en reunion:
 
 - En caso de que no nos den alguna info no obligatoria (tid, name, etc) debemos almacenar "" o algo como "No_Info_Available"?
 - Como tratamos "Syntax Error"?
+- Ver error en print de Message sobre llamar a virtual method.
