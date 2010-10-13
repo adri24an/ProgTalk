@@ -1,0 +1,4 @@
+class Timestg
+!!!137218.cpp!!!	Timestg(in new_iid : string, in new_timeref : Timeref)
+iid.assign(new_iid);
+timeref = &new_timeref;
