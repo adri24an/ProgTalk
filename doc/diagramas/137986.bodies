@@ -9,5 +9,3 @@ value = ref->getTime();
 value = value + diff;
 
 return value;
-!!!148933.cpp!!!	print() : void
-std::cout << "time: " << getAbsoluteTime() << std::endl;
