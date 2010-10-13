@@ -4,3 +4,8 @@ inst = &new_inst;
 time = &new_time;
 !!!144386.cpp!!!	getTime() : int
 return time->getAbsoluteTime();
+!!!149189.cpp!!!	print() : void
+std::cout << "instancia:" << std::endl;
+inst->print();
+std::cout << "timestamp:" << std::endl;
+time->print();
