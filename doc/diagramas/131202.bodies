@@ -1,0 +1,3 @@
+class Timestamp
+!!!135237.cpp!!!	print() : void
+std::cout << "time: " << getAbsoluteTime() << std::endl;
