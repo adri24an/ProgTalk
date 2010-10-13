@@ -155,7 +155,7 @@ message:
 	      std::cout << "ERROR: User didn't provide message's destiny";
 	      exit(-1);
 	    }
-
+	  
           addMsg(*mid, *desc, orig->get_iid(), dest->get_iid(), 
 		 orig->get_timeref(), dest->get_timeref());
 	}
@@ -238,6 +238,12 @@ destiny_opt:
 destiny:
         TO iid time_ref_opt
         {
+	  if (($3->get_valtype() == ABSOLUTE) && ($3->get_value() == 0) &&
+	      (firstMsg() == 1))
+	    {
+	      $3->set_valtype(RELATIVE);
+	      $3->set_value(1);
+	    }
 	  $$ = new Timestg(*$2, *$3);
 	}
 ;
