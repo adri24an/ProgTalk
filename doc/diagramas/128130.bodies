@@ -6,7 +6,7 @@ receipt = &new_receipt;
 sending = &new_sending;
 !!!128069.cpp!!!	print() : void
 std::cout << "mid: " << mid << " | " << "sms: " << sms << " | " << std::endl;
-/*std::cout << "sending: " << std::endl;
+std::cout << "sending: " << std::endl;
 sending->print();
 std::cout << "receipt: " << std::endl;
-receipt->print();*/
+receipt->print();
