@@ -3,3 +3,5 @@ class Absolute
 time = new_time;
 !!!143874.cpp!!!	getAbsoluteTime() : int
 return time;
+!!!148805.cpp!!!	print() : void
+std::cout << "time: " << getAbsoluteTime() << std::endl;
