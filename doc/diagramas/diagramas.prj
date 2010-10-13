@@ -1,6 +1,6 @@
 format 75
 "diagramas"
-  revision 59
+  revision 63
   modified_by 69 "adrian"
   cpp_root_dir "../../src/"
 
@@ -583,6 +583,7 @@ An event is represented by:
 "
 	    classrelation_ref 128771 // time ()
 	  b multiplicity "*" parent class_ref 131202 // Timestamp
+	get_oper operation_ref 155845 // get_time
       end
 
       operation 135426 "Event"
@@ -849,16 +850,18 @@ ${inlines}
 	
       end
 
-      operation 135237 "print"
-	abstract cpp_virtual public explicit_return_type "void"
+      operation 155973 "print"
+	public explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
 "
 	
 	
 	
 	
-	comment "Testing method that shows on screen what's storaged on the object."
       end
     end
 
@@ -925,20 +928,6 @@ ${inlines}
 
       operation 143874 "getAbsoluteTime"
 	public explicit_return_type "int"
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 148805 "print"
-	public explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -1026,20 +1015,6 @@ ${inlines}
 
       operation 144002 "getAbsoluteTime"
 	public explicit_return_type "int"
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 148933 "print"
-	public explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
