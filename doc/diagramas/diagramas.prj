@@ -1,6 +1,6 @@
 format 75
 "diagramas"
-  revision 57
+  revision 58
   modified_by 69 "adrian"
   cpp_root_dir "../../src/"
 
@@ -568,6 +568,7 @@ An event is represented by:
       classrelation 153346 // inst ()
 	relation 151554 ---> name ""
 	  a role_name "inst" multiplicity "1" protected
+	    comment "Instance where the event occurred"
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 153346 // inst ()
@@ -577,6 +578,7 @@ An event is represented by:
       classrelation 128771 // time ()
 	relation 128387 ---> name ""
 	  a role_name "time" multiplicity "1" protected
+	    comment "Time when the event occurred"
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128771 // time ()
@@ -1283,7 +1285,8 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      comment "This class is used by the parser for storaging purposes during parsing."
+      comment "This class is used by the parser for storaging purposes 
+during parsing."
       attribute 141186 "valtype"
 	protected explicit_type "int"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
@@ -1511,7 +1514,8 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      comment "This class parse an input file with the communication between 2 or more entities"
+      comment "This class parse an input file with the communication
+between 2 or more entities"
       classrelation 131586 // msc ()
 	relation 130946 ---> name ""
 	  a role_name "msc" multiplicity "1" protected
@@ -1543,7 +1547,8 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      comment "This class is used by the parser for storaging purposes during parsing."
+      comment "This class is used by the parser for storaging purposes
+during parsing."
       classrelation 146178 // timeref ()
 	relation 144770 ---> name ""
 	  a role_name "timeref" multiplicity "1" protected
