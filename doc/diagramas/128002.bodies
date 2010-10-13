@@ -19,14 +19,13 @@ std::map<string, Message *>::const_iterator
   mit (messages.begin()),
   mend(messages.end());
 
-int id = 0;
+std::stringstream stream;
+int i = messages.size() + 1;
+stream << i;
 
 if (m.get_mid().compare("No_Info_Available") == 0)
   {
-    std::stringstream stream;
-    int i = messages.size();
-    stream << i;
-    messages[stream.str()] = &m;
+    m.set_mid(stream.str());
   }
  else 
    {
@@ -38,9 +37,9 @@ if (m.get_mid().compare("No_Info_Available") == 0)
 	       ") used in the message already exists" << std::endl;
 	     exit(0);
 	   }
-       }
-     messages[m.get_mid()] = &m;  
+       }  
    }
+messages[stream.str()] = &m;
 !!!157570.cpp!!!	searchIid(in iid : string) : Instance *
 std::map<string, Instance *>::const_iterator
   mit (instances.begin()),
@@ -62,9 +61,10 @@ return NULL;
   
   for(;mit!=mend;++mit) 
     {
-      if ((mit->first.compare(mid)) == 0)
+      string aux = mit->second->get_mid();
+      if ((aux.compare(mid)) == 0)
         {	
-  	return mit->second;
+	  return mit->second;
         }
     }
 return NULL;
