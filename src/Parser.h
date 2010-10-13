@@ -126,7 +126,7 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 			<< ") doesn't exist." << std::endl;
 	      exit(-1);
 	    }
-
+	
 	  if (new_time_sent->get_mode() == 1)
 	    {  
 	      Relative r(new_time_sent->get_value(), *(m->get_sending()));
