@@ -1,4 +1,8 @@
+CPPFLAGS=-g -Wall -Wextra
+
 main: Progtalk
+
+rebuild: clean main
 
 Scanner.cc: Scanner.l Scanner.h
 	flex++ -o $@ $<
