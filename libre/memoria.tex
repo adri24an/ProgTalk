@@ -1,0 +1,155 @@
+\documentclass{article}
+
+\usepackage[a4paper]{geometry}
+
+\usepackage[utf8]{inputenc}
+
+% \usepackage{graphics} % Or
+\usepackage{graphicx} %% and then \includegraphics[scale=0.5,...]{filename}
+
+\setlength{\parskip}{\baselineskip}
+\parindent4em
+
+%\usepackage[spanish]{babel}
+%\usepackage[spanish,english]{babel}
+
+% \usepackage{listings}
+
+% \usepackage{url}
+% \usepackage{html}
+
+% \usepackage{fancybox}
+% \usepackage{fancyheadings}
+
+% \usepackage{courier}
+% \usepackage{times}
+
+\title{Memoria del proyecto para convalidación de créditos de libre elección}
+\author{Adrián Bartol Molina}
+\date{20 de octubre de 2010}
+
+\begin{document}
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+
+\section{Introducción}
+
+El proyecto que se ha realizado con el fin de obtener la convalidación de créditos de libre elección consiste en el diseño e implementación de un primer ciclo de desarrollo de la herramienta \textit{Progtalk}. Dicha herramienta una vez totalmente desarrollada en un futuro proyecto de fin de carrera, se integrará dentro de \emph{Transformers}, un proyecto de transferencia tecnológica de métodos formales a la industria del ferrocarril.
+
+En el proyecto \emph{Transformers} se estudian varios lenguajes para representar la información de los requisitos del sistema de ferrocarril europeo (ERTMS) entre los que se encuentran los lenguajes de diagramas de sequencias (MSC, \emph{Message Sequence Charts}).
+
+La labor de la herramienta \textit{Progtalk} consiste en, dada una comunicación entre dos o mas entidades, el procesado de esta comunicación y su impresión en diferentes formatos (pdf, dot, png, etc). Para ello podemos describir el funcionamiento de la herramienta en 3 fases:
+
+\begin{itemize}
+\item Validación léxica y sintáctica del fichero de entrada, el cuál contiene la comunicación,
+\item validación semántica, almacenaje de la información parseada, y comprobación de la integridad de la información almacenada, y
+\item exportación de la comunicación a un fichero externo (pdf, dot, png, etc).
+\end{itemize}
+
+Para este proyecto de convalidación de créditos de libre elección, las funcionalidades de \textit{Progtalk} que se han desarrollado son:
+
+\begin{itemize}
+\item Diseño de un lenguaje concreto para la representación de MSCs (\emph{Message Sequence Charts}),
+\item análisis léxico y sintáctico de dicho lenguaje,
+\item análisis semántico de algunas propiedades básicas como la existencia y no duplicidad de identificadores,
+\item impresión por pantalla de toda la comunicación almacenada.
+\end{itemize}
+
+\section{Diseño del lenguaje}
+
+La herramienta \textit{Progtalk} debe recibir la comunicación en un fichero escrito en un determinado lenguaje. Dicho lenguaje consta de dos secciones:
+\begin{itemize}
+\item Declaración de instancias, y
+\item declaración de mensajes.
+\end{itemize}
+
+En nuestro lenguaje, las instancias se comunican entre si mediante mensajes.
+
+\subsubsection{Instancias}
+
+Las instancias de nuestro lenguaje se describen mediante tres parámetros:
+
+\begin{itemize}
+\item Identificador de instancia. Este parámetro debe ser obligatoriamente introducido por el usuario. Ademas debe ser un identificador valido (aqui se entiende como identificador valido un conjunto de caracteres y números que comienza obligatoriamente por una letra).
+\item Tipo de la instancia. Este parámetro es opcional, y esta pensado darle una funcionalidad real en un futuro desarrollo.
+\item Parámetro \textit{name}. Este parámetro es opcional, y esta pensado darle una funcionalidad real en un futuro desarrollo.
+\end{itemize}
+
+El usuario puede almacenar tantas instancias como desee, pero estas deben tener un identificador de instancia único.
+
+\subsubsection{Mensajes}
+
+Los mensajes de nuestro lenguaje se describen mediante seis parámetros:
+
+\begin{itemize}
+\item Identificador de mensaje. Este parámetro es opcional. En caso de ser introducido debe ser un identificador valido (aqui se entiende como identificador valido cualquier identificador valido en un lenguaje de alto nivel como c++ o java, es decir, que comience por una o varias letras, seguido de cualquier tipo de carácter salvo espacios, tabulados o saltos de linea).
+\item Mensaje. Este parámetro es opcional, y almacena el mensaje de texto propiamente dicho.
+\item Instancia origen del mensaje. Este parámetro debe ser obligatoriamente introducido por el usuario, y representa la instancia que envió el mensaje. La instancia a la que se haga referencia en este parámetro, debe de haber sido declarada previamente en esa misma comunicación.
+\item Instancia destino del mensaje. Este parámetro debe ser obligatoriamente introducido por el usuario, y representa la instancia que recibió el mensaje. La instancia a la que se haga referencia en este parámetro, debe de haber sido declarada previamente en esa misma comunicación.
+\item Tiempo de envió. Este parámetro es opcional. Representa el momento exacto en que el mensaje fue enviado.
+\item Tiempo de recepción. Este parámetro es opcional. Representa el momento exacto en que el mensaje fue enviado.
+\end{itemize}
+
+La instancia origen del mensaje y el instante de envió forman un evento de envió, mientras que la instancia destino del mensaje y el instante de recepción forman un evento de recepción.
+
+Es importante que nos detengamos un momento a explicar en detalle los parámetros de los mensajes relativos a los tiempos de envió y recepción. Estos tiempos pueden ser absolutos o relativos. 
+
+Entenderemos como tiempos absolutos los siguiente casos:
+
+\begin{itemize}
+\item Si el usuario da específicamente un valor absoluto, o
+\item si estamos hablando del instante de envió del primer mensaje de la comunicación y el usuario no ha introducido dicho parámetro. En este caso consideraremos siempre un valor absoluto de cero. 
+\end{itemize}
+
+Por otro lado entenderemos por tiempos relativos los siguiente casos:
+
+\begin{itemize}
+\item Relativo implícito: si el usuario no da específicamente un valor en cuyo caso calcularemos el parámetro como el instante del ultimo evento (ya sea envió del mensaje actual, o recepción del mensaje anterior) mas una unidad.
+\item Relativo explicito simple: si el usuario aporta un valor del tipo (\textit{+unidad}) donde \textit{unidad} es un numero entero, pero no especifica un evento de referencia. En este caso calcularemos el parámetro como el instante del ultimo evento (ya sea envió del mensaje actual, o recepción del mensaje anterior) mas el valor introducido por el usuario (\textit{+unidad}).
+\item Relativo explicito complejo: si el usuario aporta un evento de referencia y un valor del tipo (\textit{+unidad}) donde \textit{unidad} es un numero entero. El evento de referencia especificado por el usuario puede referirse a un evento de envió o de recepción, y debe de pertenecer a un mensaje ya almacenado anteriormente en esa comunicación. En este caso calcularemos el parámetro como el instante en que ocurrió el evento que especifico el usuario sumándole el valor (\textit{+unidad}) especificado también por el usuario. Cabe destacar que cabe la posibilidad de que solo se introduzca el evento de referencia y que no se introduzca un valor del tipo (\textit{+unidad}). En este caso consideraremos dicho valor (\textit{+unidad}) como +0.
+\end{itemize}
+
+\section{Análisis léxico}
+
+Para el análisis léxico del fichero de entrada hemos utilizado el lenguaje \textit{flex++}. El proceso es sencillo, un objeto \textit{Scanner} (implementado mediante \textit{flex++}), va tomando carácter por carácter del fichero de entrada y con dichos caracteres construye tokens que envía al analizador sintáctico y semántico (\textit{Parser}). 
+
+Existen varios tipos de tokens en nuestro lenguaje:
+
+\begin{itemize}
+\item NUM: números enteros.
+\item STRING: cualquier conjunto carácter salvo comillas o saltos de linea.
+\item EOLN: salto de linea.
+\item LEFT\_BRACE y RIGHT\_BRACE: \{ y \}.
+\item SEMICOLON: ";".
+\item INTERROGATION y EXCLAMATION: "?" y "!".
+\item PLUS: "+".
+\item AT: "@".
+\item ID: un identificador (conjunto de caracteres y números que comienza obligatoriamente por una letra).
+\item INSTANCE, MESSAGE, OF, FROM, TO: palabras reservadas del lenguaje.
+\end{itemize}
+
+\section{Análisis sintáctico}
+
+Para el análisis sintáctico hemos utilizado el lenguaje \textit{bisonc++}. El proceso de parseo es el siguiente. El objeto \textit{Parser} (implementado en \textit{bisonc++}) va tomando los tokens enviados por \textit{Scanner} y comprueba que el lenguaje que esta leyendo es un lenguaje correcto. En caso de no serlo se aborta el proceso de parseo y el programa termina.
+
+\section{Análisis semántico}
+
+En nuestro programa el análisis semántico se realiza de forma paralela al análisis sintáctico. Para esta entrega se han analizado inconsistencias relacionadas con la existencia y no duplicidad de los identificadores. Otras inconsistencias relacionadas con los instantes de envío y recepción serán tratadas en la versión final de la herramienta. 
+
+\section{Impresión}
+
+Para esta tarea se han utilizado sentencias \textit{cout} nativas del lenguaje \textit{C++} implementadas como métodos \textit{print} en cada clase. Es un método bastante poco elegante, pero puesto que esta entrega es un paso intermedio en la implementación de la herramienta, pensamos que como herramienta de depuración era válida. Para la versión final esta tarea se realizara con un patrón de diseño \textit{Visitor}.
+
+\section{Conclusiones}
+
+Tras terminar este primer ciclo de desarrollo de \textit{Progtalk}, nos hemos dado cuenta de el diseño de clases que realizamos en su momento no es del todo satisfactorio. La razón de esto es, como suele ocurrir, que no se le dedico el tiempo necesario a esta tarea, ni se estudio en profundidad cada requisito concreto. Debido a ello para el próximo ciclo de desarrollo realizaremos un nuevo diseño basado en el anterior pero con importantes cambios. Ademas vamos a comenzar a usar como herramienta de desarrollo el programa \textit{bouml}. El cual permite tener englobado en un solo programa el diseño y la implementación de la herramienta entre otros muchos beneficios. Por otro lado, además de rehacer todo lo hecho hasta el momento, añadiremos todas las funcionalidades aún no implementadas:
+
+\begin{itemize}
+\item Un exhaustivo análisis semántico, que garantice la integridad de la comunicación,
+\item la funcionalidad referente a la impresión de la comunicación en diferentes formatos (pdf, dot, png, etc), y
+\item un plan de pruebas concienzudo y detallado.
+\end{itemize}
+
+\end{document}
