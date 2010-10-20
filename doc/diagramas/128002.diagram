@@ -49,7 +49,7 @@ end
 relationcanvas 128393 relation_ref 128002 // 
   decenter_end 449
   from ref 128137 z 2007 stereotype "<<map>>" xyz 171 208 2007 to ref 128265
-  role_a_pos 218 209 3000 no_role_b
+  role_a_pos 210 211 3000 no_role_b
   multiplicity_a_pos 186 211 3000 multiplicity_b_pos 184 198 3000
 end
 relationcanvas 128649 relation_ref 128130 // 
