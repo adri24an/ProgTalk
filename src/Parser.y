@@ -146,13 +146,16 @@ message:
 
 	  if (orig == NULL)
 	    {
-	      std::cout << "ERROR: User didn't provide message's origin";
+	      std::cout << "ERROR: User didn't provide message's origin" 
+			<< std::endl;
 	      exit(-1);
 	    }
 
 	  if (dest == NULL)
 	    {
-	      std::cout << "ERROR: User didn't provide message's destiny";
+	      std::cout << "ERROR: User didn't provide message's destiny" 
+
+			<< std::endl;
 	      exit(-1);
 	    }
 	  
