@@ -97,7 +97,7 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 
   if (orig == NULL)
     {
-      std::cout << "The origen of the message (" << new_origin 
+      std::cout << "The origin of the message (" << new_origin 
 		<< ") doesn't exist." << std::endl;
       exit(0);
     }
