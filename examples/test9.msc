@@ -2,4 +2,4 @@ instance u of User;
 instance a of Agent { "DHL" };
 
 message m1 { "request send to dhl" } from u to a;
-message m2 { "send" } from a @ m1?+4 to a @ m4!+2;
+message m2 { "send" } from a @ m1?+4 to f @ m4!+2;
