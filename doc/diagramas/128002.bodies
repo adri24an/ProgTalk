@@ -32,7 +32,7 @@ else
   {
     for(;mit!=mend;++mit) 
       {
-	if ((aux.compare(m.get_mid())) == 0)
+	if (((mit->second->get_mid()).compare(m.get_mid())) == 0)
 	  {
 	    std::cout << "Error: the mid (" <<  m.get_mid() << 
 	      ") used in the message already exists" << std::endl;
