@@ -163,7 +163,7 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 	  if (m == NULL)
 	    {
 	      std::cout << "The Message referenced (" 
-			<< new_time_sent->get_ref() 
+			<< new_time_rec->get_ref() 
 			<< ") doesn't exist." << std::endl;
 	      exit(-1);
 	    }
