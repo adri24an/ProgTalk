@@ -110,8 +110,8 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 
   if ((new_time_sent->get_valtype()) == ABSOLUTE)
     {
-      Absolute a(new_time_sent->get_value());
-      sen = new Sending(*orig, a);
+      Absolute *a = new Absolute(new_time_sent->get_value());
+      sen = new Sending(*orig, *a);
     }
   else if (new_time_sent->get_valtype() == RELATIVE)
     {
