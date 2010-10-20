@@ -38,8 +38,8 @@ classcanvas 130313 class_ref 137986 // Relative
 end
 relationcanvas 128002 relation_ref 151426 // 
   from ref 130313 z 3012 to ref 128777
-  role_a_pos 457 305 3000 no_role_b
-  multiplicity_a_pos 457 332 3000 no_multiplicity_b
+  role_a_pos 457 307 3000 no_role_b
+  multiplicity_a_pos 457 334 3000 no_multiplicity_b
 end
 relationcanvas 128130 relation_ref 151554 // 
   from ref 128777 z 2013 to ref 128521
