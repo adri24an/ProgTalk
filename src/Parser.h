@@ -110,7 +110,7 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 
   if ((new_time_sent->get_valtype()) == ABSOLUTE)
     {
-      Absolute *a = new Absolute(new_time_sent->get_value());
+      Absolute * a = new Absolute(new_time_sent->get_value());
       sen = new Sending(*orig, *a);
     }
   else if (new_time_sent->get_valtype() == RELATIVE)
@@ -129,27 +129,30 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 	
 	  if (new_time_sent->get_mode() == 1)
 	    {  
-	      Relative r(new_time_sent->get_value(), *(m->get_sending()));
-	      sen = new Sending(*orig, r);
+	      Relative * r = new Relative (new_time_sent->get_value(), 
+					   *(m->get_sending()));
+	      sen = new Sending(*orig, *r);
 	    }
 	  else if (new_time_sent->get_mode() == 2)
 	    {
-	      Relative r(new_time_sent->get_value(), *(m->get_receipt()));
-	      sen = new Sending(*orig, r);
+	      Relative * r = new Relative (new_time_sent->get_value(), 
+					   *(m->get_receipt()));
+	      sen = new Sending(*orig, *r);
 	    }
 	}
       else if (new_time_sent->get_mode() == 0)
 	{
 	  Message * aux = getPrevMsg();
-	  Relative r(new_time_sent->get_value(), *(aux->get_receipt()));
-	  sen = new Sending(*orig, r);
+	  Relative * r = new Relative (new_time_sent->get_value(), 
+				       *(aux->get_receipt()));
+	  sen = new Sending(*orig, *r);
 	}
     }
 
   if (new_time_rec->get_valtype() == ABSOLUTE)
     {
-      Absolute a(new_time_rec->get_value());
-      rec = new Receipt(*dest, a);
+      Absolute * a = new Absolute (new_time_rec->get_value());
+      rec = new Receipt(*dest, *a);
     }
   else if (new_time_rec->get_valtype() == RELATIVE)
     {
@@ -167,13 +170,15 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 
 	  if (new_time_rec->get_mode() == 1)
 	    {
-	      Relative r(new_time_rec->get_value(), *(m->get_sending()));
-	      rec = new Receipt(*dest, r);
+	      Relative * r = new Relative (new_time_rec->get_value(), 
+					   *(m->get_sending()));
+	      rec = new Receipt(*dest, *r);
 	    }
 	  else if (new_time_rec->get_mode() == 2)
 	    {
-	      Relative r(new_time_rec->get_value(), *(m->get_receipt()));
-	      rec = new Receipt(*dest, r);
+	      Relative * r = new Relative (new_time_rec->get_value(), 
+					   *(m->get_receipt()));
+	      rec = new Receipt(*dest, *r);
 	    }
 	}
       else if (new_time_rec->get_mode() == 0)
