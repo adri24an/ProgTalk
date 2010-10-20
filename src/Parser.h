@@ -183,8 +183,8 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 	}
       else if (new_time_rec->get_mode() == 0)
 	{
-	  Relative r(new_time_rec->get_value(), *(sen));
-	  rec = new Receipt(*dest, r);
+	  Relative * r = new Relative (new_time_rec->get_value(), *(sen));
+	  rec = new Receipt(*dest, *r);
 	}
     }
 
