@@ -10,7 +10,8 @@ inst->print();
 std::cout << "timestamp:" << std::endl;
 time->print();
 !!!169669.cpp!!!	accept(inout visitor : ParserVisitor) : void
-  inst->accept(visitor);
-  time->accept(visitor);
+visitor.visitSending(this);
+inst->accept(visitor);
+time->accept(visitor);
   
-  visitor.visitSending(this);
+  

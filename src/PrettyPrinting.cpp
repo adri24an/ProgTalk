@@ -14,23 +14,19 @@ void PrettyPrinting::visitParser(Parser * p)
 
 void PrettyPrinting::visitMSC(MSC * m)
 {
-  std::cout << "Printing the MSC" << std::endl;
+  std::cout << "Printing MSC:" << std::endl;
 }
 
 void PrettyPrinting::visitInstance(Instance * i)
 {
-  string aux = i->get_iid();
-  string aux2 = i->get_tid();
-  string aux3 = i->get_name();
-
   std::cout << "Instance -> IID: " << i->get_iid() <<
-    "TID: " << i->get_tid() << "NAME: " << i->get_name() << std::endl;
+    " TID: " << i->get_tid() << " NAME: " << i->get_name() << std::endl;
 }
 
 void PrettyPrinting::visitMessage(Message * m)
 {
   std::cout  << "Message -> MID: " << m->get_mid() <<
-    "SMS: " << m->get_sms();
+    " SMS: " << m->get_sms() << std::endl;
 }
 
 void PrettyPrinting::visitSending(Sending * s)

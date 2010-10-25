@@ -9,8 +9,9 @@ std::cout << "instancia:" << std::endl;
 inst->print();
 std::cout << "timestamp:" << std::endl;
 time->print();
-!!!169541.cpp!!!	accept(in visitor : ParserVisitor) : void
-  inst->accept(visitor);
-  time->accept(visitor);
+!!!169541.cpp!!!	accept(inout visitor : ParserVisitor) : void
+visitor.visitReceipt(this);  
+inst->accept(visitor);
+time->accept(visitor);
+
   
-  visitor.visitReceipt(this);

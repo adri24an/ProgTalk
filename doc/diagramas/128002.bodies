@@ -102,7 +102,9 @@ for(;mit2!=mend2;++mit2)
   {
     mit2->second->print();
   }
-!!!170181.cpp!!!	accept(in visitor : ParserVisitor) : void
+!!!170181.cpp!!!	accept(inout visitor : ParserVisitor) : void
+visitor.visitMSC(this);
+
 std::map<string, Instance *>::const_iterator
   mit (instances.begin()),
   mend(instances.end());
@@ -120,5 +122,3 @@ for(;mit2!=mend2;++mit2)
   {	
     mit2->second->accept(visitor);   
   }
-
-visitor.visitMSC(this);

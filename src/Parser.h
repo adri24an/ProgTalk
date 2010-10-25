@@ -233,8 +233,8 @@ inline void Parser::myprint()
 //My visitor pattern
 inline void Parser::accept(ParserVisitor & visitor)
 {
-  msc->accept(visitor);
   visitor.visitParser(this);
+  msc->accept(visitor);
 }
 
 #endif
