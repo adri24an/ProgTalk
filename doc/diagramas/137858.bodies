@@ -5,3 +5,5 @@ time = new_time;
 return time;
 !!!162501.cpp!!!	print() : void
 std::cout << "time: " << getAbsoluteTime() << std::endl;
+!!!169157.cpp!!!	accept(in visitor : ParserVisitor) : void
+visitor.visitAbsolute(this);

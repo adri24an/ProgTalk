@@ -11,3 +11,5 @@ value = value + diff;
 return value;
 !!!162629.cpp!!!	print() : void
 std::cout << "time: " << getAbsoluteTime() << std::endl;
+!!!169285.cpp!!!	accept(in visitor : ParserVisitor) : void
+visitor.visitRelative(this);

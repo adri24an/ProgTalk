@@ -3,6 +3,8 @@ class Instance
 iid.assign(new_iid);
 tid.assign(new_tid);
 name.assign(new_name);
-!!!128197.cpp!!!	print()
+!!!128197.cpp!!!	print() : void
 std::cout << "iid: " << iid << " | " << "tid: " << tid << " | " << "name: " 
 << name << std::endl;
+!!!170053.cpp!!!	accept(inout visitor : ParserVisitor) : void
+visitor.visitInstance(this);

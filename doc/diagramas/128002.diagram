@@ -38,24 +38,24 @@ classcanvas 130313 class_ref 137986 // Relative
 end
 relationcanvas 128002 relation_ref 151426 // 
   from ref 130313 z 3012 to ref 128777
-  role_a_pos 457 307 3000 no_role_b
-  multiplicity_a_pos 457 334 3000 no_multiplicity_b
+  role_a_pos 459 329 3000 no_role_b
+  multiplicity_a_pos 459 356 3000 no_multiplicity_b
 end
 relationcanvas 128130 relation_ref 151554 // 
   from ref 128777 z 2013 to ref 128521
-  role_a_pos 526 151 3000 no_role_b
-  multiplicity_a_pos 500 151 3000 no_multiplicity_b
+  role_a_pos 526 179 3000 no_role_b
+  multiplicity_a_pos 500 179 3000 no_multiplicity_b
 end
 relationcanvas 128393 relation_ref 128002 // 
   decenter_end 449
-  from ref 128137 z 2007 stereotype "<<map>>" xyz 171 208 2007 to ref 128265
+  from ref 128137 z 2007 stereotype "<<map>>" xyz 171 216 2007 to ref 128265
   role_a_pos 210 211 3000 no_role_b
-  multiplicity_a_pos 186 211 3000 multiplicity_b_pos 184 198 3000
+  multiplicity_a_pos 186 211 3000 multiplicity_b_pos 184 214 3000
 end
 relationcanvas 128649 relation_ref 128130 // 
-  from ref 128137 z 2007 stereotype "<<map>>" xyz 350 92 2007 to ref 128521
-  role_a_pos 464 79 3000 no_role_b
-  multiplicity_a_pos 507 106 3000 multiplicity_b_pos 248 105 3000
+  from ref 128137 z 2007 stereotype "<<map>>" xyz 350 108 2007 to ref 128521
+  role_a_pos 464 102 3000 no_role_b
+  multiplicity_a_pos 507 129 3000 multiplicity_b_pos 248 114 3000
 end
 relationcanvas 129161 relation_ref 130690 // <generalisation>
   from ref 129033 z 3006 to ref 128777
@@ -65,8 +65,8 @@ end
 relationcanvas 129289 relation_ref 129283 // 
   from ref 128265 z 3006 to point 200 484
   line 130825 z 3006 to ref 129033
-  role_a_pos 366 472 3000 no_role_b
-  multiplicity_a_pos 393 499 3000 multiplicity_b_pos 186 419 3000
+  role_a_pos 366 479 3000 no_role_b
+  multiplicity_a_pos 393 506 3000 multiplicity_b_pos 186 453 3000
 end
 relationcanvas 129545 relation_ref 130818 // <generalisation>
   from ref 129417 z 3006 to ref 128777
@@ -77,12 +77,12 @@ relationcanvas 129673 relation_ref 129411 //
   from ref 128265 z 3006 to point 309 302
   line 130953 z 3006 to ref 129417
   role_a_pos 321 355 3000 no_role_b
-  multiplicity_a_pos 295 355 3000 multiplicity_b_pos 253 320 3000
+  multiplicity_a_pos 295 355 3000 multiplicity_b_pos 253 329 3000
 end
 relationcanvas 129929 relation_ref 128387 // 
   from ref 128777 z 3006 to ref 129801
-  role_a_pos 600 203 3000 no_role_b
-  multiplicity_a_pos 614 230 3000 multiplicity_b_pos 457 292 3000
+  role_a_pos 600 214 3000 no_role_b
+  multiplicity_a_pos 614 241 3000 multiplicity_b_pos 459 314 3000
 end
 relationcanvas 130185 relation_ref 137730 // <generalisation>
   from ref 130057 z 3012 to ref 129801

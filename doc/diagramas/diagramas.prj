@@ -1,6 +1,6 @@
 format 75
 "diagramas"
-  revision 64
+  revision 76
   modified_by 69 "adrian"
   cpp_root_dir "../../src/"
 
@@ -239,6 +239,21 @@ in MSC or 0 otherwise."
 	
 	comment "Testing method that shows on screen what's storaged on the object."
       end
+
+      operation 170181 "accept"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "visitor" explicit_type "ParserVisitor"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
     end
 
     class 128258 "Instance"
@@ -274,6 +289,7 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	get_oper operation_ref 176709 // get_tid
 	comment "Type id."
       end
 
@@ -285,6 +301,7 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	get_oper operation_ref 176837 // get_name
 	comment "Instance alias."
       end
 
@@ -340,6 +357,48 @@ ${inlines}
 	get_of_attribute attribute_ref 128003 // iid
       end
 
+      operation 176709 "get_tid"
+	force_body_gen const cpp_inline public explicit_return_type "string"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return tid;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 128131 // tid
+      end
+
+      operation 176837 "get_name"
+	force_body_gen const cpp_inline public explicit_return_type "string"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return name;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 128259 // name
+      end
+
       operation 128197 "print"
 	public explicit_return_type "void"
 	nparams 0
@@ -353,6 +412,21 @@ ${inlines}
 	
 	
 	comment "Testing method that shows on screen what's storaged on the object."
+      end
+
+      operation 170053 "accept"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "visitor" explicit_type "ParserVisitor"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
       end
     end
 
@@ -391,6 +465,7 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	get_oper operation_ref 183365 // get_sms
 	comment "Text transmitted in the Message."
       end
 
@@ -467,6 +542,27 @@ ${inlines}
 	
 	idl_name_spec "get_${name}"
 	get_of_attribute attribute_ref 128387 // mid
+      end
+
+      operation 183365 "get_sms"
+	force_body_gen const cpp_inline public explicit_return_type "string"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return sms;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 128002 // sms
       end
 
       operation 141893 "get_sending"
@@ -546,6 +642,21 @@ ${inlines}
 	
 	
 	comment "Testing method that shows on screen what's storaged on the object."
+      end
+
+      operation 169925 "accept"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "visitor" explicit_type "ParserVisitor"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
       end
     end
 
@@ -635,6 +746,18 @@ An event is represented by:
 	
 	comment "Testing method that shows on screen what's storaged on the object."
       end
+
+      operation 169797 "accept"
+	abstract cpp_virtual public explicit_return_type "void"
+	nparams 1
+	  param inout name "visitor" explicit_type "ParserVisitor"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
     end
 
     class 130946 "Sending"
@@ -708,6 +831,21 @@ ${inlines}
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 169669 "accept"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "visitor" explicit_type "ParserVisitor"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -795,6 +933,21 @@ ${inlines}
 	
 	
       end
+
+      operation 169541 "accept"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "visitor" explicit_type "ParserVisitor"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
     end
 
     class 131202 "Timestamp"
@@ -853,6 +1006,18 @@ ${inlines}
 	abstract cpp_virtual public explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 169413 "accept"
+	abstract cpp_virtual public explicit_return_type "void"
+	nparams 1
+	  param inout name "visitor" explicit_type "ParserVisitor"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	
 	
@@ -942,6 +1107,21 @@ ${inlines}
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 169157 "accept"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "visitor" explicit_type "ParserVisitor"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -1043,6 +1223,21 @@ ${inlines}
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 169285 "accept"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "visitor" explicit_type "ParserVisitor"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -1844,7 +2039,9 @@ ${includes}
 #include <iostream>
 #include <sstream>
 #include <stdlib.h>
+#include \"ParserVisitor.h\"
 ${declarations}
+class ParserVisitor;
 ${namespace_start}
 ${definition}
 ${namespace_end}
@@ -1868,6 +2065,7 @@ ${namespace_end}"
 ${comment}
 ${includes}
 #include <iostream>
+#include \"ParserVisitor.h\"
 ${declarations}
 ${namespace_start}
 ${definition}
@@ -1892,6 +2090,7 @@ ${namespace_end}"
 ${comment}
 ${includes}
 #include <iostream>
+#include \"ParserVisitor.h\"
 ${declarations}
 ${namespace_start}
 ${definition}
@@ -1916,6 +2115,7 @@ ${namespace_end}"
 ${comment}
 ${includes}
 ${declarations}
+#include \"ParserVisitor.h\"
 ${namespace_start}
 ${definition}
 ${namespace_end}
@@ -1931,29 +2131,6 @@ ${namespace_end}"
       end
     end
 
-    artifact 128386 "Receipt"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 130818 // Receipt
-      end
-    end
-
     artifact 128514 "Sending"
       stereotype "source"
       cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
@@ -1962,6 +2139,7 @@ ${namespace_end}"
 ${comment}
 ${includes}
 ${declarations}
+#include \"ParserVisitor.h\"
 ${namespace_start}
 ${definition}
 ${namespace_end}
@@ -1977,6 +2155,30 @@ ${namespace_end}"
       end
     end
 
+    artifact 128386 "Receipt"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+#include \"ParserVisitor.h\"
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 130818 // Receipt
+      end
+    end
+
     artifact 128642 "Timestamp"
       stereotype "source"
       cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
@@ -1985,7 +2187,9 @@ ${namespace_end}"
 ${comment}
 ${includes}
 #include <iostream>
+#include \"ParserVisitor.h\"
 ${declarations}
+class ParserVisitor;
 ${namespace_start}
 ${definition}
 ${namespace_end}
@@ -1998,6 +2202,54 @@ ${members}
 ${namespace_end}"
       associated_classes
 	class_ref 131202 // Timestamp
+      end
+    end
+
+    artifact 148482 "Absolute"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+#include \"ParserVisitor.h\"
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 137858 // Absolute
+      end
+    end
+
+    artifact 148610 "Relative"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+#include \"ParserVisitor.h\"
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 137986 // Relative
       end
     end
 
@@ -2044,52 +2296,6 @@ ${members}
 ${namespace_end}"
       associated_classes
 	class_ref 144514 // Timestg
-      end
-    end
-
-    artifact 148482 "Absolute"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 137858 // Absolute
-      end
-    end
-
-    artifact 148610 "Relative"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 137986 // Relative
       end
     end
   end
