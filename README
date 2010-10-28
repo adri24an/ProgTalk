@@ -1,4 +1,5 @@
 Notas de desarrollo a consultar en reunion:
 
-- En caso de que no nos den alguna info no obligatoria (tid, name, etc) debemos almacenar "" o algo como "No_Info_Available"?
 - Como tratamos "Syntax Error"?
+- Tiene sentido tener en metodos visit el objeto como parametro si no lo usamos (asi que quitariamos warnings)?
+- Le metemos orden a las instancias?
