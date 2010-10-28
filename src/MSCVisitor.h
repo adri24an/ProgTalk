@@ -1,5 +1,5 @@
-#ifndef _PARSERVISITOR_H
-#define _PARSERVISITOR_H
+#ifndef _MSCVISITOR_H
+#define _MSCVISITOR_H
 
 class Parser;
 class MSC;
@@ -10,11 +10,11 @@ class Receipt;
 class Relative;
 class Absolute;
 
-class ParserVisitor {
+class MSCVisitor {
 
  public:
-  ParserVisitor();
-  ~ParserVisitor();
+  MSCVisitor();
+  ~MSCVisitor();
   virtual void visitMSC(MSC * m) = 0;
   virtual void visitInstance(Instance * i) = 0;
   virtual void visitMessage(Message * m) = 0;

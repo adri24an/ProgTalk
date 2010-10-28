@@ -1,7 +1,7 @@
-#include "ParserVisitor.h"
+#include "MSCVisitor.h"
 
-ParserVisitor::ParserVisitor() {
+MSCVisitor::MSCVisitor() {
 }
 
-ParserVisitor::~ParserVisitor() {
+MSCVisitor::~MSCVisitor() {
 }

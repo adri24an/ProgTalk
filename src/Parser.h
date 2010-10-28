@@ -16,7 +16,7 @@
 #include "MSC.h"
 #include "Parserbase.h"
 #include "Scanner.h"
-#include "ParserVisitor.h"
+#include "MSCVisitor.h"
 
 #include <utility>
 #include <map>
@@ -47,7 +47,7 @@ class Parser: public ParserBase
   //My print operation
   void myprint();
   //My visitor pattern
-  void accept(ParserVisitor& visitor);
+  void accept(MSCVisitor& visitor);
 
  private:
   
@@ -231,9 +231,8 @@ inline void Parser::myprint()
 }
 
 //My visitor pattern
-inline void Parser::accept(ParserVisitor & visitor)
+inline void Parser::accept(MSCVisitor & visitor)
 {
-  visitor.visitParser(this);
   msc->accept(visitor);
 }
 

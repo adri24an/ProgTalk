@@ -7,10 +7,10 @@
 #include "Instance.h"
 #include "Message.h"
 #include "MSC.h"
-#include "ParserVisitor.h"
+#include "MSCVisitor.h"
 #include <iostream>
 
-class PrettyPrinting : public ParserVisitor {
+class PrettyPrinting : public MSCVisitor {
 
  public:
   PrettyPrinting();
