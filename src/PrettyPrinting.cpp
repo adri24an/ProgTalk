@@ -5,6 +5,7 @@ PrettyPrinting::PrettyPrinting() {
 }
 
 PrettyPrinting::~PrettyPrinting() {
+  delete msg;
 }
 
 void PrettyPrinting::visitMSC(MSC * m)
