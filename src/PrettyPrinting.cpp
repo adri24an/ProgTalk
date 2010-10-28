@@ -6,15 +6,10 @@ PrettyPrinting::PrettyPrinting() {
 PrettyPrinting::~PrettyPrinting() {
 }
 
-void PrettyPrinting::visitParser(Parser * p)
+void PrettyPrinting::visitMSC(MSC * m)
 {
   std::cout << "We are going to Pretty Printing the comunication that we "
 	    << "parsed and storaged:" << std::endl << std::endl;
-}
-
-void PrettyPrinting::visitMSC(MSC * m)
-{
-  std::cout << "Printing MSC:" << std::endl;
 }
 
 void PrettyPrinting::visitInstance(Instance * i)

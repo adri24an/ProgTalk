@@ -15,7 +15,6 @@ class PrettyPrinting : public ParserVisitor {
  public:
   PrettyPrinting();
   ~PrettyPrinting();
-  void visitParser(Parser * p);
   void visitMSC(MSC * m);
   void visitInstance(Instance * i);
   void visitMessage(Message * m);

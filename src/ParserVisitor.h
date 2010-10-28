@@ -15,7 +15,6 @@ class ParserVisitor {
  public:
   ParserVisitor();
   ~ParserVisitor();
-  virtual void visitParser(Parser * p) = 0;
   virtual void visitMSC(MSC * m) = 0;
   virtual void visitInstance(Instance * i) = 0;
   virtual void visitMessage(Message * m) = 0;
