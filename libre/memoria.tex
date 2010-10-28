@@ -8,7 +8,7 @@
 \usepackage{graphicx} %% and then \includegraphics[scale=0.5,...]{filename}
 
 \setlength{\parskip}{\baselineskip}
-\parindent4em
+% \parindent4em
 
 %\usepackage[spanish]{babel}
 %\usepackage[spanish,english]{babel}
@@ -59,15 +59,13 @@ Para este proyecto de convalidación de créditos de libre elección, las funcio
 
 \section{Diseño del lenguaje}
 
-La herramienta \textit{Progtalk} debe recibir la comunicación en un fichero escrito en un determinado lenguaje. Dicho lenguaje consta de dos secciones:
+La herramienta \textit{Progtalk} debe recibir la comunicación en un fichero escrito en un determinado lenguaje que permita representar MSCs. Dicho lenguaje consta de dos secciones:
 \begin{itemize}
 \item Declaración de instancias, y
 \item declaración de mensajes.
 \end{itemize}
 
-En nuestro lenguaje, las instancias se comunican entre si mediante mensajes.
-
-\subsubsection{Instancias}
+\subsection{Instancias}
 
 Las instancias de nuestro lenguaje se describen mediante tres parámetros:
 
@@ -79,7 +77,7 @@ Las instancias de nuestro lenguaje se describen mediante tres parámetros:
 
 El usuario puede almacenar tantas instancias como desee, pero estas deben tener un identificador de instancia único.
 
-\subsubsection{Mensajes}
+\subsection{Mensajes}
 
 Los mensajes de nuestro lenguaje se describen mediante seis parámetros:
 
@@ -111,7 +109,84 @@ Por otro lado entenderemos por tiempos relativos los siguiente casos:
 \item Relativo explicito complejo: si el usuario aporta un evento de referencia y un valor del tipo (\textit{+unidad}) donde \textit{unidad} es un numero entero. El evento de referencia especificado por el usuario puede referirse a un evento de envió o de recepción, y debe de pertenecer a un mensaje ya almacenado anteriormente en esa comunicación. En este caso calcularemos el parámetro como el instante en que ocurrió el evento que especifico el usuario sumándole el valor (\textit{+unidad}) especificado también por el usuario. Cabe destacar que cabe la posibilidad de que solo se introduzca el evento de referencia y que no se introduzca un valor del tipo (\textit{+unidad}). En este caso consideraremos dicho valor (\textit{+unidad}) como +0.
 \end{itemize}
 
-\section{Análisis léxico}
+\section{Análisis sintáctico}
+
+Para el análisis sintáctico hemos utilizado el lenguaje \textit{bisonc++}. El proceso de parseo es el siguiente. El objeto \textit{Parser} (implementado en \textit{bisonc++}) va tomando los tokens enviados por \textit{Scanner} y comprueba que el lenguaje que esta leyendo es un lenguaje correcto. En caso de no serlo se aborta el proceso de parseo y el programa termina.
+
+\subsection{Gramática}
+La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) es la siguiente:
+\begin{verbatim}
+//------------------------------------------------------------
+//
+//  GRAMATICA
+//    
+//    msc ::= inst_decl* message*
+//    inst_decl ::= INSTANCE iid |
+//                  INSTANCE iid OF tid; |
+//                  INSTANCE iid {string}; |
+//                  INSTANCE iid OF tid {string};               
+//    message ::= MESSAGE mid_opt string_opt origin destiny;
+//    mid_opt ::= LAMBDA | mid
+//    string_opt ::= LAMBDA | {string}
+//    origin ::= LAMBDA | origin_opt
+//    origin_opt ::= FROM iid time_ref_opt
+//    destiny ::= LAMBDA | destiny_opt
+//    destiny_opt ::= TO iid time_ref_opt
+//    time_ref_opt ::= LAMBDA | @ time_ref
+//    time_ref ::= abs_time | rel_time
+//    abs_time ::= num
+//    rel_time ::= ref dif_time_opt | dif_time
+//    ref ::= mid ! | mid ?
+//    dif_time_opt ::= LAMBDA | dif_time
+//    dif_time ::= + num | - num
+//    iid ::= ID
+//    tid ::= ID
+//    mid ::= ID
+//    string ::= STRING
+//    num ::= NUM
+//
+//------------------------------------------------------------
+\end{verbatim}
+
+Las acciones semánticas en \emph{bisonc++} simplemente construyen los
+nodos del árbol de sintaxis abstracta. Veamos un ejemplo de una de nuestras acciones semánticas:
+\begin{verbatim}
+message:
+        MESSAGE mid_opt string_opt origin_opt destiny_opt SEMICOLON EOLN
+        { 
+	  string * mid = $2;
+          string * desc = $3;
+          Timestg * orig = $4;
+          Timestg * dest = $5;
+	  
+	  if (mid == NULL)
+	    mid = new string("No_Info_Available");
+	  
+	  if (desc == NULL)
+	    desc = new string("");
+
+	  if (orig == NULL)
+	    {
+	      std::cout << "ERROR: User didn't provide message's origin" 
+			<< std::endl;
+	      exit(-1);
+	    }
+
+	  if (dest == NULL)
+	    {
+	      std::cout << "ERROR: User didn't provide message's destiny" 
+
+			<< std::endl;
+	      exit(-1);
+	    }
+	  
+          addMsg(*mid, *desc, orig->get_iid(), dest->get_iid(), 
+		 orig->get_timeref(), dest->get_timeref());
+	}
+;
+\end{verbatim}
+
+\subsection{Análisis sintáctico}
 
 Para el análisis léxico del fichero de entrada hemos utilizado el lenguaje \textit{flex++}. El proceso es sencillo, un objeto \textit{Scanner} (implementado mediante \textit{flex++}), va tomando carácter por carácter del fichero de entrada y con dichos caracteres construye tokens que envía al analizador sintáctico y semántico (\textit{Parser}). 
 
@@ -129,10 +204,6 @@ Existen varios tipos de tokens en nuestro lenguaje:
 \item ID: un identificador (conjunto de caracteres y números que comienza obligatoriamente por una letra).
 \item INSTANCE, MESSAGE, OF, FROM, TO: palabras reservadas del lenguaje.
 \end{itemize}
-
-\section{Análisis sintáctico}
-
-Para el análisis sintáctico hemos utilizado el lenguaje \textit{bisonc++}. El proceso de parseo es el siguiente. El objeto \textit{Parser} (implementado en \textit{bisonc++}) va tomando los tokens enviados por \textit{Scanner} y comprueba que el lenguaje que esta leyendo es un lenguaje correcto. En caso de no serlo se aborta el proceso de parseo y el programa termina.
 
 \section{Análisis semántico}
 
