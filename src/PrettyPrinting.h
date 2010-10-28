@@ -9,18 +9,25 @@
 #include "MSC.h"
 #include "MSCVisitor.h"
 #include <iostream>
+#include <string>
 
 class PrettyPrinting : public MSCVisitor {
 
  public:
+
   PrettyPrinting();
   ~PrettyPrinting();
   void visitMSC(MSC * m);
   void visitInstance(Instance * i);
+  void visitInstanceEvent(Instance * i);
   void visitMessage(Message * m);
   void visitSending(Sending * s);
   void visitReceipt(Receipt * r);
   void visitAbsolute(Absolute * a);
   void visitRelative(Relative * r);
+
+ private:
+  
+  string * msg;
 };
 #endif
