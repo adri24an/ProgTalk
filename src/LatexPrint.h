@@ -29,6 +29,6 @@ class LatexPrint : public MSCVisitor {
 
  private:
   
-  ofstream * fs;
+  ofstream fs;
 };
 #endif 

@@ -1,15 +1,16 @@
 #include "LatexPrint.h"
 
 LatexPrint::LatexPrint() {
-  ofstream * fs = new fs("communication.msc");
-  fs << "\documentclass{article}" << std::endl 
-     << "\usepackage{msc}" << std::endl
-     << "\begin{document}" << std::endl << std::endl
-     << "\begin{msc}{Communication}" << std::endl << std::endl;
+  ofstream fs("communication.msc");
+  
+  fs << "\\documentclass{article}\n";
+  fs << "\\usepackage{msc}\n";
+  fs << "\\begin{document}\n\n";
+  fs << "\\begin{msc}{Communication}\n\n";
+  fs.close();
 }
 
 LatexPrint::~LatexPrint() {
-  fs.close();
 }
 
 void LatexPrint::visitMSC(MSC * m)
@@ -18,6 +19,10 @@ void LatexPrint::visitMSC(MSC * m)
 
 void LatexPrint::visitInstance(Instance * i)
 {
+  fs.open("communication.msc", fstream::app);
+  fs << "\\declinst{" << i->get_iid() << "}{" << i->get_tid()
+     << "}{" << i->get_name() << "}\n";
+  fs.close();
 }
 
 void LatexPrint::visitInstanceEvent(Instance * i)
