@@ -30,5 +30,7 @@ class LatexPrint : public MSCVisitor {
  private:
   
   ofstream fs;
+  string * msg;
+  pair<int,int> aux;
 };
 #endif 
