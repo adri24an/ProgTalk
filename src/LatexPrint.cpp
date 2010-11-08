@@ -18,6 +18,9 @@ LatexPrint::~LatexPrint() {
 
 void LatexPrint::visitMSC(MSC * m)
 {
+  fs.open("communication.msc", fstream::app);
+  fs << "\n\\end{msc}\n" << "\\end{document}";
+  fs.close();
 }
 
 void LatexPrint::visitInstance(Instance * i)
@@ -38,13 +41,18 @@ void LatexPrint::visitInstanceEvent(Instance * i)
 
 void LatexPrint::visitMessage(Message * m)
 {
-  fs.open("communication.msc");
-  fs << "\\mess{" << m->get_sms() << "}" << *msg;
+  fs.open("communication.msc", fstream::app);
+  fs << "\\mess{" << m->get_sms() << "}" << *msg << "\n";
   fs << "\\mscmark{t=" << aux.first << "}{" 
-     << m->get_sending()->get_instance() << "}\n";
+     << m->get_sending()->getInstance() << "}\n";
   fs << "\\nextlevel\n";
   fs << "\\mscmark{t=" << aux.second << "}{" 
-     << m->get_receipt()->get_instance() << "}\n";
+     << m->get_receipt()->getInstance() << "}\n";
+  fs.close();
+  delete msg;
+  msg = new string();
+  aux.first = -1;
+  aux.second = -1;
 }
 
 void LatexPrint::visitSending(Sending * s)
