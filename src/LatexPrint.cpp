@@ -1,7 +1,7 @@
 #include "LatexPrint.h"
 
 LatexPrint::LatexPrint() {
-  ofstream fs("communication.msc");
+  ofstream fs("communication.tex");
   msg = new string;
   pair<int,int> aux (-1,-1);
   
@@ -18,14 +18,14 @@ LatexPrint::~LatexPrint() {
 
 void LatexPrint::visitMSC(MSC * m)
 {
-  fs.open("communication.msc", fstream::app);
+  fs.open("communication.tex", fstream::app);
   fs << "\n\\end{msc}\n" << "\\end{document}";
   fs.close();
 }
 
 void LatexPrint::visitInstance(Instance * i)
 {
-  fs.open("communication.msc", fstream::app);
+  fs.open("communication.tex", fstream::app);
   fs << "\\declinst{" << i->get_iid() << "}{" << i->get_tid()
      << "}{" << i->get_name() << "}\n";
   fs.close();
@@ -41,13 +41,14 @@ void LatexPrint::visitInstanceEvent(Instance * i)
 
 void LatexPrint::visitMessage(Message * m)
 {
-  fs.open("communication.msc", fstream::app);
-  fs << "\\mess{" << m->get_sms() << "}" << *msg << "\n";
+  fs.open("communication.tex", fstream::app);
+  fs << "\n\\mess{" << m->get_sms() << "}" << *msg << "[3]\n";
   fs << "\\mscmark{t=" << aux.first << "}{" 
      << m->get_sending()->getInstance() << "}\n";
-  fs << "\\nextlevel\n";
-  fs << "\\mscmark{t=" << aux.second << "}{" 
+  fs << "\\nextlevel[3]\n";
+  fs << "\\mscmark[br]{t=" << aux.second << "}{" 
      << m->get_receipt()->getInstance() << "}\n";
+  fs << "\\nextlevel[3]\n";
   fs.close();
   delete msg;
   msg = new string();
