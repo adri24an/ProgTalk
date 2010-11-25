@@ -4,7 +4,7 @@ Resumen de las pruebas:
 - test1.msc  : prueba todas las ramas correctas de instance.
 - test2.msc  : prueba que ocurre si almacenamos 2 instancias con igual iid.
 - test3.msc  : prueba que ocurre si usamos una palabra reservada como id.
-- test4.msc  : prueba todas las posibilidades de tiempos rel y abs.
+- test4.msc  : prueba todas las posibilidades de tiempos rel y abs pero con    		       errores en cuanto a la integridad entre tiempos.
 - test5.msc  : prueba todas los posibles formatos de mensaje.
 - test6.msc  : prueba el error de recibir 2 messages con igual mid.
 - test7.msc  : prueba el error de recibir 1 message que referencia en su
@@ -13,3 +13,4 @@ Resumen de las pruebas:
                tiempo de recepcion un mid no almacenado.
 - test9.msc  : prueba el error de poner un como destino de un mensaje una 		       instancia que no existe
 - test10.msc : prueba el error de poner un como origen de un mensaje una 		       instancia que no existe
+- test11.msc : prueba todas las posibilidades de tiempos rel y abs.

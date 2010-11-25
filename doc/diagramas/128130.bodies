@@ -10,7 +10,7 @@ std::cout << "sending: " << std::endl;
 sending->print();
 std::cout << "receipt: " << std::endl;
 receipt->print();
-!!!169925.cpp!!!	accept(inout visitor : ParserVisitor) : void
-visitor.visitMessage(this);
+!!!169925.cpp!!!	accept(inout visitor : MSCVisitor) : void
 sending->accept(visitor);
 receipt->accept(visitor);
+visitor.visitMessage(this);

@@ -1,5 +1,5 @@
-#ifndef _PRETTYPRINTING_H
-#define _PRETTYPRINTING_H
+#ifndef _LATEXPRINT_H
+#define _LATEXPRINT_H
 
 #include "Absolute.h"
 #include "Relative.h"
@@ -10,13 +10,14 @@
 #include "MSCVisitor.h"
 #include <iostream>
 #include <string>
+#include <fstream>
 
-class PrettyPrinting : public MSCVisitor {
+class LatexPrint : public MSCVisitor {
 
  public:
 
-  PrettyPrinting();
-  ~PrettyPrinting();
+  LatexPrint();
+  ~LatexPrint();
   void visitMSC(MSC * m);
   void visitInstance(Instance * i);
   void visitInstanceEvent(Instance * i);
@@ -28,6 +29,8 @@ class PrettyPrinting : public MSCVisitor {
 
  private:
   
+  ofstream fs;
   string * msg;
+  pair<int,int> aux;
 };
-#endif
+#endif 

@@ -1,6 +1,6 @@
 format 75
 "diagramas"
-  revision 78
+  revision 80
   modified_by 69 "adrian"
   cpp_root_dir "../../src/"
 
@@ -243,7 +243,7 @@ in MSC or 0 otherwise."
       operation 170181 "accept"
 	public explicit_return_type "void"
 	nparams 1
-	  param inout name "visitor" explicit_type "ParserVisitor"
+	  param inout name "visitor" explicit_type "MSCVisitor"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -417,7 +417,22 @@ ${inlines}
       operation 170053 "accept"
 	public explicit_return_type "void"
 	nparams 1
-	  param inout name "visitor" explicit_type "ParserVisitor"
+	  param inout name "visitor" explicit_type "MSCVisitor"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 171522 "acceptEvent"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "visitor" explicit_type "MSCVisitor"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -498,9 +513,11 @@ ${inlines}
 	  param in name "new_sms" explicit_type "string"
 	  param in name "new_sending" type class_ref 130946 // Sending
 	  param in name "new_receipt" type class_ref 130818 // Receipt
-	cpp_decl "    ${comment}${inline}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} & ${p2}${v2}, ${t3} & ${p3}${v3}${)}${volatile}${throw};
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} ${p0}, ${t1} ${p1}, 
+	${t2} & ${p2}${v2}, ${t3} & ${p3}${v3}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} & ${p2}, ${t3} & ${p3}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}, 
+	${t2} & ${p2}, ${t3} & ${p3}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -647,7 +664,7 @@ ${inlines}
       operation 169925 "accept"
 	public explicit_return_type "void"
 	nparams 1
-	  param inout name "visitor" explicit_type "ParserVisitor"
+	  param inout name "visitor" explicit_type "MSCVisitor"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -750,7 +767,7 @@ An event is represented by:
       operation 169797 "accept"
 	abstract cpp_virtual public explicit_return_type "void"
 	nparams 1
-	  param inout name "visitor" explicit_type "ParserVisitor"
+	  param inout name "visitor" explicit_type "MSCVisitor"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	
@@ -811,6 +828,20 @@ ${inlines}
 	
       end
 
+      operation 189893 "getInstance"
+	public explicit_return_type "string"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
       operation 144258 "getTime"
 	public explicit_return_type "int"
 	nparams 0
@@ -842,7 +873,7 @@ ${inlines}
       operation 169669 "accept"
 	public explicit_return_type "void"
 	nparams 1
-	  param inout name "visitor" explicit_type "ParserVisitor"
+	  param inout name "visitor" explicit_type "MSCVisitor"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -906,6 +937,20 @@ ${inlines}
 	
       end
 
+      operation 190021 "getInstance"
+	public explicit_return_type "string"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
       operation 144386 "getTime"
 	public explicit_return_type "int"
 	nparams 0
@@ -937,7 +982,7 @@ ${inlines}
       operation 169541 "accept"
 	public explicit_return_type "void"
 	nparams 1
-	  param inout name "visitor" explicit_type "ParserVisitor"
+	  param inout name "visitor" explicit_type "MSCVisitor"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -1016,7 +1061,7 @@ ${inlines}
       operation 169413 "accept"
 	abstract cpp_virtual public explicit_return_type "void"
 	nparams 1
-	  param inout name "visitor" explicit_type "ParserVisitor"
+	  param inout name "visitor" explicit_type "MSCVisitor"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	
@@ -1118,7 +1163,7 @@ ${inlines}
       operation 169157 "accept"
 	public explicit_return_type "void"
 	nparams 1
-	  param inout name "visitor" explicit_type "ParserVisitor"
+	  param inout name "visitor" explicit_type "MSCVisitor"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -1234,7 +1279,7 @@ ${inlines}
       operation 169285 "accept"
 	public explicit_return_type "void"
 	nparams 1
-	  param inout name "visitor" explicit_type "ParserVisitor"
+	  param inout name "visitor" explicit_type "MSCVisitor"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -2039,7 +2084,7 @@ ${includes}
 #include <iostream>
 #include <sstream>
 #include <stdlib.h>
-#include \"ParserVisitor.h\"
+#include \"MSCVisitor.h\"
 ${declarations}
 class ParserVisitor;
 ${namespace_start}
@@ -2065,7 +2110,7 @@ ${namespace_end}"
 ${comment}
 ${includes}
 #include <iostream>
-#include \"ParserVisitor.h\"
+#include \"MSCVisitor.h\"
 ${declarations}
 ${namespace_start}
 ${definition}
@@ -2090,7 +2135,7 @@ ${namespace_end}"
 ${comment}
 ${includes}
 #include <iostream>
-#include \"ParserVisitor.h\"
+#include \"MSCVisitor.h\"
 ${declarations}
 ${namespace_start}
 ${definition}
@@ -2115,7 +2160,7 @@ ${namespace_end}"
 ${comment}
 ${includes}
 ${declarations}
-#include \"ParserVisitor.h\"
+#include \"MSCVisitor.h\"
 ${namespace_start}
 ${definition}
 ${namespace_end}
@@ -2139,7 +2184,7 @@ ${namespace_end}"
 ${comment}
 ${includes}
 ${declarations}
-#include \"ParserVisitor.h\"
+#include \"MSCVisitor.h\"
 ${namespace_start}
 ${definition}
 ${namespace_end}
@@ -2163,7 +2208,7 @@ ${namespace_end}"
 ${comment}
 ${includes}
 ${declarations}
-#include \"ParserVisitor.h\"
+#include \"MSCVisitor.h\"
 ${namespace_start}
 ${definition}
 ${namespace_end}
@@ -2187,7 +2232,7 @@ ${namespace_end}"
 ${comment}
 ${includes}
 #include <iostream>
-#include \"ParserVisitor.h\"
+#include \"MSCVisitor.h\"
 ${declarations}
 class ParserVisitor;
 ${namespace_start}
@@ -2213,7 +2258,7 @@ ${namespace_end}"
 ${comment}
 ${includes}
 ${declarations}
-#include \"ParserVisitor.h\"
+#include \"MSCVisitor.h\"
 ${namespace_start}
 ${definition}
 ${namespace_end}
@@ -2237,7 +2282,7 @@ ${namespace_end}"
 ${comment}
 ${includes}
 ${declarations}
-#include \"ParserVisitor.h\"
+#include \"MSCVisitor.h\"
 ${namespace_start}
 ${definition}
 ${namespace_end}
