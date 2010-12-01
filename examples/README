@@ -14,3 +14,4 @@ Resumen de las pruebas:
 - test9.msc  : prueba el error de poner un como destino de un mensaje una 		       instancia que no existe
 - test10.msc : prueba el error de poner un como origen de un mensaje una 		       instancia que no existe
 - test11.msc : prueba todas las posibilidades de tiempos rel y abs.
+- text12.msc : prueba correcta.
