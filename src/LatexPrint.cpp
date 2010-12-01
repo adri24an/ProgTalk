@@ -8,6 +8,7 @@ LatexPrint::LatexPrint() {
   fs << "\\documentclass{article}\n";
   fs << "\\usepackage{msc}\n";
   fs << "\\begin{document}\n\n";
+  fs << "\\setlength{\\firstlevelheight}{1cm}\n\n";
   fs << "\\begin{msc}{Communication}\n\n";
   fs.close();
 }
