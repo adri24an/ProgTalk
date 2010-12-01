@@ -1,15 +1,17 @@
 #include "Parser.h"
 #include "PrettyPrinting.h"
+#include "TimeChecker.h"
 #include "LatexPrint.h"
 
 int main()
 {
   Parser * parser = new Parser;
-  //PrettyPrinting * visitor = new PrettyPrinting;
-  LatexPrint * visitor = new LatexPrint;
+  TimeChecker * visitortime = new TimeChecker;
+  LatexPrint * visitorprint = new LatexPrint;
 
   parser->parse();
-  parser->accept(*visitor);
+  parser->accept(*visitortime);
+  parser->accept(*visitorprint);
   
   return 0;
 }
