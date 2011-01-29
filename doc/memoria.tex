@@ -1,0 +1,279 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+% \usepackage{graphics} % Or
+\usepackage{graphicx} %% and then \includegraphics[scale=0.5,...]{filename}
+
+\setlength{\parskip}{\baselineskip}
+
+\usepackage[spanish]{babel}
+%\usepackage[spanish,english]{babel}
+
+% \usepackage{listings}
+
+% \usepackage{url}
+% \usepackage{html}
+
+% \usepackage{fancybox}
+% \usepackage{fancyheadings}
+
+% \usepackage{courier}
+% \usepackage{times}
+
+\usepackage{hyperref}
+
+\title{Trabajo de Fin de Carrera: Progtalk}
+\author{Adrián Bartol Molina}
+\date{Febrero de 2011}
+
+\begin{document}
+\maketitle
+
+\chapter{Introducción}
+
+Este proyecto consiste en el diseño e implementación de una herramienta la cual a partir de una comunicación entre varias entidades (programas, procesos, etc), nos devuelve una representación gráfica de dicha comunicación. \textit{Progtalk} se integra dentro del proyecto \textit{Transformers}, en el cual se estudian varios lenguajes con el objetivo de representar la información de los requisitos del sistema de ferrocarril europeo (ERTMS). En concreto, uno de los lenguajes que se estudia es el de diagramas de secuencias (MSC, \emph{Message Sequence Charts}), y aquí es donde encaja \textit{Progtalk}. EXPLICAR EN DETALLE!!!!!!!!!!!!!!!!!
+
+La labor de nuestra herramienta consiste en, dada una comunicación entre dos o mas entidades, el procesado de esta comunicación y su impresión en diferentes formatos (pdf, dot, png, etc). Para ello podemos describir el funcionamiento de la herramienta en tres fases:
+
+\begin{itemize}
+\item Validación léxica y sintáctica del fichero de entrada, el cuál contiene la comunicación,
+\item validación semántica, almacenaje de la información parseada, y comprobación de la integridad de la información almacenada, y
+\item exportación de la comunicación a un fichero externo de tipo \textit{latex}.
+\end{itemize}
+
+El presente trabajo esta estructurado del siguiente modo. En primer lugar, en el capitulo 1 se presentan los \textit{Diagramas de Secuencia}, su historia y un resumen de su funcionamiento. Tras esta introducción teórica pasaremos al capitulo 2, donde presentamos la especificación de requisitos de nuestra herramienta. En el capitulo 3 explicaremos el análisis y el diseño que se ha utilizado antes de comenzar la implementación de la herramienta, la cuál se detallará en el capitulo 4. Por último en el capitulo 5 se presentan las conclusiones extraídas de la realización de este proyecto, y posibles vías de desarrollo futuras.
+
+\chapter{MSC: Diagramas de secuencia}
+
+Según Bjorner \cite{Bjorner}, los diagramas de secuencia (a partir de ahora MSCs), son una notación gráfica para describir intercambios de mensajes entre entidades. Los MSC fueron estandarizados por primera vez por la CCITT (conocida ahora como la ITU-T) en Recommendation Z.120 en 1992, donde se especificaron sus componentes. Se realizaron revisiones en 1996, donde se especificó la forma en que varios MSCs (llamados \textit{basic} MSC (BMSC) pueden ser combinados para formar un documento MSC en cual la relación entre dichos BMSCs se describe mediante un \textit{high-level} MSC (HMSC), y en 1999 donde se ofrecen facilidades adicionales para la especificación de los datos que se pasan dentro de los mensajes, y se permiten expresiones en línea.
+
+A continuación vamos a hacer un breve resumen sobre los BMSC, que son los diagramas que vamos a usar en \textit{Progtalk}.
+
+\section{Basic MSCs (BMSCs)}
+Un \textit{basic} MSC (a partir de ahora BMSC), esta formado por un conjunto de instancias. Una instancia es una entidad abstracta en la cual suceden eventos. Una instancia se nota con un cuadrado vacío, el cual tiene una linea recta que sale verticalmente y hacia abajo desde su base. Esta línea representa una linea temporal donde los eventos van ocurriendo por orden cronológico de arriba hacia abajo. Los eventos que suceden entre instancias son:
+
+\begin{itemize}
+\item Las acciones son eventos locales a una instancia. Se representan por una caja en la línea temporal con una etiqueta en su interior. Las acciones se usan para especificar cambios en el estado interno de la instancia.
+\item Los mensajes salientes representan el envío de un mensaje a una instancia.
+\item Los mensajes entrantes representan la recepción de un mensaje. Lógicamente a cada evento de mensaje saliente le corresponde otro evento de mensaje entrante. A esto se lo conoce como intercambio de mensajes y se representa con una flecha que sale de la línea de tiempo de la instancia origen a la línea de tiempo de la instancia destino. Todo intercambio de mensajes debe de estar etiquetado con un identificador. 
+\item Las condiciones describen un estado el cual es común a un conjunto de instancias dentro del MSC. Su fin es meramente informativo y se representan mediante hexágonos los cuales se extienden a lo largo de las líneas de tiempo de las instancias sobre las que la condición se aplica. El texto de la condición debe ir en el interior del hexágono.
+\item Los temporizadores son locales a las instancias y como su propio nombre sirven para controlar la ocurrencia temporal de los eventos. Se nota con un reloj de arena.
+\item Procesos de creación de instancias, donde una instancia crea a otra nueva.
+\item Procesos de terminación de instancias, donde una instancia se termina a si misma.
+\item Las corregiones son partes de la línea temporal de una instancia donde la premisa de que los eventos ocurran de forma estrictamente temporal deja de ser indispensable. Se notan con una línea discontinua.
+\end{itemize}
+
+En nuestro proyecto solo vamos a usar eventos de mensajes mensajes entrantes y salientes. A continuación mostramos un ejemplo de posible salida de nuestra herramienta:
+
+INTRODUCIR EJEMPLO!!!!!!!!!!!!!
+
+Para que nuestros BMSCs sean correctos deben cumplir una serie de requisitos:
+\begin{itemize}
+\item Los nombres de las instancias deben de ser únicos.
+\item Todos los eventos de entrada y salida deben de estar relacionados con una instancia ya declarada en el momento del evento.
+\item Los identificadores de los mensajes deben de ser únicos.
+\item Un tiempo de envío no pueden ser nunca mayor que su correspondiente tiempo de recepción (ya que no podemos mandar un mensaje hacia atrás en el tiempo).
+\end{itemize}
+
+\chapter{Especificación de requisitos}
+
+En este capitulo enumeramos todos los requisitos funcionales, de interfaz y de entorno que debe cumplir nuestra aplicación.
+
+\section{Requisitos Funcionales}
+
+Los objetivos que se deben cumplir son los siguientes:
+
+\begin{itemize}
+\item Creación de un lenguaje propio para representar las comunicaciones entrantes de forma correcta y completa.
+\item División de la herramienta en varios compartimentos estancos según la tarea a realizar (análisis sintáctico, semántico y almacenamiento de la información).
+\item Comprobación de la integridad de la información almacenada una vez parseada (tiempos correctos, no repetición de identificadores, etc).
+\item Exportación de la comunicación a un fichero \textit{latex} en el caso de que ésta sea correcta.
+\end{itemize}
+
+\subsection{Diseño del lenguaje}
+
+La herramienta \textit{Progtalk} debe recibir la comunicación en un fichero escrito en un determinado lenguaje que permita representar MSCs. Dicho lenguaje consta de dos secciones:
+\begin{itemize}
+\item Declaración de instancias, y
+\item declaración de mensajes.
+\end{itemize}
+
+Es responsabilidad del usuario traducir la comunicación que quiere pasar a \textit{Progtalk} a este formato, del cual profundizaremos más en el capítulo de \textit{Análisis y Diseño}.
+
+\subsection{Instancias}
+
+Las instancias de nuestro lenguaje se describen mediante tres parámetros:
+
+\begin{itemize}
+\item Identificador de instancia. Este parámetro debe ser obligatoriamente introducido por el usuario. Ademas debe ser un identificador válido (aquí se entiende como identificador valido un conjunto de caracteres y números que comienza obligatoriamente por una letra).
+\item Tipo de la instancia. Este parámetro es opcional, y esta pensado darle una funcionalidad real en un futuro desarrollo.
+\item Parámetro \textit{name}. Este parámetro es opcional, y esta pensado darle una funcionalidad real en un futuro desarrollo.
+\end{itemize}
+
+El usuario puede almacenar tantas instancias como desee, pero estas deben tener un identificador de instancia único.
+
+\subsection{Mensajes}
+
+Los mensajes de nuestro lenguaje se describen mediante seis parámetros:
+
+\begin{itemize}
+\item Identificador de mensaje. Este parámetro es opcional. En caso de ser introducido debe ser un identificador valido (aqui se entiende como identificador valido cualquier identificador valido en un lenguaje de alto nivel como c++ o java, es decir, que comience por una o varias letras, seguido de cualquier tipo de carácter salvo espacios, tabulados o saltos de linea).
+\item Mensaje. Este parámetro es opcional, y almacena el mensaje de texto propiamente dicho.
+\item Instancia origen del mensaje. Este parámetro debe ser obligatoriamente introducido por el usuario, y representa la instancia que envió el mensaje. La instancia a la que se haga referencia en este parámetro, debe de haber sido declarada previamente en esa misma comunicación.
+\item Instancia destino del mensaje. Este parámetro debe ser obligatoriamente introducido por el usuario, y representa la instancia que recibió el mensaje. La instancia a la que se haga referencia en este parámetro, debe de haber sido declarada previamente en esa misma comunicación.
+\item Tiempo de envío. Este parámetro es opcional. Representa el momento exacto en que el mensaje fue enviado.
+\item Tiempo de recepción. Este parámetro es opcional. Representa el momento exacto en que el mensaje fue enviado.
+\end{itemize}
+
+La instancia origen del mensaje y el instante de envío forman un evento de envío, mientras que la instancia destino del mensaje y el instante de recepción forman un evento de recepción.
+
+Es importante que nos detengamos un momento a explicar en detalle los parámetros de los mensajes relativos a los tiempos de envío y recepción. Estos tiempos pueden ser absolutos o relativos. 
+
+Entenderemos como tiempos absolutos los siguiente casos:
+
+\begin{itemize}
+\item Si el usuario da específicamente un valor absoluto, o
+\item si estamos hablando del instante de envío del primer mensaje de la comunicación y el usuario no ha introducido dicho parámetro. En este caso consideraremos siempre un valor absoluto de cero. 
+\end{itemize}
+
+Por otro lado entenderemos por tiempos relativos los siguiente casos:
+
+\begin{itemize}
+\item Relativo implícito: si el usuario no da específicamente un valor en cuyo caso calcularemos el parámetro como el instante del ultimo evento (ya sea envío del mensaje actual, o recepción del mensaje anterior) mas una unidad.
+\item Relativo explicito simple: si el usuario aporta un valor del tipo (\textit{+unidad}) donde \textit{unidad} es un numero entero, pero no especifica un evento de referencia. En este caso calcularemos el parámetro como el instante del ultimo evento (ya sea envío del mensaje actual, o recepción del mensaje anterior) mas el valor introducido por el usuario (\textit{+unidad}).
+\item Relativo explicito complejo: si el usuario aporta un evento de referencia y un valor del tipo (\textit{+unidad}) donde \textit{unidad} es un numero entero. El evento de referencia especificado por el usuario puede referirse a un evento de envío o de recepción, y debe de pertenecer a un mensaje ya almacenado anteriormente en esa comunicación. En este caso calcularemos el parámetro como el instante en que ocurrió el evento que especifico el usuario sumándole el valor (\textit{+unidad}) especificado también por el usuario. Cabe destacar que cabe la posibilidad de que solo se introduzca el evento de referencia y que no se introduzca un valor del tipo (\textit{+unidad}). En este caso consideraremos dicho valor (\textit{+unidad}) como +0.
+\end{itemize}
+
+\section{Requisitos de interfaces de usuario}
+
+El programa \textit{Progtalk} se arranca desde la linea de comandos, y recibe como argumento el fichero de texto el cual contiene la comunicación a procesar. Si todo está en orden, se creará en el directorio de trabajo un fichero en formato \textit{latex} con la representación gráfica de la comunicación. Si \textit{Progtalk} detecta un problema lo notificará al usuario por pantalla y se cerrará.
+
+\section{Requisitos de interfaces externos (entorno)}
+
+El sistema a desarrollar debe de funcionar bajo el siguiente entorno:
+
+ESPECIFICAR!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+\chapter{Análisis y Diseño}
+
+\section{Análisis sintáctico}
+
+Para el análisis sintáctico hemos utilizado el lenguaje \textit{bisonc++}. El proceso de parseo es el siguiente. El objeto \textit{Parser} (implementado en \textit{bisonc++}) va tomando los tokens enviados por \textit{Scanner} y comprueba que el lenguaje que esta leyendo es un lenguaje correcto. En caso de no serlo se aborta el proceso de parseo y el programa termina.
+
+\subsection{Gramática}
+La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) es la siguiente:
+\begin{verbatim}
+//------------------------------------------------------------
+//
+//  GRAMÁTICA
+//    
+//    msc ::= inst_decl* message*
+//    inst_decl ::= INSTANCE iid |
+//                  INSTANCE iid OF tid; |
+//                  INSTANCE iid {string}; |
+//                  INSTANCE iid OF tid {string};               
+//    message ::= MESSAGE mid_opt string_opt origin destiny;
+//    mid_opt ::= LAMBDA | mid
+//    string_opt ::= LAMBDA | {string}
+//    origin ::= LAMBDA | origin_opt
+//    origin_opt ::= FROM iid time_ref_opt
+//    destiny ::= LAMBDA | destiny_opt
+//    destiny_opt ::= TO iid time_ref_opt
+//    time_ref_opt ::= LAMBDA | @ time_ref
+//    time_ref ::= abs_time | rel_time
+//    abs_time ::= num
+//    rel_time ::= ref dif_time_opt | dif_time
+//    ref ::= mid ! | mid ?
+//    dif_time_opt ::= LAMBDA | dif_time
+//    dif_time ::= + num | - num
+//    iid ::= ID
+//    tid ::= ID
+//    mid ::= ID
+//    string ::= STRING
+//    num ::= NUM
+//
+//------------------------------------------------------------
+\end{verbatim}
+
+Las acciones semánticas en \emph{bisonc++} simplemente construyen los
+nodos del árbol de sintaxis abstracta. Veamos un ejemplo de una de nuestras acciones semánticas:
+\begin{verbatim}
+message:
+     MESSAGE mid_opt string_opt origin_opt destiny_opt SEMICOLON EOLN
+        { 
+	      string * mid = $2;
+          string * desc = $3;
+          Timestg * orig = $4;
+          Timestg * dest = $5;
+        }
+	  if (mid == NULL)
+	    mid = new string("No_Info_Available");
+
+	  if (desc == NULL)
+	    desc = new string("");
+
+	  if (orig == NULL)
+	    {
+	      std::cout << "ERROR: User didn't provide message's origin" 
+			<< std::endl;
+	      exit(-1);
+	    }
+
+	  if (dest == NULL)
+	    {
+	      std::cout << "ERROR: User didn't provide message's destiny" 
+
+			<< std::endl;
+	      exit(-1);
+	    }
+	     addMsg(*mid, *desc, orig->get_iid(), dest->get_iid(), 
+		 orig->get_timeref(), dest->get_timeref());
+	}
+;
+\end{verbatim}
+
+\subsection{Análisis sintáctico}
+
+Para el análisis léxico del fichero de entrada hemos utilizado el lenguaje \textit{flex++}. El proceso es sencillo, un objeto \textit{Scanner} (implementado mediante \textit{flex++}), va tomando carácter por carácter del fichero de entrada y con dichos caracteres construye tokens que envía al analizador sintáctico y semántico (\textit{Parser}). 
+
+Existen varios tipos de tokens en nuestro lenguaje:
+
+\begin{itemize}
+\item NUM: números enteros.
+\item STRING: cualquier conjunto carácter salvo comillas o saltos de linea.
+\item EOLN: salto de linea.
+\item LEFT\_BRACE y RIGHT\_BRACE: \{ y \}.
+\item SEMICOLON: ";".
+\item INTERROGATION y EXCLAMATION: "?" y "!".
+\item PLUS: "+".
+\item AT: "@".
+\item ID: un identificador (conjunto de caracteres y números que comienza obligatoriamente por una letra).
+\item INSTANCE, MESSAGE, OF, FROM, TO: palabras reservadas del lenguaje.
+\end{itemize}
+
+\section{Análisis semántico}
+
+En nuestro programa parte del análisis semántico se realiza de forma paralela al análisis sintáctico. En concreto, las inconsistencias que hemos tratado de identificar en un primer momento son:
+\begin{itemize}
+\item Cuando se trata de declarar varias instancias con igual identificador.
+\item Cuando se trata de declarar varios mensajes con igual identificador.
+\item Cuando faltan elementos imprescindibles de un mensajes, como el origen de este, o su destino.
+\item Cuando se hace referencia a un mensaje o instancia que no ha sido declarado anteriormente.
+\end{itemize}
+
+Una vez que se ha parseado toda la comunicación sin contratiempos, esta se almacena en memoria, para después hacer un segundo análisis semántico donde comprobamos que toda la información sobre tiempos de envío y recepción es consistente. Para ello hemos hecho uso de un patrón de diseño \textit{Visitor}.
+
+\section{Impresión}
+
+Para esta tarea hemos utilizado un patrón de diseño \textit{Visitor}, el cual recorre toda la información almacenada y a partir de ésta crea un fichero \textit{.tex} que compilado en \textit{latex} nos dará una representación gráfica de la comunicación.
+
+\chapter{Implementación}
+
+\chapter{Conclusiones y Trabajo Futuro}
+
+\begin{thebibliography}{99}
+\bibitem{Bjorner} Dines Bjorner. Software Engineering 2: Specification of Systems and Languages. Springer.
+\end{thebibliography}
+\end{document}
