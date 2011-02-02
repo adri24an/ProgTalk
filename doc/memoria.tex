@@ -24,16 +24,20 @@
 
 \usepackage{hyperref}
 
+\usepackage{todonotes}
+\setlength{\marginparwidth}{7em}
+
 \title{Trabajo de Fin de Carrera: Progtalk}
 \author{Adrián Bartol Molina}
 \date{Febrero de 2011}
 
 \begin{document}
 \maketitle
+\tableofcontents
 
 \chapter{Introducción}
 
-Este proyecto consiste en el diseño e implementación de una herramienta la cual a partir de una comunicación entre varias entidades (programas, procesos, etc), nos devuelve una representación gráfica de dicha comunicación. \textit{Progtalk} se integra dentro del proyecto \textit{Transformers}, en el cual se estudian varios lenguajes con el objetivo de representar la información de los requisitos del sistema de ferrocarril europeo (ERTMS). En concreto, uno de los lenguajes que se estudia es el de diagramas de secuencias (MSC, \emph{Message Sequence Charts}), y aquí es donde encaja \textit{Progtalk}. EXPLICAR EN DETALLE!!!!!!!!!!!!!!!!!
+\todo{AH: intenta tener líneas reales más cortas.}Este proyecto consiste en el diseño e implementación de una herramienta la cual a partir de una comunicación entre varias entidades (programas, procesos, etc), nos devuelve una representación gráfica de dicha comunicación. \textit{Progtalk} se integra dentro del proyecto \textit{Transformers}, en el cual se estudian varios lenguajes con el objetivo de representar la información de los requisitos del sistema de ferrocarril europeo (ERTMS). En concreto, uno de los lenguajes que se estudia es el de diagramas de secuencias (MSC, \emph{Message Sequence Charts}), y aquí es donde encaja \textit{Progtalk}. EXPLICAR EN DETALLE!!!!!!!!!!!!!!!!!
 
 La labor de nuestra herramienta consiste en, dada una comunicación entre dos o mas entidades, el procesado de esta comunicación y su impresión en diferentes formatos (pdf, dot, png, etc). Para ello podemos describir el funcionamiento de la herramienta en tres fases:
 
@@ -45,7 +49,41 @@ La labor de nuestra herramienta consiste en, dada una comunicación entre dos o 
 
 El presente trabajo esta estructurado del siguiente modo. En primer lugar, en el capitulo 1 se presentan los \textit{Diagramas de Secuencia}, su historia y un resumen de su funcionamiento. Tras esta introducción teórica pasaremos al capitulo 2, donde presentamos la especificación de requisitos de nuestra herramienta. En el capitulo 3 explicaremos el análisis y el diseño que se ha utilizado antes de comenzar la implementación de la herramienta, la cuál se detallará en el capitulo 4. Por último en el capitulo 5 se presentan las conclusiones extraídas de la realización de este proyecto, y posibles vías de desarrollo futuras.
 
+\chapter{Lenguaje}
+\label{ch:lenguaje}
+
+\todo{AH: presentación del lenguaje con ejemplos y al final la gramática.}
+
+\section{Instancias}
+
+\todo{AH: breve descripción y añadir ejemplos.}
+
+\section{Mensajes}
+
+\todo{AH: breve descripción y añadir ejemplos.}
+
+\section{Sintaxis Concreta}
+
+\todo{AH: presentar la gramática completa.}
+
+
+\chapter{Diseño}
+
+\section{Sintaxis Abstracta}
+\todo{AH: diagramas UML que representan los conceptos del lenguaje.}
+
+\section{Arquitectura}
+
+\section{Análisis Sintáctico}
+
+\section{Análisis Semántico}
+
+\section{Generación de Código}
+
+
 \chapter{MSC: Diagramas de secuencia}
+
+En el capítulo \ref{ch:lenguaje}.
 
 Según Bjorner \cite{Bjorner}, los diagramas de secuencia (a partir de ahora MSCs), son una notación gráfica para describir intercambios de mensajes entre entidades. Los MSC fueron estandarizados por primera vez por la CCITT (conocida ahora como la ITU-T) en Recommendation Z.120 en 1992, donde se especificaron sus componentes. Se realizaron revisiones en 1996, donde se especificó la forma en que varios MSCs (llamados \textit{basic} MSC (BMSC) pueden ser combinados para formar un documento MSC en cual la relación entre dichos BMSCs se describe mediante un \textit{high-level} MSC (HMSC), y en 1999 donde se ofrecen facilidades adicionales para la especificación de los datos que se pasan dentro de los mensajes, y se permiten expresiones en línea.
 
