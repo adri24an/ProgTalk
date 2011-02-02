@@ -37,7 +37,8 @@
 
 \chapter{Introducción}
 
-\todo{AH: intenta tener líneas reales más cortas.}Este proyecto consiste en el diseño e implementación de una herramienta la cual a partir de una comunicación entre varias entidades (programas, procesos, etc), nos devuelve una representación gráfica de dicha comunicación. \textit{Progtalk} se integra dentro del proyecto \textit{Transformers}, en el cual se estudian varios lenguajes con el objetivo de representar la información de los requisitos del sistema de ferrocarril europeo (ERTMS). En concreto, uno de los lenguajes que se estudia es el de diagramas de secuencias (MSC, \emph{Message Sequence Charts}), y aquí es donde encaja \textit{Progtalk}. EXPLICAR EN DETALLE!!!!!!!!!!!!!!!!!
+\todo{AH: intenta tener líneas reales más cortas.}
+Este proyecto consiste en el diseño e implementación de una herramienta la cual a partir de una comunicación entre varias entidades (programas, procesos, etc), nos devuelve una representación gráfica de dicha comunicación. \textit{Progtalk} se integra dentro del proyecto \textit{Transformers}, en el cual se estudian varios lenguajes con el objetivo de representar la información de los requisitos del sistema de ferrocarril europeo (ERTMS). En concreto, uno de los lenguajes que se estudia es el de diagramas de secuencias (MSC, \emph{Message Sequence Charts}), y aquí es donde encaja \textit{Progtalk}. \todo{AB:Aquí deberíamos explicar en detalle que papel juega Progtalk en Transformers.}
 
 La labor de nuestra herramienta consiste en, dada una comunicación entre dos o mas entidades, el procesado de esta comunicación y su impresión en diferentes formatos (pdf, dot, png, etc). Para ello podemos describir el funcionamiento de la herramienta en tres fases:
 
@@ -47,41 +48,10 @@ La labor de nuestra herramienta consiste en, dada una comunicación entre dos o 
 \item exportación de la comunicación a un fichero externo de tipo \textit{latex}.
 \end{itemize}
 
-El presente trabajo esta estructurado del siguiente modo. En primer lugar, en el capitulo 1 se presentan los \textit{Diagramas de Secuencia}, su historia y un resumen de su funcionamiento. Tras esta introducción teórica pasaremos al capitulo 2, donde presentamos la especificación de requisitos de nuestra herramienta. En el capitulo 3 explicaremos el análisis y el diseño que se ha utilizado antes de comenzar la implementación de la herramienta, la cuál se detallará en el capitulo 4. Por último en el capitulo 5 se presentan las conclusiones extraídas de la realización de este proyecto, y posibles vías de desarrollo futuras.
-
-\chapter{Lenguaje}
-\label{ch:lenguaje}
-
-\todo{AH: presentación del lenguaje con ejemplos y al final la gramática.}
-
-\section{Instancias}
-
-\todo{AH: breve descripción y añadir ejemplos.}
-
-\section{Mensajes}
-
-\todo{AH: breve descripción y añadir ejemplos.}
-
-\section{Sintaxis Concreta}
-
-\todo{AH: presentar la gramática completa.}
-
-
-\chapter{Diseño}
-
-\section{Sintaxis Abstracta}
-\todo{AH: diagramas UML que representan los conceptos del lenguaje.}
-
-\section{Arquitectura}
-
-\section{Análisis Sintáctico}
-
-\section{Análisis Semántico}
-
-\section{Generación de Código}
-
+El presente trabajo esta estructurado del siguiente modo. En primer lugar, en el capítulo \ref{ch:msc} se presentan los \textit{Diagramas de Secuencia}, su historia y un resumen de su funcionamiento. Tras esta introducción teórica pasaremos al capitulo \ref{ch:lenguaje}, donde explicaremos en detalle en qué consiste el lenguaje que hemos creado para representar las comunicaciones entrantes a \textit{Progtalk}. En el capitulo \ref{ch:diseno} explicaremos el análisis y el diseño que se ha utilizado antes de comenzar la implementación de la herramienta. Por último en el capitulo \ref{ch:conclusiones} se presentan las conclusiones extraídas de la realización de este proyecto, y posibles vías de desarrollo futuras.
 
 \chapter{MSC: Diagramas de secuencia}
+\label{ch:msc}
 
 En el capítulo \ref{ch:lenguaje}.
 
@@ -105,7 +75,7 @@ Un \textit{basic} MSC (a partir de ahora BMSC), esta formado por un conjunto de 
 
 En nuestro proyecto solo vamos a usar eventos de mensajes mensajes entrantes y salientes. A continuación mostramos un ejemplo de posible salida de nuestra herramienta:
 
-INTRODUCIR EJEMPLO!!!!!!!!!!!!!
+\todo{AB:Aquí introducimos un ejemplo de comunicación, indicando en el dibujo que es cada cosa.}
 
 Para que nuestros BMSCs sean correctos deben cumplir una serie de requisitos:
 \begin{itemize}
@@ -115,22 +85,10 @@ Para que nuestros BMSCs sean correctos deben cumplir una serie de requisitos:
 \item Un tiempo de envío no pueden ser nunca mayor que su correspondiente tiempo de recepción (ya que no podemos mandar un mensaje hacia atrás en el tiempo).
 \end{itemize}
 
-\chapter{Especificación de requisitos}
+\chapter{Lenguaje}
+\label{ch:lenguaje}
 
-En este capitulo enumeramos todos los requisitos funcionales, de interfaz y de entorno que debe cumplir nuestra aplicación.
-
-\section{Requisitos Funcionales}
-
-Los objetivos que se deben cumplir son los siguientes:
-
-\begin{itemize}
-\item Creación de un lenguaje propio para representar las comunicaciones entrantes de forma correcta y completa.
-\item División de la herramienta en varios compartimentos estancos según la tarea a realizar (análisis sintáctico, semántico y almacenamiento de la información).
-\item Comprobación de la integridad de la información almacenada una vez parseada (tiempos correctos, no repetición de identificadores, etc).
-\item Exportación de la comunicación a un fichero \textit{latex} en el caso de que ésta sea correcta.
-\end{itemize}
-
-\subsection{Diseño del lenguaje}
+\todo{AH: presentación del lenguaje con ejemplos y al final la gramática.}
 
 La herramienta \textit{Progtalk} debe recibir la comunicación en un fichero escrito en un determinado lenguaje que permita representar MSCs. Dicho lenguaje consta de dos secciones:
 \begin{itemize}
@@ -138,9 +96,9 @@ La herramienta \textit{Progtalk} debe recibir la comunicación en un fichero esc
 \item declaración de mensajes.
 \end{itemize}
 
-Es responsabilidad del usuario traducir la comunicación que quiere pasar a \textit{Progtalk} a este formato, del cual profundizaremos más en el capítulo de \textit{Análisis y Diseño}.
+Es responsabilidad del usuario traducir la comunicación que quiere pasar a \textit{Progtalk} a este formato.
 
-\subsection{Instancias}
+\section{Instancias}
 
 Las instancias de nuestro lenguaje se describen mediante tres parámetros:
 
@@ -152,7 +110,9 @@ Las instancias de nuestro lenguaje se describen mediante tres parámetros:
 
 El usuario puede almacenar tantas instancias como desee, pero estas deben tener un identificador de instancia único.
 
-\subsection{Mensajes}
+\todo{AB: añadir ejemplo.}
+
+\section{Mensajes}
 
 Los mensajes de nuestro lenguaje se describen mediante seis parámetros:
 
@@ -184,23 +144,10 @@ Por otro lado entenderemos por tiempos relativos los siguiente casos:
 \item Relativo explicito complejo: si el usuario aporta un evento de referencia y un valor del tipo (\textit{+unidad}) donde \textit{unidad} es un numero entero. El evento de referencia especificado por el usuario puede referirse a un evento de envío o de recepción, y debe de pertenecer a un mensaje ya almacenado anteriormente en esa comunicación. En este caso calcularemos el parámetro como el instante en que ocurrió el evento que especifico el usuario sumándole el valor (\textit{+unidad}) especificado también por el usuario. Cabe destacar que cabe la posibilidad de que solo se introduzca el evento de referencia y que no se introduzca un valor del tipo (\textit{+unidad}). En este caso consideraremos dicho valor (\textit{+unidad}) como +0.
 \end{itemize}
 
-\section{Requisitos de interfaces de usuario}
+\todo{AB: añadir ejemplos.}
 
-El programa \textit{Progtalk} se arranca desde la linea de comandos, y recibe como argumento el fichero de texto el cual contiene la comunicación a procesar. Si todo está en orden, se creará en el directorio de trabajo un fichero en formato \textit{latex} con la representación gráfica de la comunicación. Si \textit{Progtalk} detecta un problema lo notificará al usuario por pantalla y se cerrará.
+\section{Sintaxis Concreta}
 
-\section{Requisitos de interfaces externos (entorno)}
-
-El sistema a desarrollar debe de funcionar bajo el siguiente entorno:
-
-ESPECIFICAR!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-\chapter{Análisis y Diseño}
-
-\section{Análisis sintáctico}
-
-Para el análisis sintáctico hemos utilizado el lenguaje \textit{bisonc++}. El proceso de parseo es el siguiente. El objeto \textit{Parser} (implementado en \textit{bisonc++}) va tomando los tokens enviados por \textit{Scanner} y comprueba que el lenguaje que esta leyendo es un lenguaje correcto. En caso de no serlo se aborta el proceso de parseo y el programa termina.
-
-\subsection{Gramática}
 La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) es la siguiente:
 \begin{verbatim}
 //------------------------------------------------------------
@@ -234,6 +181,50 @@ La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) es la siguient
 //
 //------------------------------------------------------------
 \end{verbatim}
+
+\chapter{Diseño}
+\label{ch:diseno}
+
+\section{Sintaxis Abstracta}
+\todo{AH: diagramas UML que representan los conceptos del lenguaje.}
+
+\section{Arquitectura}
+
+Básicamente la arquitectura de \textit{Progtalk} es la siguiente:
+\begin{itemize}
+\item En un primer lugar tenemos el analizador léxico. Su labor es ir tomando información del fichero de entrada carácter a carácter e ir agrupando en \textit{tokens} (unidad mínima de información que maneja posteriormente el analizador sintáctico).
+\item Los tokens son enviados al analizador sintáctico, el cuál se encarga de parsear el fichero de entrada (es decir, va uniendo los tokens que va recibiendo y verifica que el fichero entrante esta escrito conforme al lenguaje diseñado para describir el universo del problema).
+\item Para verificar la consistencia de la comunicación tenemos el analizador semántico. En este punto, debemos explicar que parte de este análisis se ha realizado durante el análisis sintáctico, y parte se ha realizado tras la finalización de éste. La razón por la que tomamos esta decisión es que algunas verificaciones de consistencia, como por ejemplo la no duplicidad de identificadores, era fácil de empotrar dentro del código del analizador sintáctico, optimizando el funcionamiento de \textit{Progtalk} sin aumentar la complejidad del código, mientras que otras verificaciones como por ejemplo la consistencia de los tiempos de envío y recepción, eran suficientemente complejas como para diferir su procesado, simplificando así mucho el código.
+\item Por ultimo tenemos el generador de código, que lee toda la comunicación procesada y almacenada en memoria, y la exporta al formato requerido por el usuario.
+\end{itemize}
+
+\section{Análisis Léxico}
+Para implementar el analizador léxico (al cual hemos llamado \textit{Scanner}) hemos usado flex++. Los tokens que hemos definido para el universo de nuestro problema son:
+
+\begin{itemize}
+\item NUM: cualquier número entero.
+\item ID: cualquier identificador comenzado en letra y formado por letras, números o el símbolo ''\_''.
+\item WHITE: cualquier espacio en blanco o tabulador.
+\item STRING: cualquier conjunto de caracteres entre comillado salvo comillas o salto de línea.
+\item EOLN: uno o más saltos de línea.
+\item INSTANCE: el literal ''instance".
+\item OF: el literal "of".
+\item MESSAGE: el literal "message".
+\item FROM: el literal ''from''.
+\item TO: el literal ''to''.
+\item AT: el literal ''@''.
+\item PLUS: el literal ''+''.
+\item MINUS: el literal ''-''.
+\item EXCLAMATION: el literal ''!''.
+\item INTERROGATION: el literal ''?''.
+\item SEMICOLON: el literal '';''.
+\item LEFT\_BRACE: el literal ''\{''.
+\item RIGHT\_BRACE: el literal ''\}''.
+\end{itemize}
+
+\section{Análisis Sintáctico}
+
+Para implementar el analizador sintáctico (al cual hemos llamado \textit{Parser}) hemos usado \textit{bisonc++}. El proceso de parseo es el siguiente. El objeto \textit{Parser} va tomando los tokens enviados por \textit{Scanner} y comprueba que el lenguaje que esta leyendo es un lenguaje correcto. En caso de no serlo se aborta el proceso de parseo y el programa termina.
 
 Las acciones semánticas en \emph{bisonc++} simplemente construyen los
 nodos del árbol de sintaxis abstracta. Veamos un ejemplo de una de nuestras acciones semánticas:
@@ -272,44 +263,32 @@ message:
 ;
 \end{verbatim}
 
-\subsection{Análisis sintáctico}
+\section{Análisis Semántico}
 
-Para el análisis léxico del fichero de entrada hemos utilizado el lenguaje \textit{flex++}. El proceso es sencillo, un objeto \textit{Scanner} (implementado mediante \textit{flex++}), va tomando carácter por carácter del fichero de entrada y con dichos caracteres construye tokens que envía al analizador sintáctico y semántico (\textit{Parser}). 
-
-Existen varios tipos de tokens en nuestro lenguaje:
-
+En nuestro programa parte del análisis semántico se realiza de forma paralela al análisis sintáctico y parte se realiza tras finalizar éste. En concreto, las inconsistencias que se reconocen durante el análisis sintáctico son:
 \begin{itemize}
-\item NUM: números enteros.
-\item STRING: cualquier conjunto carácter salvo comillas o saltos de linea.
-\item EOLN: salto de linea.
-\item LEFT\_BRACE y RIGHT\_BRACE: \{ y \}.
-\item SEMICOLON: ";".
-\item INTERROGATION y EXCLAMATION: "?" y "!".
-\item PLUS: "+".
-\item AT: "@".
-\item ID: un identificador (conjunto de caracteres y números que comienza obligatoriamente por una letra).
-\item INSTANCE, MESSAGE, OF, FROM, TO: palabras reservadas del lenguaje.
+\item La declaración de varias instancias con igual identificador,
+\item la declaración de varios mensajes con igual identificador,
+\item la ausencia de elementos imprescindibles de un mensaje, como su origen o destino,
+\item la referencia a un mensaje o instancia que no ha sido declarado anteriormente.
 \end{itemize}
 
-\section{Análisis semántico}
+El hecho de detectar estas inconsistencias nada más producirse, nos da la ventaja de evitar el procesado de una comunicación errónea, ahorrando tiempo y recursos.
 
-En nuestro programa parte del análisis semántico se realiza de forma paralela al análisis sintáctico. En concreto, las inconsistencias que hemos tratado de identificar en un primer momento son:
+Una vez terminado este proceso con éxito, pasamos a la segunda parte del análisis semántico donde comprobaremos la consistencia en los tiempos de envío y recepción de los mensajes. Hay dos razones por las que nos hemos realizado esta comprobación en paralelo con el análisis sintáctico:
 \begin{itemize}
-\item Cuando se trata de declarar varias instancias con igual identificador.
-\item Cuando se trata de declarar varios mensajes con igual identificador.
-\item Cuando faltan elementos imprescindibles de un mensajes, como el origen de este, o su destino.
-\item Cuando se hace referencia a un mensaje o instancia que no ha sido declarado anteriormente.
+\item Por un lado, durante la fase de análisis del problema, tomamos la decisión de intentar almacenar la información del fichero de entrada tan fielmente como fuera posible para así poder dar marcha atrás si lo deseáramos y obtener de nuevo el fichero de entrada a partir del la información parseada y almacenada. Esto implica que los tiempos relativos se almacenan como referencias y no como valores absolutos, lo que hace imposible comprobar su integridad hasta el final del parseo,
+\item y por otro lado, comprendimos que el código del analizador sintáctico se volvería demasiado complejo y poco legible si finalmente incluíamos este tipo de verificaciones durante esta fase.
 \end{itemize}
 
-Una vez que se ha parseado toda la comunicación sin contratiempos, esta se almacena en memoria, para después hacer un segundo análisis semántico donde comprobamos que toda la información sobre tiempos de envío y recepción es consistente. Para ello hemos hecho uso de un patrón de diseño \textit{Visitor}.
+Para la implementación de esta parte del analizador semántico hemos usado un patrón \textit{Visitor}.\todo{Añadir libro del que sacamos el patrón visitor.}
 
-\section{Impresión}
+\section{Generación de Código}
 
 Para esta tarea hemos utilizado un patrón de diseño \textit{Visitor}, el cual recorre toda la información almacenada y a partir de ésta crea un fichero \textit{.tex} que compilado en \textit{latex} nos dará una representación gráfica de la comunicación.
 
-\chapter{Implementación}
-
 \chapter{Conclusiones y Trabajo Futuro}
+\label{ch:conclusiones}
 
 \begin{thebibliography}{99}
 \bibitem{Bjorner} Dines Bjorner. Software Engineering 2: Specification of Systems and Languages. Springer.
