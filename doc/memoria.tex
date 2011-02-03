@@ -9,18 +9,6 @@
 \setlength{\parskip}{\baselineskip}
 
 \usepackage[spanish]{babel}
-%\usepackage[spanish,english]{babel}
-
-% \usepackage{listings}
-
-% \usepackage{url}
-% \usepackage{html}
-
-% \usepackage{fancybox}
-% \usepackage{fancyheadings}
-
-% \usepackage{courier}
-% \usepackage{times}
 
 \usepackage{hyperref}
 
@@ -38,9 +26,9 @@
 \chapter{Introducción}
 
 \todo{AH: intenta tener líneas reales más cortas.}
-Este proyecto consiste en el diseño e implementación de una herramienta la cual a partir de una comunicación entre varias entidades (programas, procesos, etc), nos devuelve una representación gráfica de dicha comunicación. \textit{Progtalk} se integra dentro del proyecto \textit{Transformers}, en el cual se estudian varios lenguajes con el objetivo de representar la información de los requisitos del sistema de ferrocarril europeo (ERTMS). En concreto, uno de los lenguajes que se estudia es el de diagramas de secuencias (MSC, \emph{Message Sequence Charts}), y aquí es donde encaja \textit{Progtalk}. \todo{AB:Aquí deberíamos explicar en detalle que papel juega Progtalk en Transformers.}
+Este proyecto consiste en el diseño e implementación de una herramienta la cual a partir de una comunicación entre varias entidades (programas, procesos, etc), nos devuelve una representación gráfica de dicha comunicación. \textit{Progtalk} se integra dentro del proyecto \textit{Transformers}, en el cual se estudian varios lenguajes con el objetivo de representar la información de los requisitos del sistema de ferrocarril europeo (ERTMS). En concreto, uno de los lenguajes que se estudia es el de diagramas de secuencia (MSC, \emph{Message Sequence Charts}), y aquí es donde encaja \textit{Progtalk}. \todo{AB:Aquí deberíamos explicar en detalle que papel juega Progtalk en Transformers.}
 
-La labor de nuestra herramienta consiste en, dada una comunicación entre dos o mas entidades, el procesado de esta comunicación y su impresión en diferentes formatos (pdf, dot, png, etc). Para ello podemos describir el funcionamiento de la herramienta en tres fases:
+La labor de nuestra herramienta consiste en, dada una comunicación entre dos o mas entidades, el procesado de esta comunicación y la creación de una representación gráfica de ésta. Para ello podemos describir el funcionamiento de la herramienta en tres fases:
 
 \begin{itemize}
 \item Validación léxica y sintáctica del fichero de entrada, el cuál contiene la comunicación,
@@ -48,34 +36,33 @@ La labor de nuestra herramienta consiste en, dada una comunicación entre dos o 
 \item exportación de la comunicación a un fichero externo de tipo \textit{latex}.
 \end{itemize}
 
-El presente trabajo esta estructurado del siguiente modo. En primer lugar, en el capítulo \ref{ch:msc} se presentan los \textit{Diagramas de Secuencia}, su historia y un resumen de su funcionamiento. Tras esta introducción teórica pasaremos al capitulo \ref{ch:lenguaje}, donde explicaremos en detalle en qué consiste el lenguaje que hemos creado para representar las comunicaciones entrantes a \textit{Progtalk}. En el capitulo \ref{ch:diseno} explicaremos el análisis y el diseño que se ha utilizado antes de comenzar la implementación de la herramienta. Por último en el capitulo \ref{ch:conclusiones} se presentan las conclusiones extraídas de la realización de este proyecto, y posibles vías de desarrollo futuras.
+\todo{AB:deberíamos hacer que Introducción fuera le capítulo 0 y comenzar numerando a partir del capítulo MSC}
+El presente trabajo esta estructurado del siguiente modo. En primer lugar, en el capítulo \ref{ch:msc} se presentan los \textit{Diagramas de Secuencia}, su historia y un resumen de su funcionamiento. Tras esta introducción teórica pasaremos al capitulo \ref{ch:lenguaje}, donde explicaremos en detalle en qué consiste el lenguaje que hemos creado para representar las comunicaciones entrantes a \textit{Progtalk}. En el capitulo \ref{ch:diseno} explicaremos el análisis y diseño que se ha realizado antes de comenzar la implementación de la herramienta. Por último, en el capitulo \ref{ch:conclusiones} se presentan las conclusiones extraídas de la realización de este proyecto, y posibles vías futuras de desarrollo.
 
 \chapter{MSC: Diagramas de secuencia}
 \label{ch:msc}
 
-En el capítulo \ref{ch:lenguaje}.
-
-Según Bjorner \cite{Bjorner}, los diagramas de secuencia (a partir de ahora MSCs), son una notación gráfica para describir intercambios de mensajes entre entidades. Los MSC fueron estandarizados por primera vez por la CCITT (conocida ahora como la ITU-T) en Recommendation Z.120 en 1992, donde se especificaron sus componentes. Se realizaron revisiones en 1996, donde se especificó la forma en que varios MSCs (llamados \textit{basic} MSC (BMSC) pueden ser combinados para formar un documento MSC en cual la relación entre dichos BMSCs se describe mediante un \textit{high-level} MSC (HMSC), y en 1999 donde se ofrecen facilidades adicionales para la especificación de los datos que se pasan dentro de los mensajes, y se permiten expresiones en línea.
+Según Bjorner~\cite{bjorner}, los diagramas de secuencia (a partir de ahora MSCs), son una notación gráfica para describir intercambios de mensajes entre entidades. Los MSCs fueron estandarizados por primera vez por la \textit{CCITT} (conocida ahora como la \textit{ITU-T}) en \textit{Recommendation Z.120} en 1992, donde se especificaron sus componentes. Se realizaron revisiones en 1996, donde se especificó la forma en que varios MSCs (llamados \textit{basic} MSC (BMSC) pueden ser combinados para formar un documento MSC en cual la relación entre dichos BMSCs se describe mediante un \textit{high-level} MSC (HMSC), y en 1999 donde se ofrecen facilidades adicionales para la especificación de los datos que se pasan dentro de los mensajes, y se permiten expresiones en línea.
 
 A continuación vamos a hacer un breve resumen sobre los BMSC, que son los diagramas que vamos a usar en \textit{Progtalk}.
 
 \section{Basic MSCs (BMSCs)}
-Un \textit{basic} MSC (a partir de ahora BMSC), esta formado por un conjunto de instancias. Una instancia es una entidad abstracta en la cual suceden eventos. Una instancia se nota con un cuadrado vacío, el cual tiene una linea recta que sale verticalmente y hacia abajo desde su base. Esta línea representa una linea temporal donde los eventos van ocurriendo por orden cronológico de arriba hacia abajo. Los eventos que suceden entre instancias son:
+Un \textit{basic} MSC (a partir de ahora BMSC), esta formado por un conjunto de instancias. Una instancia es una entidad abstracta en la cual suceden eventos. Una instancia se nota con un cuadrado vacío, el cual tiene una linea recta que sale verticalmente y hacia abajo desde su base. Esta recta representa una linea temporal donde los eventos van ocurriendo por orden cronológico de arriba hacia abajo. Los eventos que pueden suceder entre instancias son:
 
 \begin{itemize}
-\item Las acciones son eventos locales a una instancia. Se representan por una caja en la línea temporal con una etiqueta en su interior. Las acciones se usan para especificar cambios en el estado interno de la instancia.
-\item Los mensajes salientes representan el envío de un mensaje a una instancia.
-\item Los mensajes entrantes representan la recepción de un mensaje. Lógicamente a cada evento de mensaje saliente le corresponde otro evento de mensaje entrante. A esto se lo conoce como intercambio de mensajes y se representa con una flecha que sale de la línea de tiempo de la instancia origen a la línea de tiempo de la instancia destino. Todo intercambio de mensajes debe de estar etiquetado con un identificador. 
-\item Las condiciones describen un estado el cual es común a un conjunto de instancias dentro del MSC. Su fin es meramente informativo y se representan mediante hexágonos los cuales se extienden a lo largo de las líneas de tiempo de las instancias sobre las que la condición se aplica. El texto de la condición debe ir en el interior del hexágono.
-\item Los temporizadores son locales a las instancias y como su propio nombre sirven para controlar la ocurrencia temporal de los eventos. Se nota con un reloj de arena.
+\item Acciones: eventos locales a una instancia. Se representan por una caja en la línea temporal con una etiqueta en su interior. Las acciones se usan para especificar cambios en el estado interno de la instancia,
+\item Mensajes salientes: representan el envío de un mensaje a una instancia.
+\item Mensajes entrantes: representan la recepción de un mensaje. Lógicamente a cada evento de mensaje saliente le corresponde otro evento de mensaje entrante. A esto se le conoce como intercambio de mensajes y se representa con una flecha que sale de la línea de tiempo de la instancia origen a la línea de tiempo de la instancia destino. Todo intercambio de mensajes debe de estar etiquetado con un identificador. 
+\item Condiciones: describen un estado el cual es común a un conjunto de instancias dentro del MSC. Su fin es meramente informativo y se representan mediante hexágonos los cuales se extienden a lo largo de las líneas de tiempo de las instancias sobre las que la condición se aplica. El texto de la condición debe ir en el interior del hexágono.
+\item Temporizadores: son locales a las instancias y como su propio nombre indica sirven para controlar la ocurrencia temporal de los eventos. Se nota con un reloj de arena.
 \item Procesos de creación de instancias, donde una instancia crea a otra nueva.
 \item Procesos de terminación de instancias, donde una instancia se termina a si misma.
-\item Las corregiones son partes de la línea temporal de una instancia donde la premisa de que los eventos ocurran de forma estrictamente temporal deja de ser indispensable. Se notan con una línea discontinua.
+\item Corregiones: partes de la línea temporal de una instancia donde la premisa de que los eventos ocurran de forma estrictamente temporal deja de ser indispensable. Se notan con una línea discontinua.
 \end{itemize}
 
-En nuestro proyecto solo vamos a usar eventos de mensajes mensajes entrantes y salientes. A continuación mostramos un ejemplo de posible salida de nuestra herramienta:
+En nuestro proyecto solo vamos a usar eventos de mensajes entrantes y salientes. A continuación mostramos un ejemplo como debería representarse gráficamente una comunicación.
 
-\todo{AB:Aquí introducimos un ejemplo de comunicación, indicando en el dibujo que es cada cosa.}
+%%\includegraphics[scale=0.5]{./imagenes/fig1}
 
 Para que nuestros BMSCs sean correctos deben cumplir una serie de requisitos:
 \begin{itemize}
@@ -83,12 +70,11 @@ Para que nuestros BMSCs sean correctos deben cumplir una serie de requisitos:
 \item Todos los eventos de entrada y salida deben de estar relacionados con una instancia ya declarada en el momento del evento.
 \item Los identificadores de los mensajes deben de ser únicos.
 \item Un tiempo de envío no pueden ser nunca mayor que su correspondiente tiempo de recepción (ya que no podemos mandar un mensaje hacia atrás en el tiempo).
+\todo{ver si es obligatorio que los mensajes sean estrictamente secuenciales o no.}
 \end{itemize}
 
 \chapter{Lenguaje}
 \label{ch:lenguaje}
-
-\todo{AH: presentación del lenguaje con ejemplos y al final la gramática.}
 
 La herramienta \textit{Progtalk} debe recibir la comunicación en un fichero escrito en un determinado lenguaje que permita representar MSCs. Dicho lenguaje consta de dos secciones:
 \begin{itemize}
@@ -108,26 +94,58 @@ Las instancias de nuestro lenguaje se describen mediante tres parámetros:
 \item Parámetro \textit{name}. Este parámetro es opcional, y esta pensado darle una funcionalidad real en un futuro desarrollo.
 \end{itemize}
 
-El usuario puede almacenar tantas instancias como desee, pero estas deben tener un identificador de instancia único.
+El formato del lenguaje es:
 
-\todo{AB: añadir ejemplo.}
+\begin{itemize}
+\item \textit{instance} (Identificador de instancia) \textit{of} (Tipo de la instancia) \{ (Parámetro name) \}
+\end{itemize}
+donde:
+\begin{itemize}
+\item \textit{instance}, \textit{of}, ''\{'' y ''\}'' son palabras reservadas del lenguaje, y
+\item (Identificador de instancia), (Tipo de la instancia), y (Parámetro name) deben ser introducidos por el usuario.
+\end{itemize}
+
+Algunos ejemplos de declaración de instancias son:
+
+\begin{verbatim}
+instance a { "A" };
+instance b of type { "B" };
+instance c of control;
+instance d;
+\end{verbatim}
+
+El usuario puede almacenar tantas instancias como desee, pero estas deben tener un identificador de instancia único.
 
 \section{Mensajes}
 
 Los mensajes de nuestro lenguaje se describen mediante seis parámetros:
 
 \begin{itemize}
-\item Identificador de mensaje. Este parámetro es opcional. En caso de ser introducido debe ser un identificador valido (aqui se entiende como identificador valido cualquier identificador valido en un lenguaje de alto nivel como c++ o java, es decir, que comience por una o varias letras, seguido de cualquier tipo de carácter salvo espacios, tabulados o saltos de linea).
-\item Mensaje. Este parámetro es opcional, y almacena el mensaje de texto propiamente dicho.
-\item Instancia origen del mensaje. Este parámetro debe ser obligatoriamente introducido por el usuario, y representa la instancia que envió el mensaje. La instancia a la que se haga referencia en este parámetro, debe de haber sido declarada previamente en esa misma comunicación.
-\item Instancia destino del mensaje. Este parámetro debe ser obligatoriamente introducido por el usuario, y representa la instancia que recibió el mensaje. La instancia a la que se haga referencia en este parámetro, debe de haber sido declarada previamente en esa misma comunicación.
-\item Tiempo de envío. Este parámetro es opcional. Representa el momento exacto en que el mensaje fue enviado.
-\item Tiempo de recepción. Este parámetro es opcional. Representa el momento exacto en que el mensaje fue enviado.
+\item Identificador de mensaje: este parámetro es opcional. En caso de ser introducido debe ser un identificador válido (aquí se entiende como identificador válido cualquier conjunto de letras, números y ''\_'' que comience por una letra,
+\item Mensaje: este parámetro es opcional, y almacena el mensaje de texto propiamente dicho. Puede ser cualquier conjunto de caracteres salvo las comillas y que empiece y termine por comillas,
+\item Instancia origen del mensaje: este parámetro debe ser obligatoriamente introducido por el usuario, y representa la instancia que envió el mensaje. La instancia a la que se haga referencia en este parámetro, debe de haber sido declarada previamente en esa misma comunicación,
+\item Instancia destino del mensaje: este parámetro debe ser obligatoriamente introducido por el usuario, y representa la instancia que recibió el mensaje. La instancia a la que se haga referencia en este parámetro, debe de haber sido declarada previamente en esa misma comunicación,
+\item Tiempo de envío: este parámetro es opcional. Representa el momento exacto en que el mensaje fue enviado, y
+\item Tiempo de recepción: este parámetro es opcional. Representa el momento exacto en que el mensaje fue enviado.
+\end{itemize}
+
+El formato del lenguaje es:
+
+\begin{itemize}
+\item \textit{message} (Identificador del mensaje) \{ (Mensaje) \} \textit{from} (Instancia origen del mensaje) \textit{@} (Tiempo de envío) \textit{to} (Instancia destino del mensaje) \textit{@} (Tiempo de recepción)
+\end{itemize}
+
+donde,
+\begin{itemize}
+\item \textit{message}, \textit{from}, \textit{to} y \textit{@} son palabras reservadas del lenguaje, y
+\item (Identificador de mensaje), (Mensaje), (Instancia origen del mensaje), (Tiempo de envío), (Instancia destino del mensaje), y (Tiempo de recepción) deben ser introducidos por el usuario.
 \end{itemize}
 
 La instancia origen del mensaje y el instante de envío forman un evento de envío, mientras que la instancia destino del mensaje y el instante de recepción forman un evento de recepción.
 
-Es importante que nos detengamos un momento a explicar en detalle los parámetros de los mensajes relativos a los tiempos de envío y recepción. Estos tiempos pueden ser absolutos o relativos. 
+Es importante que nos detengamos un momento a explicar en detalle los parámetros de los mensajes relativos a los tiempos de envío y recepción. Estos tiempos pueden ser absolutos o relativos.
+
+\subsection{Tiempos Absolutos}
 
 Entenderemos como tiempos absolutos los siguiente casos:
 
@@ -136,15 +154,36 @@ Entenderemos como tiempos absolutos los siguiente casos:
 \item si estamos hablando del instante de envío del primer mensaje de la comunicación y el usuario no ha introducido dicho parámetro. En este caso consideraremos siempre un valor absoluto de cero. 
 \end{itemize}
 
+Un ejemplo del uso de tiempos absolutos es:
+
+\begin{verbatim}
+message m1 { "hola" } from programaA @ 2 to programaB @ 5;
+\end{verbatim}
+
+donde el mensaje \textit{m1} consiste en el envío del mensaje \textit{''hola''} de la instancia \textit{programaA} en el instante \textit{2} y la recepción del mensaje en la instancia \textit{programaB} en el instante \textit{5}.
+
+\subsection{Tiempos relativos}
+
 Por otro lado entenderemos por tiempos relativos los siguiente casos:
 
 \begin{itemize}
-\item Relativo implícito: si el usuario no da específicamente un valor en cuyo caso calcularemos el parámetro como el instante del ultimo evento (ya sea envío del mensaje actual, o recepción del mensaje anterior) mas una unidad.
-\item Relativo explicito simple: si el usuario aporta un valor del tipo (\textit{+unidad}) donde \textit{unidad} es un numero entero, pero no especifica un evento de referencia. En este caso calcularemos el parámetro como el instante del ultimo evento (ya sea envío del mensaje actual, o recepción del mensaje anterior) mas el valor introducido por el usuario (\textit{+unidad}).
-\item Relativo explicito complejo: si el usuario aporta un evento de referencia y un valor del tipo (\textit{+unidad}) donde \textit{unidad} es un numero entero. El evento de referencia especificado por el usuario puede referirse a un evento de envío o de recepción, y debe de pertenecer a un mensaje ya almacenado anteriormente en esa comunicación. En este caso calcularemos el parámetro como el instante en que ocurrió el evento que especifico el usuario sumándole el valor (\textit{+unidad}) especificado también por el usuario. Cabe destacar que cabe la posibilidad de que solo se introduzca el evento de referencia y que no se introduzca un valor del tipo (\textit{+unidad}). En este caso consideraremos dicho valor (\textit{+unidad}) como +0.
+\item Relativo implícito: si el usuario no da específicamente un valor en cuyo caso calcularemos el parámetro como el instante del ultimo evento (ya sea envío del mensaje actual, o recepción del mensaje anterior) mas una unidad. Por ejemplo:
+\begin{verbatim}
+message m1 { "hola" } from programaA @ 2 to programaB;
+\end{verbatim}
+Aquí el tiempo de recepción del mensaje se calcula a partir del mensaje de envío más una unidad, es decir, que el instante de recepción en \textit{programaB} es \textit{3}.
+\item Relativo explicito simple: si el usuario aporta un valor del tipo (\textit{+unidad}) donde \textit{unidad} es un numero entero, pero no especifica un evento de referencia. En este caso calcularemos el parámetro como el instante del ultimo evento (ya sea envío del mensaje actual, o recepción del mensaje anterior) mas el valor introducido por el usuario (\textit{+unidad}). Por ejemplo:
+\begin{verbatim}
+message m1 { "hola" } from programaA @ 2 to programaB @ +3;
+\end{verbatim}
+Aquí el tiempo de recepción del mensaje se calcula a partir del mensaje de envío más \textit{3}, es decir, que el instante de recepción en \textit{programaB} es \textit{5}.
+\item Relativo explicito complejo: si el usuario aporta un evento de referencia y un valor del tipo (\textit{+unidad}) donde \textit{unidad} es un numero entero. El evento de referencia especificado por el usuario puede referirse a un evento de envío o de recepción, y debe de pertenecer a un mensaje ya almacenado anteriormente en esa comunicación. En este caso calcularemos el parámetro como el instante en que ocurrió el evento que especifico el usuario sumándole el valor (\textit{+unidad}) especificado también por el usuario. Cabe destacar que existe la posibilidad de que sólo se introduzca el evento de referencia y que no se introduzca un valor del tipo (\textit{+unidad}), en cuyo caso consideraremos dicho valor (\textit{+unidad}) como +0. Por ejemplo:
+\begin{verbatim}
+message m1 { "hola" } from programaA @ 2 to programaB @ +5;
+message m2 { "adiós" } from programaB @ m1!+3 to programaA @ m1?;
+\end{verbatim}
+Aquí el tiempo de envío se calcula sumándole al tiempo de envío del mensaje \textit{m1} (es decir, \textit{2}) el valor \textit{+3} dando como resultado \textit{5}. El tiempo de recepción se calculará sumándole al tiempo de recepción de \textit{m1} (es decir, \textit{7})), el valor \textit{+0} dando como resultado \textit{7}.
 \end{itemize}
-
-\todo{AB: añadir ejemplos.}
 
 \section{Sintaxis Concreta}
 
@@ -281,7 +320,7 @@ Una vez terminado este proceso con éxito, pasamos a la segunda parte del análi
 \item y por otro lado, comprendimos que el código del analizador sintáctico se volvería demasiado complejo y poco legible si finalmente incluíamos este tipo de verificaciones durante esta fase.
 \end{itemize}
 
-Para la implementación de esta parte del analizador semántico hemos usado un patrón \textit{Visitor}.\todo{Añadir libro del que sacamos el patrón visitor.}
+Para la implementación de esta parte del analizador semántico hemos usado un patrón \textit{Visitor}~\cite{gof}.
 
 \section{Generación de Código}
 
@@ -290,7 +329,7 @@ Para esta tarea hemos utilizado un patrón de diseño \textit{Visitor}, el cual 
 \chapter{Conclusiones y Trabajo Futuro}
 \label{ch:conclusiones}
 
-\begin{thebibliography}{99}
-\bibitem{Bjorner} Dines Bjorner. Software Engineering 2: Specification of Systems and Languages. Springer.
-\end{thebibliography}
+\bibliography{biblio.bib}
+\bibliographystyle{plain}
+
 \end{document}
