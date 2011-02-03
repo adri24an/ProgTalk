@@ -4,4 +4,4 @@ instance f of Factory;
 
 message m1 { "request send to dhl" } from u to a;
 message m2 { "send" } from a @ m1? to f @ +2;
-message { "internal" } from a @ m2!+0 to a @ m1?+3;
+message { "internal" } from a @ m2!+3 to a @ m1?+5;
