@@ -225,7 +225,9 @@ La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) es la siguient
 \label{ch:diseno}
 
 \section{Sintaxis Abstracta}
-\todo{AH: diagramas UML que representan los conceptos del lenguaje.}
+
+Durante el análisis sintáctico del fichero de entrada se hace necesario la creación de una serie de objetos los cuales sirven como almacenamiento intermedio de la información. La razón para hacer esto es la siguiente: imaginemos que estamos parseando una línea del fichero de entrada. Lo que el analizador sintáctico (a partir de ahora \textit{parser})va a hacer es ir comparando la entrada con cada una de las reglas de dicho parser. Se irá creando un árbol sintáctico conforme avanza el parseo, y es necesario y almacenando la información leída para que, una vez se acepte la línea de entrada tengamos toda la información sobre dicha línea recopilada, y podamos almacenarla en nuestro \textit{msc}.
+%% \includegraphics[scale=0.5]{./images/fig2}
 
 \section{Arquitectura}
 
