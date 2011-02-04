@@ -82,6 +82,8 @@ La herramienta \textit{Progtalk} debe recibir la comunicación en un fichero esc
 \item declaración de mensajes.
 \end{itemize}
 
+Cada una de estas declaraciones se llama sentencia, y entre sentencias debe aparecer un símbolo '';''.
+
 Es responsabilidad del usuario traducir la comunicación que quiere pasar a \textit{Progtalk} a este formato.
 
 \section{Instancias}
@@ -185,6 +187,8 @@ message m2 { "adiós" } from programaB @ m1!+3 to programaA @ m1?;
 Aquí el tiempo de envío se calcula sumándole al tiempo de envío del mensaje \textit{m1} (es decir, \textit{2}) el valor \textit{+3} dando como resultado \textit{5}. El tiempo de recepción se calculará sumándole al tiempo de recepción de \textit{m1} (es decir, \textit{7})), el valor \textit{+0} dando como resultado \textit{7}.
 \end{itemize}
 
+Como último detalle decir que entre sentencia y sentencia (
+
 \section{Sintaxis Concreta}
 
 La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) es la siguiente:
@@ -226,8 +230,7 @@ La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) es la siguient
 
 \section{Sintaxis Abstracta}
 
-Durante el análisis sintáctico del fichero de entrada se hace necesario la creación de una serie de objetos los cuales sirven como almacenamiento intermedio de la información. La razón para hacer esto es la siguiente: imaginemos que estamos parseando una línea del fichero de entrada. Lo que el analizador sintáctico (a partir de ahora \textit{parser})va a hacer es ir comparando la entrada con cada una de las reglas de dicho parser. Se irá creando un árbol sintáctico conforme avanza el parseo, y es necesario y almacenando la información leída para que, una vez se acepte la línea de entrada tengamos toda la información sobre dicha línea recopilada, y podamos almacenarla en nuestro \textit{msc}.
-%% \includegraphics[scale=0.5]{./images/fig2}
+%% \includegraphics[scale=0.5]{./images/fig2.tiff}
 
 \section{Arquitectura}
 
@@ -235,6 +238,9 @@ Básicamente la arquitectura de \textit{Progtalk} es la siguiente:
 \begin{itemize}
 \item En un primer lugar tenemos el analizador léxico. Su labor es ir tomando información del fichero de entrada carácter a carácter e ir agrupando en \textit{tokens} (unidad mínima de información que maneja posteriormente el analizador sintáctico).
 \item Los tokens son enviados al analizador sintáctico, el cuál se encarga de parsear el fichero de entrada (es decir, va uniendo los tokens que va recibiendo y verifica que el fichero entrante esta escrito conforme al lenguaje diseñado para describir el universo del problema).
+Durante el análisis sintáctico del fichero de entrada se hace necesario la creación de una serie de objetos los cuales sirven como almacenamiento intermedio de la información. La razón para hacer esto es la siguiente: imaginemos que estamos parseando una línea del fichero de entrada. Lo que el analizador sintáctico (a partir de ahora \textit{parser})va a hacer es ir comparando la entrada con cada una de las reglas de dicho parser. Se irá creando un árbol sintáctico conforme avanza el parseo, y almacenando la información leída para que una vez se acepte la línea de entrada tengamos toda la información sobre dicha línea recopilada, y podamos almacenarla en el objeto\textit{msc} en el cual se almacena toda la comunicación antes de generar el fichero \textit{.tex}.
+%% \includegraphics[scale=0.5]{./images/fig3.tiff}
+
 \item Para verificar la consistencia de la comunicación tenemos el analizador semántico. En este punto, debemos explicar que parte de este análisis se ha realizado durante el análisis sintáctico, y parte se ha realizado tras la finalización de éste. La razón por la que tomamos esta decisión es que algunas verificaciones de consistencia, como por ejemplo la no duplicidad de identificadores, era fácil de empotrar dentro del código del analizador sintáctico, optimizando el funcionamiento de \textit{Progtalk} sin aumentar la complejidad del código, mientras que otras verificaciones como por ejemplo la consistencia de los tiempos de envío y recepción, eran suficientemente complejas como para diferir su procesado, simplificando así mucho el código.
 \item Por ultimo tenemos el generador de código, que lee toda la comunicación procesada y almacenada en memoria, y la exporta al formato requerido por el usuario.
 \end{itemize}
