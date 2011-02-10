@@ -67,7 +67,8 @@
 \maketitle
 \tableofcontents
 
-\chapter{Introducción}
+\chapter*{Introducción}
+\addcontentsline{toc}{chapter}{Introducción}
 
 \todo{AH: intenta tener líneas reales más cortas.}
 Este proyecto consiste en el diseño e implementación de una herramienta la cual a partir de una comunicación entre varias entidades (programas, procesos, etc), nos devuelve una representación gráfica de dicha comunicación. \textit{Progtalk} se integra dentro del proyecto \textit{Transformers}, en el cual se estudian varios lenguajes con el objetivo de representar la información de los requisitos del sistema de ferrocarril europeo (ERTMS). En concreto, uno de los lenguajes que se estudia es el de diagramas de secuencia (MSC, \emph{Message Sequence Charts}), y aquí es donde encaja \textit{Progtalk}. \todo{AB:Aquí deberíamos explicar en detalle que papel juega Progtalk en Transformers.}
@@ -160,6 +161,15 @@ instance b of type { "B" };
 instance c of control;
 instance d;
 \end{lstlisting}
+
+En la figura \ref{fig:primerejemplo} se pueden observar las tres cajas que representan las instancias introducidas arriba.
+
+\begin{figure}
+  \centering
+  METER AQUÍ EL EJEMPLO
+  \caption{Ejemplo de representación gráfica de un MSC}
+  \label{fig:primerejemplo}
+\end{figure}
 
 El usuario puede almacenar tantas instancias como desee, pero estas deben tener un identificador de instancia único.
 
