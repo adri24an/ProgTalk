@@ -3,6 +3,15 @@
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Fonts 
+% \usepackage{fourier}
+% \usepackage[scaled=0.83]{helvet} %% Helvetica queda demasiado grande
+% \renewcommand{\ttdefault}{txtt}
+% \usepackage[scaled=0.9]{inconsolata}
+% \usepackage[scaled=0.75]{beramono}
+\usepackage{courier}
+
 % \usepackage{graphics} % Or
 \usepackage{graphicx} %% and then \includegraphics[scale=0.5,...]{filename}
 
@@ -11,6 +20,41 @@
 \usepackage[spanish]{babel}
 
 \usepackage{hyperref}
+
+\usepackage{listings}
+
+\lstdefinestyle{spec}{
+  % lineskip=-0.25ex,
+  % belowskip=0.25\medskipamount,
+  basicstyle=\sffamily,
+  keywordstyle=\bfseries,
+  columns=flexible,
+}
+\lstdefinestyle{code}{
+  % lineskip=-0.25ex,
+  % belowskip=0.25\medskipamount,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+}
+\newcommand{\lstsetocl}{
+  \lstset{
+    language=OCL,
+    style=spec,
+  }
+}
+\newcommand{\lstsetc}{
+  \lstset{
+    language=C++,
+    style=code,
+    literate=,
+  }
+}
+\newcommand{\lstsetpt}{
+  \lstset{
+    language=progtalk,
+    style=spec,
+  }
+}
 
 \usepackage{todonotes}
 \setlength{\marginparwidth}{7em}
@@ -70,11 +114,12 @@ Para que nuestros BMSCs sean correctos deben cumplir una serie de requisitos:
 \item Todos los eventos de entrada y salida deben de estar relacionados con una instancia ya declarada en el momento del evento.
 \item Los identificadores de los mensajes deben de ser únicos.
 \item Un tiempo de envío no pueden ser nunca mayor que su correspondiente tiempo de recepción (ya que no podemos mandar un mensaje hacia atrás en el tiempo).
-\todo{ver si es obligatorio que los mensajes sean estrictamente secuenciales o no.}
+\todo{ver si es obligatorio que los mensajes sean estrictamente secuenciales o no. AH: no es obligatorio, sólo es necesario comprobar que los mensajes no viajan atrás en el tiempo.}
 \end{itemize}
 
 \chapter{Lenguaje}
 \label{ch:lenguaje}
+\lstsetpt
 
 La herramienta \textit{Progtalk} debe recibir la comunicación en un fichero escrito en un determinado lenguaje que permita representar MSCs. Dicho lenguaje consta de dos secciones:
 \begin{itemize}
@@ -99,22 +144,22 @@ Las instancias de nuestro lenguaje se describen mediante tres parámetros:
 El formato del lenguaje es:
 
 \begin{itemize}
-\item \textit{instance} (Identificador de instancia) \textit{of} (Tipo de la instancia) \{ (Parámetro name) \}
+\item \lstinline[mathescape]!instance $inst$ of $tinst$ { $pname$ }!
 \end{itemize}
 donde:
 \begin{itemize}
-\item \textit{instance}, \textit{of}, ''\{'' y ''\}'' son palabras reservadas del lenguaje, y
-\item (Identificador de instancia), (Tipo de la instancia), y (Parámetro name) deben ser introducidos por el usuario.
+\item \lstinline{instance}, \lstinline{of}, ``\lstinline!{!'' y ``\lstinline!}!'' son palabras reservadas del lenguaje, y
+\item $inst$ (identificador de instancia), $tinst$ (tipo de la instancia), y $pname$ (nombre del parámetro) deben ser introducidos por el usuario.
 \end{itemize}
 
 Algunos ejemplos de declaración de instancias son:
 
-\begin{verbatim}
+\begin{lstlisting}
 instance a { "A" };
 instance b of type { "B" };
 instance c of control;
 instance d;
-\end{verbatim}
+\end{lstlisting}
 
 El usuario puede almacenar tantas instancias como desee, pero estas deben tener un identificador de instancia único.
 
@@ -229,8 +274,14 @@ La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) es la siguient
 \label{ch:diseno}
 
 \section{Sintaxis Abstracta}
+\lstsetocl
 
-%% \includegraphics[scale=0.5]{./images/fig2.tiff}
+\includegraphics[scale=0.5]{./images/fig2}
+
+La clase \lstinline{Event} es una clase abstracta de la que heredan bla bla bla En C++ vamos a generar la clase \lstinline[style=code,language=C++]{Event} \todo{AH: es sólo un ejemplo de uso de lstinline}.
+
+\verb~"Hola\"$"~ \todo{AH: ejemplo para generar los strings sin necesidad de escapar los comandos latex.}.
+
 
 \section{Arquitectura}
 
@@ -275,7 +326,8 @@ Para implementar el analizador sintáctico (al cual hemos llamado \textit{Parser
 
 Las acciones semánticas en \emph{bisonc++} simplemente construyen los
 nodos del árbol de sintaxis abstracta. Veamos un ejemplo de una de nuestras acciones semánticas:
-\begin{verbatim}
+\lstsetc
+\begin{lstlisting}
 message:
      MESSAGE mid_opt string_opt origin_opt destiny_opt SEMICOLON EOLN
         { 
@@ -308,7 +360,9 @@ message:
 		 orig->get_timeref(), dest->get_timeref());
 	}
 ;
-\end{verbatim}
+\end{lstlisting}
+
+Se puede observar cómo el símbolo no terminal \lstinline{message} bla bla bla
 
 \section{Análisis Semántico}
 
