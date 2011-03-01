@@ -1,5 +1,7 @@
 \documentclass[12pt,a4paper]{report}
 
+\usepackage{msc}
+
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 
@@ -15,7 +17,7 @@
 % \usepackage{graphics} % Or
 \usepackage{graphicx} %% and then \includegraphics[scale=0.5,...]{filename}
 
-\setlength{\parskip}{\baselineskip}
+% \setlength{\parskip}{\baselineskip}
 
 \usepackage[spanish]{babel}
 
@@ -107,7 +109,8 @@ Un \textit{basic} MSC (a partir de ahora BMSC), esta formado por un conjunto de 
 
 En nuestro proyecto solo vamos a usar eventos de mensajes entrantes y salientes. A continuación mostramos un ejemplo como debería representarse gráficamente una comunicación.
 
-%%\includegraphics[scale=0.5]{./imagenes/fig1}
+\includegraphics[scale=0.5]{./images/fig1}
+
 
 Para que nuestros BMSCs sean correctos deben cumplir una serie de requisitos:
 \begin{itemize}
@@ -292,7 +295,6 @@ La clase \lstinline{Event} es una clase abstracta de la que heredan bla bla bla 
 
 \verb~"Hola\"$"~ \todo{AH: ejemplo para generar los strings sin necesidad de escapar los comandos latex.}.
 
-
 \section{Arquitectura}
 
 Básicamente la arquitectura de \textit{Progtalk} es la siguiente:
@@ -300,7 +302,8 @@ Básicamente la arquitectura de \textit{Progtalk} es la siguiente:
 \item En un primer lugar tenemos el analizador léxico. Su labor es ir tomando información del fichero de entrada carácter a carácter e ir agrupando en \textit{tokens} (unidad mínima de información que maneja posteriormente el analizador sintáctico).
 \item Los tokens son enviados al analizador sintáctico, el cuál se encarga de parsear el fichero de entrada (es decir, va uniendo los tokens que va recibiendo y verifica que el fichero entrante esta escrito conforme al lenguaje diseñado para describir el universo del problema).
 Durante el análisis sintáctico del fichero de entrada se hace necesario la creación de una serie de objetos los cuales sirven como almacenamiento intermedio de la información. La razón para hacer esto es la siguiente: imaginemos que estamos parseando una línea del fichero de entrada. Lo que el analizador sintáctico (a partir de ahora \textit{parser})va a hacer es ir comparando la entrada con cada una de las reglas de dicho parser. Se irá creando un árbol sintáctico conforme avanza el parseo, y almacenando la información leída para que una vez se acepte la línea de entrada tengamos toda la información sobre dicha línea recopilada, y podamos almacenarla en el objeto\textit{msc} en el cual se almacena toda la comunicación antes de generar el fichero \textit{.tex}.
-%% \includegraphics[scale=0.5]{./images/fig3.tiff}
+
+\includegraphics[scale=0.5]{./images/fig3}
 
 \item Para verificar la consistencia de la comunicación tenemos el analizador semántico. En este punto, debemos explicar que parte de este análisis se ha realizado durante el análisis sintáctico, y parte se ha realizado tras la finalización de éste. La razón por la que tomamos esta decisión es que algunas verificaciones de consistencia, como por ejemplo la no duplicidad de identificadores, era fácil de empotrar dentro del código del analizador sintáctico, optimizando el funcionamiento de \textit{Progtalk} sin aumentar la complejidad del código, mientras que otras verificaciones como por ejemplo la consistencia de los tiempos de envío y recepción, eran suficientemente complejas como para diferir su procesado, simplificando así mucho el código.
 \item Por ultimo tenemos el generador de código, que lee toda la comunicación procesada y almacenada en memoria, y la exporta al formato requerido por el usuario.
@@ -405,3 +408,10 @@ Para esta tarea hemos utilizado un patrón de diseño \textit{Visitor}, el cual 
 \bibliographystyle{plain}
 
 \end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-PDF-mode: t
+%%% ispell-local-dictionary: "castellano"
+%%% End: 
