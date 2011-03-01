@@ -14,7 +14,6 @@
 % \usepackage[scaled=0.75]{beramono}
 \usepackage{courier}
 
-% \usepackage{graphics} % Or
 \usepackage{graphicx} %% and then \includegraphics[scale=0.5,...]{filename}
 
 % \setlength{\parskip}{\baselineskip}
@@ -83,7 +82,6 @@ La labor de nuestra herramienta consiste en, dada una comunicación entre dos o 
 \item exportación de la comunicación a un fichero externo de tipo \textit{latex}.
 \end{itemize}
 
-\todo{AB:deberíamos hacer que Introducción fuera le capítulo 0 y comenzar numerando a partir del capítulo MSC}
 El presente trabajo esta estructurado del siguiente modo. En primer lugar, en el capítulo \ref{ch:msc} se presentan los \textit{Diagramas de Secuencia}, su historia y un resumen de su funcionamiento. Tras esta introducción teórica pasaremos al capitulo \ref{ch:lenguaje}, donde explicaremos en detalle en qué consiste el lenguaje que hemos creado para representar las comunicaciones entrantes a \textit{Progtalk}. En el capitulo \ref{ch:diseno} explicaremos el análisis y diseño que se ha realizado antes de comenzar la implementación de la herramienta. Por último, en el capitulo \ref{ch:conclusiones} se presentan las conclusiones extraídas de la realización de este proyecto, y posibles vías futuras de desarrollo.
 
 \chapter{MSC: Diagramas de secuencia}
@@ -107,10 +105,15 @@ Un \textit{basic} MSC (a partir de ahora BMSC), esta formado por un conjunto de 
 \item Corregiones: partes de la línea temporal de una instancia donde la premisa de que los eventos ocurran de forma estrictamente temporal deja de ser indispensable. Se notan con una línea discontinua.
 \end{itemize}
 
-En nuestro proyecto solo vamos a usar eventos de mensajes entrantes y salientes. A continuación mostramos un ejemplo como debería representarse gráficamente una comunicación.
+En nuestro proyecto solo vamos a usar eventos de mensajes entrantes y salientes. A continuación mostramos un ejemplo \ref{fig:fig1} de como debería representarse gráficamente una comunicación.
+\todo{AB:comprobar porque la fig1 no sale donde debiera.}
 
-\includegraphics[scale=0.5]{./images/fig1}
-
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.5]{./images/fig1.png}
+  \caption{Ejemplo de una comunicación generada con Progtalk}
+  \label{fig:fig1}
+\end{figure}
 
 Para que nuestros BMSCs sean correctos deben cumplir una serie de requisitos:
 \begin{itemize}
@@ -118,7 +121,6 @@ Para que nuestros BMSCs sean correctos deben cumplir una serie de requisitos:
 \item Todos los eventos de entrada y salida deben de estar relacionados con una instancia ya declarada en el momento del evento.
 \item Los identificadores de los mensajes deben de ser únicos.
 \item Un tiempo de envío no pueden ser nunca mayor que su correspondiente tiempo de recepción (ya que no podemos mandar un mensaje hacia atrás en el tiempo).
-\todo{ver si es obligatorio que los mensajes sean estrictamente secuenciales o no. AH: no es obligatorio, sólo es necesario comprobar que los mensajes no viajan atrás en el tiempo.}
 \end{itemize}
 
 \chapter{Lenguaje}
@@ -131,7 +133,7 @@ La herramienta \textit{Progtalk} debe recibir la comunicación en un fichero esc
 \item declaración de mensajes.
 \end{itemize}
 
-Cada una de estas declaraciones se llama sentencia, y entre sentencias debe aparecer un símbolo '';''.
+Cada una de estas declaraciones se llama sentencia, y entre sentencias debe aparecer un símbolo '';'' que ejerce de separador.
 
 Es responsabilidad del usuario traducir la comunicación que quiere pasar a \textit{Progtalk} a este formato.
 
@@ -148,12 +150,12 @@ Las instancias de nuestro lenguaje se describen mediante tres parámetros:
 El formato del lenguaje es:
 
 \begin{itemize}
-\item \lstinline[mathescape]!instance $inst$ of $tinst$ { $pname$ }!
+\item \lstinline[mathescape]!instance $iid$ of $tid$ { $name$ }!
 \end{itemize}
 donde:
 \begin{itemize}
 \item \lstinline{instance}, \lstinline{of}, ``\lstinline!{!'' y ``\lstinline!}!'' son palabras reservadas del lenguaje, y
-\item $inst$ (identificador de instancia), $tinst$ (tipo de la instancia), y $pname$ (nombre del parámetro) deben ser introducidos por el usuario.
+\item $iid$ (identificador de instancia), $tid$ (tipo de la instancia), y $name$ (nombre del parámetro) deben ser introducidos por el usuario.
 \end{itemize}
 
 Algunos ejemplos de declaración de instancias son:
@@ -164,15 +166,6 @@ instance b of type { "B" };
 instance c of control;
 instance d;
 \end{lstlisting}
-
-En la figura \ref{fig:primerejemplo} se pueden observar las tres cajas que representan las instancias introducidas arriba.
-
-\begin{figure}
-  \centering
-  METER AQUÍ EL EJEMPLO
-  \caption{Ejemplo de representación gráfica de un MSC}
-  \label{fig:primerejemplo}
-\end{figure}
 
 El usuario puede almacenar tantas instancias como desee, pero estas deben tener un identificador de instancia único.
 
@@ -192,13 +185,13 @@ Los mensajes de nuestro lenguaje se describen mediante seis parámetros:
 El formato del lenguaje es:
 
 \begin{itemize}
-\item \textit{message} (Identificador del mensaje) \{ (Mensaje) \} \textit{from} (Instancia origen del mensaje) \textit{@} (Tiempo de envío) \textit{to} (Instancia destino del mensaje) \textit{@} (Tiempo de recepción)
+\item \lstinline[mathescape]!message $mid$ { $sms$ } from $orig$ @ $tsend$ to $dest$ @ $trec$!
 \end{itemize}
 
 donde,
 \begin{itemize}
-\item \textit{message}, \textit{from}, \textit{to} y \textit{@} son palabras reservadas del lenguaje, y
-\item (Identificador de mensaje), (Mensaje), (Instancia origen del mensaje), (Tiempo de envío), (Instancia destino del mensaje), y (Tiempo de recepción) deben ser introducidos por el usuario.
+\item \lstinline{message}, \lstinline{from}, \lstinline{to}, ''\lstinline{@}'', ``\lstinline!{!'' y ``\lstinline!}!'' son palabras reservadas del lenguaje, y
+\item $mid$ (Identificador de mensaje), $sms$ (Mensaje), $orig$ (Instancia origen del mensaje), $tsend$ (Tiempo de envío), $dest$ (Instancia destino del mensaje), y $trec$ (Tiempo de recepción) deben ser introducidos por el usuario.
 \end{itemize}
 
 La instancia origen del mensaje y el instante de envío forman un evento de envío, mientras que la instancia destino del mensaje y el instante de recepción forman un evento de recepción.
@@ -216,11 +209,11 @@ Entenderemos como tiempos absolutos los siguiente casos:
 
 Un ejemplo del uso de tiempos absolutos es:
 
-\begin{verbatim}
+\begin{lstlisting}
 message m1 { "hola" } from programaA @ 2 to programaB @ 5;
-\end{verbatim}
+\end{lstlisting}
 
-donde el mensaje \textit{m1} consiste en el envío del mensaje \textit{''hola''} de la instancia \textit{programaA} en el instante \textit{2} y la recepción del mensaje en la instancia \textit{programaB} en el instante \textit{5}.
+donde el mensaje \lstinline{m1} consiste en el envío del mensaje \lstinline{"hola"} de la instancia \lstinline{programaA} en el instante \textit{2} y la recepción del mensaje en la instancia \lstinline{programaB} en el instante \textit{5}.
 
 \subsection{Tiempos relativos}
 
@@ -228,32 +221,35 @@ Por otro lado entenderemos por tiempos relativos los siguiente casos:
 
 \begin{itemize}
 \item Relativo implícito: si el usuario no da específicamente un valor en cuyo caso calcularemos el parámetro como el instante del ultimo evento (ya sea envío del mensaje actual, o recepción del mensaje anterior) mas una unidad. Por ejemplo:
-\begin{verbatim}
+\begin{lstlisting}
 message m1 { "hola" } from programaA @ 2 to programaB;
-\end{verbatim}
-Aquí el tiempo de recepción del mensaje se calcula a partir del mensaje de envío más una unidad, es decir, que el instante de recepción en \textit{programaB} es \textit{3}.
-\item Relativo explicito simple: si el usuario aporta un valor del tipo (\textit{+unidad}) donde \textit{unidad} es un numero entero, pero no especifica un evento de referencia. En este caso calcularemos el parámetro como el instante del ultimo evento (ya sea envío del mensaje actual, o recepción del mensaje anterior) mas el valor introducido por el usuario (\textit{+unidad}). Por ejemplo:
-\begin{verbatim}
-message m1 { "hola" } from programaA @ 2 to programaB @ +3;
-\end{verbatim}
-Aquí el tiempo de recepción del mensaje se calcula a partir del mensaje de envío más \textit{3}, es decir, que el instante de recepción en \textit{programaB} es \textit{5}.
-\item Relativo explicito complejo: si el usuario aporta un evento de referencia y un valor del tipo (\textit{+unidad}) donde \textit{unidad} es un numero entero. El evento de referencia especificado por el usuario puede referirse a un evento de envío o de recepción, y debe de pertenecer a un mensaje ya almacenado anteriormente en esa comunicación. En este caso calcularemos el parámetro como el instante en que ocurrió el evento que especifico el usuario sumándole el valor (\textit{+unidad}) especificado también por el usuario. Cabe destacar que existe la posibilidad de que sólo se introduzca el evento de referencia y que no se introduzca un valor del tipo (\textit{+unidad}), en cuyo caso consideraremos dicho valor (\textit{+unidad}) como +0. Por ejemplo:
-\begin{verbatim}
-message m1 { "hola" } from programaA @ 2 to programaB @ +5;
-message m2 { "adiós" } from programaB @ m1!+3 to programaA @ m1?;
-\end{verbatim}
-Aquí el tiempo de envío se calcula sumándole al tiempo de envío del mensaje \textit{m1} (es decir, \textit{2}) el valor \textit{+3} dando como resultado \textit{5}. El tiempo de recepción se calculará sumándole al tiempo de recepción de \textit{m1} (es decir, \textit{7})), el valor \textit{+0} dando como resultado \textit{7}.
-\end{itemize}
+\end{lstlisting}
+Aquí el tiempo de recepción del mensaje se calcula a partir del mensaje de envío más una unidad, es decir, que el instante de recepción en \lstinline{programaB} es \textit{3}.
+\item Relativo explicito simple: si el usuario aporta un valor del tipo \lstinline{{+unidad} donde \lstinline{unidad} es un numero entero, pero no especifica un evento de referencia. En este caso calcularemos el parámetro como el instante del ultimo evento (ya sea envío del mensaje actual, o recepción del mensaje anterior) mas el valor introducido por el usuario \lstinline{{+unidad}. Por ejemplo:
 
-Como último detalle decir que entre sentencia y sentencia (
+\begin{lstlisting}
+message m1 { "hola" } from programaA @ 2 to programaB @ +3;
+\end{lstlisting}
+
+Aquí el tiempo de recepción del mensaje se calcula a partir del mensaje de envío más \textit{3}, es decir, que el instante de recepción en \lstinline{programaB} es \textit{5}.
+
+\item Relativo explicito complejo: si el usuario aporta un evento de referencia y un valor del tipo \lstinline{+unidad} donde \lstinline{unidad} es un numero entero. El evento de referencia especificado por el usuario puede referirse a un evento de envío o de recepción, y debe de pertenecer a un mensaje ya almacenado anteriormente en esa comunicación. En este caso calcularemos el parámetro como el instante en que ocurrió el evento que especifico el usuario sumándole el valor \lstinline{+unidad} especificado también por el usuario. Cabe destacar que existe la posibilidad de que sólo se introduzca el evento de referencia y que no se introduzca un valor del tipo \lstinline{{+unidad}, en cuyo caso consideraremos dicho valor \lstinline{+unidad} como \textit{+0}. Por ejemplo:
+
+\todo {AB: porque esto no compila?}
+%\begin{lstlisting}
+%message m1 { "hola" } from programaA @ 2 to programaB @ +5;
+%message m2 { "adiós" } from programaB @ m1!+3 to programaA @ m1?;
+%\end{lstlisting}
+
+Aquí el tiempo de envío se calcula sumándole al tiempo de envío del mensaje \lstinline{m1} (es decir, \textit{2}) el valor \textit{+3} dando como resultado \textit{5}. El tiempo de recepción se calculará sumándole al tiempo de recepción de \lstinline{m1} (es decir, \textit{7})), el valor \textit{+0} dando como resultado \textit{7}.
+\end{itemize}
 
 \section{Sintaxis Concreta}
 
+\todo {AB: que formato de listing usamos aqui?}
 La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) es la siguiente:
 \begin{verbatim}
 //------------------------------------------------------------
-//
-//  GRAMÁTICA
 //    
 //    msc ::= inst_decl* message*
 //    inst_decl ::= INSTANCE iid |
@@ -291,7 +287,7 @@ La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) es la siguient
 
 \includegraphics[scale=0.5]{./images/fig2}
 
-La clase \lstinline{Event} es una clase abstracta de la que heredan bla bla bla En C++ vamos a generar la clase \lstinline[style=code,language=C++]{Event} \todo{AH: es sólo un ejemplo de uso de lstinline}.
+%La clase \lstinline{Event} es una clase abstracta de la que heredan bla bla bla En C++ vamos a generar la clase \lstinline[style=code,language=C++]{Event} \todo{AH: es sólo un ejemplo de uso de lstinline}.
 
 \verb~"Hola\"$"~ \todo{AH: ejemplo para generar los strings sin necesidad de escapar los comandos latex.}.
 

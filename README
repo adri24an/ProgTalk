@@ -1,7 +1,9 @@
 Notas de desarrollo a consultar en reunion:
 
 - Como tratamos "Syntax Error"?
-- Tiene sentido tener en metodos visit el objeto como parametro si no lo usamos (asi que quitariamos warnings)?
+- Tiene sentido tener en metodos visit el objeto como parametro si no
+  lo usamos (asi que quitariamos warnings)?
 - Le metemos orden a las instancias?
-- Quitar caracteres especiales de latex a los string
-- Solucionar chapuza del visitMessage
+- Corregir errores de tiempos que no lo son.
+- Corregir bug que no permite meter lo que queramos en un string.
+- Solucionar chapuza del visitMessage.
