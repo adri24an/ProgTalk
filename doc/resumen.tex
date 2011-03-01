@@ -1,0 +1,48 @@
+\chapter*{Resumen}
+\addcontentsline{toc}{chapter}{Resumen}
+
+Este proyecto
+consiste en el diseño e implementación de una herramienta la cual a
+partir de una comunicación entre varias entidades (programas,
+procesos, etc), nos devuelve una representación gráfica de dicha
+comunicación. \textit{Progtalk} se integra dentro del proyecto
+\textit{Transformers}, en el cual se estudian varios lenguajes con el
+objetivo de representar la información de los requisitos del sistema
+de ferrocarril europeo (ERTMS). En concreto, uno de los lenguajes que
+se estudia es el de diagramas de secuencia (MSC, \emph{Message
+  Sequence Charts}), y aquí es donde encaja
+\textit{Progtalk}. \todo{AB:Aquí deberíamos explicar en detalle que
+  papel juega Progtalk en Transformers.}
+
+La labor de nuestra herramienta consiste en, dada una comunicación
+entre dos o mas entidades, el procesado de esta comunicación y la
+creación de una representación gráfica de ésta. Para ello podemos
+describir el funcionamiento de la herramienta en tres fases:
+
+\begin{itemize}
+\item Validación léxica y sintáctica del fichero de entrada, el cuál
+  contiene la comunicación,
+\item validación semántica, almacenaje de la información parseada, y
+  comprobación de la integridad de la información almacenada, y
+\item exportación de la comunicación a un fichero externo de tipo
+  \textit{latex}.
+\end{itemize}
+
+El presente trabajo esta estructurado del siguiente modo. En primer
+lugar, en el capítulo \ref{ch:msc} se presentan los \textit{Diagramas
+  de Secuencia}, su historia y un resumen de su funcionamiento. Tras
+esta introducción teórica pasaremos al capitulo \ref{ch:lenguaje},
+donde explicaremos en detalle en qué consiste el lenguaje que hemos
+creado para representar las comunicaciones entrantes a
+\textit{Progtalk}. En el capitulo \ref{ch:diseno} explicaremos el
+análisis y diseño que se ha realizado antes de comenzar la
+implementación de la herramienta. Por último, en el capitulo
+\ref{ch:conclusiones} se presentan las conclusiones extraídas de la
+realización de este proyecto, y posibles vías futuras de desarrollo.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "memoria"
+%%% TeX-PDF-mode: t
+%%% ispell-local-dictionary: "castellano"
+%%% End: 
