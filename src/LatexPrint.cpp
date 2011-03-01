@@ -6,8 +6,10 @@ LatexPrint::LatexPrint() {
   pair<int,int> aux (-1,-1);
   
   fs << "\\documentclass{article}\n";
+  fs << "\\usepackage[a5paper,vmargin=1cm,hmargin=1cm]{geometry}\n";
   fs << "\\usepackage{msc}\n";
-  fs << "\\begin{document}\n\n";
+  fs << "\\begin{document}\n";
+  fs << "\\thispagestyle{empty}\n\n";
   fs << "\\setlength{\\firstlevelheight}{1cm}\n\n";
   fs << "\\begin{msc}{Communication}\n\n";
   fs.close();
