@@ -1,10 +1,14 @@
-\chapter{Lenguaje}
+\chapter{Lenguaje: MSCLan}
 \label{ch:lenguaje}
 \lstsetpt
 
-La herramienta \textit{Progtalk} debe recibir la comunicación en un
-fichero escrito en un determinado lenguaje que permita representar
-MSCs. Dicho lenguaje consta de dos secciones:
+La herramienta \textit{Progtalk} debe recibir la comunicación que el
+usuario desee procesar en un fichero escrito en un determinado
+lenguaje que permita representar MSCs. Nosotros hemos creado uno
+especificamente para este problema, y lo hemos bautizado como
+\textit{MSCLan}. 
+
+Nuestro lenguaje consta de dos secciones:
 \begin{itemize}
 \item Declaración de instancias, y
 \item declaración de mensajes.
@@ -12,9 +16,6 @@ MSCs. Dicho lenguaje consta de dos secciones:
 
 Cada una de estas declaraciones se llama sentencia, y entre sentencias
 debe aparecer un símbolo '';'' que ejerce de separador.
-
-Es responsabilidad del usuario traducir la comunicación que quiere
-pasar a \textit{Progtalk} a este formato.
 
 \section{Instancias}
 
@@ -108,6 +109,12 @@ donde,
 La instancia origen del mensaje y el instante de envío forman un
 evento de envío, mientras que la instancia destino del mensaje y el
 instante de recepción forman un evento de recepción.
+
+Cabe destacar que es responsabilidad del usuario traducir la
+comunicación que éste quiere pasar como entrada a \textit{Progtalk} a
+\textit{MSCLan}.
+
+
 
 Es importante que nos detengamos un momento a explicar en detalle los
 parámetros de los mensajes relativos a los tiempos de envío y
