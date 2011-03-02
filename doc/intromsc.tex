@@ -26,38 +26,38 @@ su base. Esta recta representa una linea temporal donde los eventos
 van ocurriendo por orden cronológico de arriba hacia abajo. Los
 eventos que pueden suceder entre instancias son:
 
-\begin{itemize}
-\item Acciones: eventos locales a una instancia. Se representan por
-  una caja en la línea temporal con una etiqueta en su interior. Las
-  acciones se usan para especificar cambios en el estado interno de la
-  instancia,
-\item Mensajes salientes: representan el envío de un mensaje a una
-  instancia.
-\item Mensajes entrantes: representan la recepción de un
-  mensaje. Lógicamente a cada evento de mensaje saliente le
-  corresponde otro evento de mensaje entrante. A esto se le conoce
-  como intercambio de mensajes y se representa con una flecha que sale
-  de la línea de tiempo de la instancia origen a la línea de tiempo de
-  la instancia destino. Todo intercambio de mensajes debe de estar
-  etiquetado con un identificador.
-\item Condiciones: describen un estado el cual es común a un conjunto
-  de instancias dentro del MSC. Su fin es meramente informativo y se
-  representan mediante hexágonos los cuales se extienden a lo largo de
-  las líneas de tiempo de las instancias sobre las que la condición se
-  aplica. El texto de la condición debe ir en el interior del
-  hexágono.
-\item Temporizadores: son locales a las instancias y como su propio
-  nombre indica sirven para controlar la ocurrencia temporal de los
-  eventos. Se nota con un reloj de arena.
-\item Procesos de creación de instancias, donde una instancia crea a
-  otra nueva.
-\item Procesos de terminación de instancias, donde una instancia se
-  termina a si misma.
-\item Corregiones: partes de la línea temporal de una instancia donde
-  la premisa de que los eventos ocurran de forma estrictamente
-  temporal deja de ser indispensable. Se notan con una línea
-  discontinua.
-\end{itemize}
+\subsection*{Acciones}
+Son eventos locales a una instancia. Se representan por una caja en la
+línea temporal con una etiqueta en su interior. Las acciones se usan
+para especificar cambios en el estado interno de la instancia,
+\subsection*{Mensajes salientes} 
+Representan el envío de un mensaje desde una instancia origen a otra
+instancia destino.
+\subsection*{Mensajes entrantes}
+Representan la recepción de un mensaje. Lógicamente a cada evento de
+mensaje saliente le corresponde otro evento de mensaje entrante. A
+esto se le conoce como \textit{intercambio de mensajes} y se representa con una
+flecha que sale de la línea temporal de la instancia origen a la
+línea temporal de la instancia destino. Todo intercambio de mensajes
+debe de estar etiquetado con un identificador.
+\subsection*{Condiciones}
+Describen un estado el cual es común a un conjunto de instancias
+dentro del MSC. Su fin es meramente informativo y se representan
+mediante hexágonos los cuales se extienden a lo largo de las líneas de
+tiempo de las instancias sobre las que la condición se aplica. El
+texto de la condición debe ir en el interior del hexágono.
+\subsection*{Temporizadores}
+Estos eventos son locales a las instancias y como su propio nombre
+indica sirven para controlar la ocurrencia temporal de los eventos. Se
+nota con un reloj de arena.
+\subsection*{Procesos de creación de instancias} 
+Evento donde una instancia crea a otra nueva.
+\subsection*{Procesos de terminación de instancias}
+Evento donde una instancia se termina a si misma.
+\subsection*{Corregiones} 
+Son partes de la línea temporal de una instancia donde la premisa de
+que los eventos ocurran de forma estrictamente temporal deja de ser
+indispensable. Se notan con una línea discontinua.
 
 En nuestro proyecto solo vamos a usar eventos de mensajes entrantes y
 salientes. A continuación mostramos un ejemplo \ref{fig:fig1} de como
