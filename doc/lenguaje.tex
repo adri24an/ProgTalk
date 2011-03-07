@@ -60,6 +60,16 @@ instance d;
 El usuario puede almacenar tantas instancias como desee, pero estas
 deben tener un identificador de instancia único.
 
+A continuación mostramos un ejemplo gráfico de como representamos
+gráficamente las instancias:
+
+%\begin{figure}
+%  \centering
+%  \includegraphics[scale=1]{./images/instances.pdf}
+%  \caption{Ejemplo de representación gráfica de instancias.}
+%  \label{fig:fig6}
+%\end{figure}
+
 \section{Mensajes}
 
 Los mensajes de nuestro lenguaje se describen mediante seis
@@ -114,7 +124,15 @@ Cabe destacar que es responsabilidad del usuario traducir la
 comunicación que éste quiere pasar como entrada a \textit{Progtalk} a
 \textit{MSCLan}.
 
+Algunos ejemplos de declaración de mensajes son:
 
+\begin{lstlisting}
+message m1 { "request send to dhl" } from u to a;
+message m2 { "send" } from a @ m1? to f @ +2;
+message { "internal" } from a @ m2!+3 to a @ m1?+5;
+\end{lstlisting}
+
+\section{Especificaciones de tiempos}
 
 Es importante que nos detengamos un momento a explicar en detalle los
 parámetros de los mensajes relativos a los tiempos de envío y
@@ -151,28 +169,30 @@ Por otro lado entenderemos por tiempos relativos los siguiente casos:
   en cuyo caso calcularemos el parámetro como el instante del ultimo
   evento (ya sea envío del mensaje actual, o recepción del mensaje
   anterior) mas una unidad. Por ejemplo:
-\begin{lstlisting}
-message m1 { "hola" } from programaA @ 2 to programaB;
-\end{lstlisting}
+
+  \begin{lstlisting}
+    message m1 { "hola" } from programaA @ 2 to programaB;
+  \end{lstlisting}
+
   Aquí el tiempo de recepción del mensaje se calcula a partir del
   mensaje de envío más una unidad, es decir, que el instante de
   recepción en \lstinline{programaB} es \textit{3}.
 \item Relativo explicito simple: si el usuario aporta un valor del
   tipo \lstinline{{+unidad} donde \lstinline{unidad} es un numero
-    entero, pero no especifica un evento de referencia. En este caso
-    calcularemos el parámetro como el instante del ultimo evento (ya
-    sea envío del mensaje actual, o recepción del mensaje anterior)
-    mas el valor introducido por el usuario \lstinline{{+unidad}. Por
-      ejemplo:
-
-\begin{lstlisting}
-message m1 { "hola" } from programaA @ 2 to programaB @ +3;
-\end{lstlisting}
-
-      Aquí el tiempo de recepción del mensaje se calcula a partir del
-      mensaje de envío más \textit{3}, es decir, que el instante de
-      recepción en \lstinline{programaB} es \textit{5}.
-
+  entero, pero no especifica un evento de referencia. En este caso
+  calcularemos el parámetro como el instante del ultimo evento (ya
+  sea envío del mensaje actual, o recepción del mensaje anterior)
+  mas el valor introducido por el usuario \lstinline{{+unidad}. Por  
+  ejemplo:
+      
+  \begin{lstlisting}
+    message m1 { "hola" } from programaA @ 2 to programaB @ +3;
+  \end{lstlisting}
+      
+  Aquí el tiempo de recepción del mensaje se calcula a partir del
+  mensaje de envío más \textit{3}, es decir, que el instante de
+  recepción en \lstinline{programaB} es \textit{5}.
+      
 \item Relativo explicito complejo: si el usuario aporta un evento de
   referencia y un valor del tipo \lstinline{+unidad} donde
   \lstinline{unidad} es un numero entero. El evento de referencia
@@ -184,20 +204,20 @@ message m1 { "hola" } from programaA @ 2 to programaB @ +3;
   también por el usuario. Cabe destacar que existe la posibilidad de
   que sólo se introduzca el evento de referencia y que no se
   introduzca un valor del tipo \lstinline{{+unidad}, en cuyo caso
-    consideraremos dicho valor \lstinline{+unidad} como
-    \textit{+0}. Por ejemplo:
+  consideraremos dicho valor \lstinline{+unidad} como \textit{+0}. 
+  Por ejemplo:
 
-\todo {AB: porque esto no compila?}
-%\begin{lstlisting}
-%message m1 { "hola" } from programaA @ 2 to programaB @ +5;
-%message m2 { "adiós" } from programaB @ m1!+3 to programaA @ m1?;
-%\end{lstlisting}
+  \todo {AB: porque esto no compila?}
+  %\begin{lstlisting}
+  %message m1 { "hola" } from programaA @ 2 to programaB @ +5;
+  %message m2 { "adiós" } from programaB @ m1!+3 to programaA @ m1?;
+  %\end{lstlisting}
 
-Aquí el tiempo de envío se calcula sumándole al tiempo de envío del
-mensaje \lstinline{m1} (es decir, \textit{2}) el valor \textit{+3}
-dando como resultado \textit{5}. El tiempo de recepción se calculará
-sumándole al tiempo de recepción de \lstinline{m1} (es decir,
-\textit{7})), el valor \textit{+0} dando como resultado \textit{7}.
+  Aquí el tiempo de envío se calcula sumándole al tiempo de envío del
+  mensaje \lstinline{m1} (es decir, \textit{2}) el valor \textit{+3}
+  dando como resultado \textit{5}. El tiempo de recepción se calculará
+  sumándole al tiempo de recepción de \lstinline{m1} (es decir,
+  \textit{7})), el valor \textit{+0} dando como resultado \textit{7}.
 \end{itemize}
 
 \section{Sintaxis Concreta}
