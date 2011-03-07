@@ -34,47 +34,78 @@ para especificar cambios en el estado interno de la instancia,
 Representan el envío de un mensaje desde una instancia origen a otra
 instancia destino.
 \subsection*{Mensajes entrantes}
-\todo{AB:meter ejemplo con el msc.sty}
 Representan la recepción de un mensaje. Lógicamente a cada evento de
 mensaje saliente le corresponde otro evento de mensaje entrante. A
 esto se le conoce como \textit{intercambio de mensajes} y se representa con una
 flecha que sale de la línea temporal de la instancia origen a la
 línea temporal de la instancia destino. Todo intercambio de mensajes
 debe de estar etiquetado con un identificador.
+
+A continuación se presenta un ejemplo de intercambio de mensajes:
+\todo{AB: generar esta imagen.}
+%\begin{figure}
+%  \centering
+%  \includegraphics[scale=1]{./images/message exchange.pdf}
+%  \caption{Ejemplo de un intercambio de mensajes en un msc.}
+%  \label{fig:fig1}
+%\end{figure}
+
 \subsection*{Condiciones}
-\todo{AB:meter ejemplo con el msc.sty}
 Describen un estado el cual es común a un conjunto de instancias
 dentro del MSC. Su fin es meramente informativo y se representan
 mediante hexágonos los cuales se extienden a lo largo de las líneas de
 tiempo de las instancias sobre las que la condición se aplica. El
 texto de la condición debe ir en el interior del hexágono.
+
+\todo{AB: generar esta imagen.}
+%\begin{figure}
+%  \centering
+%  \includegraphics[scale=1]{./images/condition.pdf}
+%  \caption{Ejemplo de una condicion dentro en un msc.}
+%  \label{fig:fig2}
+%\end{figure}
+
 \subsection*{Temporizadores}
-\todo{AB:meter ejemplo con el msc.sty}
 Estos eventos son locales a las instancias y como su propio nombre
 indica sirven para controlar la ocurrencia temporal de los eventos. Se
 nota con un reloj de arena.
+
+\todo{AB: generar esta imagen.}
+%\begin{figure}
+%  \centering
+%  \includegraphics[scale=1]{./images/timer.pdf}
+%  \caption{Ejemplo de un temporizador dentro en un msc.}
+%  \label{fig:fig3}
+%\end{figure}
+
 \subsection*{Procesos de creación de instancias} 
 Evento donde una instancia crea a otra nueva.
 \subsection*{Procesos de terminación de instancias}
 \todo{AB:meter ejemplos con el msc.sty}
 Evento donde una instancia se termina a si misma.
 \subsection*{Corregiones}
-\todo{AB:meter ejemplos con el msc.sty}
 Son partes de la línea temporal de una instancia donde la premisa de
 que los eventos ocurran de forma estrictamente temporal deja de ser
 indispensable. Se notan con una línea discontinua.
+
+\todo{AB: generar esta imagen.}
+%\begin{figure}
+%  \centering
+%  \includegraphics[scale=1]{./images/corregion.pdf}
+%  \caption{Ejemplo de una corregion dentro en un msc.}
+%  \label{fig:fig4}
+%\end{figure}
 
 \section{Los MSC en textit{Progtalk}}
 En nuestro proyecto solo vamos a usar eventos de mensajes entrantes y
 salientes. A continuación mostramos un ejemplo \ref{fig:fig1} de como
 debería representarse gráficamente una comunicación.
-\todo{AB:comprobar porque la fig1 no sale donde debiera.}
 
 \begin{figure}
   \centering
   \includegraphics[scale=1]{./images/lars}
   \caption{Ejemplo de una comunicación generada con Progtalk}
-  \label{fig:fig1}
+  \label{fig:fig5}
 \end{figure}
 
 Para que nuestros BMSCs sean correctos deben cumplir una serie de requisitos:
