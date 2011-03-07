@@ -96,9 +96,42 @@ indispensable. Se notan con una línea discontinua.
 %  \label{fig:fig4}
 %\end{figure}
 
+Para que un BMSC sea correcto debe cumplir las siguientes
+restricciones semánticas:
+\begin{itemize}
+\item El nombre las instancias debe de ser único.
+\item Si se especifica un interfaz para un BMSC entonces para cada
+instancia en el interfaz debe haber una instancia con el mismo 
+nombre y tipo en el diagrama y viceversa.
+\item Todo mensaje saliente y entrante debe de referenciar una
+instancia declarada en el diagrama.
+\item En una instancia puede haber como mucho un mensaje de entrada
+con un determinado identificador y destino, y un mensaje de salida con
+un determinado identificador y origen.
+\item Para cada mensaje de salida a una instancia debe de haber un 
+mensaje de entrada a esa u otra instancia y viceversa.
+\item Un mensaje de salida puede no ser causado por su correspondiente
+mensaje de entrada directamente o via otro mensajes.     
+Esta propiedad se verifica construyendo un orden parcial de los 
+eventos de la comunicación y comprobando que el grafo dirigido 
+obtenido de este orden parcial no contiene ciclos. Un evento
+relacionado con un mensaje precede a todos los eventos relacionados
+con un mensaje que lo siguen en una especificación de una instancia,
+y todo mensaje de entrada es precedido por sus correspondientes 
+mensajes de salida.
+\item En la lista compartida de una condición solo podrá hacerse
+referencia a instancias declaradas previamente.
+\item Una condición compartida debe aparecer el mismo número de
+veces en las instancias que la comparten.
+\item En un proceso de creación de instancia solo podrá hacerse
+referencia a instancias declaradas previamente.
+\item No podrá haber más de un proceso de creación de instancia con
+el mismo nombre de instancia.
+\end{itemize}
+
 \section{Los MSC en textit{Progtalk}}
 En nuestro proyecto solo vamos a usar eventos de mensajes entrantes y
-salientes. A continuación mostramos un ejemplo \ref{fig:fig1} de como
+salientes. A continuación mostramos un ejemplo \ref{fig:fig5} de como
 debería representarse gráficamente una comunicación.
 
 \begin{figure}
