@@ -5,5 +5,4 @@ Notas de desarrollo a consultar en reunion:
   lo usamos (asi que quitariamos warnings)?
 - Le metemos orden a las instancias?
 - Corregir errores de tiempos que no lo son.
-- Corregir bug que no permite meter lo que queramos en un string.
 - Solucionar chapuza del visitMessage.
