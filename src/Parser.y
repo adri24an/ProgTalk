@@ -143,6 +143,13 @@ message:
 	  
 	  if (desc == NULL)
 	    desc = new string("");
+	  else
+	    {
+	      string aux = "\\verb~";
+	      *desc=aux+(*desc);
+	      desc->push_back('~');
+	      std::cout << *desc<< std::endl;
+	    }
 
 	  if (orig == NULL)
 	    {
