@@ -207,11 +207,11 @@ Por otro lado entenderemos por tiempos relativos los siguiente casos:
   consideraremos dicho valor \lstinline{+unidad} como \textit{+0}. 
   Por ejemplo:
 
-  \todo {AB: porque esto no compila?}
-  %\begin{lstlisting}
-  %message m1 { "hola" } from programaA @ 2 to programaB @ +5;
-  %message m2 { "adiós" } from programaB @ m1!+3 to programaA @ m1?;
-  %\end{lstlisting}
+  \todo {AB: si en adios meto acento no compila!}
+  \begin{lstlisting}
+  message m1 { "hola" } from programaA @ 2 to programaB @ +5;
+  message m2 { "adios" } from programaB @ m1!+3 to programaA @ m1?;
+  \end{lstlisting}
 
   Aquí el tiempo de envío se calcula sumándole al tiempo de envío del
   mensaje \lstinline{m1} (es decir, \textit{2}) el valor \textit{+3}
@@ -256,7 +256,9 @@ siguiente:
 //------------------------------------------------------------
 \end{verbatim}
 
-En ella hemos escrito con minúsculas los símbolos no terminales, y en mayúsculas los símbolos terminales. Cabe destacar que LAMBDA representa la \textit{palabra vacía}.
+En ella hemos escrito con minúsculas los símbolos no terminales, y en 
+mayúsculas los símbolos terminales. Cabe destacar que LAMBDA
+representa la \textit{palabra vacía}.
 
 Como vemos, regla \textit{msc} esta formada de un conjunto de declaraciones de
 instancias seguido de un conjunto de declaraciones de mensajes. Los distintos
