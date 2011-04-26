@@ -14,23 +14,22 @@ nuestra herramienta:
   \label{fig:fig2}
 \end{figure}
 
-\todo{Enlazar conceptos con su explicación en intromsc}
 Visto el diagrama de clases, procedemos a explicar la representación
 abstracta respecto a la concreta:
 \begin{itemize}
 \item La clase \textit{MSC} representa a nuestro MSC propiamente
   dicho. En él, almacenamos las instancias y mensajes que el usuario va
   introduciendo en la comunicación.
-\item La clase \textit{Instance} representa las instancias de la
-  comunicación.
-\item La clase \textit{Message} representa los mensajes de la
-  comunicación.
+\item La clase \textit{Instance} representa las instancias
+  \ref{sec:Instancias}  las cuales realizan la comunicación.
+\item La clase \textit{Message} representa los mensajes
+  \ref{sec:Mensajes} que forman la comunicación.
 \item La clase \textit{Event} representa un evento de envío
   (\textit{Sending}) o recepción (\textit{Receipt}) dentro de la
   comunicación.
 \item La clase \textit{Timestamp} representa los tiempos en que se
-  efectúan los eventos. Como vimos estos pueden ser absolutos
-  (\textit{Absolute}) o relativos (\textit{Relative}).
+  efectúan los eventos. Como vimos \ref{sec:Tiempos} estos pueden ser
+  absolutos (\textit{Absolute}) o relativos (\textit{Relative}).
 \end{itemize}
 
 \section{Arquitectura}
