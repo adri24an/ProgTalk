@@ -4,10 +4,9 @@
 \section{Sintaxis Abstracta}
 \lstsetocl
 
-A continuación se muestra el diagrama de clases \ref{fig:fig2} de
-nuestra herramienta:
+En la figura \ref{fig:fig2} se muestra el diagrama de clases de
+nuestra herramienta.
 
-\todo{AB: porque se nos va la imagen a otra pagina?}
 \begin{figure}
   \includegraphics[scale=0.5]{./images/fig2}
   \caption{Diagrama de clases}
@@ -85,7 +84,7 @@ Para implementar el analizador léxico (al cual hemos llamado
 \textit{Scanner}) hemos usado flex++. Los tokens que hemos definido
 para el universo de nuestro problema son:
 
-\todo{que listing usamos en las expresiones regulares?}
+\lstset{language=C,style=code}
 
 \begin{itemize}
 \item \lstinline{NUM: [0-9]} (cualquier número entero)
@@ -95,19 +94,19 @@ para el universo de nuestro problema son:
 \item \lstinline{STRING: \"[^\"\n]*\"} (cualquier conjunto de caracteres entre
   comillado salvo comillas o salto de línea)
 \item \lstinline{EOLN: [\n]+} (uno o más saltos de línea)
-\item \lstinline{INSTANCE: ``instance''} (el literal ''instance")
-\item \lstinline{OF: ``of''} (el literal "of")
-\item \lstinline{MESSAGE: ``message''} (el literal "message")
-\item \lstinline{FROM: ``from''} (el literal ''from'')
-\item \lstinline{TO: ``to''} (el literal ''to'')
-\item \lstinline{AT: ``at''} (el literal ''@'')
-\item \lstinline{PLUS: ``+''} (el literal ''+''.)
-\item \lstinline{MINUS: ``-''} (el literal ''-'')
-\item \lstinline{EXCLAMATION: ``!''} (el literal ''!'')
-\item \lstinline{INTERROGATION: ``?''} (el literal ''?'')
-\item \lstinline{SEMICOLON: ``;''} el literal '';''.
-\item \lstinline{LEFT\_BRACE: ``{''} el literal ''\{''.
-\item \lstinline{RIGHT\_BRACE: ``}''} el literal ''\}''.
+\item \lstinline{INSTANCE: "instance"} (el literal \lstinline{instance})
+\item \lstinline{OF: "of"} (el literal \lstinline{of})
+\item \lstinline{MESSAGE: "message"} (el literal \lstinline{message})
+\item \lstinline{FROM: "from"} (el literal \lstinline{from})
+\item \lstinline{TO: "to"} (el literal \lstinline{to})
+\item \lstinline{AT: "at"} (el literal \lstinline{@})
+\item \lstinline{PLUS: "+"} (el literal \lstinline{+})
+\item \lstinline{MINUS: "-"} (el literal \lstinline{-})
+\item \lstinline{EXCLAMATION: "!"} (el literal \lstinline{!})
+\item \lstinline{INTERROGATION: "?"} (el literal \lstinline{?})
+\item \lstinline{SEMICOLON: ";"} (el literal \lstinline{;})
+\item \lstinline!LEFT_BRACE: "{"! (el literal \lstinline!{!)
+\item \lstinline!RIGHT_BRACE: "}"! (el literal \lstinline!}!)
 \end{itemize}
 
 \section{Análisis Sintáctico}
@@ -200,6 +199,12 @@ sintáctico:
 Para la implementación de esta parte del analizador semántico hemos
 usado un patrón \textit{Visitor}~\cite{gof}.
 
+\todo{AH: describir el patrón Visitor en un párrafo.}
+
+\todo{AH: describir nuestra propia implementación de visitor empezando
+  con el diagrama UML en el que se ve el visitor, la estructura
+  visitada y las operaciones del Visitor}
+
 \section{Generación de Código}
 
 Para esta tarea hemos utilizado un patrón de diseño \textit{Visitor},
@@ -207,6 +212,9 @@ el cual recorre toda la información almacenada y a partir de ésta crea
 un fichero \textit{.tex} que compilado en \textit{latex} nos dará una
 representación gráfica de la comunicación.
 
+\todo{AH: describir nuestra propia implementación de visitor empezando
+  con el diagrama UML en el que se ve el visitor, la estructura
+  visitada y las operaciones del Visitor}
 
 %%% Local Variables: 
 %%% mode: latex

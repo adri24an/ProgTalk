@@ -207,10 +207,9 @@ Por otro lado entenderemos por tiempos relativos los siguiente casos:
   consideraremos dicho valor \lstinline{+unidad} como \textit{+0}. 
   Por ejemplo:
 
-  \todo {AB: si en adios meto acento no compila!}
   \begin{lstlisting}
-  message m1 { "hola" } from programaA @ 2 to programaB @ +5;
-  message m2 { "adios" } from programaB @ m1!+3 to programaA @ m1?;
+  message m1 { "hello" } from programaA @ 2 to programaB @ +5;
+  message m2 { "goodbye" } from programaB @ m1!+3 to programaA @ m1?;
   \end{lstlisting}
 
   Aquí el tiempo de envío se calcula sumándole al tiempo de envío del
@@ -225,36 +224,32 @@ Por otro lado entenderemos por tiempos relativos los siguiente casos:
 \todo {AB: que formato de listing usamos aqui?}
 La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) es la 
 siguiente:
-\begin{verbatim}
-//------------------------------------------------------------
-//    
-//    msc ::= inst_decl* message*
-//    inst_decl ::= INSTANCE iid |
-//                  INSTANCE iid OF tid; |
-//                  INSTANCE iid {string}; |
-//                  INSTANCE iid OF tid {string};               
-//    message ::= MESSAGE mid_opt string_opt origin destiny;
-//    mid_opt ::= LAMBDA | mid
-//    string_opt ::= LAMBDA | {string}
-//    origin ::= LAMBDA | origin_opt
-//    origin_opt ::= FROM iid time_ref_opt
-//    destiny ::= LAMBDA | destiny_opt
-//    destiny_opt ::= TO iid time_ref_opt
-//    time_ref_opt ::= LAMBDA | @ time_ref
-//    time_ref ::= abs_time | rel_time
-//    abs_time ::= num
-//    rel_time ::= ref dif_time_opt | dif_time
-//    ref ::= mid ! | mid ?
-//    dif_time_opt ::= LAMBDA | dif_time
-//    dif_time ::= + num | - num
-//    iid ::= ID
-//    tid ::= ID
-//    mid ::= ID
-//    string ::= STRING
-//    num ::= NUM
-//
-//------------------------------------------------------------
-\end{verbatim}
+\begin{lstlisting}[style=spec, language={}]
+msc ::= inst_decl* message*
+inst_decl ::= INSTANCE iid |
+              INSTANCE iid OF tid; |
+              INSTANCE iid {string}; |
+              INSTANCE iid OF tid {string};               
+message ::= MESSAGE mid_opt string_opt origin destiny;
+mid_opt ::= LAMBDA | mid
+string_opt ::= LAMBDA | {string}
+origin ::= LAMBDA | origin_opt
+origin_opt ::= FROM iid time_ref_opt
+destiny ::= LAMBDA | destiny_opt
+destiny_opt ::= TO iid time_ref_opt
+time_ref_opt ::= LAMBDA | @ time_ref
+time_ref ::= abs_time | rel_time
+abs_time ::= num
+rel_time ::= ref dif_time_opt | dif_time
+ref ::= mid ! | mid ?
+dif_time_opt ::= LAMBDA | dif_time
+dif_time ::= + num | - num
+iid ::= ID
+tid ::= ID
+mid ::= ID
+string ::= STRING
+num ::= NUM
+\end{lstlisting}
 
 En ella hemos escrito con minúsculas los símbolos no terminales, y en 
 mayúsculas los símbolos terminales. Cabe destacar que LAMBDA
