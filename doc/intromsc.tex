@@ -1,7 +1,7 @@
 \chapter{MSC: Diagramas de secuencia}
 \label{ch:msc}
 
-Según Bjorner~\cite{bjorner}, los diagramas de secuencia (a partir de
+Según Bjorner \cite{bjorner}, los diagramas de secuencia (a partir de
 ahora MSCs), son una notación gráfica para describir intercambios de
 mensajes entre entidades. Los MSCs fueron estandarizados por primera
 vez por la \textit{CCITT} (conocida ahora como la \textit{ITU-T}) en
@@ -26,49 +26,119 @@ su base. Esta recta representa una linea temporal donde los eventos
 van ocurriendo por orden cronológico de arriba hacia abajo. Los
 eventos que pueden suceder entre instancias son:
 
+\subsection*{Acciones}
+Son eventos locales a una instancia. Se representan por una caja en la
+línea temporal con una etiqueta en su interior. Las acciones se usan
+para especificar cambios en el estado interno de la instancia,
+\subsection*{Mensajes salientes} 
+Representan el envío de un mensaje desde una instancia origen a otra
+instancia destino.
+\subsection*{Mensajes entrantes}
+Representan la recepción de un mensaje. Lógicamente a cada evento de
+mensaje saliente le corresponde otro evento de mensaje entrante. A
+esto se le conoce como \textit{intercambio de mensajes} y se representa con una
+flecha que sale de la línea temporal de la instancia origen a la
+línea temporal de la instancia destino. Todo intercambio de mensajes
+debe de estar etiquetado con un identificador.
+
+A continuación se presenta un ejemplo de intercambio de mensajes:
+\todo{AB: generar esta imagen.}
+%\begin{figure}
+%  \centering
+%  \includegraphics[scale=1]{./images/message exchange.pdf}
+%  \caption{Ejemplo de un intercambio de mensajes en un msc.}
+%  \label{fig:fig1}
+%\end{figure}
+
+\subsection*{Condiciones}
+Describen un estado el cual es común a un conjunto de instancias
+dentro del MSC. Su fin es meramente informativo y se representan
+mediante hexágonos los cuales se extienden a lo largo de las líneas de
+tiempo de las instancias sobre las que la condición se aplica. El
+texto de la condición debe ir en el interior del hexágono.
+
+\todo{AB: generar esta imagen.}
+%\begin{figure}
+%  \centering
+%  \includegraphics[scale=1]{./images/condition.pdf}
+%  \caption{Ejemplo de una condicion dentro en un msc.}
+%  \label{fig:fig2}
+%\end{figure}
+
+\subsection*{Temporizadores}
+Estos eventos son locales a las instancias y como su propio nombre
+indica sirven para controlar la ocurrencia temporal de los eventos. Se
+nota con un reloj de arena.
+
+\todo{AB: generar esta imagen.}
+%\begin{figure}
+%  \centering
+%  \includegraphics[scale=1]{./images/timer.pdf}
+%  \caption{Ejemplo de un temporizador dentro en un msc.}
+%  \label{fig:fig3}
+%\end{figure}
+
+\subsection*{Procesos de creación de instancias} 
+Evento donde una instancia crea a otra nueva.
+\subsection*{Procesos de terminación de instancias}
+\todo{AB:meter ejemplos con el msc.sty}
+Evento donde una instancia se termina a si misma.
+\subsection*{Corregiones}
+Son partes de la línea temporal de una instancia donde la premisa de
+que los eventos ocurran de forma estrictamente temporal deja de ser
+indispensable. Se notan con una línea discontinua.
+
+\todo{AB: generar esta imagen.}
+%\begin{figure}
+%  \centering
+%  \includegraphics[scale=1]{./images/corregion.pdf}
+%  \caption{Ejemplo de una corregion dentro en un msc.}
+%  \label{fig:fig4}
+%\end{figure}
+
+Para que un BMSC sea correcto debe cumplir las siguientes
+restricciones semánticas:
 \begin{itemize}
-\item Acciones: eventos locales a una instancia. Se representan por
-  una caja en la línea temporal con una etiqueta en su interior. Las
-  acciones se usan para especificar cambios en el estado interno de la
-  instancia,
-\item Mensajes salientes: representan el envío de un mensaje a una
-  instancia.
-\item Mensajes entrantes: representan la recepción de un
-  mensaje. Lógicamente a cada evento de mensaje saliente le
-  corresponde otro evento de mensaje entrante. A esto se le conoce
-  como intercambio de mensajes y se representa con una flecha que sale
-  de la línea de tiempo de la instancia origen a la línea de tiempo de
-  la instancia destino. Todo intercambio de mensajes debe de estar
-  etiquetado con un identificador.
-\item Condiciones: describen un estado el cual es común a un conjunto
-  de instancias dentro del MSC. Su fin es meramente informativo y se
-  representan mediante hexágonos los cuales se extienden a lo largo de
-  las líneas de tiempo de las instancias sobre las que la condición se
-  aplica. El texto de la condición debe ir en el interior del
-  hexágono.
-\item Temporizadores: son locales a las instancias y como su propio
-  nombre indica sirven para controlar la ocurrencia temporal de los
-  eventos. Se nota con un reloj de arena.
-\item Procesos de creación de instancias, donde una instancia crea a
-  otra nueva.
-\item Procesos de terminación de instancias, donde una instancia se
-  termina a si misma.
-\item Corregiones: partes de la línea temporal de una instancia donde
-  la premisa de que los eventos ocurran de forma estrictamente
-  temporal deja de ser indispensable. Se notan con una línea
-  discontinua.
+\item El nombre las instancias debe de ser único.
+\item Si se especifica un interfaz para un BMSC entonces para cada
+instancia en el interfaz debe haber una instancia con el mismo 
+nombre y tipo en el diagrama y viceversa.
+\item Todo mensaje saliente y entrante debe de referenciar una
+instancia declarada en el diagrama.
+\item En una instancia puede haber como mucho un mensaje de entrada
+con un determinado identificador y destino, y un mensaje de salida con
+un determinado identificador y origen.
+\item Para cada mensaje de salida a una instancia debe de haber un 
+mensaje de entrada a esa u otra instancia y viceversa.
+\item Un mensaje de salida puede no ser causado por su correspondiente
+mensaje de entrada directamente o via otro mensajes.     
+Esta propiedad se verifica construyendo un orden parcial de los 
+eventos de la comunicación y comprobando que el grafo dirigido 
+obtenido de este orden parcial no contiene ciclos. Un evento
+relacionado con un mensaje precede a todos los eventos relacionados
+con un mensaje que lo siguen en una especificación de una instancia,
+y todo mensaje de entrada es precedido por sus correspondientes 
+mensajes de salida.
+\item En la lista compartida de una condición solo podrá hacerse
+referencia a instancias declaradas previamente.
+\item Una condición compartida debe aparecer el mismo número de
+veces en las instancias que la comparten.
+\item En un proceso de creación de instancia solo podrá hacerse
+referencia a instancias declaradas previamente.
+\item No podrá haber más de un proceso de creación de instancia con
+el mismo nombre de instancia.
 \end{itemize}
 
+\section{Los MSC en textit{Progtalk}}
 En nuestro proyecto solo vamos a usar eventos de mensajes entrantes y
-salientes. A continuación mostramos un ejemplo \ref{fig:fig1} de como
+salientes. A continuación mostramos un ejemplo \ref{fig:fig5} de como
 debería representarse gráficamente una comunicación.
-\todo{AB:comprobar porque la fig1 no sale donde debiera.}
 
 \begin{figure}
   \centering
   \includegraphics[scale=1]{./images/lars}
   \caption{Ejemplo de una comunicación generada con Progtalk}
-  \label{fig:fig1}
+  \label{fig:fig5}
 \end{figure}
 
 Para que nuestros BMSCs sean correctos deben cumplir una serie de requisitos:

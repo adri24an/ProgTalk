@@ -4,14 +4,39 @@
 \section{Sintaxis Abstracta}
 \lstsetocl
 
-\includegraphics[scale=0.5]{./images/fig2}
+A continuación se muestra el diagrama de clases \ref{fig:fig2} de
+nuestra herramienta:
 
-%La clase \lstinline{Event} es una clase abstracta de la que heredan bla bla bla En C++ vamos a generar la clase \lstinline[style=code,language=C++]{Event} \todo{AH: es sólo un ejemplo de uso de lstinline}.
+\todo{AB: porque se nos va la imagen a otra pagina?}
+\begin{figure}
+  \includegraphics[scale=0.5]{./images/fig2}
+  \caption{Diagrama de clases}
+  \label{fig:fig2}
+\end{figure}
 
-\verb~"Hola\"$"~ \todo{AH: ejemplo para generar los strings sin
-  necesidad de escapar los comandos latex.}.
+Visto el diagrama de clases, procedemos a explicar la representación
+abstracta respecto a la concreta:
+\begin{itemize}
+\item La clase \textit{MSC} representa a nuestro MSC propiamente
+  dicho. En él, almacenamos las instancias y mensajes que el usuario va
+  introduciendo en la comunicación.
+\item La clase \textit{Instance} representa las instancias
+  \ref{sec:Instancias}  las cuales realizan la comunicación.
+\item La clase \textit{Message} representa los mensajes
+  \ref{sec:Mensajes} que forman la comunicación.
+\item La clase \textit{Event} representa un evento de envío
+  (\textit{Sending}) o recepción (\textit{Receipt}) dentro de la
+  comunicación.
+\item La clase \textit{Timestamp} representa los tiempos en que se
+  efectúan los eventos. Como vimos \ref{sec:Tiempos} estos pueden ser
+  absolutos (\textit{Absolute}) o relativos (\textit{Relative}).
+\end{itemize}
 
 \section{Arquitectura}
+
+El diagrama de arquitectura de nuestra herramienta es el siguiente:
+
+\todo{AB: con que generamos el diagrama de arquitectura?}
 
 Básicamente la arquitectura de \textit{Progtalk} es la siguiente:
 \begin{itemize}
@@ -60,27 +85,29 @@ Para implementar el analizador léxico (al cual hemos llamado
 \textit{Scanner}) hemos usado flex++. Los tokens que hemos definido
 para el universo de nuestro problema son:
 
+\todo{que listing usamos en las expresiones regulares?}
+
 \begin{itemize}
-\item NUM: cualquier número entero.
-\item ID: cualquier identificador comenzado en letra y formado por
-  letras, números o el símbolo ''\_''.
-\item WHITE: cualquier espacio en blanco o tabulador.
-\item STRING: cualquier conjunto de caracteres entre comillado salvo
-  comillas o salto de línea.
-\item EOLN: uno o más saltos de línea.
-\item INSTANCE: el literal ''instance".
-\item OF: el literal "of".
-\item MESSAGE: el literal "message".
-\item FROM: el literal ''from''.
-\item TO: el literal ''to''.
-\item AT: el literal ''@''.
-\item PLUS: el literal ''+''.
-\item MINUS: el literal ''-''.
-\item EXCLAMATION: el literal ''!''.
-\item INTERROGATION: el literal ''?''.
-\item SEMICOLON: el literal '';''.
-\item LEFT\_BRACE: el literal ''\{''.
-\item RIGHT\_BRACE: el literal ''\}''.
+\item \lstinline{NUM: [0-9]} (cualquier número entero)
+\item \lstinline{ID: [a-zA-Z][a-zA-Z0-9_]*} (cualquier identificador
+  comenzado  en letra y formado por letras, números o el símbolo ''\_'')
+\item\lstinline{ WHITE: [ \t]+} (cualquier espacio en blanco o tabulador)
+\item \lstinline{STRING: \"[^\"\n]*\"} (cualquier conjunto de caracteres entre
+  comillado salvo comillas o salto de línea)
+\item \lstinline{EOLN: [\n]+} (uno o más saltos de línea)
+\item \lstinline{INSTANCE: ``instance''} (el literal ''instance")
+\item \lstinline{OF: ``of''} (el literal "of")
+\item \lstinline{MESSAGE: ``message''} (el literal "message")
+\item \lstinline{FROM: ``from''} (el literal ''from'')
+\item \lstinline{TO: ``to''} (el literal ''to'')
+\item \lstinline{AT: ``at''} (el literal ''@'')
+\item \lstinline{PLUS: ``+''} (el literal ''+''.)
+\item \lstinline{MINUS: ``-''} (el literal ''-'')
+\item \lstinline{EXCLAMATION: ``!''} (el literal ''!'')
+\item \lstinline{INTERROGATION: ``?''} (el literal ''?'')
+\item \lstinline{SEMICOLON: ``;''} el literal '';''.
+\item \lstinline{LEFT\_BRACE: ``{''} el literal ''\{''.
+\item \lstinline{RIGHT\_BRACE: ``}''} el literal ''\}''.
 \end{itemize}
 
 \section{Análisis Sintáctico}
