@@ -1,6 +1,6 @@
-all: images/lars.pdf
+all: images/lars.pdf images/test1.pdf
 
-images/lars.pdf: ../examples/lars.msc ../src/Progtalk
+images/%.pdf: ../examples/%.msc ../src/Progtalk
 	../src/Progtalk < $<
 	latex communication
 	dvipdf communication
