@@ -206,9 +206,12 @@ sintáctico:
 \end{itemize}
 
 Para la implementación de esta parte del analizador semántico hemos
-usado un patrón \textit{Visitor}~\cite{gof}.
+usado un patrón \textit{Visitor}~\cite{gof}, el cual nos permite
+definir una nueva operación sin cambiar las clases de los elementos
+sobre los que nuestra nueva operación actúa.
 
-\todo{AH: describir el patrón Visitor en un párrafo.}
+En la figura~\ref{fig:fig6} se muestra el diagrama de clases que
+representa a nuestro patrón \textit{Visitor}. 
 
 \todo{AH: describir nuestra propia implementación de visitor empezando
   con el diagrama UML en el que se ve el visitor, la estructura
