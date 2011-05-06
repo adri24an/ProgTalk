@@ -130,11 +130,13 @@ proceso de parseo y el programa termina.
 Las acciones semánticas en \emph{bisonc++} simplemente construyen los
 nodos del árbol de sintaxis abstracta. Veamos un ejemplo de una de
 nuestras acciones semánticas: \lstsetc
+\todo{AB: Este codigo hay que revisarlo. Al hacer el pdf se sale de
+  los margenes y queda francamente mal.}
 \begin{lstlisting}
 message:
      MESSAGE mid_opt string_opt origin_opt destiny_opt SEMICOLON EOLN
         { 
-	      string * mid = $2;
+	  string * mid = $2;
           string * desc = $3;
           Timestg * orig = $4;
           Timestg * dest = $5;
@@ -211,11 +213,16 @@ definir una nueva operación sin cambiar las clases de los elementos
 sobre los que nuestra nueva operación actúa.
 
 En la figura~\ref{fig:fig6} se muestra el diagrama de clases que
-representa a nuestro patrón \textit{Visitor}. 
+representa a nuestro patrón \textit{Visitor}.
 
-\todo{AH: describir nuestra propia implementación de visitor empezando
-  con el diagrama UML en el que se ve el visitor, la estructura
-  visitada y las operaciones del Visitor}
+\begin{figure}
+  \centering 
+  \includegraphics[scale=0.7]{./images/diag_visitor.png}
+  \caption{Diagrama de clases de Visitor}
+  \label{fig:fig6}
+\end{figure}
+
+\todo{AB: explicaremos nuestro patron Visitor cuando lo corrijamos.}
 
 \section{Generación de Código}
 
@@ -223,10 +230,6 @@ Para esta tarea hemos utilizado un patrón de diseño \textit{Visitor},
 el cual recorre toda la información almacenada y a partir de ésta crea
 un fichero \textit{.tex} que compilado en \textit{latex} nos dará una
 representación gráfica de la comunicación.
-
-\todo{AH: describir nuestra propia implementación de visitor empezando
-  con el diagrama UML en el que se ve el visitor, la estructura
-  visitada y las operaciones del Visitor}
 
 %%% Local Variables: 
 %%% mode: latex
