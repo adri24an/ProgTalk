@@ -29,5 +29,8 @@ class PrettyPrinting : public MSCVisitor {
  private:
   
   string * msg;
+  /* Atributo para recordar la última instancia visitada */
+  Instance *lastVisitedInstance;
+
 };
 #endif
