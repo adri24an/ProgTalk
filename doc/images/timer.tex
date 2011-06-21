@@ -4,24 +4,16 @@
 
 \setlength{\firstlevelheight}{1cm}
 
-\begin{msc}{Communication}
+\begin{msc}{Timers}
 
-\declinst{a}{User}{}
-\declinst{f}{Agent}{"DHL"}
+\declinst{u}{User1}{''Client''}
+\declinst{f}{User2}{''Server''}
 
-\mess{"hello"}{a}{f}[3]
-\mscmark{t=0}{a}
-\nextlevel[3]
-\mscmark[br]{t=1}{f}
-\nextlevel[3]
-
-\mess{"test1"}{f}{a}[3]
-\mscmark{t=4}{f}
-\nextlevel[3]
-\mscmark[br]{t=10}{a}
-\nextlevel[3]
-
-\timeout{}{time}{Timer}
+\settimer{T,50}{f}
+\nextlevel[2]
+\mess{''hello''}{f}{u}[1]
+\nextlevel[2]
+\timeout{T}{u}
 
 \end{msc}
 \end{document}

@@ -6,23 +6,31 @@
 
 \begin{msc}{Communication}
 
-\declinst{a}{User}{}
-\declinst{f}{Agent}{"DHL"}
+\declinst{u}{User1}{''Client''}
+\declinst{f}{User2}{''Server''}
+\declinst{k}{User3}{''Admin''}
 
-\mess{"hello"}{a}{f}[3]
-\mscmark{t=0}{a}
+\regionstart{activation}{u}
 \nextlevel[3]
-\mscmark[br]{t=1}{f}
+\regionend{u}
+\mess{''hello''}{u}{f}
+\nextlevel
+\regionstart{coregion}{f}
+\nextlevel
+\regionstart{suspension}{k}
+\mess{''bye''}{f}{k}
+\nextlevel
+\regionstart{activation}{u}
+\mess{''Test''}{f}{u}
+\nextlevel
+\regionend{f}
 \nextlevel[3]
-
-\mess{"test1"}{f}{a}[3]
-\mscmark{t=4}{f}
-\nextlevel[3]
-\mscmark[br]{t=10}{a}
-\nextlevel[3]
-
-\regionstart{a}
-\regionend{a}
+\regionend{u}
+\mess*{''OK''}{u}{f}
+\nextlevel
+\mess{''Finishing''}{f}{k}
+\regionend{k}
+\nextlevel
 
 \end{msc}
 \end{document}
