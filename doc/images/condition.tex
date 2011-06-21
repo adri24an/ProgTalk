@@ -4,24 +4,21 @@
 
 \setlength{\firstlevelheight}{1cm}
 
-\begin{msc}{Communication}
+\begin{msc}{Conditions}
 
-\declinst{a}{User}{}
-\declinst{f}{Agent}{"DHL"}
+\declinst{u}{User1}{''Client''}
+\declinst{f}{User2}{''Server''}
 
-\mess{"hello"}{a}{f}[3]
-\mscmark{t=0}{a}
+\condition{some condition}{u,f}
 \nextlevel[3]
-\mscmark[br]{t=1}{f}
-\nextlevel[3]
-
-\mess{"test1"}{f}{a}[3]
-\mscmark{t=4}{f}
-\nextlevel[3]
-\mscmark[br]{t=10}{a}
-\nextlevel[3]
-
-\hmscondition{C}{Condition}{}
+\mess{''hello''}{u}{f}
+\nextlevel
+\action{a}{f}
+\nextlevel
+\condition{C}{u}
+\nextlevel[2]
+\condition{A,B,C}{u,f}
+\nextlevel[2]
 
 \end{msc}
 \end{document}
