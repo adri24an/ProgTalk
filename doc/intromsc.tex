@@ -56,28 +56,28 @@ Describen un estado el cual es común a un conjunto de instancias
 dentro del MSC. Su fin es meramente informativo y se representan
 mediante hexágonos los cuales se extienden a lo largo de las líneas de
 tiempo de las instancias sobre las que la condición se aplica. El
-texto de la condición debe ir en el interior del hexágono.
+texto de la condición debe ir en el interior del hexágono. Podemos ver
+un ejemplo en la figura~\ref{fig:condition}
 
-\todo{AB: generar esta imagen.}
 \begin{figure}
   \centering
-  \includegraphics[scale=1]{./images/condition.pdf}
+  \includegraphics[scale=1]{./images/condition.png}
   \caption{Ejemplo de una condicion dentro en un msc.}
   \label{fig:condition}
 \end{figure}
 
 \subsection*{Temporizadores}
 Estos eventos son locales a las instancias y como su propio nombre
-indica sirven para controlar la ocurrencia temporal de los eventos. Se
+indica sirven para controlar la ocurrencia temporal de los eventos
+como vemos en la figura~\ref{fig:timer}. Se
 nota con un reloj de arena.
 
-\todo{AB: generar esta imagen.}
-%\begin{figure}
-%  \centering
-%  \includegraphics[scale=1]{./images/timer.pdf}
-%  \caption{Ejemplo de un temporizador dentro en un msc.}
-%  \label{fig:fig3}
-%\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[scale=1]{./images/timer.png}
+  \caption{Ejemplo de un temporizador dentro en un msc.}
+  \label{fig:timer}
+\end{figure}
 
 \subsection*{Procesos de creación de instancias} 
 Evento donde una instancia crea a otra nueva.
@@ -87,15 +87,15 @@ Evento donde una instancia se termina a si misma.
 \subsection*{Corregiones}
 Son partes de la línea temporal de una instancia donde la premisa de
 que los eventos ocurran de forma estrictamente temporal deja de ser
-indispensable. Se notan con una línea discontinua.
+indispensable. Se notan con una línea discontinua y podemos ver un
+ejemplo en la figura~\ref{fig:region}.
 
-\todo{AB: generar esta imagen.}
-%\begin{figure}
-%  \centering
-%  \includegraphics[scale=1]{./images/corregion.pdf}
-%  \caption{Ejemplo de una corregion dentro en un msc.}
-%  \label{fig:fig4}
-%\end{figure}
+\begin{figure}
+  \centering
+  \includegraphics[scale=1]{./images/region.png}
+  \caption{Ejemplo de una corregion dentro en un msc.}
+  \label{fig:region}
+\end{figure}
 
 Para que un BMSC sea correcto debe cumplir las siguientes
 restricciones semánticas:
