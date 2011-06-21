@@ -63,16 +63,6 @@ instance d;
 El usuario puede almacenar tantas instancias como desee, pero estas
 deben tener un identificador de instancia único.
 
-A continuación mostramos un ejemplo gráfico de como representamos
-gráficamente las instancias:
-
-%\begin{figure}
-%  \centering
-%  \includegraphics[scale=1]{./images/instances.pdf}
-%  \caption{Ejemplo de representación gráfica de instancias.}
-%  \label{fig:fig6}
-%\end{figure}
-
 \section{Mensajes}\label{sec:Mensajes}
 
 Los mensajes de nuestro lenguaje se describen mediante seis
@@ -128,15 +118,15 @@ comunicación que éste quiere pasar como entrada a \textit{Progtalk} a
 \textit{MSCLan}.
 
 Algunos ejemplos de declaración de mensajes son:
-\todo{AB: aquí habría que formatear esto hacia la derecha. Pasa igual
-  mas arriba y mas abajo en un par de sitios.}
+
 \begin{lstlisting}
-message m1 { "request send to dhl" } from u to a;
-message m2 { "send" } from a @ m1? to f @ +2;
-message { "internal" } from a @ m2!+3 to a @ m1?+5;
+    message m1 { "request send to dhl" } from u to a;
+    message m2 { "send" } from a @ m1? to f @ +2;
+    message { "internal" } from a @ m2!+3 to a @ m1?+5;
 \end{lstlisting}
 
-\section{Especificaciones de tiempos}\label{sec:Tiempos}
+\section{Especificaciones de tiempos}
+\label{sec:Tiempos}
 
 Es importante que nos detengamos un momento a explicar en detalle los
 parámetros de los mensajes relativos a los tiempos de envío y
@@ -145,8 +135,7 @@ recepción. Estos tiempos pueden ser absolutos o relativos.
 \subsection{Tiempos Absolutos}
 
 Entenderemos como tiempos absolutos los siguiente casos:
-\todo{AB: de la pagina 15 a la 16 se ve como de repente el margen
-  izquierdo pasa a ser más grande... PORQUE?}
+
 \begin{itemize}
 \item Si el usuario da específicamente un valor absoluto, o
 \item si estamos hablando del instante de envío del primer mensaje de
@@ -157,10 +146,10 @@ Entenderemos como tiempos absolutos los siguiente casos:
 Un ejemplo del uso de tiempos absolutos es:
 
 \begin{lstlisting}
-message m1 { "hola" } from programaA @ 2 to programaB @ 5;
+    message m1 { "hola" } from programaA @ 2 to programaB @ 5;
 \end{lstlisting}
 
-donde el mensaje \lstinline{m1} consiste en el envío del mensaje
+\noindent donde el mensaje \lstinline{m1} consiste en el envío del mensaje
 \lstinline{"hola"} de la instancia \lstinline{programaA} en el
 instante \textit{2} y la recepción del mensaje en la instancia
 \lstinline{programaB} en el instante \textit{5}.
@@ -229,30 +218,30 @@ Por otro lado entenderemos por tiempos relativos los siguiente casos:
 La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) es la 
 siguiente:
 \begin{lstlisting}[style=spec, language={}]
-msc ::= inst_decl* message*
-inst_decl ::= INSTANCE iid |
-              INSTANCE iid OF tid; |
-              INSTANCE iid {string}; |
-              INSTANCE iid OF tid {string};               
-message ::= MESSAGE mid_opt string_opt origin destiny;
-mid_opt ::= LAMBDA | mid
-string_opt ::= LAMBDA | {string}
-origin ::= LAMBDA | origin_opt
-origin_opt ::= FROM iid time_ref_opt
-destiny ::= LAMBDA | destiny_opt
-destiny_opt ::= TO iid time_ref_opt
-time_ref_opt ::= LAMBDA | @ time_ref
-time_ref ::= abs_time | rel_time
-abs_time ::= num
-rel_time ::= ref dif_time_opt | dif_time
-ref ::= mid ! | mid ?
-dif_time_opt ::= LAMBDA | dif_time
-dif_time ::= + num | - num
-iid ::= ID
-tid ::= ID
-mid ::= ID
-string ::= STRING
-num ::= NUM
+    msc ::= inst_decl* message*
+    inst_decl ::= INSTANCE iid |
+                  INSTANCE iid OF tid; |
+                  INSTANCE iid {string}; |
+                  INSTANCE iid OF tid {string};               
+    message ::= MESSAGE mid_opt string_opt origin destiny;
+    mid_opt ::= LAMBDA | mid
+    string_opt ::= LAMBDA | {string}
+    origin ::= LAMBDA | origin_opt
+    origin_opt ::= FROM iid time_ref_opt
+    destiny ::= LAMBDA | destiny_opt
+    destiny_opt ::= TO iid time_ref_opt
+    time_ref_opt ::= LAMBDA | @ time_ref
+    time_ref ::= abs_time | rel_time
+    abs_time ::= num
+    rel_time ::= ref dif_time_opt | dif_time
+    ref ::= mid ! | mid ?
+    dif_time_opt ::= LAMBDA | dif_time
+    dif_time ::= + num | - num
+    iid ::= ID
+    tid ::= ID
+    mid ::= ID
+    string ::= STRING
+    num ::= NUM
 \end{lstlisting}
 
 En ella hemos escrito con minúsculas los símbolos no terminales, y en 
