@@ -1,7 +1,7 @@
 \chapter{Diseño}
 \label{ch:diseno}
 
-\section{Sintaxis Abstracta}
+\section{Modelo UML de la sintaxis abstracta}
 \lstsetocl
 
 En la figura \ref{fig:modelo-ast} se muestra el diagrama de clases de
@@ -31,19 +31,17 @@ abstracta respecto a la concreta:
   absolutos (\textit{Absolute}) o relativos (\textit{Relative}).
 \end{itemize}
 
-\todo{AB: la figura 3.1 se nos va fuera de la sección!}
-
 \section{Arquitectura}
 
 El diagrama de arquitectura, que podemos ver en la
-figura~\ref{fig:fig4}, representa a grandes rasgos el funcionamiento
-de \textit{Progtalk}. Los procesos están representados por círculos, y
-los datos por cuadrados.
+figura~\ref{fig:diagrarquitectura}, representa a grandes rasgos el
+funcionamiento de \textit{Progtalk}. Los procesos están representados
+por círculos, y los datos por cuadrados.
 
 \begin{figure}
   \includegraphics[scale=0.7]{./images/diag_arquitectura.png}
   \caption{Diagrama de arquitectura}
-  \label{fig:fig4}
+  \label{fig:diagrarquitectura}
 \end{figure}
 
 Básicamente la arquitectura de \textit{Progtalk} es la siguiente:
@@ -167,7 +165,10 @@ message:
 ;
 \end{lstlisting}
 
-Se puede observar cómo el símbolo no terminal \lstinline{message} bla bla bla
+Se puede observar cómo el símbolo no terminal \lstinline{message} está
+formado por el símbolo terminal \lstinline{MESSAGE} y a su vez por una
+serie de símbolos no terminales que representan toda la información
+que forma parte de un mensaje.
 
 \section{Análisis Semántico}
 
@@ -179,8 +180,9 @@ análisis sintáctico son:
 \item La declaración de varias instancias con igual identificador,
 \item la declaración de varios mensajes con igual identificador,
 \item la ausencia de elementos imprescindibles de un mensaje, como su
-  origen o destino,
-\item la referencia a un mensaje o instancia que no ha sido declarado
+  origen o destino, \todo{AB: esto no sería más bien un error
+    sintáctico mas que semántico?}
+\item la referencia a una instancia que no ha sido declarada
   anteriormente.
 \end{itemize}
 
@@ -190,9 +192,11 @@ ahorrando tiempo y recursos.
 
 Una vez terminado este proceso con éxito, pasamos a la segunda parte
 del análisis semántico donde comprobaremos la consistencia en los
-tiempos de envío y recepción de los mensajes. Hay dos razones por las
-que nos hemos realizado esta comprobación en paralelo con el análisis
-sintáctico:
+tiempos de envío y recepción de los mensajes así como la consistencia
+en las referencias entre mensajes.
+
+Hay dos razones por las que nos hemos realizado esta comprobación en
+paralelo con el análisis sintáctico:
 \begin{itemize}
 \item Por un lado, durante la fase de análisis del problema, tomamos
   la decisión de intentar almacenar la información del fichero de
@@ -212,14 +216,14 @@ usado un patrón \textit{Visitor}~\cite{gof}, el cual nos permite
 definir una nueva operación sin cambiar las clases de los elementos
 sobre los que nuestra nueva operación actúa.
 
-En la figura~\ref{fig:fig6} se muestra el diagrama de clases que
+En la figura~\ref{fig:diagvisitor} se muestra el diagrama de clases que
 representa a nuestro patrón \textit{Visitor}.
 
 \begin{figure}
   \centering 
   \includegraphics[scale=0.7]{./images/diag_visitor.png}
   \caption{Diagrama de clases de Visitor}
-  \label{fig:fig6}
+  \label{fig:diagvisitor}
 \end{figure}
 
 \todo{AB: explicaremos nuestro patron Visitor cuando lo corrijamos.}
@@ -228,7 +232,7 @@ representa a nuestro patrón \textit{Visitor}.
 
 Para esta tarea hemos utilizado un patrón de diseño \textit{Visitor},
 el cual recorre toda la información almacenada y a partir de ésta crea
-un fichero \textit{.tex} que compilado en \textit{latex} nos dará una
+un fichero \textit{.tex} que comp ilado en \textit{latex} nos dará una
 representación gráfica de la comunicación.
 
 %%% Local Variables: 
