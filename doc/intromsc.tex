@@ -80,10 +80,17 @@ nota con un reloj de arena.
 \end{figure}
 
 \subsection*{Procesos de creación de instancias} 
-Evento donde una instancia crea a otra nueva.
+Evento donde una instancia crea a otra nueva. Podemos ver un ejemplo
+en la figura~\ref{fig:instanceprocess}
+\begin{figure}
+  \centering
+  \includegraphics[scale=1]{./images/instanceprocess.png}
+  \caption{Ejemplo de procesos de creación y terminación de instancias.}
+  \label{fig:instanceprocess}
+\end{figure}
 \subsection*{Procesos de terminación de instancias}
-\todo{AB:meter ejemplos con el msc.sty}
-Evento donde una instancia se termina a si misma.
+Evento donde una instancia se termina a si misma. Podemos ver un ejemplo
+en la figura~\ref{fig:instanceprocess}
 \subsection*{Corregiones}
 Son partes de la línea temporal de una instancia donde la premisa de
 que los eventos ocurran de forma estrictamente temporal deja de ser
@@ -97,9 +104,11 @@ ejemplo en la figura~\ref{fig:region}.
   \label{fig:region}
 \end{figure}
 
+\section{Requisitos de los BMSCs integros}
 Para que un BMSC sea correcto debe cumplir las siguientes
 restricciones semánticas:
-\begin{itemize}
+
+\begin{enumerate}
 \item El nombre las instancias debe de ser único.
 \item Si se especifica un interfaz para un BMSC entonces para cada
 instancia en el interfaz debe haber una instancia con el mismo 
@@ -128,7 +137,7 @@ veces en las instancias que la comparten.
 referencia a instancias declaradas previamente.
 \item No podrá haber más de un proceso de creación de instancia con
 el mismo nombre de instancia.
-\end{itemize}
+\end{enumerate}
 
 \section{Los MSC en Progtalk}
 En nuestro proyecto solo vamos a usar eventos de mensajes entrantes y
