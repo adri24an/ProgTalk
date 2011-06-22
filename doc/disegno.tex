@@ -59,15 +59,22 @@ Básicamente la arquitectura de \textit{Progtalk} es la siguiente:
   como almacenamiento intermedio de la información. La razón para
   hacer esto es la siguiente: imaginemos que estamos parseando una
   línea del fichero de entrada. Lo que el analizador sintáctico (a
-  partir de ahora \textit{parser})va a hacer es ir comparando la
+  partir de ahora \textit{parser}) va a hacer es ir comparando la
   entrada con cada una de las reglas de dicho parser. Se irá creando
   un árbol sintáctico conforme avanza el parseo, y almacenando la
   información leída para que una vez se acepte la línea de entrada
   tengamos toda la información sobre dicha línea recopilada, y podamos
   almacenarla en el objeto\textit{msc} en el cual se almacena toda la
-  comunicación antes de generar el fichero \textit{.tex}.
+  comunicación antes de generar el fichero \textit{.tex}. El diagrama
+  de clases correspondiente aparece representado en la
+  figura~\ref{fig:diagparseo.png}.
 
-\includegraphics[scale=0.5]{./images/fig3}
+\begin{figure}
+  \includegraphics[scale=0.7]{./images/diagparseo.png}
+  \caption{Diagrama de clases del proceso de almacenamiento durante el
+  proceso de parsing.}
+  \label{fig:diagparseo}
+\end{figure}
 
 \item Para verificar la consistencia de la comunicación tenemos el
   analizador semántico. En este punto, debemos explicar que parte de
