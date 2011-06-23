@@ -19,7 +19,6 @@ class PrettyPrinting : public MSCVisitor {
   ~PrettyPrinting();
   void visitMSC(MSC * m);
   void visitInstance(Instance * i);
-  void visitInstanceEvent(Instance * i);
   void visitMessage(Message * m);
   void visitSending(Sending * s);
   void visitReceipt(Receipt * r);
@@ -30,7 +29,7 @@ class PrettyPrinting : public MSCVisitor {
   
   string * msg;
   /* Atributo para recordar la última instancia visitada */
-  Instance *lastVisitedInstance;
+  //Instance *lastVisitedInstance;
 
 };
 #endif
