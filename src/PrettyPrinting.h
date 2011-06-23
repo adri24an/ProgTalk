@@ -10,6 +10,7 @@
 #include "MSCVisitor.h"
 #include <iostream>
 #include <string>
+#include <list>
 
 class PrettyPrinting : public MSCVisitor {
 
@@ -28,7 +29,7 @@ class PrettyPrinting : public MSCVisitor {
  private:
   
   //Variable where we will storage instances' info prior to print it.
-  list<string, string, string> * intancesList;
+  list<string> * instancesList;
   //Variable where we will storage messages' info prior to print it.
   //list<> * messagesList;
 
