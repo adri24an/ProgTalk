@@ -27,9 +27,10 @@ class PrettyPrinting : public MSCVisitor {
 
  private:
   
-  //string * msg;
-  /* Atributo para recordar la última instancia visitada */
-  //Instance *lastVisitedInstance;
+  //Variable where we will storage instances' info prior to print it.
+  list<string, string, string> intancesList;
+  //Variable where we will storage messages' info prior to print it.
+  //list<> messagesList;
 
 };
 #endif
