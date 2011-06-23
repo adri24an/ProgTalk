@@ -1,26 +1,28 @@
 #include "PrettyPrinting.h"
 
-PrettyPrinting::PrettyPrinting() {
-  msg = new string();
+PrettyPrinting::PrettyPrinting() 
+{
+  /*msg = new string();*/
 }
 
-PrettyPrinting::~PrettyPrinting() {
-  delete msg;
+PrettyPrinting::~PrettyPrinting() 
+{
+  /*delete msg;*/
 }
 
 void PrettyPrinting::visitMSC(MSC * m)
 {
-  std::cout << "----------------------------------------" << std::endl;
-  std::cout << "Fin de la comunicacion" << std::endl << std::endl;
+  /*std::cout << "----------------------------------------" << std::endl;
+  std::cout << "Fin de la comunicacion" << std::endl << std::endl;*/
 }
 
 void PrettyPrinting::visitInstance(Instance * i)
 {
-  std::cout << i->get_iid() << " " << i->get_tid() 
-	    << " " << i->get_name() << std::endl;
+  /*std::cout << i->get_iid() << " " << i->get_tid() 
+	    << " " << i->get_name() << std::endl;*/
 }
 
-void PrettyPrinting::visitInstanceEvent(Instance * i)
+/*void PrettyPrinting::visitInstanceEvent(Instance * i)
 {
   std::stringstream stream;
   
@@ -28,11 +30,11 @@ void PrettyPrinting::visitInstanceEvent(Instance * i)
 	 << i->get_tid() << " " << i->get_name() << std::endl;
  
   *msg = *msg + stream.str();
-}
+  }*/
 
 void PrettyPrinting::visitMessage(Message * m)
 {
-  std::stringstream stream;
+  /*std::stringstream stream;
   string tid = m->get_mid();
   string sms = m->get_sms();
 
@@ -40,31 +42,31 @@ void PrettyPrinting::visitMessage(Message * m)
   *msg = stream.str() + tid + " " + sms + stream.str() + *msg;
   std::cout << *msg;
   delete msg;
-  msg = new string();
+  msg = new string();*/
 }
 
 void PrettyPrinting::visitSending(Sending * s)
 {
-  *msg = *msg;
+  /**msg = *msg;*/
 }
 
 void PrettyPrinting::visitReceipt(Receipt * r)
 {
-  *msg = *msg;
+  /**msg = *msg;*/
 }
 
 void PrettyPrinting::visitAbsolute(Absolute * a)
 {
-  std::stringstream stream;
+  /*std::stringstream stream;
 
   stream << a->getAbsoluteTime() << " (ABSOLUTE)" << std::endl;
-  msg->append(stream.str());
+  msg->append(stream.str());*/
 }
 
 void PrettyPrinting::visitRelative(Relative * r)
 {
-  std::stringstream stream;
+  /*std::stringstream stream;
 
   stream << r->getAbsoluteTime() << " (RELATIVE)" << std::endl;
-  msg->append(stream.str());
+  msg->append(stream.str());*/
 }
