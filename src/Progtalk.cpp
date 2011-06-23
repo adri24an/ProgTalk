@@ -6,12 +6,12 @@
 int main()
 {
   Parser * parser = new Parser;
-  TimeChecker * visitortime = new TimeChecker;
-  LatexPrint * visitorprint = new LatexPrint;
+  //TimeChecker * visitortime = new TimeChecker;
+  //LatexPrint * visitorprint = new LatexPrint;
 
   parser->parse();
-  parser->accept(*visitortime);
-  parser->accept(*visitorprint);
+  //parser->accept(*visitortime);
+  //parser->accept(*visitorprint);
   
   return 0;
 }
