@@ -17,7 +17,6 @@ class MSCVisitor {
   ~MSCVisitor();
   virtual void visitMSC(MSC * m) = 0;
   virtual void visitInstance(Instance * i) = 0;
-  virtual void visitInstanceEvent(Instance * i) = 0;
   virtual void visitMessage(Message * m) = 0;
   virtual void visitSending(Sending * s) = 0;
   virtual void visitReceipt(Receipt * r) = 0;
