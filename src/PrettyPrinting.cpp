@@ -18,6 +18,12 @@ void PrettyPrinting::visitMSC(MSC * m)
 
 void PrettyPrinting::visitInstance(Instance * i)
 {
+  std::stringstream stream;
+  
+  stream << i->get_iid() << " " 
+	 << i->get_tid() << " " << i->get_name() << std::endl;
+  instancesList->push_back(stream.str());
+ 
   /*std::cout << i->get_iid() << " " << i->get_tid() 
 	    << " " << i->get_name() << std::endl;*/
 }
