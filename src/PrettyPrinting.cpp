@@ -63,6 +63,10 @@ void PrettyPrinting::visitReceipt(Receipt * r)
 
 void PrettyPrinting::visitAbsolute(Absolute * a)
 {
+  std::stringstream stream;
+  
+  stream << a->getAbsoluteTime() << " (ABSOLUTE)"<< std::endl;
+  instancesList->push_back(stream.str());
   /*std::stringstream stream;
 
   stream << a->getAbsoluteTime() << " (ABSOLUTE)" << std::endl;
@@ -71,6 +75,11 @@ void PrettyPrinting::visitAbsolute(Absolute * a)
 
 void PrettyPrinting::visitRelative(Relative * r)
 {
+  std::stringstream stream;
+  
+  stream << r->getAbsoluteTime() << " (RELATIVE)"<< std::endl;
+  instancesList->push_back(stream.str());
+
   /*std::stringstream stream;
 
   stream << r->getAbsoluteTime() << " (RELATIVE)" << std::endl;
