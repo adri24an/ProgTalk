@@ -40,6 +40,7 @@ void PrettyPrinting::visitInstance(Instance * i)
 
 void PrettyPrinting::visitMessage(Message * m)
 {
+  
   /*std::stringstream stream;
   string tid = m->get_mid();
   string sms = m->get_sms();
@@ -53,11 +54,13 @@ void PrettyPrinting::visitMessage(Message * m)
 
 void PrettyPrinting::visitSending(Sending * s)
 {
+  ;
   /**msg = *msg;*/
 }
 
 void PrettyPrinting::visitReceipt(Receipt * r)
 {
+  ;
   /**msg = *msg;*/
 }
 
