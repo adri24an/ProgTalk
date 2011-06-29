@@ -3,8 +3,8 @@
 PrettyPrinting::PrettyPrinting()
   :instancesList(), messagesList()
 {
-  /*msg = new string();*/
   element = NULL;
+  /*msg = new string();*/
 }
 
 PrettyPrinting::~PrettyPrinting() 
@@ -87,7 +87,8 @@ void PrettyPrinting::visitRelative(Relative * r)
   // Si es el tiempo de llegada (el 1º de los tiempos que leemos)
   if (element == NULL)
     {
-      element = new vector<string>;
+      element = new vector<string>(6,"_NULL_");
+      //element añadir el numero
     }
 
   /*std::stringstream stream;
