@@ -4,6 +4,7 @@ PrettyPrinting::PrettyPrinting()
   :instancesList(), messagesList()
 {
   /*msg = new string();*/
+  element = NULL;
 }
 
 PrettyPrinting::~PrettyPrinting() 
@@ -83,8 +84,11 @@ void PrettyPrinting::visitRelative(Relative * r)
 {
   std::stringstream stream;
   
-  stream << r->getAbsoluteTime() << " (RELATIVE)"<< std::endl;
-  instancesList->push_back(stream.str());
+  // Si es el tiempo de llegada (el 1º de los tiempos que leemos)
+  if (element == NULL)
+    {
+      element = new vector<string>;
+    }
 
   /*std::stringstream stream;
 
