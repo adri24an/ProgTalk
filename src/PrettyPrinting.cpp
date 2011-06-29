@@ -1,12 +1,15 @@
 #include "PrettyPrinting.h"
 
-PrettyPrinting::PrettyPrinting() 
+PrettyPrinting::PrettyPrinting()
+  :instancesList(), messagesList()
 {
   /*msg = new string();*/
 }
 
 PrettyPrinting::~PrettyPrinting() 
 {
+  delete instancesList;
+  delete messagesList;
   /*delete msg;*/
 }
 
