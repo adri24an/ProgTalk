@@ -72,8 +72,22 @@ void PrettyPrinting::visitAbsolute(Absolute * a)
 {
   std::stringstream stream;
   
-  stream << a->getAbsoluteTime() << " (ABSOLUTE)"<< std::endl;
-  instancesList->push_back(stream.str());
+  // Si es el tiempo de recepción (el 1º de los tiempos que leemos)
+  // creamos el vector luego lo rellenamos con dicoh tiempo de recepción.
+  if (element == NULL)
+    {
+      element = new vector<string>(6,"_NULL_");
+      stream << a->getAbsoluteTime() << " (ABSOLUTE)" << std::endl;
+      (*element)[5] = stream.str();
+    }
+  // Si es el tiempo de envío (el 2º que leemos) lo guardamos en su sitio
+  // en el vector.
+  else
+    {
+      stream << a->getAbsoluteTime() << " (ABSOLUTE)" << std::endl;
+      (*element)[3] = stream.str();
+    }
+
   /*std::stringstream stream;
 
   stream << a->getAbsoluteTime() << " (ABSOLUTE)" << std::endl;
@@ -84,11 +98,20 @@ void PrettyPrinting::visitRelative(Relative * r)
 {
   std::stringstream stream;
   
-  // Si es el tiempo de llegada (el 1º de los tiempos que leemos)
+  // Si es el tiempo de recepción (el 1º de los tiempos que leemos)
+  // creamos el vector luego lo rellenamos con dicoh tiempo de recepción.
   if (element == NULL)
     {
       element = new vector<string>(6,"_NULL_");
-      //element añadir el numero
+      stream << r->getAbsoluteTime() << " (RELATIVE)" << std::endl;
+      (*element)[5] = stream.str();
+    }
+  // Si es el tiempo de envío (el 2º que leemos) lo guardamos en su sitio
+  // en el vector.
+  else
+    {
+      stream << r->getAbsoluteTime() << " (RELATIVE)" << std::endl;
+      (*element)[3] = stream.str();
     }
 
   /*std::stringstream stream;
