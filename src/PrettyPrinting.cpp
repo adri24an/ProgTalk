@@ -1,7 +1,7 @@
 #include "PrettyPrinting.h"
 
 PrettyPrinting::PrettyPrinting()
-  :instancesList(), messagesList()
+//  :instancesList(), messagesList()
 {
   element = NULL;
   /*msg = new string();*/
@@ -9,8 +9,7 @@ PrettyPrinting::PrettyPrinting()
 
 PrettyPrinting::~PrettyPrinting() 
 {
-  delete instancesList;
-  delete messagesList;
+  delete element;
   /*delete msg;*/
 }
 
@@ -29,7 +28,9 @@ void PrettyPrinting::visitInstance(Instance * i)
     {
       stream << i->get_iid() << " " 
 	     << i->get_tid() << " " << i->get_name() << std::endl;
-      instancesList->push_back(stream.str());
+
+      cout << stream.str();
+      //instancesList.push_front(stream.str());
     }
   // Si existe es que estamos hablando de referencias a instancias.
   else 
@@ -56,7 +57,7 @@ void PrettyPrinting::visitMessage(Message * m)
   
   for(i=0;i<6;i++)
     {
-      cout << (*element)[i]; 
+      cout << (*element)[i] << " "; 
     }
   
   cout << endl;

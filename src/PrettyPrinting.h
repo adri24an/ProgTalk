@@ -29,12 +29,11 @@ class PrettyPrinting : public MSCVisitor {
 
  private:
   
-  //Variable where we will storage instances' info prior to print it.
-  list<string> * instancesList;
+  /*//Variable where we will storage instances' info prior to print it.
+  list<string> instancesList;
   //Variable where we will storage messages' info prior to print it.
-  list<vector<string> > * messagesList;
-  //Variable usada para ir almacenando los datos de un mensaje para
-  //intertarla en la lista de mensajes.
+  list<vector<string> > messagesList;*/
+
   vector<string> * element;
 
 };
