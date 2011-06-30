@@ -24,23 +24,27 @@ void PrettyPrinting::visitInstance(Instance * i)
 {
   std::stringstream stream;
   
-  stream << i->get_iid() << " " 
-	 << i->get_tid() << " " << i->get_name() << std::endl;
-  instancesList->push_back(stream.str());
- 
+  // Si no existe element, es que estamos declarando instancias
+  if (element == NULL)
+    {
+      stream << i->get_iid() << " " 
+	     << i->get_tid() << " " << i->get_name() << std::endl;
+      instancesList->push_back(stream.str());
+    }
+  // Si existe es que estamos hablando de referencias a instancias.
+  else 
+    {
+      if ((*element)[4].compare("_NULL_") == 0)
+	(*element)[4] = i->get_iid();
+
+      else
+	(*element)[2] = i->get_iid();
+    }
+
+
   /*std::cout << i->get_iid() << " " << i->get_tid() 
 	    << " " << i->get_name() << std::endl;*/
 }
-
-/*void PrettyPrinting::visitInstanceEvent(Instance * i)
-{
-  std::stringstream stream;
-  
-  stream << i->get_iid() << " " 
-	 << i->get_tid() << " " << i->get_name() << std::endl;
- 
-  *msg = *msg + stream.str();
-  }*/
 
 void PrettyPrinting::visitMessage(Message * m)
 {
