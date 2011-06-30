@@ -16,8 +16,8 @@ PrettyPrinting::~PrettyPrinting()
 
 void PrettyPrinting::visitMSC(MSC * m)
 {
-  /*std::cout << "----------------------------------------" << std::endl;
-  std::cout << "Fin de la comunicacion" << std::endl << std::endl;*/
+  std::cout << "----------------------------------------" << std::endl;
+  std::cout << "Fin de la comunicacion" << std::endl << std::endl;
 }
 
 void PrettyPrinting::visitInstance(Instance * i)
@@ -48,7 +48,21 @@ void PrettyPrinting::visitInstance(Instance * i)
 
 void PrettyPrinting::visitMessage(Message * m)
 {
+  std::stringstream stream;
+  int i = 0;
   
+  (*element)[0] = m->get_mid();
+  (*element)[1] = m->get_sms();
+  
+  for(i=0;i<6;i++)
+    {
+      cout << (*element)[i]; 
+    }
+  
+  cout << endl;
+  delete element;
+  element = new vector<string>(6,"_NULL_");
+
   /*std::stringstream stream;
   string tid = m->get_mid();
   string sms = m->get_sms();
