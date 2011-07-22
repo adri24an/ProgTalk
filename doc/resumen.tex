@@ -1,6 +1,34 @@
 \chapter*{Resumen}
 \addcontentsline{toc}{chapter}{Resumen}
 
+El formalismo de los diagramas de secuencia (\emph{Sequence Charts})
+es un lenguaje gráfico que permite especificar escenarios de
+interacción entre componentes de un sistema\todo{Cita a Harel, ver el
+  libro de Björner}. Es un formalismo extraordinariamente popular
+aunque también es usado en innumerables versiones con innumerables
+interpretaciones.
+
+En este trabajo fin de carrera hemos
+\begin{enumerate}
+\item definido una notación textual concreta para especificar diagramas de
+  secuencia y
+\item hemos implementado un programa que admite como entrada un
+  diagrama de secuencia escrito en dicha notación y que genera
+  visualizaciones gráficas del mismo en distintos formatos gráficos.
+\end{enumerate}
+
+El uso para el que el programa está diseñado es para mantener
+descripciones de diagramas de secuencia fáciles de modificar por un
+ser humano y que resulte sencillo de seguir sus cambios (con un
+sistema de control de versiones, por ejemplo) y para poder mostrar
+dichos diagramas visualmente.
+
+Además, el programa realiza un análisis sobre la validez de dichas
+descripciones como por ejemplo impidiendo describir mensajes que
+viajen hacia atrás en el tiempo o con origen o destino no definido.
+
+\todo{AH: A partir de aquí conservo lo que hizo Adrial pero creo que podemos eliminarlo}
+
 Normalmente la comunicación entre programas, procesos, etc, es larga y
 compleja lo que hace tedioso para un usuario su análisis e
 interpretación. Debido a esto nos hemos propuesto el diseño e
