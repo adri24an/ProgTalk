@@ -8,5 +8,3 @@ std::cout << "iid: " << iid << " | " << "tid: " << tid << " | " << "name: "
 << name << std::endl;
 !!!170053.cpp!!!	accept(inout visitor : MSCVisitor) : void
 visitor.visitInstance(this);
-!!!171522.cpp!!!	acceptEvent(in visitor : MSCVisitor) : void
-visitor.visitInstanceEvent(this);

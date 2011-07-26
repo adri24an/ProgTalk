@@ -1,6 +1,6 @@
 format 76
 "diagramas"
-  revision 88
+  revision 89
   modified_by 25 "adrian"
   cpp_root_dir "../../src/"
 
@@ -443,20 +443,6 @@ ${inlines}
 	
       end
 
-      operation 171522 "acceptEvent"
-	public explicit_return_type "void"
-	nparams 1
-	  param inout name "visitor" explicit_type "MSCVisitor"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
     end
 
     class 128130 "Message"
@@ -2505,6 +2491,13 @@ ${members}
 ${namespace_end}"
       associated_classes
 	class_ref 144514 // Timestg
+      end
+    end
+
+    artifact 128025 "MSCVisitor"
+      stereotype "source"
+      associated_classes
+	class_ref 128025 // MSCVisitor
       end
     end
   end
