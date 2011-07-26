@@ -12,7 +12,7 @@ inst->print();
 std::cout << "timestamp:" << std::endl;
 time->print();
 !!!169541.cpp!!!	accept(inout visitor : MSCVisitor) : void
-inst->acceptEvent(visitor);
+inst->accept(visitor);
 time->accept(visitor);
 visitor.visitReceipt(this);
   

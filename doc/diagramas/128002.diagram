@@ -48,12 +48,12 @@ relationcanvas 128130 relation_ref 151554 //
 end
 relationcanvas 128393 relation_ref 128002 // 
   decenter_end 449
-  from ref 128137 z 2007 stereotype "<<map>>" xyz -8.5 98.5 2007 to ref 128265
+  from ref 128137 z 2007 stereotype "<<map>>" xyz -8 98 2007 to ref 128265
   role_a_pos 27 136 3000 no_role_b
   multiplicity_a_pos 15 136 3000 multiplicity_b_pos 13 46 3000
 end
 relationcanvas 128649 relation_ref 128130 // 
-  from ref 128137 z 2007 stereotype "<<map>>" xyz 113 18.5 2007 to ref 128521
+  from ref 128137 z 2007 stereotype "<<map>>" xyz 113 18 2007 to ref 128521
   role_a_pos 196 2 3000 no_role_b
   multiplicity_a_pos 238 28 3000 multiplicity_b_pos 50 28 3000
 end
@@ -63,9 +63,9 @@ relationcanvas 129161 relation_ref 130690 // <generalisation>
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129289 relation_ref 129283 // 
-  from ref 128265 z 3006 to point 25.4 229.5
+  from ref 128265 z 3006 to point 25 229
   line 130569 z 3006 to ref 129033
-  role_a_pos 212 212 3000 no_role_b
+  role_a_pos 211 213 3000 no_role_b
   multiplicity_a_pos 239 238 3000 multiplicity_b_pos 15 197 3000
 end
 relationcanvas 129545 relation_ref 130818 // <generalisation>
@@ -75,8 +75,8 @@ relationcanvas 129545 relation_ref 130818 // <generalisation>
 end
 relationcanvas 129673 relation_ref 129411 // 
   from ref 128265 z 3006 to ref 129417
-  role_a_pos 106 154 3000 no_role_b
-  multiplicity_a_pos 137 178 3000 multiplicity_b_pos 59 178 3000
+  role_a_pos 105 154 3000 no_role_b
+  multiplicity_a_pos 137 178 3000 multiplicity_b_pos 60 178 3000
 end
 relationcanvas 129929 relation_ref 128387 // 
   from ref 128777 z 3006 to ref 129801
