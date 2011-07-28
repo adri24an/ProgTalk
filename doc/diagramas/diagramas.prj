@@ -1,6 +1,6 @@
 format 76
 "diagramas"
-  revision 89
+  revision 90
   modified_by 25 "adrian"
   cpp_root_dir "../../src/"
 
@@ -260,12 +260,12 @@ in MSC or 0 otherwise."
 	
       end
 
-      classrelation 128025 // <unidirectional association>
+      classrelation 128025 // visit (<unidirectional association>)
 	relation 128025 --->
-	  a role_name "" protected
+	  a role_name "visit" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128025 // <unidirectional association>
+	    classrelation_ref 128025 // visit (<unidirectional association>)
 	  b parent class_ref 128025 // MSCVisitor
       end
     end
@@ -442,7 +442,6 @@ ${inlines}
 	
 	
       end
-
     end
 
     class 128130 "Message"
