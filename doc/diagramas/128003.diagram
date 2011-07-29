@@ -18,8 +18,8 @@ classcanvas 128514 class_ref 144514 // Timestg
 end
 relationcanvas 128259 relation_ref 130946 // 
   from ref 128003 z 3006 to ref 128131
-  role_a_pos 85 135 3000 no_role_b
-  multiplicity_a_pos 68 135 3000 multiplicity_b_pos 123 44 3000
+  role_a_pos 90 129 3000 no_role_b
+  multiplicity_a_pos 74 129 3000 multiplicity_b_pos 125 43 3000
 end
 relationcanvas 128770 relation_ref 144770 // 
   from ref 128514 z 2001 to ref 128002

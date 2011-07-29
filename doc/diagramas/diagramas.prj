@@ -1,7 +1,7 @@
 format 76
 "diagramas"
-  revision 90
-  modified_by 25 "adrian"
+  revision 91
+  modified_by 9 "angel"
   cpp_root_dir "../../src/"
 
 
@@ -260,14 +260,6 @@ in MSC or 0 otherwise."
 	
       end
 
-      classrelation 128025 // visit (<unidirectional association>)
-	relation 128025 --->
-	  a role_name "visit" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 128025 // visit (<unidirectional association>)
-	  b parent class_ref 128025 // MSCVisitor
-      end
     end
 
     class 128258 "Instance"
@@ -2215,6 +2207,14 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+      end
+
+      classrelation 128009 // <dependency>
+	relation 128009 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 128009 // <dependency>
+	  b parent class_ref 128002 // MSC
       end
     end
   end

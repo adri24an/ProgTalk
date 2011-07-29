@@ -14,21 +14,21 @@ classcanvas 128409 class_ref 128130 // Message
 end
 classcanvas 128665 class_ref 128025 // MSCVisitor
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 161 120 2000
+  xyz 157 108 2000
+end
+relationcanvas 128009 relation_ref 128009 // <dependency>
+  from ref 128665 z 2001 to ref 128025
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 128281 relation_ref 128130 // 
   from ref 128025 z 3006 stereotype "<<map>>" xyz 109 40 3006 to ref 128153
-  role_a_pos 150 21 3000 no_role_b
-  multiplicity_a_pos 193 48 3000 multiplicity_b_pos 65 48 3000
+  role_a_pos 144 22 3000 no_role_b
+  multiplicity_a_pos 191 47 3000 multiplicity_b_pos 65 47 3000
 end
 relationcanvas 128537 relation_ref 128002 // 
   from ref 128025 z 3006 stereotype "<<map>>" xyz 10 110 3006 to ref 128409
-  role_a_pos 43 141 3000 no_role_b
-  multiplicity_a_pos 19 141 3000 multiplicity_b_pos 17 67 3000
-end
-relationcanvas 128793 relation_ref 128025 // <unidirectional association>
-  from ref 128025 z 2001 to ref 128665
-  role_a_pos 131 149 3000 no_role_b
-  no_multiplicity_a no_multiplicity_b
+  role_a_pos 46 143 3000 no_role_b
+  multiplicity_a_pos 20 143 3000 multiplicity_b_pos 16 67 3000
 end
 end
