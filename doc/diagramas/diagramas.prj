@@ -1,7 +1,7 @@
 format 76
 "diagramas"
-  revision 91
-  modified_by 9 "angel"
+  revision 92
+  modified_by 25 "adrian"
   cpp_root_dir "../../src/"
 
 
@@ -259,7 +259,6 @@ in MSC or 0 otherwise."
 	
 	
       end
-
     end
 
     class 128258 "Instance"
@@ -1154,7 +1153,7 @@ ${inlines}
       operation 169157 "accept"
 	public explicit_return_type "void"
 	nparams 1
-	  param inout name "visitor" explicit_type "MSCVisitor"
+	  param inout name "visitor" type class_ref 128025 // MSCVisitor
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
