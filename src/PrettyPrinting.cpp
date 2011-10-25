@@ -35,11 +35,13 @@ void PrettyPrinting::visitInstance(Instance * i)
   // Si existe es que estamos hablando de referencias a instancias.
   else 
     {
-      if ((*element)[4].compare("_NULL_") == 0)
-	(*element)[4] = i->get_iid();
-
-      else
+      //Si la posición 2 del vector es _NULL_ es que aún no se ha rellenado
+      //por lo que la referencia a instancia es de envío.
+      if (((*element)[2].compare("_NULL_")) == 0)
 	(*element)[2] = i->get_iid();
+      //Sino la referencia de instancia es de recepción.
+      else
+	(*element)[4] = i->get_iid();
     }
 
 
@@ -62,7 +64,7 @@ void PrettyPrinting::visitMessage(Message * m)
   
   cout << endl;
   delete element;
-  element = new vector<string>(6,"_NULL_");
+  element = NULL;
 
   /*std::stringstream stream;
   string tid = m->get_mid();
@@ -91,20 +93,20 @@ void PrettyPrinting::visitAbsolute(Absolute * a)
 {
   std::stringstream stream;
   
-  // Si es el tiempo de recepción (el 1º de los tiempos que leemos)
-  // creamos el vector luego lo rellenamos con dicoh tiempo de recepción.
+  // Si es el tiempo de envío (el 1º de los tiempos que leemos)
+  // creamos el vector luego lo rellenamos con dicho tiempo de recepción.
   if (element == NULL)
     {
       element = new vector<string>(6,"_NULL_");
       stream << a->getAbsoluteTime() << " (ABSOLUTE)" << std::endl;
-      (*element)[5] = stream.str();
+      (*element)[3] = stream.str();
     }
-  // Si es el tiempo de envío (el 2º que leemos) lo guardamos en su sitio
+  // Si es el tiempo de recepción (el 2º que leemos) lo guardamos en su sitio
   // en el vector.
   else
     {
       stream << a->getAbsoluteTime() << " (ABSOLUTE)" << std::endl;
-      (*element)[3] = stream.str();
+      (*element)[5] = stream.str();
     }
 
   /*std::stringstream stream;
@@ -117,20 +119,20 @@ void PrettyPrinting::visitRelative(Relative * r)
 {
   std::stringstream stream;
   
-  // Si es el tiempo de recepción (el 1º de los tiempos que leemos)
-  // creamos el vector luego lo rellenamos con dicoh tiempo de recepción.
+  // Si es el tiempo de envío (el 1º de los tiempos que leemos)
+  // creamos el vector luego lo rellenamos con dicho tiempo de recepción.
   if (element == NULL)
     {
       element = new vector<string>(6,"_NULL_");
       stream << r->getAbsoluteTime() << " (RELATIVE)" << std::endl;
-      (*element)[5] = stream.str();
+      (*element)[3] = stream.str();
     }
-  // Si es el tiempo de envío (el 2º que leemos) lo guardamos en su sitio
+  // Si es el tiempo de recepción (el 2º que leemos) lo guardamos en su sitio
   // en el vector.
   else
     {
       stream << r->getAbsoluteTime() << " (RELATIVE)" << std::endl;
-      (*element)[3] = stream.str();
+      (*element)[5] = stream.str();
     }
 
   /*std::stringstream stream;
