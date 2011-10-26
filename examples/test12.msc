@@ -6,6 +6,6 @@ instance s {"GDD"};
 
 message sms1 { "hello" } from u to a;
 message sms2 { "test1" } from a @ sms1!+4 to s @ +6;
-message sms3 {"bye"} from w @ 12 to f @ 15;
-message sms4 { "request tcp window" } from s @ 17 to a;
+message sms3 {"bye"} from w @ 3 to f @ 15;
+message sms4 { "request tcp window" } from s @ 9 to a;
 
