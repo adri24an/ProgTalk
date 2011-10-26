@@ -3,6 +3,4 @@ Notas de desarrollo a consultar en reunion:
 - Como tratamos "Syntax Error"?
 - Tiene sentido tener en metodos visit el objeto como parametro si no
   lo usamos (asi que quitariamos warnings)?
-- Le metemos orden a las instancias?
 - Corregir errores de tiempos que no lo son.
-- Solucionar chapuza del visitMessage.
