@@ -32,7 +32,8 @@ void TimeChecker::visitAbsolute(Absolute * a) {
     {
       if (time < 0)
 	{
-	  std::cout << "Error: an event's time can't be less than zero.";
+	  std::cout << "Error: an event's time can't be less than zero."
+		    << std::endl;
 	  exit(-1);
 	}
       else
@@ -44,12 +45,14 @@ void TimeChecker::visitAbsolute(Absolute * a) {
     {
       if (time < 0)
 	{
-	  std::cout << "Error: an event's time can't be less than zero.";
+	  std::cout << "Error: an event's time can't be less than zero."
+		    << std::endl;
 	  exit(-1);
 	}
       else if (time <= limit)
 	{
-	  std::cout << "Error: a message can't be received before it was sent.";
+	  std::cout << "Error: a message can't be received before it was sent."
+		    << std::endl;
 	  exit(-1);
 	}
       limit = -1; //We reset limit to check the next message interchange
@@ -64,7 +67,8 @@ void TimeChecker::visitRelative(Relative * r) {
     {
       if (time < 0)
 	{
-	  std::cout << "Error: an event's time can't be less than zero.";
+	  std::cout << "Error: an event's time can't be less than zero."
+		    << std::endl;
 	  exit(-1);
 	}
       else
@@ -76,12 +80,14 @@ void TimeChecker::visitRelative(Relative * r) {
     {
       if (time < 0)
 	{
-	  std::cout << "Error: an event's time can't be less than zero.";
+	  std::cout << "Error: an event's time can't be less than zero."
+		    << std::endl;
 	  exit(-1);
 	}
       else if (time <= limit)
 	{
-	  std::cout << "Error: a message can't be received before it was sent.";
+	  std::cout << "Error: a message can't be received before it was sent."
+		    << std::endl;
 	  exit(-1);
 	}
       limit = -1; //We reset limit to check the next message interchange
