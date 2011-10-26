@@ -60,15 +60,30 @@ void TimeChecker::visitAbsolute(Absolute * a) {
 void TimeChecker::visitRelative(Relative * r) {
   int time = r->getAbsoluteTime();
   
-  if ((time < 0) || (time <= limit))
+  if (limit == -1)
     {
-      std::cout << "Error: the timing in the communication isn't correct."
-		<< std::endl << "The time: " << time 
-		<< " is minor or equal than " << limit << std::endl;
-      exit(-1);
+      if (time < 0)
+	{
+	  std::cout << "Error: an event's time can't be less than zero.";
+	  exit(-1);
+	}
+      else
+	{
+	  limit = time;
+	}
     }
   else
     {
-      limit = time;
+      if (time < 0)
+	{
+	  std::cout << "Error: an event's time can't be less than zero.";
+	  exit(-1);
+	}
+      else if (time <= limit)
+	{
+	  std::cout << "Error: a message can't be received before it was sent.";
+	  exit(-1);
+	}
+      limit = -1; //We reset limit to check the next message interchange
     }
 }
