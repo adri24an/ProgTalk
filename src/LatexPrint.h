@@ -29,8 +29,11 @@ class LatexPrint : public MSCVisitor {
 
  private:
   
-  ofstream fs;
-  string * msg;
-  pair<int,int> aux;
+  ofstream fs; // Fichero sobre el que generamos la comnicacion traducida.
+  string * msg; // Variable temporal donde almacenamos sentencias.
+  pair<int,int> aux; // Variable temporal donde almacenamos tiempos de envio y 
+                     // recepción de un mensaje.
+  int decl; // Variable que nos dice si estamos declarando instancias (0) o
+            // si por el contrario estamos en la zona de mensajes (1).
 };
 #endif 
