@@ -1,9 +1,11 @@
 #include "LatexPrint.h"
 
 LatexPrint::LatexPrint() {
+  decl = 0; // Al principio estamos declarando instancias.
   ofstream fs("communication.tex");
   msg = new string;
-  pair<int,int> aux (-1,-1);
+  pair<int,int> aux (-1,-1); // Inicializamos variable a valores te tiempo 
+                             // imposibles.
   
   fs << "\\documentclass{article}\n";
   fs << "\\usepackage[a5paper,vmargin=1cm,hmargin=1cm]{geometry}\n";
@@ -28,12 +30,23 @@ void LatexPrint::visitMSC(MSC * m)
 
 void LatexPrint::visitInstance(Instance * i)
 {
-  fs.open("communication.tex", fstream::app);
-  fs << "\\declinst{" << i->get_iid() << "}{" << i->get_tid()
-     << "}{" << i->get_name() << "}\n";
-  fs.close();
-}
+  std::stringstream stream;
 
+  if (decl == 0)
+    {
+      std::cout << "hola" << std::endl;
+      fs.open("communication.tex", fstream::app);
+      fs << "\\declinst{" << i->get_iid() << "}{" << i->get_tid()
+	 << "}{" << i->get_name() << "}\n";
+      fs.close();
+    }
+  else
+    {
+      stream << "{" << i->get_iid() << "}";
+      msg->append(stream.str());
+    }
+}
+/*
 void LatexPrint::visitInstanceEvent(Instance * i)
 {
   std::stringstream stream;
@@ -41,9 +54,10 @@ void LatexPrint::visitInstanceEvent(Instance * i)
   stream << "{" << i->get_iid() << "}";
   msg->append(stream.str());
 }
-
+*/
 void LatexPrint::visitMessage(Message * m)
 {
+  decl = 1; // Esto no es muy elegante, repetimos la operacion innecesariamente
   fs.open("communication.tex", fstream::app);
   fs << "\n\\mess{" << m->get_sms() << "}" << *msg << "[3]\n";
   fs << "\\mscmark{t=" << aux.first << "}{" 
