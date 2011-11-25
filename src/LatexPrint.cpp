@@ -34,7 +34,6 @@ void LatexPrint::visitInstance(Instance * i)
 
   if (decl == 0)
     {
-      std::cout << "hola" << std::endl;
       fs.open("communication.tex", fstream::app);
       fs << "\\declinst{" << i->get_iid() << "}{" << i->get_tid()
 	 << "}{" << i->get_name() << "}\n";
@@ -57,7 +56,6 @@ void LatexPrint::visitInstanceEvent(Instance * i)
 */
 void LatexPrint::visitMessage(Message * m)
 {
-  decl = 1; // Esto no es muy elegante, repetimos la operacion innecesariamente
   fs.open("communication.tex", fstream::app);
   fs << "\n\\mess{" << m->get_sms() << "}" << *msg << "[3]\n";
   fs << "\\mscmark{t=" << aux.first << "}{" 
@@ -83,6 +81,9 @@ void LatexPrint::visitReceipt(Receipt * r)
 
 void LatexPrint::visitAbsolute(Absolute * a)
 {
+  if (decl != 1)
+    decl = 1; // Esto no es muy elegante,
+              // repetimos la operacion innecesariamente.
   if (aux.first == -1)
     aux.first = a->getAbsoluteTime();
   else
@@ -91,6 +92,9 @@ void LatexPrint::visitAbsolute(Absolute * a)
 
 void LatexPrint::visitRelative(Relative * r)
 {
+  if (decl != 1)
+    decl = 1; // Esto no es muy elegante,
+              // repetimos la operacion innecesariamente.
   if (aux.first == -1)
     aux.first = r->getAbsoluteTime();
   else
