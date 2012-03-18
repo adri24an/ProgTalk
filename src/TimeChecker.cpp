@@ -13,9 +13,6 @@ void TimeChecker::visitMSC(MSC * m) {
 void TimeChecker::visitInstance(Instance * i) {
 }
 
-void TimeChecker::visitInstanceEvent(Instance * i) {
-}
-
 void TimeChecker::visitMessage(Message * m) {
 }
 
