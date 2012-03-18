@@ -45,15 +45,7 @@ void LatexPrint::visitInstance(Instance * i)
       msg->append(stream.str());
     }
 }
-/*
-void LatexPrint::visitInstanceEvent(Instance * i)
-{
-  std::stringstream stream;
 
-  stream << "{" << i->get_iid() << "}";
-  msg->append(stream.str());
-}
-*/
 void LatexPrint::visitMessage(Message * m)
 {
   fs.open("communication.tex", fstream::app);

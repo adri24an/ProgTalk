@@ -20,7 +20,6 @@ class LatexPrint : public MSCVisitor {
   ~LatexPrint();
   void visitMSC(MSC * m);
   void visitInstance(Instance * i);
-  void visitInstanceEvent(Instance * i);
   void visitMessage(Message * m);
   void visitSending(Sending * s);
   void visitReceipt(Receipt * r);
