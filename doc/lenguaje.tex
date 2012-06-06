@@ -1,15 +1,29 @@
-\chapter{Lenguaje: MSCLan}
-\label{ch:lenguaje}
+\chapter{Especificación de Requisitos}
+\label{ch:requisitos}
 \lstsetpt
 
-La herramienta \textit{Progtalk} debe recibir la comunicación que el
-usuario desee procesar en un fichero escrito en un determinado
-lenguaje que permita representar MSCs. Nosotros hemos creado uno
-especificamente para este problema, y lo hemos bautizado como
-\textit{MSCLan}~\ref{ch:diseno}.
-\todo{AB:esto es lo que querías? Una referencia a la sintaxis
-  abstracta del capítulo de Diseño? O quieres que ponga aquí mismo la
-  sintaxis abstracta del lenguaje?} 
+El objetivo de nuestro proyecto es la elaboración de una herramienta
+(a la que a partir de ahora nos referiremos como \textit{Progtalk}) a
+través de la cual seamos capaces de crear una representación gráfica
+de una comunicación entre varias entidades con el objetivo de
+facilitar la compresión de dicha comunicación. Esto es especialmente
+útil en comunicaciones en las que haya multitud de entidades
+participantes y/o un gran número de intercambio de mensajes.
+
+Todas las comunicaciones que queramos procesar con la herramienta
+\textit{Progtalk} deben de estar traducidas a un lenguaje concreto que
+hemos creado para la ocasión llamado \textit{MSCLan}. A lo largo de
+este capítulo iremos detallando las características de este lenguaje.
+
+Por otro lado cómo ya comentamos en el capitulo anterior~\ref{ch:msc}
+hemos escogido los \textit{diagramas de secuencia} (a partir de ahora
+\textit{MSC, Message Sequence Charts}) para representar gráficamente
+las comunicaciones que el programa \textit{Progtalk} reciba. Como ya
+vimos, según Bjorner~\cite{Bjorner}, un \textit{MSC} es una notación
+gráfica para representar intercambios de mensajes entre
+entidades. Dentro del paradigma de nuestro problema llamaremos a estas
+entidades o individuos \textit{instancias}, y a los mensajes que
+intercambian les mantendremos el nombre de \textit{mensajes}.
 
 Nuestro lenguaje consta de dos secciones:
 \begin{itemize}
