@@ -10,6 +10,13 @@ facilitar la compresión de dicha comunicación. Esto es especialmente
 útil en comunicaciones en las que haya multitud de entidades
 participantes y/o un gran número de intercambio de mensajes.
 
+Por ejemplo, una comunicación del tipo ``Individuo A saluda al
+individuo B'' sería procesada por nuestra herramienta dando como
+resultado una representación gráfica como ésta:
+
+\todo{AB: Crear ejemplo con nuestro programa. Para ello que Angel me diga
+  como lo hace el!}
+
 Todas las comunicaciones que queramos procesar con la herramienta
 \textit{Progtalk} deben de estar traducidas a un lenguaje concreto que
 hemos creado para la ocasión llamado \textit{MSCLan}. A lo largo de
@@ -22,13 +29,18 @@ las comunicaciones que el programa \textit{Progtalk} reciba. Como ya
 vimos, según Bjorner~\cite{bjorner}, un \textit{MSC} es una notación
 gráfica para representar intercambios de mensajes entre
 entidades. Dentro del paradigma de nuestro problema llamaremos a estas
-entidades o individuos \textit{instancias}, y a los mensajes que
-intercambian les mantendremos el nombre de \textit{mensajes}.
+entidades o individuos \textit{instancias}~\ref{sec:Instancias}, y a
+los mensajes que intercambian les mantendremos el nombre de
+\textit{mensajes}~\ref{sec:Mensajes}. 
+
+Cómo ya hemos comentado anteriormente hemos creado un lenguaje llamado
+\textit{MSCLan} al que tendremos que traducir cualquier comunicación
+que queramos que \textit{Progtalk} procese.
 
 Nuestro lenguaje consta de dos secciones:
 \begin{itemize}
-\item Declaración de instancias, y
-\item declaración de mensajes.
+\item Declaración de \textit{instancias}, y
+\item declaración de \textit{mensajes}.
 \end{itemize}
 
 Cada una de estas declaraciones se llama sentencia, y entre sentencias
