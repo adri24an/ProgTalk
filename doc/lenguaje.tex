@@ -48,7 +48,9 @@ debe aparecer un símbolo '';'' que ejerce de separador.
 
 \section{Instancias}\label{sec:Instancias}
 
-Las instancias de nuestro lenguaje se describen mediante tres
+Las instancias de nuestro lenguaje, que como ya hemos dicho,
+representan a los participantes de la comunicación que queremos
+procesar, se describen mediante tres
 parámetros:
 
 \begin{itemize}
@@ -91,8 +93,11 @@ deben tener un identificador de instancia único.
 
 \section{Mensajes}\label{sec:Mensajes}
 
-Los mensajes de nuestro lenguaje se describen mediante seis
-parámetros:
+Los mensajes de nuestro lenguaje son la información que intercambian
+los participantes de la comunicación que estamos procesando. Llamamos
+\textit{evento} al envío o recepción de un mensaje.
+
+Los mensajes se describen mediante seis parámetros:
 
 \begin{itemize}
 \item Identificador de mensaje: este parámetro es opcional. En caso de
@@ -157,19 +162,28 @@ Algunos ejemplos de declaración de mensajes son:
 \section{Especificaciones de tiempos}
 \label{sec:Tiempos}
 
-Es importante que nos detengamos un momento a explicar en detalle los
-parámetros de los mensajes relativos a los tiempos de envío y
-recepción. Estos tiempos pueden ser absolutos o relativos.
+Esta sección se refiere a los instantes de tiempo en que se envían y
+reciben los mensajes~\ref{sec:Mensajes} que las
+instancias~\ref{sec:Instancias} participantes en la
+comunicación intercambian. Como ya comentamos anteriormente, nos
+referiremos al envío o recepción de un mensaje como a un
+\textit{evento}. Los tiempos en que suceden los eventos pueden ser
+especificados explicitamente en la declaración de un mensaje o no, en
+cuyo caso son calculados implicitamente por \textit{Progtalk}.
+
+Los tiempos en envío y recepción de un evento pueden ser absolutos o
+relativos.
 
 \subsection{Tiempos Absolutos}
 
 Entenderemos como tiempos absolutos los siguiente casos:
 
 \begin{itemize}
-\item Si el usuario da específicamente un valor absoluto, o
+\item Cuando en la comunicación aparece asociado a un evento
+  específicamente un valor de tiempo, o
 \item si estamos hablando del instante de envío del primer mensaje de
-  la comunicación y el usuario no ha introducido dicho parámetro. En
-  este caso consideraremos siempre un valor absoluto de cero.
+  la comunicación y en la declaración de este, no aparece ningún valor. En
+  este caso especial consideraremos siempre un valor absoluto de cero.
 \end{itemize}
 
 Un ejemplo del uso de tiempos absolutos es:
@@ -188,24 +202,26 @@ instante \textit{2} y la recepción del mensaje en la instancia
 Por otro lado entenderemos por tiempos relativos los siguiente casos:
 
 \begin{itemize}
-\item Relativo implícito: si el usuario no da específicamente un valor
-  en cuyo caso calcularemos el parámetro como el instante del ultimo
-  evento (ya sea envío del mensaje actual, o recepción del mensaje
-  anterior) mas una unidad. Por ejemplo:
+\item Relativo implícito: cuando un evento de la comunicación no tiene
+  un valor especifico, en cuyo caso lo calcularemos sumándole una unidad al
+  valor asociado al evento inmediatamente anterior (ya sea envío del
+  mensaje actual, o recepción del mensaje anterior). Por ejemplo:
 
   \begin{lstlisting}
     message m1 { "hola" } from programaA @ 2 to programaB;
   \end{lstlisting}
 
   Aquí el tiempo de recepción del mensaje se calcula a partir del
-  mensaje de envío más una unidad, es decir, que el instante de
-  recepción en \lstinline{programaB} es \textit{3}.
-\item Relativo explicito simple: si el usuario aporta un valor del
-  tipo \lstinline{{+unidad} donde \lstinline{unidad} es un numero
-  entero, pero no especifica un evento de referencia. En este caso
+  tiempo de envío de ese mismo mensaje más una unidad, es decir, que
+  el instante de recepción en \lstinline{programaB} es \textit{3}.
+
+\item Relativo explicito simple: si en la declaración de un mensaje
+  aparece como instante en que ocurre un evento un tiempo del tipo
+  \lstinline{{+unidad} donde \lstinline{unidad} es un numero 
+  entero, pero no se especifica un evento de referencia. En este caso
   calcularemos el parámetro como el instante del ultimo evento (ya
   sea envío del mensaje actual, o recepción del mensaje anterior)
-  mas el valor introducido por el usuario \lstinline{{+unidad}. Por  
+  mas el valor \lstinline{{+unidad} que aparece en la declaración. Por  
   ejemplo:
       
   \begin{lstlisting}
@@ -216,18 +232,20 @@ Por otro lado entenderemos por tiempos relativos los siguiente casos:
   mensaje de envío más \textit{3}, es decir, que el instante de
   recepción en \lstinline{programaB} es \textit{5}.
       
-\item Relativo explicito complejo: si el usuario aporta un evento de
+\item Relativo explicito complejo: si en la declaración de un mensaje
+  aparece como instante en que ocurre un evento otro evento de
   referencia y un valor del tipo \lstinline{+unidad} donde
   \lstinline{unidad} es un numero entero. El evento de referencia
   especificado por el usuario puede referirse a un evento de envío o
-  de recepción, y debe de pertenecer a un mensaje ya almacenado
+  de recepción, y debe de pertenecer a un mensaje ya declarado
   anteriormente en esa comunicación. En este caso calcularemos el
-  parámetro como el instante en que ocurrió el evento que especifico
-  el usuario sumándole el valor \lstinline{+unidad} especificado
-  también por el usuario. Cabe destacar que existe la posibilidad de
-  que sólo se introduzca el evento de referencia y que no se
-  introduzca un valor del tipo \lstinline{{+unidad}, en cuyo caso
-  consideraremos dicho valor \lstinline{+unidad} como \textit{+0}. 
+  parámetro tomando el instante en que ocurrió el evento que se
+  especifica como referencia y sumándole el valor \lstinline{+unidad}
+  especificado también en la declaración del mensaje. Cabe destacar
+  que existe la posibilidad de que sólo se introduzca el evento de
+  referencia y que no aparezca un valor del tipo \lstinline{{+unidad},
+    en cuyo caso consideraremos dicho valor \lstinline{+unidad} como
+    \textit{+0}. 
   Por ejemplo:
 
   \begin{lstlisting}
