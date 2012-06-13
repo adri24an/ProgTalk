@@ -262,8 +262,8 @@ Por otro lado entenderemos por tiempos relativos los siguiente casos:
 
 \section{Sintaxis Concreta}
 
-La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) es la 
-siguiente:
+La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) de
+\textit{MSCLan} es la siguiente:
 \begin{lstlisting}[style=spec, language={}]
     msc ::= inst_decl* message*
     inst_decl ::= INSTANCE iid |
@@ -295,11 +295,10 @@ En ella hemos escrito con minúsculas los símbolos no terminales, y en
 mayúsculas los símbolos terminales. Cabe destacar que LAMBDA
 representa la \textit{palabra vacía}.
 
-Como vemos, regla \textit{msc} esta formada de un conjunto de declaraciones de
-instancias seguido de un conjunto de declaraciones de mensajes. Los distintos
-formatos de intancias y mensajes ya han sido explicados anteriormente en este
-capítulo.
-
+Como vemos, la regla \textit{msc} esta formada de por un conjunto de
+declaraciones de instancias seguido de un conjunto de declaraciones de
+mensajes. Los distintos formatos de intancias y mensajes ya han sido
+explicados anteriormente en este capítulo.
 
 %%% Local Variables: 
 %%% mode: latex
