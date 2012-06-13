@@ -63,7 +63,7 @@ parámetros:
   pensado darle una funcionalidad real en un futuro desarrollo.
 \end{itemize}
 
-El formato del lenguaje es:
+El formato de la declaración de una instancia es el siguiente:
 
 \begin{itemize}
 \item \lstinline[mathescape]!instance $iid$ of $tid$ { $name$ }!
@@ -115,13 +115,14 @@ parámetros:
 \item Tiempo de envío: este parámetro es opcional. Representa el
   momento exacto en que el mensaje fue enviado, y
 \item Tiempo de recepción: este parámetro es opcional. Representa el
-  momento exacto en que el mensaje fue enviado.
+  momento exacto en que el mensaje fue recibido.
 \end{itemize}
 
-El formato del lenguaje es:
+El formato de la declaración de un mensaje es el siguiente
 
 \begin{itemize}
-\item \lstinline[mathescape]!message $mid$ { $sms$ } from $orig$ @ $tsend$ to $dest$ @ $trec$!
+\item \lstinline[mathescape]!message $mid$ { $sms$ } from $orig$ @
+  $tsend$ to $dest$ @ $trec$! 
 \end{itemize}
 
 donde,
@@ -129,6 +130,8 @@ donde,
 \item \lstinline{message}, \lstinline{from}, \lstinline{to},
   ''\lstinline{@}'', ``\lstinline!{!'' y ``\lstinline!}!'' son
   palabras reservadas del lenguaje, y
+\todo{AB: Qué hago para el tema de los corchetes para identificar
+  parametros opcionales? Lo uso siempre?}
 \item $mid$ (Identificador de mensaje), $sms$ (Mensaje), $orig$
   (Instancia origen del mensaje), $tsend$ (Tiempo de envío), $dest$
   (Instancia destino del mensaje), y $trec$ (Tiempo de recepción)
