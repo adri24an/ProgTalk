@@ -1,34 +1,122 @@
-\documentclass[12pt,a4paper,twopages]{book}
+%% Recomendaciones seguidas: http://www.fi.upm.es/?pagina=1475
+%% - Paginas: DIN A4, a doble cara
+%% - Portada: en breve se publicara un ejemplo
+%% - Letra: Times Roman 12 puntos o equivalente en negro
+%% - Márgenes: superior e inferior 3,5 cm, izquierdo y derecho 3 cm.
+%% - Superficie del texto: 22,5 cm. de alto (aproximadamente 40
+%%   líneas) y 15 cm. de ancho
+%% - Cabecera y pies: fuera de la superficie del texto
+%% - Secciones y subsecciones: reseñadas con numeración decimal a
+%%   continuación del número del capítulo. Ej.: subsecciones 2.3.1.
+%% - Títulos de capítulos: en letra mayúscula
+%% - Números de página: siempre centrado en margen inferior, página 1
+%%   comienza en capítulo 1, todas la secciones precedentes al
+%%   capítulo 1 en número romano (en minúscula)
+%% - Bibliografía: según las recomendaciones de la IEEE
+%%   (http://www.fi.upm.es/docs/estudios/grado/1475_ieeecitationref.pdf)
+
+\documentclass[twoside,12pt]{book}
+\usepackage[
+a4paper,
+bindingoffset=10mm,
+hmargin=30mm,
+vmargin=35mm,
+textwidth=150mm,
+textheight=225mm,
+marginpar=25mm]{geometry}
+\linespread{1.1} % Para forzar unas 40 líneas
+\setlength{\parskip}{1.5ex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[spanish]{babel}
+% Codificación de caracteres
 \usepackage[utf8]{inputenc}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Fonts 
-% \usepackage{fourier}
-% \usepackage[scaled=0.83]{helvet} %% Helvetica queda demasiado grande
-% \renewcommand{\ttdefault}{txtt}
-% \usepackage[scaled=0.9]{inconsolata}
-% \usepackage[scaled=0.75]{beramono}
-\usepackage{courier}
+% Selección del lenguaje
+\usepackage[spanish,english]{babel}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{graphicx} %% and then \includegraphics[scale=0.5,...]{filename}
+%% Cabeceras
+\usepackage{fancyhdr}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Espaciado
-\usepackage{setspace}
-% \singlespacing
-\onehalfspacing
-% \doublespacing
-% \setlength{\parskip}{\baselineskip}
-\setlength{\marginparwidth}{7em}
+%% Gráficos
+\usepackage[final]{graphicx}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{ifdraft}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tipos de letra
+\usepackage{kmath,kerkis}
+\usepackage[scaled=0.83]{helvet} %% Helvetica queda demasiado grande
+\usepackage[scaled=0.75]{beramono}
+\usepackage[T1]{fontenc}
+
+\newcommand{\dedicafont}{\usefont{T1}{phv}{m}{n}\fontsize{14}{17.5}\selectfont}
+\newcommand*{\copyrightfont}{\usefont{T1}{phv}{m}{n}\fontsize{6}{7.5}\selectfont}
+\newcommand{\sectionalfont}{\usefont{T1}{phv}{b}{n}}
+% {64}{80} {56}{70} {48}{60} {32}{40} {24}{30} {18}{22.5} {16}{20} {14}{17.5} {12}{15}
+\newcommand{\partnumberfont}{\sectionalfont\fontsize{64}{80}\selectfont}
+\newcommand{\parttitlefont}{\sectionalfont\fontsize{48}{60}\selectfont}
+\newcommand{\chapternumberfont}{\sectionalfont\fontsize{64}{80}\selectfont}
+\newcommand{\chaptertitlefont}{\sectionalfont\fontsize{32}{40}\selectfont}
+\newcommand{\sectiontitlefont}{\sectionalfont\fontsize{18}{22.5}\selectfont}
+\newcommand{\subsectiontitlefont}{\sectionalfont\fontsize{16}{20}\selectfont}
+\newcommand{\subsubsectiontitlefont}{\sectionalfont\fontsize{14}{17.5}\selectfont}
+\newcommand{\headertitlefont}{\sectionalfont\fontsize{12}{15}\selectfont}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tipos de letra en cabeceras de secciones
+\usepackage{titlesec}
+
+\titleformat{\part} % command
+[display] % shape
+{} % format
+{\partnumberfont\flushright Part\quad\thepart} % label
+{0pt} % sep
+{\parttitlefont\flushright} % before
+[] % after
+
+\titleformat{\chapter} % command
+[display] % shape
+{} % format
+{\chapternumberfont\flushright\thechapter} % label
+{0pt} % sep
+{\chaptertitlefont\flushright} % before
+[] % after
+
+\titleformat*{\section}{\sectiontitlefont}
+
+\titleformat*{\subsection}{\subsectiontitlefont}
+
+\titleformat*{\subsubsection}{\subsubsectiontitlefont}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Macros para este TFC
+\newcommand{\titulo}{Progtalk: un lenguaje textual para diagramas de secuencia}
+\newcommand{\autor}{Daniel Martínez Esteban}
+\newcommand{\tutor}{Adrián Bartol Molina}
+\newcommand{\fecha}{Julio 2012}
+
+% Cleardoublepage
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+\hbox{}
+\vspace*{\fill}
+\begin{center}
+% This page intentionally contains only this sentence.
+\end{center}
+\vspace{\fill}
+\thispagestyle{empty}
+\newpage
+\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+\usepackage[textsize=small]{todonotes}
+
 \usepackage{hyperref}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{listings}
 
 \lstdefinestyle{spec}{
@@ -65,45 +153,104 @@
   }
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{todonotes}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{msc}
 \usepackage{auto-pst-pdf}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Trabajo de Fin de Carrera: Progtalk}
-\author{Adrián Bartol Molina}
-\date{Junio de 2012}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Comienza en libro
 \begin{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SELECCIÓN DEL IDIOMA
+%% (NO TOCAR: SÓLO SE ADMITE ESPAÑOL)
+%% (VER summary.tex para activar otro idioma, ej. inglés)
+\selectlanguage{spanish}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\tableofcontents
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Portada, dedicatoria, índices, agradecimientos y resúmenes
+\pagestyle{empty}
+
+\input{portada}
+\cleardoublepage
+
+\input{dedicatoria}
+\cleardoublepage
+
+\pagestyle{plain}
+\pagenumbering{roman}
+
+\input{indices}
+\cleardoublepage
+
+\input{agradecimientos}
+\cleardoublepage
+
 \input{resumen}
+\cleardoublepage
+
+\input{summary}
+\cleardoublepage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Capítulos
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Cabeceras
+\pagestyle{fancy}
+% Remembering the chapter title:
+\renewcommand{\chaptermark}[1]{\markboth{\headertitlefont\thechapter\quad#1}{}}
+% Remembering section number and title:
+\renewcommand{\sectionmark}[1]{\markright{\headertitlefont\thesection\quad#1}}
+\fancyhead{} % Clear all header fields
+\fancyhead[LE]{\leftmark}
+\fancyhead[RO]{\rightmark}
+\fancyfoot{} % Clear all footer fields
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CAPÍTULOS:
+%%  * PONER CADA CAPÍTULO EN UN FICHERO
+%%  * AÑADIR \cleardoublepage DESPUÉS DE CADA input
+
 \input{intromsc}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
 \input{lenguaje}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
 \input{disegno}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage
 \input{conclusiones}
+\cleardoublepage
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\addcontentsline{toc}{chapter}{Bibliografía}
-\bibliography{progtalk.bib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% COMIENZO DE LOS APÉNDICES
+%% (NO TOCAR)
+% \appendix
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% APÉNDICES:
+%%  * PONER CADA APÉNDICE EN UN FICHERO COMO SI FUERAN CAPÍTULOS
+%%  * HACER UN include POR CADA FICHERO E INCLUIRLO EN includeonly
+%%  * AÑADIR \clearemptydoublepage DESPUÉS DE CADA include
+% \include{ej-apendice}
+% \cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% COMIENZO DE LA BIBLIOGRAFÍA
+%% (NO TOCAR)
 \bibliographystyle{plain}
+\addcontentsline{toc}{chapter}{Bibliografía}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BIBLIOGRAFÍA
+%% (AÑADIR FICHEROS .bib CON LA BIBLIOGRAFÍA USADA EN EL TFC)
+\bibliography{progtalk.bib}
+\nocite{*}
 
 \end{document}
 
