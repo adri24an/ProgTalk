@@ -78,7 +78,7 @@ de arriba hacia abajo. Los eventos que pueden suceder entre instancias son:
 \begin{msc}{Instances}
 
 \declinst{a}{User}{}
-\declinst{f}{Agent}{DHL}
+\declinst{f}{Agent}{``DHL''}
 \declinst{u}{Computer}{}
 
 \end{msc}
@@ -109,15 +109,15 @@ de intercambio de mensajes en la figura~\ref{fig:message_exchange}
 \begin{msc}{Message exchange}
 
 \declinst{a}{User}{}
-\declinst{f}{Agent}{"DHL"}
+\declinst{f}{Agent}{``DHL''}
 
-\mess{"hello"}{a}{f}[3]
+\mess{``hello''}{a}{f}[3]
 \mscmark{t=0}{a}
 \nextlevel[3]
 \mscmark[br]{t=1}{f}
 \nextlevel[3]
 
-\mess{"test1"}{f}{a}[3]
+\mess{``test1''}{f}{a}[3]
 \mscmark{t=4}{f}
 \nextlevel[3]
 \mscmark[br]{t=10}{a}
@@ -125,7 +125,6 @@ de intercambio de mensajes en la figura~\ref{fig:message_exchange}
 
 \end{msc}
   \end{postscript}
-  \includegraphics[scale=1]{./images/message exchange.png}
   \caption{Ejemplo de un intercambio de mensajes en un msc.}
   \label{fig:message_exchange}
 \end{figure}
@@ -140,7 +139,27 @@ un ejemplo en la figura~\ref{fig:condition}
 
 \begin{figure}
   \centering
-  \includegraphics[scale=1]{./images/condition.png}
+
+  \begin{postscript}
+\begin{msc}{Conditions}
+
+\declinst{u}{User1}{``Client''}
+\declinst{f}{User2}{``Server''}
+
+\condition{some condition}{u,f}
+\nextlevel[3]
+\mess{``hello''}{u}{f}
+\nextlevel
+\action{a}{f}
+\nextlevel
+\condition{C}{u}
+\nextlevel[2]
+\condition{A,B,C}{u,f}
+\nextlevel[2]
+
+\end{msc}
+\end{postscript}
+
   \caption{Ejemplo de una condicion dentro en un msc.}
   \label{fig:condition}
 \end{figure}
@@ -153,7 +172,21 @@ nota con un reloj de arena.
 
 \begin{figure}
   \centering
-  \includegraphics[scale=1]{./images/timer.png}
+\begin{postscript}
+\begin{msc}{Timers}
+
+\declinst{u}{User1}{``Client''}
+\declinst{f}{User2}{``Server''}
+
+\settimer{T,50}{f}
+\nextlevel[2]
+\mess{``hello''}{f}{u}[1]
+\nextlevel[2]
+\timeout{T}{u}
+
+\end{msc}
+\end{postscript}
+
   \caption{Ejemplo de un temporizador dentro en un msc.}
   \label{fig:timer}
 \end{figure}
@@ -163,7 +196,29 @@ Evento donde una instancia crea a otra nueva. Podemos ver un ejemplo
 en la figura~\ref{fig:instanceprocess}
 \begin{figure}
   \centering
-  \includegraphics[scale=1]{./images/instanceprocess.png}
+
+  \begin{postscript}
+\begin{msc}{Timers}
+
+\declinst{u}{User1}{Client}
+\dummyinst{f}{}{}
+\declinst{k}{User3}{Admin}
+
+\mess{``request''}{u}{k}
+\nextlevel[3]
+\create{kick}{k}{f}{}{f}
+\nextlevel
+\stop{k}
+\nextlevel[2]
+\mess{``OK''}{f}{u}
+\nextlevel
+\stop{f}
+\nextlevel[2]
+\create{start}[b]{u}[.75]{k}{}{again}
+\nextlevel[2]
+
+\end{msc}    
+  \end{postscript}
   \caption{Ejemplo de procesos de creación y terminación de instancias.}
   \label{fig:instanceprocess}
 \end{figure}
@@ -178,7 +233,37 @@ ejemplo en la figura~\ref{fig:region}.
 
 \begin{figure}
   \centering
-  \includegraphics[scale=1]{./images/region.png}
+  \begin{postscript}
+\begin{msc}{Communication}
+
+\declinst{u}{User1}{``Client''}
+\declinst{f}{User2}{``Server''}
+\declinst{k}{User3}{``Admin''}
+
+\regionstart{activation}{u}
+\nextlevel[3]
+\regionend{u}
+\mess{``hello''}{u}{f}
+\nextlevel
+\regionstart{coregion}{f}
+\nextlevel
+\regionstart{suspension}{k}
+\mess{``bye''}{f}{k}
+\nextlevel
+\regionstart{activation}{u}
+\mess{``Test''}{f}{u}
+\nextlevel
+\regionend{f}
+\nextlevel[3]
+\regionend{u}
+\mess*{``OK''}{u}{f}
+\nextlevel
+\mess{``Finishing''}{f}{k}
+\regionend{k}
+\nextlevel
+
+\end{msc}
+  \end{postscript}
   \caption{Ejemplo de una corregion dentro en un msc.}
   \label{fig:region}
 \end{figure}
@@ -220,7 +305,8 @@ el mismo nombre de instancia.
 
 \section{Los MSC en Progtalk}
 En nuestro proyecto solo vamos a usar eventos de mensajes entrantes y
-salientes. En la figura \ref{fig:lars} vemos una representación
+salientes. En la figura \ref{fig:lars}\todo{¿Dónde está el fichero con el codificado msc de lars (lars.tex)?}
+ vemos una representación
 gráfica de un ejemplo de comunicación.
 
 \begin{figure}
