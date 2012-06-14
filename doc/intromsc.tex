@@ -4,11 +4,26 @@
 En este capítulo realizamos una introducción a los diagramas de
 secuencia. Explicaremos el lenguaje gráfico utilizado y ofreceremos el
 significado informal de algunas de sus construcciones. Termina el
-capítulo con una descripción de aquellas construcciones de los
-diagramas de secuencia tratados en este trabajo.
+capítulo con una descripción algo más detallada de aquellas
+construcciones de los diagramas de secuencia tratados en este trabajo.
 
-\section{Diagramas de secuencia}
-Los diagramas de secuencia, en su diferentes variantes, se usan
+\section{Lenguajes de escenario}
+Scenario languages are widely used in software development. Typical
+usage scenarios, forbidden behaviors, test cases and many more aspects
+can be depicted with graphical scenarios. Several language variants
+were proposed over the years. The International Telecommunication
+Union’s (ITU) Message Sequence Chart (MSC) [6] was one of the first of
+such languages. It is widely used, since its first introduction in
+1993 it was updated several times, and the specification defines also
+a formal semantics for the basic elements of the language based on
+process theory. Triggered Message Sequence Charts (TMSC) [8] proposed
+extensions to MSC to express conditions and refinement in a precise
+way. Live Sequence Charts (LSC) [9] concentrated on distinguishing
+possible and necessary behaviors. A special technique and a tool, the
+Play-Engine, were also developed for LSC to specify reactive systems
+[10].
+
+Los diagramas de secuencia, en sus diferentes variantes, se usan
 intensivamente para la descripción de sistemas (no solo sistemas
 software). Con ellos suelen describirse escenarios de uso típico del
 sistema, comportamientos prohibidos en el sistema, casos de prueba,
@@ -26,24 +41,34 @@ sistema de ERTMS/ETCS (\emph{European Raiway Traffic Management System /
 \begin{center}
   \includegraphics[width=0.9\linewidth]{images/ejemplo-ertms}
 \end{center}
-El diagrama describe un escenario Se puede observar 
+El diagrama describe un escenario de comunicación entre el sistema
+embarcado en el tren y el sistema en la vía que lleva a establecer una
+conexión estable entre ambos. Se puede observar que 
+
+\url{http://www.xmlblaster.org/replication/ch02s04.html}
+Database Replication
+Guide on how to perform Database replication with XmlBlaster
+insertSequence.png
+
+\url{http://docs.oracle.com/cd/E15919_01/wlp.1032/e14235/chap_details.htm}
+Fusion Middleware Federated Portals Guide for Oracle WebLogic Portal
+Federated Portal Architecture
+Web Services for Remote Portlets (WSRP).
+WSRP Sequence Diagram
+procflow.gif
+
+\url{http://www.agilemodeling.com/artifacts/sequenceDiagram.htm}
+What Scott W. Ambler calls System-level sequence diagram.
+sequenceDiagramSystemLevel.JPG
 
 
-Scenario languages are widely used in software development. Typical
-usage scenarios, forbidden behaviors, test cases and many more aspects
-can be depicted with graphical scenarios. Several language variants
-were proposed over the years. The International Telecommunication
-Union’s (ITU) Message Sequence Chart (MSC) [6] was one of the first of
-such languages. It is widely used, since its first introduction in
-1993 it was updated several times, and the specification defines also
-a formal semantics for the basic elements of the language based on
-process theory. Triggered Message Sequence Charts (TMSC) [8] proposed
-extensions to MSC to express conditions and refinement in a precise
-way. Live Sequence Charts (LSC) [9] concentrated on distinguishing
-possible and necessary behaviors. A special technique and a tool, the
-Play-Engine, were also developed for LSC to specify reactive systems
-[10].
+\url{http://docs.tinyos.net/tinywiki/index.php/TUnit_Test_Flow}
+System Sequence Diagrams to illustrate proper use of TUnit. TUnit is a unit testing framework geared for TinyOS and sensor networks. 
+\url{System_sequence_diagram.jpg}
 
+
+
+\section{Diagramas de secuencia}
 
 Según Bjorner \cite{bjorner}, los diagramas de secuencia (a partir de
 ahora MSCs), \todo{AB: aquí me pones la pregunta ''de qué?''. No
