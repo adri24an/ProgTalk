@@ -1,5 +1,49 @@
-\chapter{MSC: Diagramas de secuencia}
+\chapter{Introducción a los diagramas de secuencia}
 \label{ch:msc}
+
+En este capítulo realizamos una introducción a los diagramas de
+secuencia. Explicaremos el lenguaje gráfico utilizado y ofreceremos el
+significado informal de algunas de sus construcciones. Termina el
+capítulo con una descripción de aquellas construcciones de los
+diagramas de secuencia tratados en este trabajo.
+
+\section{Diagramas de secuencia}
+Los diagramas de secuencia, en su diferentes variantes, se usan
+intensivamente para la descripción de sistemas (no solo sistemas
+software). Con ellos suelen describirse escenarios de uso típico del
+sistema, comportamientos prohibidos en el sistema, casos de prueba,
+etc. Podríamos decir que se han convertido en una herramienta
+fundamental de comunicación entre los participantes en el desarrollo
+de los sistemas (la variante de UML es la segunda notación más usada,
+sólo superada por los diagramas de clase
+\cite{Dobing:2006:UU:1125944.1125949}).
+
+Antes de continuar, veamos un ejemplo real. El ejemplo es un diagrama
+de secuencias escrito utilizando una notación informal, extraído del
+capítulo 3 del \emph{subset} 26 de la especificación de requisitos de
+sistema de ERTMS/ETCS (\emph{European Raiway Traffic Management System /
+  European Train Control System}):
+\begin{center}
+  \includegraphics[width=0.9\linewidth]{images/ejemplo-ertms}
+\end{center}
+El diagrama describe un escenario Se puede observar 
+
+
+Scenario languages are widely used in software development. Typical
+usage scenarios, forbidden behaviors, test cases and many more aspects
+can be depicted with graphical scenarios. Several language variants
+were proposed over the years. The International Telecommunication
+Union’s (ITU) Message Sequence Chart (MSC) [6] was one of the first of
+such languages. It is widely used, since its first introduction in
+1993 it was updated several times, and the specification defines also
+a formal semantics for the basic elements of the language based on
+process theory. Triggered Message Sequence Charts (TMSC) [8] proposed
+extensions to MSC to express conditions and refinement in a precise
+way. Live Sequence Charts (LSC) [9] concentrated on distinguishing
+possible and necessary behaviors. A special technique and a tool, the
+Play-Engine, were also developed for LSC to specify reactive systems
+[10].
+
 
 Según Bjorner \cite{bjorner}, los diagramas de secuencia (a partir de
 ahora MSCs), \todo{AB: aquí me pones la pregunta ''de qué?''. No
@@ -62,6 +106,26 @@ de intercambio de mensajes en la figura~\ref{fig:message_exchange}
 
 \begin{figure}
   \centering
+  \begin{postscript}
+\begin{msc}{Message exchange}
+
+\declinst{a}{User}{}
+\declinst{f}{Agent}{"DHL"}
+
+\mess{"hello"}{a}{f}[3]
+\mscmark{t=0}{a}
+\nextlevel[3]
+\mscmark[br]{t=1}{f}
+\nextlevel[3]
+
+\mess{"test1"}{f}{a}[3]
+\mscmark{t=4}{f}
+\nextlevel[3]
+\mscmark[br]{t=10}{a}
+\nextlevel[3]
+
+\end{msc}
+  \end{postscript}
   \includegraphics[scale=1]{./images/message exchange.png}
   \caption{Ejemplo de un intercambio de mensajes en un msc.}
   \label{fig:message_exchange}
