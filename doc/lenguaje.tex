@@ -1,20 +1,46 @@
-\chapter{Lenguaje: MSCLan}
-\label{ch:lenguaje}
+\chapter{Especificación de Requisitos}
+\label{ch:requisitos}
 \lstsetpt
 
-La herramienta \textit{Progtalk} debe recibir la comunicación que el
-usuario desee procesar en un fichero escrito en un determinado
-lenguaje que permita representar MSCs. Nosotros hemos creado uno
-especificamente para este problema, y lo hemos bautizado como
-\textit{MSCLan}~\ref{ch:diseno}.
-\todo{AB:esto es lo que querías? Una referencia a la sintaxis
-  abstracta del capítulo de Diseño? O quieres que ponga aquí mismo la
-  sintaxis abstracta del lenguaje?} 
+El objetivo de nuestro proyecto es la elaboración de una herramienta
+(a la que a partir de ahora nos referiremos como \textit{Progtalk}) a
+través de la cual seamos capaces de crear una representación gráfica
+de una comunicación entre varias entidades con el objetivo de
+facilitar la compresión de dicha comunicación. Esto es especialmente
+útil en comunicaciones en las que haya multitud de entidades
+participantes y/o un gran número de intercambio de mensajes.
+
+Por ejemplo, una comunicación del tipo ``Individuo A saluda al
+individuo B'' sería procesada por nuestra herramienta dando como
+resultado una representación gráfica como ésta:
+
+\todo{AB: Crear ejemplo con nuestro programa. Para ello que Angel me diga
+  como lo hace el!}
+
+Todas las comunicaciones que queramos procesar con la herramienta
+\textit{Progtalk} deben de estar traducidas a un lenguaje concreto que
+hemos creado para la ocasión llamado \textit{MSCLan}. A lo largo de
+este capítulo iremos detallando las características de este lenguaje.
+
+Por otro lado cómo ya comentamos en el capitulo anterior~\ref{ch:msc}
+hemos escogido los \textit{diagramas de secuencia} (a partir de ahora
+\textit{MSC, Message Sequence Charts}) para representar gráficamente
+las comunicaciones que el programa \textit{Progtalk} reciba. Como ya
+vimos, según Bjorner~\cite{bjorner}, un \textit{MSC} es una notación
+gráfica para representar intercambios de mensajes entre
+entidades. Dentro del paradigma de nuestro problema llamaremos a estas
+entidades o individuos \textit{instancias}~\ref{sec:Instancias}, y a
+los mensajes que intercambian les mantendremos el nombre de
+\textit{mensajes}~\ref{sec:Mensajes}. 
+
+Cómo ya hemos comentado anteriormente hemos creado un lenguaje llamado
+\textit{MSCLan} al que tendremos que traducir cualquier comunicación
+que queramos que \textit{Progtalk} procese.
 
 Nuestro lenguaje consta de dos secciones:
 \begin{itemize}
-\item Declaración de instancias, y
-\item declaración de mensajes.
+\item Declaración de \textit{instancias}, y
+\item declaración de \textit{mensajes}.
 \end{itemize}
 
 Cada una de estas declaraciones se llama sentencia, y entre sentencias
@@ -22,7 +48,9 @@ debe aparecer un símbolo '';'' que ejerce de separador.
 
 \section{Instancias}\label{sec:Instancias}
 
-Las instancias de nuestro lenguaje se describen mediante tres
+Las instancias de nuestro lenguaje, que como ya hemos dicho,
+representan a los participantes de la comunicación que queremos
+procesar, se describen mediante tres
 parámetros:
 
 \begin{itemize}
@@ -37,7 +65,7 @@ parámetros:
   pensado darle una funcionalidad real en un futuro desarrollo.
 \end{itemize}
 
-El formato del lenguaje es:
+El formato de la declaración de una instancia es el siguiente:
 
 \begin{itemize}
 \item \lstinline[mathescape]!instance $iid$ of $tid$ { $name$ }!
@@ -65,8 +93,11 @@ deben tener un identificador de instancia único.
 
 \section{Mensajes}\label{sec:Mensajes}
 
-Los mensajes de nuestro lenguaje se describen mediante seis
-parámetros:
+Los mensajes de nuestro lenguaje son la información que intercambian
+los participantes de la comunicación que estamos procesando. Llamamos
+\textit{evento} al envío o recepción de un mensaje.
+
+Los mensajes se describen mediante seis parámetros:
 
 \begin{itemize}
 \item Identificador de mensaje: este parámetro es opcional. En caso de
@@ -89,13 +120,14 @@ parámetros:
 \item Tiempo de envío: este parámetro es opcional. Representa el
   momento exacto en que el mensaje fue enviado, y
 \item Tiempo de recepción: este parámetro es opcional. Representa el
-  momento exacto en que el mensaje fue enviado.
+  momento exacto en que el mensaje fue recibido.
 \end{itemize}
 
-El formato del lenguaje es:
+El formato de la declaración de un mensaje es el siguiente
 
 \begin{itemize}
-\item \lstinline[mathescape]!message $mid$ { $sms$ } from $orig$ @ $tsend$ to $dest$ @ $trec$!
+\item \lstinline[mathescape]!message $mid$ { $sms$ } from $orig$ @
+  $tsend$ to $dest$ @ $trec$! 
 \end{itemize}
 
 donde,
@@ -103,6 +135,8 @@ donde,
 \item \lstinline{message}, \lstinline{from}, \lstinline{to},
   ''\lstinline{@}'', ``\lstinline!{!'' y ``\lstinline!}!'' son
   palabras reservadas del lenguaje, y
+\todo{AB: Qué hago para el tema de los corchetes para identificar
+  parametros opcionales? Lo uso siempre?}
 \item $mid$ (Identificador de mensaje), $sms$ (Mensaje), $orig$
   (Instancia origen del mensaje), $tsend$ (Tiempo de envío), $dest$
   (Instancia destino del mensaje), y $trec$ (Tiempo de recepción)
@@ -128,19 +162,28 @@ Algunos ejemplos de declaración de mensajes son:
 \section{Especificaciones de tiempos}
 \label{sec:Tiempos}
 
-Es importante que nos detengamos un momento a explicar en detalle los
-parámetros de los mensajes relativos a los tiempos de envío y
-recepción. Estos tiempos pueden ser absolutos o relativos.
+Esta sección se refiere a los instantes de tiempo en que se envían y
+reciben los mensajes~\ref{sec:Mensajes} que las
+instancias~\ref{sec:Instancias} participantes en la
+comunicación intercambian. Como ya comentamos anteriormente, nos
+referiremos al envío o recepción de un mensaje como a un
+\textit{evento}. Los tiempos en que suceden los eventos pueden ser
+especificados explicitamente en la declaración de un mensaje o no, en
+cuyo caso son calculados implicitamente por \textit{Progtalk}.
+
+Los tiempos en envío y recepción de un evento pueden ser absolutos o
+relativos.
 
 \subsection{Tiempos Absolutos}
 
 Entenderemos como tiempos absolutos los siguiente casos:
 
 \begin{itemize}
-\item Si el usuario da específicamente un valor absoluto, o
+\item Cuando en la comunicación aparece asociado a un evento
+  específicamente un valor de tiempo, o
 \item si estamos hablando del instante de envío del primer mensaje de
-  la comunicación y el usuario no ha introducido dicho parámetro. En
-  este caso consideraremos siempre un valor absoluto de cero.
+  la comunicación y en la declaración de este, no aparece ningún valor. En
+  este caso especial consideraremos siempre un valor absoluto de cero.
 \end{itemize}
 
 Un ejemplo del uso de tiempos absolutos es:
@@ -159,24 +202,26 @@ instante \textit{2} y la recepción del mensaje en la instancia
 Por otro lado entenderemos por tiempos relativos los siguiente casos:
 
 \begin{itemize}
-\item Relativo implícito: si el usuario no da específicamente un valor
-  en cuyo caso calcularemos el parámetro como el instante del ultimo
-  evento (ya sea envío del mensaje actual, o recepción del mensaje
-  anterior) mas una unidad. Por ejemplo:
+\item Relativo implícito: cuando un evento de la comunicación no tiene
+  un valor especifico, en cuyo caso lo calcularemos sumándole una unidad al
+  valor asociado al evento inmediatamente anterior (ya sea envío del
+  mensaje actual, o recepción del mensaje anterior). Por ejemplo:
 
   \begin{lstlisting}
     message m1 { "hola" } from programaA @ 2 to programaB;
   \end{lstlisting}
 
   Aquí el tiempo de recepción del mensaje se calcula a partir del
-  mensaje de envío más una unidad, es decir, que el instante de
-  recepción en \lstinline{programaB} es \textit{3}.
-\item Relativo explicito simple: si el usuario aporta un valor del
-  tipo \lstinline{{+unidad} donde \lstinline{unidad} es un numero
-  entero, pero no especifica un evento de referencia. En este caso
+  tiempo de envío de ese mismo mensaje más una unidad, es decir, que
+  el instante de recepción en \lstinline{programaB} es \textit{3}.
+
+\item Relativo explicito simple: si en la declaración de un mensaje
+  aparece como instante en que ocurre un evento un tiempo del tipo
+  \lstinline{{+unidad} donde \lstinline{unidad} es un numero 
+  entero, pero no se especifica un evento de referencia. En este caso
   calcularemos el parámetro como el instante del ultimo evento (ya
   sea envío del mensaje actual, o recepción del mensaje anterior)
-  mas el valor introducido por el usuario \lstinline{{+unidad}. Por  
+  mas el valor \lstinline{{+unidad} que aparece en la declaración. Por  
   ejemplo:
       
   \begin{lstlisting}
@@ -187,18 +232,20 @@ Por otro lado entenderemos por tiempos relativos los siguiente casos:
   mensaje de envío más \textit{3}, es decir, que el instante de
   recepción en \lstinline{programaB} es \textit{5}.
       
-\item Relativo explicito complejo: si el usuario aporta un evento de
+\item Relativo explicito complejo: si en la declaración de un mensaje
+  aparece como instante en que ocurre un evento otro evento de
   referencia y un valor del tipo \lstinline{+unidad} donde
   \lstinline{unidad} es un numero entero. El evento de referencia
   especificado por el usuario puede referirse a un evento de envío o
-  de recepción, y debe de pertenecer a un mensaje ya almacenado
+  de recepción, y debe de pertenecer a un mensaje ya declarado
   anteriormente en esa comunicación. En este caso calcularemos el
-  parámetro como el instante en que ocurrió el evento que especifico
-  el usuario sumándole el valor \lstinline{+unidad} especificado
-  también por el usuario. Cabe destacar que existe la posibilidad de
-  que sólo se introduzca el evento de referencia y que no se
-  introduzca un valor del tipo \lstinline{{+unidad}, en cuyo caso
-  consideraremos dicho valor \lstinline{+unidad} como \textit{+0}. 
+  parámetro tomando el instante en que ocurrió el evento que se
+  especifica como referencia y sumándole el valor \lstinline{+unidad}
+  especificado también en la declaración del mensaje. Cabe destacar
+  que existe la posibilidad de que sólo se introduzca el evento de
+  referencia y que no aparezca un valor del tipo \lstinline{{+unidad},
+    en cuyo caso consideraremos dicho valor \lstinline{+unidad} como
+    \textit{+0}. 
   Por ejemplo:
 
   \begin{lstlisting}
@@ -213,10 +260,12 @@ Por otro lado entenderemos por tiempos relativos los siguiente casos:
   \textit{7})), el valor \textit{+0} dando como resultado \textit{7}.
 \end{itemize}
 
+\todo{AB: hacer imagenes ilustrativas para cada caso}
+
 \section{Sintaxis Concreta}
 
-La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) es la 
-siguiente:
+La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) de
+\textit{MSCLan} es la siguiente:
 \begin{lstlisting}[style=spec, language={}]
     msc ::= inst_decl* message*
     inst_decl ::= INSTANCE iid |
@@ -248,11 +297,10 @@ En ella hemos escrito con minúsculas los símbolos no terminales, y en
 mayúsculas los símbolos terminales. Cabe destacar que LAMBDA
 representa la \textit{palabra vacía}.
 
-Como vemos, regla \textit{msc} esta formada de un conjunto de declaraciones de
-instancias seguido de un conjunto de declaraciones de mensajes. Los distintos
-formatos de intancias y mensajes ya han sido explicados anteriormente en este
-capítulo.
-
+Como vemos, la regla \textit{msc} esta formada de por un conjunto de
+declaraciones de instancias seguido de un conjunto de declaraciones de
+mensajes. Los distintos formatos de intancias y mensajes ya han sido
+explicados anteriormente en este capítulo.
 
 %%% Local Variables: 
 %%% mode: latex
