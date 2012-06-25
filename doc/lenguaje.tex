@@ -224,13 +224,32 @@ Entenderemos como tiempos absolutos los siguiente casos:
 Un ejemplo del uso de tiempos absolutos es:
 
 \begin{lstlisting}
-message m1 { "hola" } from programaA @ 2 to programaB @ 5;
+message m1 { "hola" } from A @ 2 to B @ 5;
 \end{lstlisting}
 
 donde el mensaje \lstinline{m1} consiste en el envío del mensaje
-\lstinline{"hola"} de la instancia \lstinline{programaA} en el
+\lstinline{"hola"} de la instancia \lstinline{A} en el
 instante \textit{2} y la recepción del mensaje en la instancia
-\lstinline{programaB} en el instante \textit{5}.
+\lstinline{B} en el instante \textit{5}. Podemos ver una
+representación gráfica de este ejemplo en esta
+figura~\ref{fig:absolute_example}.
+
+\begin{figure}
+  \centering
+\begin{postscript}
+\begin{msc}{Absolute time example}
+
+\declinst{a}{}{``A''}
+\declinst{b}{}{``B''}
+
+\mess{``hola''}{a}{b}[3]
+\nextlevel[3]
+
+\end{msc}
+\end{postscript}
+  \caption{Ejemplo de tiempo absoluto.}
+  \label{fig:absolute_example}
+\end{figure}
 
 \subsection{Tiempos relativos}
 
@@ -243,21 +262,61 @@ Por otro lado entenderemos por tiempos relativos los siguiente casos:
   mensaje actual, o recepción del mensaje anterior). Por ejemplo:
 
   \begin{lstlisting}
-message m1 { "hola" } from programaA @ 2 to programaB;
+message m1 { "hola" } from A @ 2 to B;
   \end{lstlisting}
 
   Aquí el tiempo de recepción del mensaje se calcula a partir del
   tiempo de envío de ese mismo mensaje más una unidad, es decir, que
-  el instante de recepción en \lstinline{programaB} es \textit{3}.
+  el instante de recepción en \lstinline{B} es \textit{3}. Podemos ver
+  una representación gráfica de este ejemplo en esta
+  figura~\ref{fig:implicit_example1}.   
+
+\begin{figure}
+  \centering
+\begin{postscript}
+\begin{msc}{Implicit relative time example}
+
+\declinst{a}{}{``A''}
+\declinst{b}{}{``B''}
+
+\mess{``hola''}{a}{b}[1]
+\nextlevel[1]
+
+\end{msc}
+\end{postscript}
+  \caption{Ejemplo de tiempo relativo implicito.}
+  \label{fig:implicit_example1}
+\end{figure}
 
   \begin{lstlisting}
-message m1 { "hola" } from programaA @ 1 to programaB @ 2;
-message m2 { "adiós" } from programaB to programaA @ 5;
+message m1 { "hola" } from A @ 1 to B @ 2;
+message m2 { "adios" } from B to A @ 5;
   \end{lstlisting}
 
   Aquí el tiempo de envío del mensaje \lstinline{m2} se calcula a partir
-  del tiempo de recepción del mensaje \lstinline{m1} mas una unidad, es
-  decir, que el instante de envío en \lstinline{programaA} es \textit{3}.
+  del tiempo de recepción del mensaje \lstinline{m1} (\textit{2}) más
+  una unidad, es decir, que el instante de envío en \lstinline{A} es
+  \textit{3}. Podemos ver una representación gráfica de este ejemplo
+  en esta figura~\ref{fig:implicit_example2}.
+
+\begin{figure}
+  \centering
+\begin{postscript}
+\begin{msc}{Implicit relative time example}
+
+\declinst{a}{}{``A''}
+\declinst{b}{}{``B''}
+
+\mess{``hola''}{a}{b}[1]
+\nextlevel[2]
+\mess{``adios''}{b}{a}[2]
+\nextlevel[2]
+
+\end{msc}
+\end{postscript}
+  \caption{Ejemplo de tiempo relativo implicito.}
+  \label{fig:implicit_example2}
+\end{figure}
 
 \item Relativo explicito simple: si en la declaración de un mensaje
   aparece como instante en que ocurre un evento un tiempo del tipo
@@ -268,12 +327,61 @@ message m2 { "adiós" } from programaB to programaA @ 5;
   que aparece en la declaración. Por ejemplo:
       
   \begin{lstlisting}
-message m1 { "hola" } from programaA @ 2 to programaB @ +3;
+message m1 { "hola" } from A @ 2 to B @ +3;
   \end{lstlisting}
       
   Aquí el tiempo de recepción del mensaje se calcula a partir del
-  mensaje de envío más \textit{3}, es decir, que el instante de
-  recepción en \lstinline{programaB} es \textit{5}.
+  mensaje de envío (\textit{2}) más \textit{3}, es decir, que el instante de
+  recepción en \lstinline{B} es \textit{5}. Podemos ver una
+  representación gráfica de este ejemplo en esta
+  figura~\ref{fig:simple_explicit_example1}. 
+
+\begin{figure}
+  \centering
+\begin{postscript}
+\begin{msc}{Simple explicit relative time example}
+
+\declinst{a}{}{``A''}
+\declinst{b}{}{``B''}
+
+\mess{``hola''}{a}{b}[3]
+\nextlevel[3]
+
+\end{msc}
+\end{postscript}
+  \caption{Ejemplo de tiempo relativo explicito simple.}
+  \label{fig:simple_explicit_example1}
+\end{figure}
+
+  \begin{lstlisting}
+message m1 { "hola" } from A @ 1 to B @ 2;
+message m2 { "adios" } from B @ +2 to A @ 6;
+  \end{lstlisting}
+
+  Aquí el tiempo de envío del mensaje \lstinline{m2} se calcula a partir
+  del tiempo de recepción del mensaje \lstinline{m1} (\textit{2}) más el valor
+  especificado +2, es decir, que el instante de envío en
+  \lstinline{A} es \textit{4}. Podemos ver una representación
+  gráfica de este ejemplo en esta figura~\ref{fig:simple_explicit_example2}. 
+
+\begin{figure}
+  \centering
+\begin{postscript}
+\begin{msc}{Simple explicit relative time example}
+
+\declinst{a}{}{``A''}
+\declinst{b}{}{``B''}
+
+\mess{``hola''}{a}{b}[1]
+\nextlevel[3]
+\mess{``adios''}{b}{a}[2]
+\nextlevel[2]
+
+\end{msc}
+\end{postscript}
+  \caption{Ejemplo de tiempo relativo explicito simple.}
+  \label{fig:simple_explicit_example2}
+\end{figure}
 
   Como vemos, un tiempo ``relativo implícito'' es como un ``relativo
   explícito simple'' donde $t$ es igual a 1.
@@ -299,18 +407,38 @@ message m1 { "hola" } from programaA @ 2 to programaB @ +3;
   caso consideraremos dicho valor $t$ como \textit{+0}. Por ejemplo:
 
   \begin{lstlisting}
-message m1 { "hello" } from programaA @ 2 to programaB @ +5;
-message m2 { "goodbye" } from programaB @ m1!+3 to programaA @ m1?;
+message m1 { "hola" } from A @ 2 to B @ +5;
+message m2 { "soy B" } from B @ m1!+3 to A @ m1?;
   \end{lstlisting}
 
-  Aquí el tiempo de envío del mensaje \lstinline{m2} se calcula sumándole al tiempo de envío del
-  mensaje \lstinline{m1} (es decir, \textit{2}) el valor \textit{+3}
-  dando como resultado \textit{5}. El tiempo de recepción se calculará
-  sumándole al tiempo de recepción de \lstinline{m1} (es decir,
-  \textit{7})), el valor \textit{+0} dando como resultado \textit{7}.
-\end{itemize}
+  Aquí el tiempo de envío del mensaje \lstinline{m2} se calcula
+  sumándole al tiempo de envío del mensaje \lstinline{m1} (es decir,
+  \textit{2}) el valor \textit{+3} dando como resultado \textit{5}. El
+  tiempo de recepción se calculará sumándole al tiempo de recepción de
+  \lstinline{m1} (es decir, \textit{7})), el valor \textit{+0} dando
+  como resultado \textit{7}. Podemos ver una representación gráfica de
+  este ejemplo en esta figura~\ref{fig:complex_explicit_example}.  
 
-\todo{AB: hacer imagenes ilustrativas para cada caso}
+\begin{figure}
+  \centering
+\begin{postscript}
+\begin{msc}{Simple explicit relative time example}
+
+\declinst{a}{}{``A''}
+\declinst{b}{}{``B''}
+
+\mess{``hola''}{a}{b}[5]
+\nextlevel[6]
+\mess{``adios''}{b}{a}[1]
+\nextlevel[1]
+
+\end{msc}
+\end{postscript}
+  \caption{Ejemplo de tiempo relativo explicito simple.}
+  \label{fig:simple_explicit_example2}
+\end{figure}
+
+\end{itemize}
 
 \section{Sintaxis Concreta}
 
