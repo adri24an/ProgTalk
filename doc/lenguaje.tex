@@ -12,10 +12,24 @@ participantes y/o un gran número de intercambio de mensajes.
 
 Por ejemplo, una comunicación del tipo ``Individuo A saluda al
 individuo B'' sería procesada por nuestra herramienta dando como
-resultado una representación gráfica como ésta:
+resultado una representación gráfica como esta~\ref{fig:hello_example}.
 
-\todo{AB: Crear ejemplo con nuestro programa. Para ello que Angel me diga
-  como lo hace el!}
+\begin{figure}
+  \centering
+\begin{postscript}
+\begin{msc}{Communication example}
+
+\declinst{a}{}{``A''}
+\declinst{b}{}{``B''}
+
+\mess{``Hola!''}{a}{b}
+\nextlevel
+
+\end{msc}
+\end{postscript}
+  \caption{Ejemplo de comunicación.}
+  \label{fig:hello_example}
+\end{figure}
 
 Todas las comunicaciones que queramos procesar con la herramienta
 \textit{Progtalk} deben de estar traducidas a un lenguaje concreto que
