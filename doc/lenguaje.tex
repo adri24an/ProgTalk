@@ -148,8 +148,8 @@ El formato de la declaración de un mensaje es el siguiente
 \begin{center}
   \begin{minipage}{0.75\linewidth}
 \begin{lstlisting}[mathescape]
-message $[mid]$ $[$${ $desc$ }$]$ from $orig$ $[$@ $tsend$$]$ to
-$dest$ $[$@ $trec$$]$
+message $[mid]$ $[${ $desc$ }$]$ from $orig$ $[$@ $tsend$]$ to
+$dest$ $[$@ $trec$]$
 \end{lstlisting}
   \end{minipage}
 \end{center}
@@ -184,9 +184,10 @@ message { "internal" } from a @ m2!+3 to a @ m1?+5;
 \label{sec:Tiempos}
 
 Esta sección se refiere a los instantes de tiempo en que se envían y
-reciben los mensajes (sección~\ref{sec:Mensajes})\todo{Todo así.} que las
-instancias~\ref{sec:Instancias} participantes en la
-comunicación intercambian. Como ya comentamos anteriormente, nos
+reciben los mensajes (sección~\ref{sec:Mensajes}) que las
+instancias (sección~\ref{sec:Instancias}) participantes en la
+comunicación intercambian. Estos instantes de tiempo se representan
+con números enteros, y como ya comentamos anteriormente, nos
 referiremos al envío o recepción de un mensaje como a un
 \textit{evento}.
 
@@ -208,7 +209,6 @@ cuyo caso son calculados implicitamente por \textit{Progtalk}.
 Los tiempos de un evento se pueden especificar de forma absoluta o
 relativa a otro evento.
 
-\todo{¿Los tiempos se miden en enteros? Decirlo.}
 \subsection{Tiempos Absolutos}
 
 Entenderemos como tiempos absolutos los siguiente casos:
@@ -227,7 +227,7 @@ Un ejemplo del uso de tiempos absolutos es:
 message m1 { "hola" } from programaA @ 2 to programaB @ 5;
 \end{lstlisting}
 
-\noindent donde el mensaje \lstinline{m1} consiste en el envío del mensaje
+donde el mensaje \lstinline{m1} consiste en el envío del mensaje
 \lstinline{"hola"} de la instancia \lstinline{programaA} en el
 instante \textit{2} y la recepción del mensaje en la instancia
 \lstinline{programaB} en el instante \textit{5}.
@@ -240,8 +240,7 @@ Por otro lado entenderemos por tiempos relativos los siguiente casos:
 \item Relativo implícito: cuando un evento de la comunicación no tiene
   un valor especifico, en cuyo caso lo calcularemos sumándole una unidad al
   valor asociado al evento inmediatamente anterior (ya sea envío del
-  mensaje actual, o recepción del mensaje anterior)\todo{Un ejemplo de
-    cada.}. Por ejemplo:
+  mensaje actual, o recepción del mensaje anterior). Por ejemplo:
 
   \begin{lstlisting}
 message m1 { "hola" } from programaA @ 2 to programaB;
@@ -251,14 +250,22 @@ message m1 { "hola" } from programaA @ 2 to programaB;
   tiempo de envío de ese mismo mensaje más una unidad, es decir, que
   el instante de recepción en \lstinline{programaB} es \textit{3}.
 
+  \begin{lstlisting}
+message m1 { "hola" } from programaA @ 1 to programaB @ 2;
+message m2 { "adiós" } from programaB to programaA @ 5;
+  \end{lstlisting}
+
+  Aquí el tiempo de envío del mensaje \lstinline{m2} se calcula a partir
+  del tiempo de recepción del mensaje \lstinline{m1} mas una unidad, es
+  decir, que el instante de envío en \lstinline{programaA} es \textit{3}.
+
 \item Relativo explicito simple: si en la declaración de un mensaje
   aparece como instante en que ocurre un evento un tiempo del tipo
-  \lstinline[mathescape]{+$t$}\todo{Sigue este esquema en el resto de las descripciones de tiempos} donde $t$ es un numero 
-  entero, pero no se especifica un evento de referencia. En este caso
-  calcularemos el parámetro como el instante del ultimo evento (ya
-  sea envío del mensaje actual, o recepción del mensaje anterior)
-  mas el valor $t$ que aparece en la declaración. Por  
-  ejemplo:
+  \lstinline[mathescape]{+$t$} donde $t$ es un numero entero, pero no
+  se especifica un evento de referencia. En este caso calcularemos el
+  parámetro como el instante del ultimo evento (ya sea envío del
+  mensaje actual, o recepción del mensaje anterior) mas el valor $t$
+  que aparece en la declaración. Por ejemplo:
       
   \begin{lstlisting}
 message m1 { "hola" } from programaA @ 2 to programaB @ +3;
@@ -267,22 +274,29 @@ message m1 { "hola" } from programaA @ 2 to programaB @ +3;
   Aquí el tiempo de recepción del mensaje se calcula a partir del
   mensaje de envío más \textit{3}, es decir, que el instante de
   recepción en \lstinline{programaB} es \textit{5}.
-      \todo{Un ``relativo implícito'' es como un ``relativo explícito simple'' con un +1}
+
+  Como vemos, un tiempo ``relativo implícito'' es como un ``relativo
+  explícito simple'' donde $t$ es igual a 1.
+ 
 \item Relativo explicito complejo: si en la declaración de un mensaje
   aparece como instante en que ocurre un evento otro evento de
-  referencia y un valor del tipo \lstinline{+unidad} donde
-  \lstinline{unidad} es un numero entero. El evento de referencia
-  especificado por el usuario\todo{Te recuerdo que esto no te gusta} puede referirse a un evento de envío o
-  de recepción\todo{Explicar cuál es la notación para referirse a eventos: \lstinline{!} y \lstinline{?}}, y debe de pertenecer a un mensaje ya declarado
-  anteriormente en esa comunicación. En este caso calcularemos el
-  parámetro tomando el instante en que ocurrió el evento que se
-  especifica como referencia y sumándole el valor \lstinline{+unidad}
-  especificado también en la declaración del mensaje. Cabe destacar
-  que existe la posibilidad de que sólo se introduzca el evento de
-  referencia y que no aparezca un valor del tipo \lstinline{{+unidad},
-    en cuyo caso consideraremos dicho valor \lstinline{+unidad} como
-    \textit{+0}. 
-  Por ejemplo:
+  referencia y un valor del tipo \lstinline[mathescape]{+$t$} donde
+  $t$ es un numero entero. El evento de referencia especificado en la
+  comunicación puede referirse a un evento de envío o de recepción, y
+  debe de pertenecer a un mensaje ya declarado anteriormente en esa
+  comunicación. Si el evento de referencia es el envío de un mensaje,
+  añadiremos al lado del identificador de mensaje el símbolo
+  \lstinline{!}, si por contra el evento de referencia es la recepción
+  de un mensaje, añadiremos al lado del identificador de mensaje el
+  símbolo \lstinline{?}.
+
+  Los tiempos del tipo relativo explícito complejo, los calcularemos tomando el
+  instante en que ocurrió el evento que se especifica como referencia
+  y sumándole el valor \lstinline[mathescape]{+$t$} especificado
+  también en la declaración del mensaje. Cabe destacar que existe la
+  posibilidad de que sólo se introduzca el evento de referencia y que
+  no aparezca un valor del tipo \lstinline[mathescape]{+$t$}, en cuyo
+  caso consideraremos dicho valor $t$ como \textit{+0}. Por ejemplo:
 
   \begin{lstlisting}
 message m1 { "hello" } from programaA @ 2 to programaB @ +5;
