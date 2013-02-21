@@ -17,7 +17,7 @@
 //    time_ref_opt ::= LAMBDA | @ time_ref
 //    time_ref ::= abs_time | rel_time
 //    abs_time ::= num
-//    rel_time ::= ref dif_time_opt | dif_time
+//    rel_time ::= ref dif_time_opt | + num
 //    ref ::= mid ! | mid ?
 //    dif_time_opt ::= LAMBDA | dif_time
 //    dif_time ::= + num | - num
@@ -66,6 +66,7 @@
 %type <timevalue> time_ref_opt
 %type <par> ref
 %type <num> dif_time
+%type <num> noref_dif_time
 %type <num> num
 %type <cad> iid
 %type <cad> tid
@@ -137,11 +138,10 @@ message:
           string * desc = $3;
           Timestg * orig = $4;
           Timestg * dest = $5;
-	  
+
 	  if (mid == NULL)
 	    mid = new string("No_Info_Available");
-	  
-	  if (desc == NULL)
+	  if (desc == NULL) 
 	    desc = new string("");
 	  else
 	    {
@@ -277,9 +277,9 @@ abs_time:
 ;
 
 rel_time:
-        dif_time
+        PLUS num
 	{
-	  $$ = new Timeref(RELATIVE, $1, 0, "");
+	  $$ = new Timeref(RELATIVE, $2, 0, "");
 	}
 |
         ref dif_time

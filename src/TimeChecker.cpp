@@ -38,9 +38,9 @@ void TimeChecker::visitAbsolute(Absolute * a) {
 	  limit = time;
 	}
     }
-  else
+  else //If it's a reception time
     {
-      if (time < 0) //If it's a reception time
+      if (time < 0) 
 	{
 	  std::cout << "Error: an event's time can't be less than zero."
 		    << std::endl;
@@ -60,7 +60,7 @@ void TimeChecker::visitAbsolute(Absolute * a) {
 void TimeChecker::visitRelative(Relative * r) {
   int time = r->getAbsoluteTime();
   
-  if (limit == -1)
+  if (limit == -1) //If it's a sending time
     {
       if (time < 0)
 	{
@@ -73,7 +73,7 @@ void TimeChecker::visitRelative(Relative * r) {
 	  limit = time;
 	}
     }
-  else
+  else //If it's a reception time
     {
       if (time < 0)
 	{
