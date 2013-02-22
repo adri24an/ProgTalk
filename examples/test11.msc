@@ -14,4 +14,3 @@ message m5 { "checking... OK" } from a @ +2 to u;
 message m6 { "recalculating..." } from u to a @ 87;
 message { "shutting down system" } from a to u @ m5!+33;
 message { "waiting response" } from a to u @ +2;
-
