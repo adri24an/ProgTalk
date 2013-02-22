@@ -35,8 +35,8 @@ else
       {
 	if (((mit->second->get_mid()).compare(m.get_mid())) == 0)
 	  {
-	    std::cout << "Error: the mid (" <<  m.get_mid() << 
-	      ") used in the message already exists" << std::endl;
+	    std::cout << "Error: the message identifier (" <<  m.get_mid() << 
+	      ") it's already declared." << std::endl;
 	    exit(0);
 	  }
       }  
