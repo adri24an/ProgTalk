@@ -100,14 +100,14 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 
   if (orig == NULL)
     {
-      std::cout << "The origin of the message (" << new_origin 
-		<< ") doesn't exist." << std::endl;
+      std::cout << "ERROR: the origin of the message " << new_origin 
+		<< " doesn't exist." << std::endl;
       exit(0);
     }
   else if (dest == NULL)
     {
-     std::cout << "The destiny of the message (" << new_destiny 
-	       << ") doesn't exist." << std::endl;
+     std::cout << "ERROR: The destiny of the message " << new_destiny 
+	       << " doesn't exist." << std::endl;
      exit(0);
     }
 
@@ -124,9 +124,9 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 
 	  if (m == NULL)
 	    {
-	      std::cout << "The Message referenced (" 
+	      std::cout << "ERROR: The Message referenced " 
 			<< new_time_sent->get_ref() 
-			<< ") doesn't exist." << std::endl;
+			<< " doesn't exist." << std::endl;
 	      exit(-1);
 	    }
 	
@@ -165,9 +165,9 @@ inline void Parser::addMsg(string new_mid, string new_sms, string new_origin,
 	  
 	  if (m == NULL)
 	    {
-	      std::cout << "The Message referenced (" 
+	      std::cout << "ERROR: The Message referenced " 
 			<< new_time_rec->get_ref() 
-			<< ") doesn't exist." << std::endl;
+			<< " doesn't exist." << std::endl;
 	      exit(-1);
 	    }
 

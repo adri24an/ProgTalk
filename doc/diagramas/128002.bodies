@@ -36,7 +36,7 @@ else
 	if (((mit->second->get_mid()).compare(m.get_mid())) == 0)
 	  {
 	    std::cout << "Error: the message identifier " <<  m.get_mid() << 
-	      "it's already declared." << std::endl;
+	      " it's already declared." << std::endl;
 	    exit(0);
 	  }
       }  
