@@ -10,10 +10,11 @@ LatexPrint::LatexPrint() {
   fs << "\\documentclass{article}\n";
   fs << "\\usepackage[a5paper,vmargin=1cm,hmargin=1cm]{geometry}\n";
   fs << "\\usepackage{msc}\n";
+  fs << "\\usepackage{auto-pst-pdf}\n";
   fs << "\\begin{document}\n";
   fs << "\\thispagestyle{empty}\n\n";
   fs << "\\setlength{\\firstlevelheight}{1cm}\n\n";
-  fs << "\\begin{msc}{Communication}\n\n";
+  fs << "\\begin{postscript}\\begin{msc}{Communication}\n\n";
   fs.close();
 }
 
@@ -24,7 +25,7 @@ LatexPrint::~LatexPrint() {
 void LatexPrint::visitMSC(MSC * m)
 {
   fs.open("communication.tex", fstream::app);
-  fs << "\n\\end{msc}\n" << "\\end{document}";
+  fs << "\n\\end{msc}\\end{postscript}\n" << "\\end{document}";
   fs.close();
 }
 
