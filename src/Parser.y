@@ -1,31 +1,31 @@
 //------------------------------------------------------------
 //
-//  GRAMATICA
-//    
-//    msc ::= inst_decl* message*
-//    inst_decl ::= INSTANCE iid |
-//                  INSTANCE iid OF tid; |
-//                  INSTANCE iid {string}; |
-//                  INSTANCE iid OF tid {string};               
-//    message ::= MESSAGE mid_opt string_opt origin destiny;
-//    mid_opt ::= LAMBDA | mid
-//    string_opt ::= LAMBDA | {string}
-//    origin ::= LAMBDA | origin_opt
-//    origin_opt ::= FROM iid time_ref_opt
-//    destiny ::= LAMBDA | destiny_opt
-//    destiny_opt ::= TO iid time_ref_opt
-//    time_ref_opt ::= LAMBDA | @ time_ref
-//    time_ref ::= abs_time | rel_time
-//    abs_time ::= num
-//    rel_time ::= ref dif_time_opt | dif_time
-//    ref ::= mid ! | mid ?
-//    dif_time_opt ::= LAMBDA | dif_time
-//    dif_time ::= + num | - num
-//    iid ::= ID
-//    tid ::= ID
-//    mid ::= ID
-//    string ::= STRING
-//    num ::= NUM
+// GRAMATICA
+//
+// msc ::= inst_decl* message*
+// inst_decl ::= INSTANCE iid |
+// INSTANCE iid OF tid; |
+// INSTANCE iid {string}; |
+// INSTANCE iid OF tid {string};
+// message ::= MESSAGE mid_opt string_opt origin destiny;
+// mid_opt ::= LAMBDA | mid
+// string_opt ::= LAMBDA | {string}
+// origin ::= LAMBDA | origin_opt
+// origin_opt ::= FROM iid time_ref_opt
+// destiny ::= LAMBDA | destiny_opt
+// destiny_opt ::= TO iid time_ref_opt
+// time_ref_opt ::= LAMBDA | @ time_ref
+// time_ref ::= abs_time | rel_time
+// abs_time ::= num
+// rel_time ::= ref dif_time_opt | dif_time
+// ref ::= mid ! | mid ?
+// dif_time_opt ::= LAMBDA | dif_time
+// dif_time ::= + num | - num
+// iid ::= ID
+// tid ::= ID
+// mid ::= ID
+// string ::= STRING
+// num ::= NUM
 //
 //------------------------------------------------------------
  
@@ -33,7 +33,7 @@
 %scanner Scanner.h
 %lines
  
-%union 
+%union
 {
   int num;
   string * cad;
@@ -84,275 +84,270 @@
 
 msc:
         inst_decl_seq message_seq
-	{
-	}
+        {
+        }
 ;
     
 inst_decl_seq:
         // EMPTY
-       { 
-       }
+        {
+        }
 |
         inst_decl_seq inst_decl
-        { 
-	}
+        {
+        }
 ;
  
 inst_decl:
         INSTANCE iid OF tid LEFT_BRACE str RIGHT_BRACE SEMICOLON EOLN
         {
-	  addInst (*$2, *$4, *$6);
-	}
+          addInst (*$2, *$4, *$6);
+        }
 |
         INSTANCE iid OF tid SEMICOLON EOLN
         {
-	  addInst (*$2, *$4, "");
-	}
+          addInst (*$2, *$4, "");
+        }
 |
         INSTANCE iid LEFT_BRACE str RIGHT_BRACE SEMICOLON EOLN
         {
-	  addInst (*$2, "", *$4);
-	}
+          addInst (*$2, "", *$4);
+        }
 |
         INSTANCE iid SEMICOLON EOLN
         {
-	  addInst (*$2, "", "");
-	}
+          addInst (*$2, "", "");
+        }
 ;
         
 message_seq:
         // EMPTY
-        { 
-	}
+        {
+        }
 |
         message_seq message
-        { 
-	}
+        {
+        }
 ;
 
 message:
         MESSAGE mid_opt string_opt origin_opt destiny_opt SEMICOLON EOLN
-        { 
-	  string * mid = $2;
+        {
+          string * mid = $2;
           string * desc = $3;
           Timestg * orig = $4;
           Timestg * dest = $5;
-	  
-	  if (mid == NULL)
-	    mid = new string("No_Info_Available");
-	  
-	  if (desc == NULL)
-	    desc = new string("");
-	  else
-	    {
-	      string aux = "\\verb~";
-	      *desc=aux+(*desc);
-	      desc->push_back('~');
-	    }
 
-	  if (orig == NULL)
-	    {
-	      std::cout << "ERROR: User didn't provide message's origin" 
-			<< std::endl;
-	      exit(-1);
-	    }
+          if (mid == NULL)
+            mid = new string("No_Info_Available");
 
-	  if (dest == NULL)
-	    {
-	      std::cout << "ERROR: User didn't provide message's destiny" 
+          if (desc == NULL)
+            desc = new string("");
+          else
+          {
+            string aux = "\\verb~";
+            *desc=aux+(*desc);
+            desc->push_back('~');
+          }
 
-			<< std::endl;
-	      exit(-1);
-	    }
-	  
-          addMsg(*mid, *desc, orig->get_iid(), dest->get_iid(), 
-		 orig->get_timeref(), dest->get_timeref());
-	}
+          if (orig == NULL)
+          {
+            std::cout << "ERROR: User didn't provide message's origin"
+                      << std::endl;
+            exit(-1);
+          }
+
+          if (dest == NULL)
+          {
+            std::cout << "ERROR: User didn't provide message's destiny"
+                      << std::endl;
+            exit(-1);
+          }
+
+          addMsg(*mid, *desc, orig->get_iid(), dest->get_iid(),
+                 orig->get_timeref(), dest->get_timeref());
+          }
 ;
 
 mid_opt:
         // EMPTY
         {
-	  $$ = NULL;
-	}
+          $$ = NULL;
+        }
 |
         mid
         {
           $$ = $1;
-	}
+        }
 ;
 
 string_opt:
         // EMPTY
         {
-	  $$ = NULL;
-	}
+          $$ = NULL;
+        }
 |
-        LEFT_BRACE str RIGHT_BRACE	
+        LEFT_BRACE str RIGHT_BRACE
         {
-	  $$ = $2;
-	}     
+          $$ = $2;
+        }
 ;
 
 origin_opt:
         // EMPTY
         {
-	  $$ = NULL;
-	}
+          $$ = NULL;
+        }
 |
         origin
         {
-	  $$ = $1;
-	}
+          $$ = $1;
+        }
 ;
 
 origin:
         FROM iid time_ref_opt
         {
-	  $$ = new Timestg(*$2, *$3);
-	}
+          $$ = new Timestg(*$2, *$3);
+        }
 ;
 
 time_ref_opt:
         // EMPTY
         {
           if (firstMsg() == 1)
-	  {
-	    $$ = new Timeref(ABSOLUTE, 0, 0, "");
-	  }
+          {
+            $$ = new Timeref(ABSOLUTE, 0, 0, "");
+          }
           else
           {
-	    $$ = new Timeref(RELATIVE, 1, 0, "");
-	  }
-	}
+            $$ = new Timeref(RELATIVE, 1, 0, "");
+          }
+        }
 |
         AT time_ref
         {
-	  $$ = $2;
-	}
+          $$ = $2;
+        }
 ;
 
 destiny_opt:
         // EMPTY
         {
-	  $$ = NULL;
-	}
+          $$ = NULL;
+        }
 |
         destiny
         {
-	  $$ = $1;
-	}
+          $$ = $1;
+        }
 ;
 
 destiny:
         TO iid time_ref_opt
         {
-	  if (($3->get_valtype() == ABSOLUTE) && ($3->get_value() == 0) &&
-	      (firstMsg() == 1))
-	    {
-	      $3->set_valtype(RELATIVE);
-	      $3->set_value(1);
-	    }
-	  $$ = new Timestg(*$2, *$3);
-	}
+          if (($3->get_valtype() == ABSOLUTE) && ($3->get_value() == 0) &&
+             (firstMsg() == 1))
+          {
+            $3->set_valtype(RELATIVE);
+            $3->set_value(1);
+          }
+
+          $$ = new Timestg(*$2, *$3);
+        }
 ;
  
 time_ref:
         abs_time
         {
-	  $$ = $1;
-	}
+          $$ = $1;
+        }
 |
         rel_time
-        { 
-	  $$ = $1;
-	}
+        {
+          $$ = $1;
+        }
 ;
 
 abs_time:
         num
-	{
-	  $$ = new Timeref(ABSOLUTE, $1, 0, "");
-	}
+        {
+          $$ = new Timeref(ABSOLUTE, $1, 0, "");
+        }
 ;
 
 rel_time:
         dif_time
-	{
-	  $$ = new Timeref(RELATIVE, $1, 0, "");
-	}
+        {
+          $$ = new Timeref(RELATIVE, $1, 0, "");
+        }
 |
         ref dif_time
         {
-	  $$ = new Timeref(RELATIVE, $2, $1->first, $1->second); 
-	}
+          $$ = new Timeref(RELATIVE, $2, $1->first, $1->second);
+        }
 ;
 
 ref:
-        // EMPTY
-        { 
-	  $$ = NULL;
-	}
-|
         mid EXCLAMATION
         {
-	  $$ = new pair<int, string>(SENDING,*$1);
-	} 
+          $$ = new pair<int, string>(SENDING,*$1);
+        }
 |
         mid INTERROGATION
-	{
-	  $$ = new pair<int, string>(RECEIVING,*$1);
-	}
+        {
+          $$ = new pair<int, string>(RECEIVING,*$1);
+        }
 ;
 
 dif_time:
         // EMPTY
-        { 
-	  $$ = 1;
-	}
+        {
+          $$ = 1;
+        }
 |
         PLUS num
         {
-	  $$ = $2;
-	}
+          $$ = $2;
+        }
 |
         MINUS num
-	{
-	  $$ = -$2;
-	}
+        {
+          $$ = -$2;
+        }
 ;
 
 iid:
         ID
-	{
-	  $$ = new string(d_scanner.YYText());
-	}
+        {
+          $$ = new string(d_scanner.YYText());
+        }
 ;
 
 tid:
         ID
         {
-	  $$ = new string(d_scanner.YYText());
-	}
+          $$ = new string(d_scanner.YYText());
+        }
 ;
 
 mid:
         ID
-	{
-	  $$ = new string(d_scanner.YYText());
-	}
+        {
+          $$ = new string(d_scanner.YYText());
+        }
 ;
 
 str:
         STRING
         {
-	  $$ = new string(d_scanner.YYText());
-	}
+          $$ = new string(d_scanner.YYText());
+        }
 ;
 
 num:
-        NUM 
+        NUM
         {
-	  $$ = atoi(d_scanner.YYText());
-	}
+          $$ = atoi(d_scanner.YYText());
+        }
 ;

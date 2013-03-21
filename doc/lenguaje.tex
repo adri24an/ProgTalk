@@ -12,10 +12,24 @@ participantes y/o un gran número de intercambio de mensajes.
 
 Por ejemplo, una comunicación del tipo ``Individuo A saluda al
 individuo B'' sería procesada por nuestra herramienta dando como
-resultado una representación gráfica como ésta:
+resultado una representación gráfica como esta~\ref{fig:hello_example}.
 
-\todo{AB: Crear ejemplo con nuestro programa. Para ello que Angel me diga
-  como lo hace el!}
+\begin{figure}
+  \centering
+\begin{postscript}
+\begin{msc}{Communication example}
+
+\declinst{a}{}{``A''}
+\declinst{b}{}{``B''}
+
+\mess{``Hola!''}{a}{b}
+\nextlevel
+
+\end{msc}
+\end{postscript}
+  \caption{Ejemplo de comunicación.}
+  \label{fig:hello_example}
+\end{figure}
 
 Todas las comunicaciones que queramos procesar con la herramienta
 \textit{Progtalk} deben de estar traducidas a un lenguaje concreto que
@@ -65,11 +79,13 @@ parámetros:
   pensado darle una funcionalidad real en un futuro desarrollo.
 \end{itemize}
 
-El formato de la declaración de una instancia es el siguiente\footnote{Los corchetes $[$ y $]$ indican la opcionalidad del parámetro en el resto de descripciones de la sintaxis.}:
+El formato de la declaración de una instancia es el
+siguiente\footnote{Los corchetes $[$ y $]$ indican la opcionalidad del
+  parámetro en el resto de descripciones de la sintaxis.}:
 \begin{center}
   \begin{minipage}{0.40\linewidth}
 \begin{lstlisting}[mathescape]
-instance $iid$ of $tid$ { $name$ }
+instance $iid$ $[of $tid$]$ $[{ $name$ }]$
 \end{lstlisting}
   \end{minipage}
 \end{center}
@@ -85,10 +101,10 @@ donde:
 Algunos ejemplos de declaración de instancias son:
 
 \begin{lstlisting}
-      instance a { "A" };
-      instance b of type { "B" };
-      instance c of control;
-      instance d;
+instance a { "A" };
+instance b of type { "B" };
+instance c of control;
+instance d;
 \end{lstlisting}
 
 El usuario puede almacenar tantas instancias como desee, pero estas
@@ -107,9 +123,10 @@ Los mensajes se describen mediante seis parámetros:
   ser introducido debe ser un identificador válido (aquí se entiende
   como identificador válido cualquier conjunto de letras, números y
   ``\_'' que comience por una letra,
-\item Descripción de mensaje\todo{Cuidado, he cambiado esto a descripción}: este parámetro es opcional, y almacena el mensaje de
-  texto propiamente dicho. Puede ser cualquier conjunto de caracteres
-  salvo las comillas y que empiece y termine por comillas,
+\item Descripción de mensaje: este parámetro es opcional, y representa
+  una descripción del mensaje enviado de origen a destino. Puede ser
+  cualquier conjunto de caracteres salvo las comillas y que empiece y
+  termine por comillas, 
 \item Instancia origen del mensaje: este parámetro debe ser
   obligatoriamente introducido por el usuario, y representa la
   instancia que envió el mensaje. La instancia a la que se haga
@@ -126,11 +143,13 @@ Los mensajes se describen mediante seis parámetros:
   momento exacto en que el mensaje fue recibido.
 \end{itemize}
 
+\todo{revisar formato de la declaración. Queda feo.}
 El formato de la declaración de un mensaje es el siguiente
 \begin{center}
   \begin{minipage}{0.75\linewidth}
 \begin{lstlisting}[mathescape]
-message $[mid]$ $[$${ $desc$ }$]$ from $orig$ $[$@ $tsend$$]$ to $dest$ $[$@ $trec$$]$
+message $[mid]$ $[${ $desc$ }$]$ from $orig$ $[$@ $tsend$]$ to
+$dest$ $[$@ $trec$]$
 \end{lstlisting}
   \end{minipage}
 \end{center}
@@ -139,12 +158,10 @@ donde,
 \item \lstinline{message}, \lstinline{from}, \lstinline{to},
   ''\lstinline{@}'', ``\lstinline!{!'' y ``\lstinline!}!'' son
   palabras reservadas del lenguaje, y
-\todo{AB: Qué hago para el tema de los corchetes para identificar
-  parametros opcionales? Lo uso siempre?}
-\item $mid$ (Identificador de mensaje\todo{Ortografía: cuidado con el uso de mayúsculas}), $desc$ (descripción del mensaje), $orig$
-  (Instancia origen del mensaje), $tsend$ (Tiempo de envío), $dest$
-  (Instancia destino del mensaje), y $trec$ (Tiempo de recepción)
-  deben ser introducidos por el usuario.
+\item $mid$ (identificador de mensaje), $desc$ (descripción del mensaje), $orig$
+  (instancia origen del mensaje), $tsend$ (tiempo de envío), $dest$
+  (instancia destino del mensaje), y $trec$ (tiempo de recepción)
+  es información de la comunicación que forma parte del fichero de entrada.
 \end{itemize}
 
 La instancia origen del mensaje y el instante de envío forman un
@@ -155,7 +172,7 @@ Cabe destacar que es responsabilidad del usuario traducir la
 comunicación que éste quiere pasar como entrada a \textit{Progtalk} a
 \textit{MSCLan}.
 
-Algunos ejemplos de declaración de mensajes son:\todo{Atento al espaciado en todos los demás ejemplos: coherencia.}
+Algunos ejemplos de declaración de mensajes son:
 
 \begin{lstlisting}
 message m1 { "request send to dhl" } from u to a;
@@ -167,9 +184,10 @@ message { "internal" } from a @ m2!+3 to a @ m1?+5;
 \label{sec:Tiempos}
 
 Esta sección se refiere a los instantes de tiempo en que se envían y
-reciben los mensajes (sección~\ref{sec:Mensajes})\todo{Todo así.} que las
-instancias~\ref{sec:Instancias} participantes en la
-comunicación intercambian. Como ya comentamos anteriormente, nos
+reciben los mensajes (sección~\ref{sec:Mensajes}) que las
+instancias (sección~\ref{sec:Instancias}) participantes en la
+comunicación intercambian. Estos instantes de tiempo se representan
+con números enteros, y como ya comentamos anteriormente, nos
 referiremos al envío o recepción de un mensaje como a un
 \textit{evento}.
 
@@ -177,18 +195,20 @@ Como vimos en la sintaxis anterior:
 \begin{center}
   \begin{minipage}{0.75\linewidth}
 \begin{lstlisting}[mathescape]
-message $[mid]$ $[${ $sms$ }$]$ from $orig$ $[$@ $tsend$$]$ to $dest$ $[$@ $trec$$]$
+message $[mid]$ $[${ $sms$ }$]$ from $orig$ $[$@ $tsend$$]$ to $dest$
+$[$@ $trec$$]$
 \end{lstlisting}
   \end{minipage}
 \end{center}
-la especificación del tiempo del evento de envío es $tsend$ y la del tiempo del evento de recepción es $trec$.
+la especificación del tiempo del evento de envío es $tsend$ y la del
+tiempo del evento de recepción es $trec$.
  Los tiempos en que suceden los eventos pueden ser
 especificados explicitamente en la declaración de un mensaje o no, en
 cuyo caso son calculados implicitamente por \textit{Progtalk}.
 
-Los tiempos de un evento se pueden especificar de forma absoluta o relativa a otro evento.
+Los tiempos de un evento se pueden especificar de forma absoluta o
+relativa a otro evento.
 
-\todo{¿Los tiempos se miden en enteros? Decirlo.}
 \subsection{Tiempos Absolutos}
 
 Entenderemos como tiempos absolutos los siguiente casos:
@@ -204,13 +224,32 @@ Entenderemos como tiempos absolutos los siguiente casos:
 Un ejemplo del uso de tiempos absolutos es:
 
 \begin{lstlisting}
-    message m1 { "hola" } from programaA @ 2 to programaB @ 5;
+message m1 { "hola" } from A @ 2 to B @ 5;
 \end{lstlisting}
 
-\noindent donde el mensaje \lstinline{m1} consiste en el envío del mensaje
-\lstinline{"hola"} de la instancia \lstinline{programaA} en el
+donde el mensaje \lstinline{m1} consiste en el envío del mensaje
+\lstinline{"hola"} de la instancia \lstinline{A} en el
 instante \textit{2} y la recepción del mensaje en la instancia
-\lstinline{programaB} en el instante \textit{5}.
+\lstinline{B} en el instante \textit{5}. Podemos ver una
+representación gráfica de este ejemplo en esta
+figura~\ref{fig:absolute_example}.
+
+\begin{figure}
+  \centering
+\begin{postscript}
+\begin{msc}{Absolute time example}
+
+\declinst{a}{}{``A''}
+\declinst{b}{}{``B''}
+
+\mess{``hola''}{a}{b}[3]
+\nextlevel[3]
+
+\end{msc}
+\end{postscript}
+  \caption{Ejemplo de tiempo absoluto.}
+  \label{fig:absolute_example}
+\end{figure}
 
 \subsection{Tiempos relativos}
 
@@ -220,92 +259,216 @@ Por otro lado entenderemos por tiempos relativos los siguiente casos:
 \item Relativo implícito: cuando un evento de la comunicación no tiene
   un valor especifico, en cuyo caso lo calcularemos sumándole una unidad al
   valor asociado al evento inmediatamente anterior (ya sea envío del
-  mensaje actual, o recepción del mensaje anterior)\todo{Un ejemplo de cada.}. Por ejemplo:
+  mensaje actual, o recepción del mensaje anterior). Por ejemplo:
 
   \begin{lstlisting}
-    message m1 { "hola" } from programaA @ 2 to programaB;
+message m1 { "hola" } from A @ 2 to B;
   \end{lstlisting}
 
   Aquí el tiempo de recepción del mensaje se calcula a partir del
   tiempo de envío de ese mismo mensaje más una unidad, es decir, que
-  el instante de recepción en \lstinline{programaB} es \textit{3}.
+  el instante de recepción en \lstinline{B} es \textit{3}. Podemos ver
+  una representación gráfica de este ejemplo en esta
+  figura~\ref{fig:implicit_example1}.   
+
+\begin{figure}
+  \centering
+\begin{postscript}
+\begin{msc}{Implicit relative time example}
+
+\declinst{a}{}{``A''}
+\declinst{b}{}{``B''}
+
+\mess{``hola''}{a}{b}[1]
+\nextlevel[1]
+
+\end{msc}
+\end{postscript}
+  \caption{Ejemplo de tiempo relativo implicito.}
+  \label{fig:implicit_example1}
+\end{figure}
+
+  \begin{lstlisting}
+message m1 { "hola" } from A @ 1 to B @ 2;
+message m2 { "adios" } from B to A @ 5;
+  \end{lstlisting}
+
+  Aquí el tiempo de envío del mensaje \lstinline{m2} se calcula a partir
+  del tiempo de recepción del mensaje \lstinline{m1} (\textit{2}) más
+  una unidad, es decir, que el instante de envío en \lstinline{A} es
+  \textit{3}. Podemos ver una representación gráfica de este ejemplo
+  en esta figura~\ref{fig:implicit_example2}.
+
+\begin{figure}
+  \centering
+\begin{postscript}
+\begin{msc}{Implicit relative time example}
+
+\declinst{a}{}{``A''}
+\declinst{b}{}{``B''}
+
+\mess{``hola''}{a}{b}[1]
+\nextlevel[2]
+\mess{``adios''}{b}{a}[2]
+\nextlevel[2]
+
+\end{msc}
+\end{postscript}
+  \caption{Ejemplo de tiempo relativo implicito.}
+  \label{fig:implicit_example2}
+\end{figure}
 
 \item Relativo explicito simple: si en la declaración de un mensaje
   aparece como instante en que ocurre un evento un tiempo del tipo
-  \lstinline[mathescape]{+$t$}\todo{Sigue este esquema en el resto de las descripciones de tiempos} donde $t$ es un numero 
-  entero, pero no se especifica un evento de referencia. En este caso
-  calcularemos el parámetro como el instante del ultimo evento (ya
-  sea envío del mensaje actual, o recepción del mensaje anterior)
-  mas el valor $t$ que aparece en la declaración. Por  
-  ejemplo:
+  \lstinline[mathescape]{+$t$} donde $t$ es un numero entero, pero no
+  se especifica un evento de referencia. En este caso calcularemos el
+  parámetro como el instante del ultimo evento (ya sea envío del
+  mensaje actual, o recepción del mensaje anterior) mas el valor $t$
+  que aparece en la declaración. Por ejemplo:
       
   \begin{lstlisting}
-    message m1 { "hola" } from programaA @ 2 to programaB @ +3;
+message m1 { "hola" } from A @ 2 to B @ +3;
   \end{lstlisting}
       
   Aquí el tiempo de recepción del mensaje se calcula a partir del
-  mensaje de envío más \textit{3}, es decir, que el instante de
-  recepción en \lstinline{programaB} es \textit{5}.
-      \todo{Un ``relativo implícito'' es como un ``relativo explícito simple'' con un +1}
-\item Relativo explicito complejo: si en la declaración de un mensaje
-  aparece como instante en que ocurre un evento otro evento de
-  referencia y un valor del tipo \lstinline{+unidad} donde
-  \lstinline{unidad} es un numero entero. El evento de referencia
-  especificado por el usuario\todo{Te recuerdo que esto no te gusta} puede referirse a un evento de envío o
-  de recepción\todo{Explicar cuál es la notación para referirse a eventos: \lstinline{!} y \lstinline{?}}, y debe de pertenecer a un mensaje ya declarado
-  anteriormente en esa comunicación. En este caso calcularemos el
-  parámetro tomando el instante en que ocurrió el evento que se
-  especifica como referencia y sumándole el valor \lstinline{+unidad}
-  especificado también en la declaración del mensaje. Cabe destacar
-  que existe la posibilidad de que sólo se introduzca el evento de
-  referencia y que no aparezca un valor del tipo \lstinline{{+unidad},
-    en cuyo caso consideraremos dicho valor \lstinline{+unidad} como
-    \textit{+0}. 
-  Por ejemplo:
+  mensaje de envío (\textit{2}) más \textit{3}, es decir, que el instante de
+  recepción en \lstinline{B} es \textit{5}. Podemos ver una
+  representación gráfica de este ejemplo en esta
+  figura~\ref{fig:simple_explicit_example1}. 
+
+\begin{figure}
+  \centering
+\begin{postscript}
+\begin{msc}{Simple explicit relative time example}
+
+\declinst{a}{}{``A''}
+\declinst{b}{}{``B''}
+
+\mess{``hola''}{a}{b}[3]
+\nextlevel[3]
+
+\end{msc}
+\end{postscript}
+  \caption{Ejemplo de tiempo relativo explicito simple.}
+  \label{fig:simple_explicit_example1}
+\end{figure}
 
   \begin{lstlisting}
-  message m1 { "hello" } from programaA @ 2 to programaB @ +5;
-  message m2 { "goodbye" } from programaB @ m1!+3 to programaA @ m1?;
+message m1 { "hola" } from A @ 1 to B @ 2;
+message m2 { "adios" } from B @ +2 to A @ 6;
   \end{lstlisting}
 
-  Aquí el tiempo de envío del mensaje \lstinline{m2} se calcula sumándole al tiempo de envío del
-  mensaje \lstinline{m1} (es decir, \textit{2}) el valor \textit{+3}
-  dando como resultado \textit{5}. El tiempo de recepción se calculará
-  sumándole al tiempo de recepción de \lstinline{m1} (es decir,
-  \textit{7})), el valor \textit{+0} dando como resultado \textit{7}.
-\end{itemize}
+  Aquí el tiempo de envío del mensaje \lstinline{m2} se calcula a partir
+  del tiempo de recepción del mensaje \lstinline{m1} (\textit{2}) más el valor
+  especificado +2, es decir, que el instante de envío en
+  \lstinline{A} es \textit{4}. Podemos ver una representación
+  gráfica de este ejemplo en esta figura~\ref{fig:simple_explicit_example2}. 
 
-\todo{AB: hacer imagenes ilustrativas para cada caso}
+\begin{figure}
+  \centering
+\begin{postscript}
+\begin{msc}{Simple explicit relative time example}
+
+\declinst{a}{}{``A''}
+\declinst{b}{}{``B''}
+
+\mess{``hola''}{a}{b}[1]
+\nextlevel[3]
+\mess{``adios''}{b}{a}[2]
+\nextlevel[2]
+
+\end{msc}
+\end{postscript}
+  \caption{Ejemplo de tiempo relativo explicito simple.}
+  \label{fig:simple_explicit_example2}
+\end{figure}
+
+  Como vemos, un tiempo ``relativo implícito'' es como un ``relativo
+  explícito simple'' donde $t$ es igual a 1.
+ 
+\item Relativo explicito complejo: si en la declaración de un mensaje
+  aparece como instante en que ocurre un evento otro evento de
+  referencia y un valor del tipo \lstinline[mathescape]{+$t$} donde
+  $t$ es un numero entero. El evento de referencia especificado en la
+  comunicación puede referirse a un evento de envío o de recepción, y
+  debe de pertenecer a un mensaje ya declarado anteriormente en esa
+  comunicación. Si el evento de referencia es el envío de un mensaje,
+  añadiremos al lado del identificador de mensaje el símbolo
+  \lstinline{!}, si por contra el evento de referencia es la recepción
+  de un mensaje, añadiremos al lado del identificador de mensaje el
+  símbolo \lstinline{?}.
+
+  Los tiempos del tipo relativo explícito complejo, los calcularemos tomando el
+  instante en que ocurrió el evento que se especifica como referencia
+  y sumándole el valor \lstinline[mathescape]{+$t$} especificado
+  también en la declaración del mensaje. Cabe destacar que existe la
+  posibilidad de que sólo se introduzca el evento de referencia y que
+  no aparezca un valor del tipo \lstinline[mathescape]{+$t$}, en cuyo
+  caso consideraremos dicho valor $t$ como \textit{+0}. Por ejemplo:
+
+  \begin{lstlisting}
+message m1 { "hola" } from A @ 2 to B @ +5;
+message m2 { "soy B" } from B @ m1!+3 to A @ m1?;
+  \end{lstlisting}
+
+  Aquí el tiempo de envío del mensaje \lstinline{m2} se calcula
+  sumándole al tiempo de envío del mensaje \lstinline{m1} (es decir,
+  \textit{2}) el valor \textit{+3} dando como resultado \textit{5}. El
+  tiempo de recepción se calculará sumándole al tiempo de recepción de
+  \lstinline{m1} (es decir, \textit{7})), el valor \textit{+0} dando
+  como resultado \textit{7}. Podemos ver una representación gráfica de
+  este ejemplo en esta figura~\ref{fig:complex_explicit_example}.  
+
+\begin{figure}
+  \centering
+\begin{postscript}
+\begin{msc}{Complex explicit relative time example}
+
+\declinst{a}{}{``A''}
+\declinst{b}{}{``B''}
+
+\mess{``hola''}{a}{b}[5]
+\nextlevel[6]
+\mess{``adios''}{b}{a}[1]
+\nextlevel[1]
+
+\end{msc}
+\end{postscript}
+  \caption{Ejemplo de tiempo relativo explicito complejo.}
+  \label{fig:complex_explicit_example}
+\end{figure}
+
+\end{itemize}
 
 \section{Sintaxis Concreta}
 
 La gramática, en formato EBNF (\emph{Extended Backus-Naur Form}) de
 \textit{MSCLan} es la siguiente:
 \begin{lstlisting}[style=spec, language={}]
-    msc ::= inst_decl* message*
-    inst_decl ::= INSTANCE iid |
-                  INSTANCE iid OF tid; |
-                  INSTANCE iid {string}; |
-                  INSTANCE iid OF tid {string};               
-    message ::= MESSAGE mid_opt string_opt origin destiny;
-    mid_opt ::= LAMBDA | mid
-    string_opt ::= LAMBDA | {string}
-    origin ::= LAMBDA | origin_opt
-    origin_opt ::= FROM iid time_ref_opt
-    destiny ::= LAMBDA | destiny_opt
-    destiny_opt ::= TO iid time_ref_opt
-    time_ref_opt ::= LAMBDA | @ time_ref
-    time_ref ::= abs_time | rel_time
-    abs_time ::= num
-    rel_time ::= ref dif_time_opt | dif_time
-    ref ::= mid ! | mid ?
-    dif_time_opt ::= LAMBDA | dif_time
-    dif_time ::= + num | - num
-    iid ::= ID
-    tid ::= ID
-    mid ::= ID
-    string ::= STRING
-    num ::= NUM
+msc ::= inst_decl* message*
+inst_decl ::= INSTANCE iid |
+              INSTANCE iid OF tid; |
+              INSTANCE iid {string}; |
+              INSTANCE iid OF tid {string};               
+message ::= MESSAGE mid_opt string_opt origin destiny;
+mid_opt ::= LAMBDA | mid
+string_opt ::= LAMBDA | {string}
+origin ::= LAMBDA | origin_opt
+origin_opt ::= FROM iid time_ref_opt
+destiny ::= LAMBDA | destiny_opt
+destiny_opt ::= TO iid time_ref_opt
+time_ref_opt ::= LAMBDA | @ time_ref
+time_ref ::= abs_time | rel_time
+abs_time ::= num
+rel_time ::= ref dif_time_opt | dif_time
+ref ::= mid ! | mid ?
+dif_time_opt ::= LAMBDA | dif_time
+dif_time ::= + num | - num
+iid ::= ID
+tid ::= ID
+mid ::= ID
+string ::= STRING
+num ::= NUM
 \end{lstlisting}
 
 En ella hemos escrito con minúsculas los símbolos no terminales, y en 

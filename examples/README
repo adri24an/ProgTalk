@@ -12,8 +12,8 @@ Resumen de las pruebas:
                tiempo de envio un mid no almacenado.
 - test8.msc  : prueba el error de recibir 1 message que referencia en su
                tiempo de recepcion un mid no almacenado.
-- test9.msc  : prueba el error de poner un como destino de un mensaje una 		       instancia que no existe
-- test10.msc : prueba el error de poner un como origen de un mensaje una 		       instancia que no existe
+- test9.msc  : prueba el error de poner como destino de un mensaje una 		       instancia que no existe
+- test10.msc : prueba el error de poner como origen de un mensaje una 		       instancia que no existe
 - test11.msc : prueba todas las posibilidades de tiempos rel y abs pero
                con mensajes que se envían de forma estrictamente secuencial.
 - test12.msc : prueba todas las posibilidades de tiempos rel y abs

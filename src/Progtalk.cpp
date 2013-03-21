@@ -15,7 +15,5 @@ int main()
   parser->accept(*visitorpprinting); // Esto lo podemos quitar cuando queramos.
   parser->accept(*visitorprint);
   
-  //parser->accept(*visitorprint);
-  
   return 0;
 }
