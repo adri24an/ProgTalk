@@ -13,8 +13,6 @@ nuestra herramienta.
   \label{fig:modelo-ast}
 \end{figure}
 
-\todo{AB:donde colocamos el diagrama de clases detallado?}
-
 Visto el diagrama de clases, procedemos a explicar la representación
 abstracta respecto a la concreta:
 \begin{itemize}
@@ -137,8 +135,7 @@ proceso de parseo y el programa termina.
 Las acciones semánticas en \emph{bisonc++} simplemente construyen los
 nodos del árbol de sintaxis abstracta. Veamos un ejemplo de una de
 nuestras acciones semánticas: \lstsetc
-\todo{AB: Este codigo hay que revisarlo. Al hacer el pdf se sale de
-  los margenes y queda francamente mal.}
+
 \begin{lstlisting}
 message:
      MESSAGE mid_opt string_opt origin_opt destiny_opt SEMICOLON EOLN
@@ -189,8 +186,7 @@ análisis sintáctico son:
 \item La declaración de varias instancias con igual identificador,
 \item la declaración de varios mensajes con igual identificador,
 \item la ausencia de elementos imprescindibles de un mensaje, como su
-  origen o destino, \todo{AB: esto no sería más bien un error
-    sintáctico mas que semántico?}
+  origen o destino,
 \item la referencia a una instancia que no ha sido declarada
   anteriormente.
 \end{itemize}
