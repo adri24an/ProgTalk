@@ -1,6 +1,7 @@
 Notas de desarrollo a consultar en reunion:
 
 - Como tratamos "Syntax Error"?
-- Tiene sentido tener en metodos visit el objeto como parametro si no
-  lo usamos (asi que quitariamos warnings)?
 - Pasamos a bouml los visitor que quedan?
+
+- Revisar intro de Angel.
+- Revisar formato del PFC (ej pag 22).
