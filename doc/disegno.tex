@@ -341,7 +341,69 @@ que un mensaje no puede recibirse antes de que fuera enviado.
 Para esta tarea hemos utilizado un patrón de diseño \textit{Visitor},
 el cual recorre toda la información almacenada y a partir de ésta crea
 un fichero \textit{.tex} que compilado en \textit{latex} nos dará una
-representación gráfica de la comunicación.
+representación gráfica de la comunicación. Las razones para elegir el
+patrón de diseño \textit{Visitor} son las mismas que aparecen en
+(cita) \todo{CITAR TEXTO DEL CAPITULO ANÁLISIS SEMÁNTICO}.
+
+El módulo que realiza esta conversión de comunicación parseada y
+almacenada a un fichero en lenguaje \textit{Latex} se llama
+\textit{LatexPrint}. A continuación adjuntamos un par de pequeñas porciones de
+código para mostrar el funcionamiento de este módulo.
+
+\begin{lstlisting}
+
+#include "LatexPrint.h"
+
+LatexPrint::LatexPrint() {
+  decl = 0;
+  ofstream fs("communication.tex");
+  msg = new string;
+  pair<int,int> aux (-1,-1); 
+  
+  fs << "\\documentclass{article}\n";
+  fs << "\\usepackage[a5paper,vmargin=1cm,hmargin=1cm]{geometry}\n";
+  fs << "\\usepackage{msc}\n";
+  fs << "\\usepackage{auto-pst-pdf}\n";
+  fs << "\\begin{document}\n";
+  fs << "\\thispagestyle{empty}\n\n";
+  fs << "\\setlength{\\firstlevelheight}{1cm}\n\n";
+  fs << "\\begin{postscript}\\begin{msc}{Communication}\n\n";
+  fs.close();
+}
+
+\end{lstlisting}
+
+Como vemos, el código se corresponde con el constructor del objeto, y
+entre otras cosas, crea un fichero \textit{.tex} en el cual imprime
+varias sentencias en lenguaje \textit{Latex} que posteriormente podrá
+interpretar un compilador de \textit{Latex}.
+
+\begin{lstlisting}
+
+void LatexPrint::visitMessage(Message * m)
+{
+  fs.open("communication.tex", fstream::app);
+  fs << "\n\\mess{" << m->get_sms() << "}" << *msg << "[3]\n";
+  fs << "\\mscmark{t=" << aux.first << "}{" 
+     << m->get_sending()->getInstance() << "}\n";
+  fs << "\\nextlevel[3]\n";
+  fs << "\\mscmark[br]{t=" << aux.second << "}{" 
+     << m->get_receipt()->getInstance() << "}\n";
+  fs << "\\nextlevel[3]\n";
+  fs.close();
+  delete msg;
+  msg = new string();
+  aux.first = -1;
+  aux.second = -1;
+}
+
+\end{lstlisting}
+
+Aquí tenemos el método \textit{Visitor} encargado de obtener
+información de objetos \textit{Message}. Como vemos imprimimos en el
+fichero \textit{.tex} sentencias en lenguaje \textit{Latex}
+intercaladas con información del mensaje que la clase visitada
+alberga.
 
 \todo{AB:que tal si añadimos otro capitulo/sección donde metemos el
   ejemplo de lars con todos los diagramas?}
